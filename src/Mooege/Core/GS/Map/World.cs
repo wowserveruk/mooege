@@ -628,5 +628,10 @@ namespace Mooege.Core.GS.Map
         {
             return string.Format("[World] SNOId: {0} DynamicId: {1}", this.SNOId, this.DynamicID);
         }
+
+        internal Actor GetActor(uint targetId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
