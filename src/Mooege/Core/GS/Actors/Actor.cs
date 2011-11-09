@@ -60,6 +60,8 @@ namespace Mooege.Core.GS.Actors
         /// The actor type.
         /// </summary>
         public abstract ActorType ActorType { get; }
+		
+		public Effect2 Effect2;
 
         /// <summary>
         /// Current scene for the actor.
@@ -729,6 +731,11 @@ namespace Mooege.Core.GS.Actors
         public override string ToString()
         {
             return string.Format("[Actor] [Type: {0}] SNOId:{1} DynamicId: {2} Position: {3} Name: {4}", this.ActorType, this.SNOId, this.DynamicID, this.Position, this.SNOName.Name);
+        }
+
+        internal void ReceiveDamage(float p, FloatingNumberMessage.FloatType floatType)
+        {
+            throw new NotImplementedException();
         }
     }
 

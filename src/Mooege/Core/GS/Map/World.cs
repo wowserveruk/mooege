@@ -634,5 +634,10 @@ namespace Mooege.Core.GS.Map
         {
             throw new NotImplementedException();
         }
+
+        internal object GetActorsInRange(Vector3D vector3D, float p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

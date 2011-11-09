@@ -29,6 +29,7 @@ namespace Mooege.Net.GS.Message.Definitions.Effect
         public int? /* sno */ EffectSNOId; // the effect to play
         public uint ActorID; // where the effect starts
         public uint TargetID; // where the effect will travel to
+        public uint fromActorID;
 		
 		public EffectGroupACDToACDMessage() : base(Opcodes.EffectGroupACDToACDMessage) { }
 
@@ -60,5 +61,9 @@ namespace Mooege.Net.GS.Message.Definitions.Effect
         }
 
 
+
+        public uint toActorID { get; set; }
+
+        public int effectSNO { get; set; }
     }
 }

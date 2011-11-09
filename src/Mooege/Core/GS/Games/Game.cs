@@ -374,5 +374,7 @@ namespace Mooege.Core.GS.Games
         }
 
         #endregion
+
+        public int Tick { get; set; }
     }
 }
