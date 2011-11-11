@@ -182,7 +182,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     {
         public override IEnumerable<TickTimer> Run()
         {
-            //StartCooldown(WaitSeconds(10f));
+            StartCooldown(WaitSeconds(10f));
             
             var projectile = new PowerProjectile(User.World, 74636, User.Position, TargetPosition, 2f, 500f, 1f, 3f, 5f, 0f);
 
@@ -231,53 +231,124 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
     public class BarbarianFrenzy : PowerImplementation
     {
-        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
-        {
-            //Cast owner to player
-            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+        public override IEnumerable<TickTimer> Run()
+        {            
+            //increaseAttackSeep(0.15f);
 
-            //This power request a valid target in range
-            if (target == null || PowerUtils.isInMeleeRange(hero.Position, target.Position)) { yield break; }
-
-            //FIXME frenzy stack should be stored in class specific attribute
-            //Max stack reach ?
-            if(hero.PowerManager2.frenzyStack >= 5) { yield break; }  
-        
-            //First stack we need to add the stack buff
-            if (hero.PowerManager2.frenzyStack == 0) 
-            { 
-                hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(true), Skills.Skills.Barbarian.FuryGenerators.Frenzy);
-            }
-
-            //Increase player attack speed
-            hero.increaseAttackSeep(0.15f);
-            
-            //Increase current FrenzyStack
-            hero.PowerManager2.frenzyStack++;
-
-            //Regen 3 fury
-            hero.GeneratePrimaryResource(3f);
-
-            //Send dmg
-            target.ReceiveDamage(10f, FloatingNumberMessage.FloatType.White);
-            
-            //Add timer of 4 sec before removal of the effect
-            yield return 4000;
-
-            //Decrease attack speed
-            hero.decreaseAttackSeep(0.15f);
-            
-            //Decrase frenzy stack
-            hero.PowerManager2.frenzyStack--;
-            
-            //Remove frenzy effect if frenzy buff is gone
-            if(hero.PowerManager2.frenzyStack == 0) 
+            if (CanHitMeleeTarget(Target))
             {
-                hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(false), Skills.Skills.Barbarian.FuryGenerators.Frenzy);
+                GeneratePrimaryResource(3f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
             }
+
+            
+            //decreaseAttackSeep(0.15f);
+            
+			yield break;
         }           
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.HammerOfTheAncients)]
+    public class BarbarianHammerOfTheAncients : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(18705);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.ThreateningShout)]
+    public class BarbarianThreateningShout : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {           
+            UsePrimaryResource(20f);
+			
+			User.PlayEffectGroup(158731);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.BattleRage)]
+    public class BarbarianBattleRage : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+			User.PlayEffectGroup(18666);
+			
+			UsePrimaryResource(20f);
+
+            yield break;
+        }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]
+    public class BarbarianWeaponThrow : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+			UseResources(20f);
+
+            //Synchronize with animation
+            yield return 100;
+            
+            //Spawn Projectile actor
+            PowerProjectile powerProjectile = new PowerProjectile(hero.World, 163462, hero.Position, mousePosition, 1f, 3000, 1f, 3f, 0f, 3f);
+            
+            //Every 100ms calculate if an impact occure with the projectile and check if the projectile is still alive
+            while (powerProjectile.World != null)
+            {
+                //Check if projectile enter in collision with a monster
+                if (powerProjectile.detectCollision())
+                {   
+                    powerProjectile.hittedActor.Effect.addEffect(18707);
+                    powerProjectile.hittedActor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
+                    powerProjectile.Destroy();
+                }
+
+                yield return 100;
+            }
+        }
     }*/
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]
+    public class BarbarianRend : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(70614); 
+
+			if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }   
 }
