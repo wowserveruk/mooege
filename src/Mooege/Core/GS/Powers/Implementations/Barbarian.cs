@@ -61,32 +61,25 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 
     [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]
-    public class BarbarianCleave : PowerImplementation2
+    public class BarbarianCleave : PowerImplementation
     {
-        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
+        public override IEnumerable<TickTimer> Run()
         {
-            //Cast owner to player
-            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+            yield return WaitSeconds(0.25f); // wait for swing animation
 
-            //This power request a valid target in range
-            if (target == null || PowerUtils.isInMeleeRange(hero.Position, target.Position)) { yield break; }
-
-            //Animation sync
-            yield return 200; 
-
-            //FIXEME : cleave effect can be from right or left, the actual player swing side is embeded in the target message
-            //Send cleave effect 
-            hero.Effect2.addEffect2(18671);
-
-            foreach(Actor victim in hero.World.GetActorsInFront(hero, target.Position, 180f, 12f))
+            User.PlayEffectGroup(18671);
+			
+			if (CanHitMeleeTarget(Target))
             {
-                if (victim.ActorType == ActorType.Monster)
-                {
-                    victim.ReceiveDamage(20f, FloatingNumberMessage.FloatType.White);
-                }
+                GeneratePrimaryResource(4f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
             }
 
-            hero.GeneratePrimaryResource(4f);
+            yield break;
         }
     }
 	
