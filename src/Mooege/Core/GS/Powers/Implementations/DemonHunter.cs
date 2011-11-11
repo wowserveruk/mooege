@@ -494,7 +494,7 @@ namespace Mooege.Core.GS.Powers.Implementations
             Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
 
             //Regen hatred
-            //hero.useSecondaryResources(8f);
+            hero.UseSecondaryResource(8f);
 
             hero.Effect2.addEffect2(131425);
             //Add untargetable attribute
@@ -533,92 +533,6 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield return WaitSeconds(0.3f);
             User.Teleport(TargetPosition);
             User.PlayEffectGroup(170232);
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]
-    public class DemonHunterChakram : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(25f);
-
-            // HACK: made up spell, not real magic missile
-            for (int step = 1; step < 10; ++step)
-            {
-                var spos = new Vector3D();
-                spos.X = User.Position.X + ((TargetPosition.X - User.Position.X) * (step * 0.10f));
-                spos.Y = User.Position.Y + ((TargetPosition.Y - User.Position.Y) * (step * 0.10f));
-                spos.Z = User.Position.Z + ((TargetPosition.Z - User.Position.Z) * (step * 0.10f));
-
-                SpawnEffect(61419, spos);
-
-                IList<Actor> hits = GetTargetsInRange(spos, 6f);
-                Damage(hits, 60f, 0);
-                yield return WaitSeconds(0.1f);
-            }
-        }
-
-        private void Damage(IList<Actor> hits, float p, int p_2)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.FanOfKnives)]
-    public class DemonHunterFanOfKnives : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(20f);
-            StartCooldown(WaitSeconds(10f));
-
-            Vector3D startpos;
-            if (Target == null)
-                startpos = User.Position;
-            else
-                startpos = TargetPosition;
-
-            for (int n = 0; n < 7; ++n)
-            {
-                IList<Actor> nearby = GetTargetsInRange(startpos, 20f, 1);
-                if (nearby.Count > 0)
-                {
-                    SpawnEffect(99063, nearby[0].Position);
-                    Damage(nearby[0], 100f, 0);
-                    yield return WaitSeconds(0.1f);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        private void Damage(Actor actor, float p, int p_2)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Grenades)]
-    public class DemonHunterGrenades : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(30f);
-            SpawnEffect(86790, TargetPosition);
-            yield return WaitSeconds(2f); // wait for meteor to hit
-            SpawnEffect(86769, TargetPosition);
-            SpawnEffect(90364, TargetPosition, -1, WaitSeconds(4f));
-
-            IList<Actor> hits = GetTargetsInRange(TargetPosition, 13f);
-            Damage(hits, 150f, 0);
-        }
-
-        private void Damage(IList<Actor> hits, float p, int p_2)
-        {
-            throw new NotImplementedException();
         }
     }
 }
