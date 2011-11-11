@@ -164,7 +164,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     {
         public override IEnumerable<TickTimer> Run()
         {
-            //UsePrimaryResource(14f);
+            UsePrimaryResource(14f);
 
             //User.AddBuff(new WhirlWindEffectBuff(WaitSeconds(0.250f)));
 

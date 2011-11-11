@@ -372,4 +372,123 @@ namespace Mooege.Core.GS.Powers.Implementations
                 User.World.BroadcastIfRevealed(msg, User);
         }
     }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BlindingFlash)]
+    public class MonkBlindingFlash : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(3f);
+            
+            StartCooldown(WaitSeconds(30f));           
+
+            User.PlayEffectGroup(137107);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LashingTailKick)]
+    public class MonkLashingTailKick : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(30f);
+			
+			StartCooldown(WaitSeconds(3f));   
+
+			yield return WaitSeconds(0.25f); // wait for swing animation
+
+            User.PlayEffectGroup(142616);
+			
+			if (CanHitMeleeTarget(Target))
+            { 
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+			
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LethalDecoy)]
+    public class MonkLethalDecoy : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {			
+			UsePrimaryResource(75f);
+            StartCooldown(WaitSeconds(5f));
+			User.PlayEffectGroup(99504);
+
+            Vector3D startpos;
+            if (Target == null)
+                startpos = User.Position;
+            else
+                startpos = TargetPosition;
+
+            for (int n = 0; n < 7; ++n)
+            {
+                IList<Actor> nearby = GetTargetsInRange(startpos, 20f, 1);
+                if (nearby.Count > 0)
+                {
+                    SpawnEffect(208435, nearby[0].Position, -1);
+                    WeaponDamage(nearby[0], 2.15f, DamageType.Physical);
+                    yield return WaitSeconds(5.0f);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.InnerSanctuary)]
+    public class MonkInnerSanctuary : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(75f);
+            StartCooldown(WaitSeconds(5f));
+			User.PlayEffectGroup(98557);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfEvasion)]
+    public class MonkMantraOfEvasion : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            StartCooldown(WaitSeconds(15f));
+			
+			yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfRetribution)]
+    public class MonkMantraOfRetribution : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            StartCooldown(WaitSeconds(15f));
+			
+			yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BreathOfHeaven)]
+    public class MonkBreathOfHeaven : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {    		
+            UsePrimaryResource(25f);
+			StartCooldown(WaitSeconds(5f));
+			
+            yield break;
+        }
+    }
 }
