@@ -403,14 +403,14 @@ namespace Mooege.Core.GS.Powers.Implementations
             Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
 
             //Regen hatred
-            //hero.UseSecondaryResource(8f);
+            hero.UseSecondaryResource(8f);
 
             //Cast effect
             hero.Effect2.addEffect2(131623);
 
             //Spawn the catual proxy trap
             PowerProxy trap = new PowerProxy(hero.World, 136149, hero.Position);
-            trap.Effect.addEffect(196032);
+            trap.Effect2.addEffect2(196032);
 
             //Calculate trap ttl
             int trapTtl = hero.World.Game.Tick + (60 * 12);
@@ -425,7 +425,7 @@ namespace Mooege.Core.GS.Powers.Implementations
                 {
                     if (actor.ActorType == ActorType.Monster && !trappedTarget.Contains(actor))
                     {
-                        actor.Effect.addEffect(131623);
+                        actor.Effect2.addEffect2(131623);
                         actor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
                         actor.ReceiveDamage(0f, FloatingNumberMessage.FloatType.AttackSlowed);
                         trappedTarget.Add(actor);

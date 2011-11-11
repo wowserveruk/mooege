@@ -37,6 +37,9 @@ namespace Mooege.Net.GS.Message.Definitions.ACD
         public float Field6;                // some sort of fallof / individual gravity..always < 0...math is unknown - farmy
         public int /* sno */ Field7;        // its a power sno, like in knockback.pow. but i dont know what its used for -farmy
         public float Field8;
+        public uint Field0;
+        public Vector3D Field1;
+        public Vector3D Field2;
 
         public ACDTranslateArcMessage() 
             : base(Opcodes.ACDTranslateArcMessage) 
