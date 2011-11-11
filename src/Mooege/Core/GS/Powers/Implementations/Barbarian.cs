@@ -22,6 +22,18 @@ using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Net.GS.Message.Definitions.ACD;
 using Mooege.Core.GS.Ticker.Helpers;
+using Mooege.Net.GS;
+using Mooege.Net.GS.Message.Fields;
+using Mooege.Net.GS.Message.Definitions.Attribute;
+using Mooege.Net.GS.Message.Definitions.Misc;
+using Mooege.Net.GS.Message;
+using Mooege.Core.GS.Games;
+using Mooege.Core.GS.Powers;
+using Mooege.Net.GS.Message.Definitions.World;
+using Mooege.Net.GS.Message.Definitions.Effect;
+using Mooege.Net.GS.Message.Definitions.Actor;
+using Mooege.Net.GS.Message.Definitions.Animation;
+using Mooege.Net.GS.Message.Definitions.Player;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
@@ -47,6 +59,93 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;
         }
     }
+
+    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]
+    public class BarbarianCleave : PowerImplementation2
+    {
+        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
+        {
+            //Cast owner to player
+            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+
+            //This power request a valid target in range
+            if (target == null || PowerUtils.isInMeleeRange(hero.Position, target.Position)) { yield break; }
+
+            //Animation sync
+            yield return 200; 
+
+            //FIXEME : cleave effect can be from right or left, the actual player swing side is embeded in the target message
+            //Send cleave effect 
+            hero.Effect2.addEffect2(18671);
+
+            foreach(Actor victim in hero.World.GetActorsInFront(hero, target.Position, 180f, 12f))
+            {
+                if (victim.ActorType == ActorType.Monster)
+                {
+                    victim.ReceiveDamage(20f, FloatingNumberMessage.FloatType.White);
+                }
+            }
+
+            hero.GeneratePrimaryResource(4f);
+        }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
+    public class BarbarianGroundStomp : PowerImplementation2
+    {
+        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
+        {
+            //Cast owner to player
+            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+
+            //Animation sync
+            yield return 200;
+
+            //Send stomp effect       
+            hero.Effect2.addEffect2(18685);
+
+            //Victime counter, used to toggle resources regen
+            int victim_counter = 0;
+
+            List<Actor> targetList = hero.World.GetActorsInRange(hero.Position, 17f);
+
+            //Add dmg / stunt effect
+            foreach (Actor victim in targetList)
+            {
+                if (victim.ActorType == ActorType.Monster)
+                {
+                    //Calculate damage done
+                    victim.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
+                    
+                    //Stunt target
+                    victim.ActorAttribute.setAttribute(GameAttribute.Stunned, new GameAttributeValue(true));
+                    victim_counter++;
+                }
+            }
+
+            //If at least 1 target was hit, we regen ressources
+            if (victim_counter > 0) 
+            {
+                //Regen 15 fury
+                hero.regenResources(15f);
+            }
+
+            //Set skill on Colldown for 12 sec
+            hero.setPowerCooldown(12, Skills.Skills.Barbarian.FuryGenerators.GroundStomp); 
+
+            yield return 3000;
+            
+            //FIXEME : will remove all stunt that are affecting that target, if another stunt occure during the groundstomp stunt it will also be removed after 3 sec regardless of the second stunt duration
+            //Remove stunt effect after 3sec
+            foreach (Actor victim in targetList)
+            {
+                if (victim.ActorType == ActorType.Monster)
+                {
+                    victim.ActorAttribute.setAttribute(GameAttribute.Stunned, new GameAttributeValue(false));
+                }
+            }         
+        }
+    }*/
 
     [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.LeapAttack)]
     public class BarbarianLeap : PowerImplementation
@@ -170,4 +269,54 @@ namespace Mooege.Core.GS.Powers.Implementations
             };
         }
     }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
+    public class BarbarianFrenzy : PowerImplementation2
+    {
+        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
+        {
+            //Cast owner to player
+            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+
+            //This power request a valid target in range
+            if (target == null || PowerUtils.isInMeleeRange(hero.Position, target.Position)) { yield break; }
+
+            //FIXME frenzy stack should be stored in class specific attribute
+            //Max stack reach ?
+            if(hero.PowerManager2.frenzyStack >= 5) { yield break; }  
+        
+            //First stack we need to add the stack buff
+            if (hero.PowerManager2.frenzyStack == 0) 
+            { 
+                hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(true), Skills.Skills.Barbarian.FuryGenerators.Frenzy);
+            }
+
+            //Increase player attack speed
+            hero.increaseAttackSeep(0.15f);
+            
+            //Increase current FrenzyStack
+            hero.PowerManager2.frenzyStack++;
+
+            //Regen 3 fury
+            hero.GeneratePrimaryResource(3f);
+
+            //Send dmg
+            target.ReceiveDamage(10f, FloatingNumberMessage.FloatType.White);
+            
+            //Add timer of 4 sec before removal of the effect
+            yield return 4000;
+
+            //Decrease attack speed
+            hero.decreaseAttackSeep(0.15f);
+            
+            //Decrase frenzy stack
+            hero.PowerManager2.frenzyStack--;
+            
+            //Remove frenzy effect if frenzy buff is gone
+            if(hero.PowerManager2.frenzyStack == 0) 
+            {
+                hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(false), Skills.Skills.Barbarian.FuryGenerators.Frenzy);
+            }
+        }           
+    }*/
 }

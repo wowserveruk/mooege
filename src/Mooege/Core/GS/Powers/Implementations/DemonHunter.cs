@@ -84,7 +84,7 @@ namespace Mooege.Core.GS.Powers.Implementations
                     if (seeked != null)
                     {
                         Vector3D currentPosistion = powerProjectile.getCurrentPosition();
-                        PowerProjectile powerProjectile2 = new PowerProjectile(hero.World, 129932, new Vector3D(currentPosistion.X, currentPosistion.Y, seeked.Position.Z), seeked.Position, 1f, 3000, 0.5f, 1f, 6f);
+                        PowerProjectile powerProjectile = new PowerProjectile(hero.World, 129932, new Vector3D(currentPosistion.X, currentPosistion.Y, seeked.Position.Z), seeked.Position, 1f, 3000, 0.5f, 1f, 6f);
                         powerProjectile.Destroy();
                         powerProjectile = powerProjectile2;
                     }
@@ -134,11 +134,11 @@ namespace Mooege.Core.GS.Powers.Implementations
                     powerProjectile.hittedActor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
 
                     //Apply aoe effect
-                    /*foreach (Actor actor in powerProjectile.hittedActor.World.GetActorsInRange(powerProjectile.hittedActor.Position, 15f))
+                    foreach (Actor actor in powerProjectile.hittedActor.World.GetActorsInRange(powerProjectile.hittedActor.Position, 15f))
                     {
                         if (actor.ActorType == ActorType.Monster && actor.DynamicID != powerProjectile.hittedActor.DynamicID)
                             actor.ReceiveDamage(30f, FloatingNumberMessage.FloatType.White);
-                    }*/
+                    }
 
                 }
 
@@ -216,7 +216,7 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EvasiveFire)]
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EvasiveFire)]
     public class DemonHunterEvasiveFire : PowerImplementation2
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
@@ -257,9 +257,9 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             yield break;
         }
-    }*/
+    }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Grenades)]
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Grenades)]
     public class DemonHunterGrenades : PowerImplementation2
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
@@ -321,7 +321,7 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             yield break;
         }
-    }*/
+    }
 
     [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Impale)]
     public class DemonHunterImpale : PowerImplementation2
@@ -348,7 +348,7 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 
-    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.FanOfKnives)]
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.FanOfKnives)]
     public class DemonHunterFanOfKinves : PowerImplementation2
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
@@ -373,7 +373,7 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             yield break;
         }
-    }*/
+    }
 
     [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]
     public class DemonHunterChakram : PowerImplementation2
@@ -394,7 +394,7 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 
-    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Caltrops)]
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Caltrops)]
     public class DemonHunterCaltrops : PowerImplementation2
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
@@ -440,7 +440,7 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             yield break;
         }
-    }*/
+    }
 
     /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Vault)]
     public class DemonHunterVault : PowerImplementation2

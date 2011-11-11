@@ -586,6 +586,105 @@ namespace Mooege.Core.GS.Map
         {
             return HasActor(dynamicID, ActorType.Item);
         }
+		
+		public IList<Actor> GetActorsInFront(Actor refActor, Vector3D targetPos, float degOpening, float maxDistance)
+        {
+            List<Actor> actors = new List<Actor>();
+
+            //Restrict calculation to actor that are in range radius
+            List<Actor> targets = refActor.World.GetActorsInRange(refActor.Position, maxDistance);
+
+            float deg_ref = getDeg(refActor.Position, targetPos);
+
+            foreach (Actor actor in targets)
+            {     
+                //Calculate deg
+                float deg_target = getDeg(refActor.Position, actor.Position);
+
+                float deg_upper_limit = (deg_ref + degOpening / 2);
+                float deg_lower_limit = (deg_ref - degOpening / 2);
+
+                //Correction need to be made when 0 deg is in the cone
+                if (deg_upper_limit > 360f || deg_lower_limit < 0)
+                {
+                    deg_upper_limit += 360f;
+                    deg_lower_limit += 360f;
+                    deg_target += 360f;
+                }
+
+                if ((deg_upper_limit > deg_target) && (deg_lower_limit < deg_target))
+                {
+                    actors.Add(actor);
+                }
+
+            }
+            return actors;
+        }
+
+        private float getDeg(Vector3D vector3D, Vector3D targetPos)
+        {
+            throw new NotImplementedException();
+        }
+		
+		public List<Actor> GetActorsInRange(int SNO, Vector3D vec, float range)
+        {
+            return GetActorsInRange(SNO, vec.X, vec.Y, vec.Z, range);
+        }
+
+        private List<Actor> GetActorsInRange(int SNO, float p, float p_2, float p_3, float range)
+        {
+            throw new NotImplementedException();
+        }
+              
+
+        public List<Actor> GetActorsInRange(float x, float y, float z, float range)
+        {
+            var result = new List<Actor>();
+            foreach (var actor in this._actors.Values)
+            {
+                if (Math.Sqrt(
+                        Math.Pow(actor.Position.X - x, 2) +
+                        Math.Pow(actor.Position.Y - y, 2) +
+                        Math.Pow(actor.Position.Z - z, 2)) <= range)
+                {
+                    result.Add(actor);
+                }
+            }
+            return result;
+        }
+
+        public List<Actor> GetActorsInRange(Vector3D vec, float range)
+        {
+            return GetActorsInRange(vec.X, vec.Y, vec.Z, range);
+        }
+
+        /*public List<Mooege.Core.GS.Players.Player> GetPlayersInRange(float x, float y, float z, float range)
+        {
+            var result = new List<Mooege.Core.GS.Players.Player>();
+            foreach (var player in this._player.Values)
+            {
+                if (Math.Sqrt(
+                        Math.Pow(player.Position.X - x, 2) +
+                        Math.Pow(player.Position.Y - y, 2) +
+                        Math.Pow(player.Position.Z - z, 2)) <= range)
+                {
+                    result.Add(player);
+                }
+            }
+            return result;
+        }*/
+        
+  
+
+        public List<Mooege.Core.GS.Players.Player> GetPlayersInRange(Vector3D vec, float range)
+        {
+            return GetPlayersInRange(vec.X, vec.Y, vec.Z, range);
+        }
+
+        private List<Player> GetPlayersInRange(float p, float p_2, float p_3, float range)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
 
@@ -635,9 +734,9 @@ namespace Mooege.Core.GS.Map
             throw new NotImplementedException();
         }
 
-        internal object GetActorsInRange(Vector3D vector3D, float p)
+        /*internal object GetActorsInRange(Vector3D vector3D, float p)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }
