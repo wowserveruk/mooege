@@ -153,7 +153,7 @@ namespace Mooege.Core.GS.Powers.Implementations
             }
 
             if (hitAnything)
-                GeneratePrimaryResource(15f);
+                GeneratePrimaryResource(20f);
 
             yield break;
         }
