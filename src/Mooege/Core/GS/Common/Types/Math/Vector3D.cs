@@ -184,5 +184,10 @@ namespace Mooege.Core.GS.Common.Types.Math
         {
             throw new System.NotImplementedException();
         }
+
+        internal void Set(Vector3D finalPosition)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

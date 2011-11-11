@@ -251,7 +251,7 @@ namespace Mooege.Core.GS.Powers.Implementations
                     Vector3D finalPosition = new Vector3D(hero.Position.X + invertedNormVector.X * 15f, hero.Position.Y + invertedNormVector.Y * 15f, hero.Position.Z);
 
                     //Translate backward
-                    hero.Movement.translateNormal(finalPosition, 69792);
+                    hero.Movement2.translateNormal(finalPosition, 69792);
                 }
             }
 
@@ -287,7 +287,7 @@ namespace Mooege.Core.GS.Powers.Implementations
                 Vector3D firstArcFinalPos = new Vector3D(hero.Position.X + (deviateDiff.X * 0.8f), hero.Position.Y + (deviateDiff.Y * 0.8f), mousePosition.Z);
 
                 //Translate grenade
-                projectile.Movement.translateArc(firstArcFinalPos, -1, 1.1f);
+                projectile.Movement2.translateArc(firstArcFinalPos, -1, 1.1f);
             }
 
             //First arc
@@ -295,7 +295,7 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             foreach (KeyValuePair<PowerProjectile, Vector3D> grenade in grenadeList)
             {
-                grenade.Key.Movement.translateArc(grenade.Value, -1, 0.8f);
+                grenade.Key.Movement2.translateArc(grenade.Value, -1, 0.8f);
             }
 
             yield return 500;
@@ -375,7 +375,7 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }*/
 
-    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]
     public class DemonHunterChakram : PowerImplementation2
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
@@ -387,12 +387,12 @@ namespace Mooege.Core.GS.Powers.Implementations
             hero.UsePrimaryResource(20f);
 
             PowerProjectile projectile = new PowerProjectile(hero.World, 129228, hero.Position, mousePosition, 1f, 3000, 1f, 1f, 0f, 3f, true);
-            projectile.Movement.translateSpiral(mousePosition);
+            projectile.Movement2.translateSpiral(mousePosition);
             
 
             yield break;
         }
-    }*/
+    }
 
     /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Caltrops)]
     public class DemonHunterCaltrops : PowerImplementation2
@@ -403,7 +403,7 @@ namespace Mooege.Core.GS.Powers.Implementations
             Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
 
             //Regen hatred
-            //hero.useSecondaryResources(8f);
+            //hero.UseSecondaryResource(8f);
 
             //Cast effect
             hero.Effect2.addEffect2(131623);
@@ -453,10 +453,10 @@ namespace Mooege.Core.GS.Powers.Implementations
             //Regen hatred
             hero.UseSecondaryResource(8f);
 
-            //hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(true), Skills.Skills.DemonHunter.Discipline.Vault);
+            hero.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(true), Skills.Skills.DemonHunter.Discipline.Vault);
 
             //Translate backward
-            hero.Movement.translateNormal(mousePosition, 69792, 2f, PowerUtils.getRadian(hero.Position, mousePosition));
+            hero.Movement2.translateNormal(mousePosition, 69792, 2f, PowerUtils.getRadian(hero.Position, mousePosition));
 
             yield break;
         }
@@ -473,7 +473,7 @@ namespace Mooege.Core.GS.Powers.Implementations
             if (target == null) { yield break; }
 
             //Regen hatred
-            //hero.useSecondaryResources(8f);
+            hero.UseSecondaryResource(8f);
 
             target.ActorAttribute.setAttribute(GameAttribute.Power_Buff_0_Visual_Effect_None, new GameAttributeValue(true), Skills.Skills.DemonHunter.Discipline.MarkedForDeath);
             //Add dmg buff

@@ -63,6 +63,8 @@ namespace Mooege.Core.GS.Actors
 		
 		public Effect2 Effect2;
 
+        public Movement2 Movement2;
+
         /// <summary>
         /// Current scene for the actor.
         /// </summary>
@@ -158,6 +160,7 @@ namespace Mooege.Core.GS.Actors
         public int? Field13 = null;
 
         private int snoTriggeredConversation = -1;
+        private int ActorSNO;
 
         /// <summary>
         /// Creates a new actor.
@@ -668,6 +671,24 @@ namespace Mooege.Core.GS.Actors
                 return new WorldLocationMessageData { Scale = this.Scale, Transform = this.Transform, WorldID = this.World.DynamicID };
             }
         }
+		
+		protected Actor(World world, uint dynamicID)
+            : base(world, dynamicID)
+        {
+            this.Attributes = new GameAttributeMap();
+            this.AffixList = new List<Affix>();
+            this.GBHandle = new GBHandle() { Type = -1, GBID = -1 }; // Seems to be the default. /komiga
+            this.SNOName = new SNOName() { SNOGroup = 0x00000001, SNOId = this.ActorSNO };
+            this.ActorSNO = -1;
+            this.CollFlags = 0x00000000;
+            this.Scale = 1.0f;
+            this.RotationAmount = 0.0f;
+            this.RotationAxis.Set(0.0f, 0.0f, 1.0f);
+
+            //Init managers
+            this.Effect2 = new Effect2(this);
+            this.Movement2 = new Movement2(this);
+        }
 
         #endregion
 
@@ -753,7 +774,8 @@ namespace Mooege.Core.GS.Actors
         Item = 8,
         AxeSymbol = 9,
         Projectile = 10,
-        CustomBrain = 11
+        CustomBrain = 11,
+        Proxy = 12
     }
 
     // This should probably be the same as GBHandleType (probably merge them once all actor classes are created)
@@ -770,6 +792,7 @@ namespace Mooege.Core.GS.Actors
         Item = 8,
         AxeSymbol = 9,
         Projectile = 10,
-        CustomBrain = 11
+        CustomBrain = 11,
+        Proxy = 12
     }
 }

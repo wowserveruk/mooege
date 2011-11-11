@@ -91,5 +91,7 @@ namespace Mooege.Core.GS.Common.Types.SNO
         {
             return string.Format("[{0}] {1} - {2}", this.Group, this.SNOId, this.Name);
         }
+
+        public int SNOGroup { get; set; }
     }
 }

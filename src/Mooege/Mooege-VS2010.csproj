@@ -110,6 +110,8 @@
     <Compile Include="Core\GS\Powers\PowerLoader.cs" />
     <Compile Include="Core\GS\Powers\PowerManager.cs" />
     <Compile Include="Core\GS\Powers\PowerProjectile.cs" />
+	<Compile Include="Core\GS\Powers\PowerUtils.cs" />
+	<Compile Include="Core\GS\Powers\PowerProxy.cs" />
     <Compile Include="Common\Extensions\BigIntegerExtensions.cs" />
     <Compile Include="Common\Extensions\CodedOutputStream.cs" />
     <Compile Include="Common\Extensions\ListExtensions.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Core\GS\Actors\Environment.cs" />
     <Compile Include="Core\GS\Actors\HandledSNO.cs" />
 	<Compile Include="Core\GS\Actors\Effect2.cs" />
+	<Compile Include="Core\GS\Actors\Movement2.cs" />
     <Compile Include="Core\GS\Actors\Helpers\ActorHelpers.cs" />
     <Compile Include="Core\GS\Actors\Implementations\Artisans\Artisan.cs" />
     <Compile Include="Core\GS\Actors\Implementations\Artisans\Blacksmith.cs" />
