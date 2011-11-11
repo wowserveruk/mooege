@@ -83,62 +83,30 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
-    public class BarbarianGroundStomp : PowerImplementation2
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
+    public class BarbarianGroundStomp : PowerImplementation
     {
-        public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
+        public override IEnumerable<TickTimer> Run()
         {
-            //Cast owner to player
-            Mooege.Core.GS.Players.Player hero = owner as Mooege.Core.GS.Players.Player;
+            yield return WaitSeconds(0.25f); // wait for swing animation
+			
+			StartCooldown(WaitSeconds(12f));
 
-            //Animation sync
-            yield return 200;
+            User.PlayEffectGroup(18685);
 
-            //Send stomp effect       
-            hero.Effect2.addEffect2(18685);
-
-            //Victime counter, used to toggle resources regen
-            int victim_counter = 0;
-
-            List<Actor> targetList = hero.World.GetActorsInRange(hero.Position, 17f);
-
-            //Add dmg / stunt effect
-            foreach (Actor victim in targetList)
+            if (CanHitMeleeTarget(Target))
             {
-                if (victim.ActorType == ActorType.Monster)
-                {
-                    //Calculate damage done
-                    victim.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
-                    
-                    //Stunt target
-                    victim.ActorAttribute.setAttribute(GameAttribute.Stunned, new GameAttributeValue(true));
-                    victim_counter++;
-                }
+                GeneratePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
             }
 
-            //If at least 1 target was hit, we regen ressources
-            if (victim_counter > 0) 
-            {
-                //Regen 15 fury
-                hero.regenResources(15f);
-            }
-
-            //Set skill on Colldown for 12 sec
-            hero.setPowerCooldown(12, Skills.Skills.Barbarian.FuryGenerators.GroundStomp); 
-
-            yield return 3000;
-            
-            //FIXEME : will remove all stunt that are affecting that target, if another stunt occure during the groundstomp stunt it will also be removed after 3 sec regardless of the second stunt duration
-            //Remove stunt effect after 3sec
-            foreach (Actor victim in targetList)
-            {
-                if (victim.ActorType == ActorType.Monster)
-                {
-                    victim.ActorAttribute.setAttribute(GameAttribute.Stunned, new GameAttributeValue(false));
-                }
-            }         
+            yield break;
         }
-    }*/
+    }
 
     [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.LeapAttack)]
     public class BarbarianLeap : PowerImplementation
@@ -264,7 +232,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
-    public class BarbarianFrenzy : PowerImplementation2
+    public class BarbarianFrenzy : PowerImplementation
     {
         public override IEnumerable<int> Run(Actor owner, Actor target, Vector3D mousePosition, TargetMessage msg)
         {

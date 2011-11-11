@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-/*
+﻿/*
  * Copyright (C) 2011 mooege project
  *
  * This program is free software; you can redistribute it and/or modify
@@ -19,6 +16,9 @@ using System.Linq;
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Mooege.Core.GS.Skills;
 using Mooege.Net.GS.Message.Fields;
