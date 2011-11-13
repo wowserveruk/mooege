@@ -43,12 +43,12 @@ using Mooege.Core.GS.Ticker.Helpers;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.HungeringArrow)]
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.HungeringArrow)]		// Level 1
     public class DemonHunterHungeringArrow : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
-            GeneratePrimaryResource(10f);
+            UsePrimaryResource(10f);
             
             var projectile = new PowerProjectile(User.World, 129932, User.Position, TargetPosition, 1f, 3000, 0.5f, 1f, 6f, 3f);
             projectile.OnHit = () =>
@@ -61,64 +61,13 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;
         }
     }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.BolaShot)]
-    public class DemonHunterBolaShot : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            User.PlayEffectGroup(176854);
-
-            var projectile = new PowerProjectile(User.World, 77569, User.Position, TargetPosition, 1f, 3000, 0.5f, 1f, 6f, 3f);
-            projectile.OnHit = () =>
-            {
-                GeneratePrimaryResource(5f);
-                SpawnEffect(162007, projectile.getCurrentPosition()); // impact effect
-				projectile.Destroy();
-                SpawnEffect(153874, projectile.getCurrentPosition());
-                WaitSeconds(4.0f);
-                SpawnEffect(153727, projectile.getCurrentPosition());
-                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
-            };
-			
-			yield break;
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EntanglingShot)]
-    public class DemonHunterEntanglingShot : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            GeneratePrimaryResource(5f);
-			
-			var projectile = new PowerProjectile(User.World, 75678, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
-            projectile.OnHit = () =>
-            {
-                SpawnEffect(76223, projectile.getCurrentPosition()); // impact effect
-                projectile.Destroy();
-                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
-            };
-
-                    //We got a chained actor  //76093
-                    if (chainActor != null)
-                    {
-                        WeaponDamage(projectile.hittedActor, 0f, DamageType.Arcane);
-                        User.PlayEffectGroup(76227);
-					}
-
-            yield break;
-        }
-
-        public object chainActor { get; set; }
-    }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EvasiveFire)]
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EvasiveFire)]		// Level 2
     public class DemonHunterEvasiveFire : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
-            GeneratePrimaryResource(10f);
+            GeneratePrimaryResource(4f);
 			
 			var projectile = new PowerProjectile(User.World, 150649, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
             projectile.OnHit = () =>
@@ -128,34 +77,16 @@ namespace Mooege.Core.GS.Powers.Implementations
                 WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
             };
 			
-            
+			yield break;
         }
-
     }*/
 	
-	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Grenades)]
-    public class DemonHunterGrenades : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            var projectile = new PowerProjectile(User.World, 88244, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
-            projectile.OnHit = () =>
-            {
-                SpawnEffect(153982, projectile.getCurrentPosition()); // impact effect
-                projectile.Destroy();
-                WeaponDamage(projectile.hittedActor, 10f, DamageType.Arcane);
-            };
-                
-            yield break;
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Impale)]
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Impale)]		// Level 2
     public class DemonHunterImpale : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
-            UsePrimaryResource(40f);
+            UsePrimaryResource(6f);
 			
 			var projectile = new PowerProjectile(User.World, 150233, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
             projectile.OnHit = () =>
@@ -168,49 +99,8 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;        
         }
     }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.FanOfKnives)]
-    public class DemonHunterFanOfKinves : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(20f);
-
-            User.PlayEffectGroup(77547);
-
-            if (CanHitMeleeTarget(Target))
-            {
-                
-                if (Rand.NextDouble() < 0.20)
-                    Knockback(Target, 4f);
-
-                WeaponDamage(Target, 50f, DamageType.Physical);
-            }
-
-            yield break;
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]
-    public class DemonHunterChakram : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(20f);
-
-            var projectile = new PowerProjectile(User.World, 129228, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 0f, 3f);
-            projectile.OnHit = () =>
-            {
-                SpawnEffect(129228, projectile.getCurrentPosition()); // impact effect
-                projectile.Destroy();
-                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
-            };
-			
-            yield break;
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Caltrops)]
+	
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Caltrops)]		// Level 3
     public class DemonHunterCaltrops : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
@@ -252,12 +142,52 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Vault)]
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.BolaShot)]		// Level 4
+    public class DemonHunterBolaShot : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            GeneratePrimaryResource(2f);
+			
+			User.PlayEffectGroup(176854);
+
+            var projectile = new PowerProjectile(User.World, 77569, User.Position, TargetPosition, 1f, 3000, 0.5f, 1f, 6f, 3f);
+            projectile.OnHit = () =>
+            {               
+                SpawnEffect(162007, projectile.getCurrentPosition()); // impact effect
+				projectile.Destroy();
+                SpawnEffect(153874, projectile.getCurrentPosition());
+                WaitSeconds(4.0f);
+                SpawnEffect(153727, projectile.getCurrentPosition());
+                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
+            };
+			
+			yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.RapidFire)]		// Level 5
+    public class DemonHunterRapidFire : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(30f);
+
+            // HACK: Made up demonic meteor spell, not real RapidFire
+            SpawnEffect(185366, TargetPosition);
+            yield return WaitSeconds(0.4f);
+
+            IList<Actor> hits = GetTargetsInRange(TargetPosition, 10f);
+            WeaponDamage(hits, 10f, DamageType.Fire);
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Vault)]		// Level 6
     public class DemonHunterVault : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
-            UseSecondaryResource(8f);
+            UseSecondaryResource(10f);
 			
 			SpawnProxy(User.Position).PlayEffectGroup(69792);  // alt cast efg: 170231
             yield return WaitSeconds(0.3f);
@@ -268,51 +198,205 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.MarkedForDeath)]
-    public class DemonHunterMarkedForDeath : PowerImplementation
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Chakram)]		// Level 7
+    public class DemonHunterChakram : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
-            UseSecondaryResource(8f);
-        }
-    }*/
+            UsePrimaryResource(10f);
 
-    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.SmokeScreen)]
-    public class DemonHunterSmokeScreen : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            User.PlayEffectGroup(131425);
-        }
-    }*/
-
-    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.RapidFire)]
-    public class DemonHunterRapidFire : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(60f);
-
-            // HACK: made up demonic meteor spell, not real hydra
-            SpawnEffect(185366, TargetPosition);
-            yield return WaitSeconds(0.4f);
-
-            IList<Actor> hits = GetTargetsInRange(TargetPosition, 10f);
-            WeaponDamage(hits, 10f, DamageType.Fire);
+            var projectile = new PowerProjectile(User.World, 129228, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 0f, 3f);
+            projectile.OnHit = () =>
+            {
+                SpawnEffect(129228, projectile.getCurrentPosition()); // impact effect
+                projectile.Destroy();
+                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
+            };
+			
+            yield break;
         }
     }
 
-    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Vault)]
-    public class DemonHunterVault : PowerImplementation
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.EntanglingShot)]		// Level 8
+    public class DemonHunterEntanglingShot : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            GeneratePrimaryResource(4f);
+			
+			var projectile = new PowerProjectile(User.World, 75678, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
+            projectile.OnHit = () =>
+            {
+                SpawnEffect(76223, projectile.getCurrentPosition()); // impact effect
+                projectile.Destroy();
+                WeaponDamage(projectile.hittedActor, 50f, DamageType.Arcane);
+            };
+
+                    //We got a chained actor  //76093
+                    if (chainActor != null)
+                    {
+                        WeaponDamage(projectile.hittedActor, 0f, DamageType.Arcane);
+                        User.PlayEffectGroup(76227);
+					}
+
+            yield break;
+        }
+
+        public object chainActor { get; set; }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.ElementalArrow)]		// Level 9
+    public class DemonHunterElementalArrow : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(5f);
+        }
+    }*/
+	
+	[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Grenades)]		// Level 11
+    public class DemonHunterGrenades : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            GeneratePrimaryResource(2f);
+			
+			var projectile = new PowerProjectile(User.World, 88244, User.Position, TargetPosition, 1f, 3000, 1f, 1f, 6f, 3f);
+            projectile.OnHit = () =>
+            {
+                SpawnEffect(153982, projectile.getCurrentPosition()); // impact effect
+                projectile.Destroy();
+                WeaponDamage(projectile.hittedActor, 10f, DamageType.Arcane);
+            };
+                
+            yield break;
+        }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.ShadowPower)]		// Level 12
+    public class DemonHunterShadowPower : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseSecondaryResource(20f);
+        }
+    }*/
+
+    [ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.FanOfKnives)]		// Level 14
+    public class DemonHunterFanOfKinves : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(20f);
+			
+			StartCooldown(WaitSeconds(10f));
+
+            User.PlayEffectGroup(77547);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 50f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Companion)]		// Level 15
+    public class DemonHunterCompanion : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseSecondaryResource(10f);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.SpikeTrap)]		// Level 16
+    public class DemonHunterSpikeTrap : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            GeneratePrimaryResource(6f);
+        }
+    }*/
+
+    /*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.Multishot)]		// Level 17
+    public class DemonHunterMultishot : PowerImplementation
     {
         public override IEnumerable<TickTimer> Run()
         {
             UsePrimaryResource(15f);
-            //StartCooldown(WaitSeconds(16f));
-            SpawnProxy(User.Position).PlayEffectGroup(19352);  // alt cast efg: 170231
-            yield return WaitSeconds(0.3f);
-            User.Teleport(TargetPosition);
-            User.PlayEffectGroup(170232);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.SmokeScreen)]		// Level 18
+    public class DemonHunterSmokeScreen : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseSecondaryResource(15f);
+			
+			User.PlayEffectGroup(131425);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredGenerators.Strafe)]		// Level 19
+    public class DemonHunterStrafe : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(10f);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Sentry)]		// Level 21
+    public class DemonHunterSentry : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseSecondaryResource(10f);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.MarkedForDeath)]		// Level 23
+    public class DemonHunterMarkedForDeath : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseSecondaryResource(6f);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.Discipline.Preparation)]		// Level 25
+    public class DemonHunterPreparation : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            StartCooldown(WaitSeconds(120f));
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.ClusterArrow)]		// Level 27
+    public class DemonHunterClusterArrow : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(50f);
+        }
+    }*/
+	
+	/*[ImplementsPowerSNO(Skills.Skills.DemonHunter.HatredSpenders.RainOfVengeance)]		// Level 29
+    public class DemonHunterRainOfVengeance : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UsePrimaryResource(40f);
+			
+			StartCooldown(WaitSeconds(30f));
         }
     }*/
 }
