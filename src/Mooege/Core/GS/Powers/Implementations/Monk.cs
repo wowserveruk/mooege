@@ -378,7 +378,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     {
         public override IEnumerable<TickTimer> Run()
         {
-            UsePrimaryResource(3f);
+            UsePrimaryResource(30f);
             
             StartCooldown(WaitSeconds(30f));           
 
