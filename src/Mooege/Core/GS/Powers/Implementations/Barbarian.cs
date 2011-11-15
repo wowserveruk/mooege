@@ -48,6 +48,66 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;
         }
     }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]
+    public class BarbarianCleave : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            yield return WaitSeconds(0.25f); // wait for swing animation
+
+            //Cleave have a different animation based on the swing side wich is cointain in the Animpreplay data of the target message
+            if (this.Message.Field6.Field0 == 1)            
+                User.PlayEffectGroup(18671);            
+            else            
+                User.PlayEffectGroup(18672);            
+
+            GeneratePrimaryResource(5f);
+
+            foreach (Actor actor in GetTargetsInRange(User.Position, 12f))
+            {
+                if (PowerMath.PointInBeam(actor.Position, User.Position, PowerMath.ProjectAndTranslate2D(User.Position, TargetPosition, User.Position, 15f), 15f))
+                {
+                    WeaponDamage(actor, 1.20f, DamageType.Physical, true);
+                }
+            }
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
+    public class BarbarianGroundStomp : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            yield return WaitSeconds(0.200f); // wait for swing animation
+
+            User.PlayEffectGroup(18685);
+
+            bool hitAnything = false;
+
+            foreach (Actor actor in GetTargetsInRange(User.Position, 17f))
+            {
+                WeaponDamage(actor, 0.7f, DamageType.Physical, true);
+                Stunt(actor);
+                hitAnything = true;
+            }
+
+            if(hitAnything)
+                GeneratePrimaryResource(15f);
+
+            //FIXME
+            //Add power cooldown
+
+            yield break;
+        }
+
+        private void Stunt(Actor actor)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.LeapAttack)]
     public class BarbarianLeap : PowerImplementation
@@ -165,6 +225,127 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             return_proj.Launch(User.Position, 2f);
             User.AddRopeEffect(79402, return_proj);
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
+    public class BarbarianFrenzy : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {            
+            //increaseAttackSeep(0.15f);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                GeneratePrimaryResource(3f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            
+            //decreaseAttackSeep(0.15f);
+            
+			yield break;
+        }           
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.HammerOfTheAncients)]
+    public class BarbarianHammerOfTheAncients : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(18705);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.ThreateningShout)]
+    public class BarbarianThreateningShout : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {           
+            UsePrimaryResource(20f);
+			
+			User.PlayEffectGroup(158731);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.BattleRage)]
+    public class BarbarianBattleRage : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+			User.PlayEffectGroup(18666);
+			
+			UsePrimaryResource(20f);
+
+            yield break;
+        }
+    }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]
+    public class BarbarianWeaponThrow : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+			UseResources(20f);
+
+            //Synchronize with animation
+            yield return 100;
+            
+            //Spawn Projectile actor
+            PowerProjectile powerProjectile = new PowerProjectile(hero.World, 163462, hero.Position, mousePosition, 1f, 3000, 1f, 3f, 0f, 3f);
+            
+            //Every 100ms calculate if an impact occure with the projectile and check if the projectile is still alive
+            while (powerProjectile.World != null)
+            {
+                //Check if projectile enter in collision with a monster
+                if (powerProjectile.detectCollision())
+                {   
+                    powerProjectile.hittedActor.Effect.addEffect(18707);
+                    powerProjectile.hittedActor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
+                    powerProjectile.Destroy();
+                }
+
+                yield return 100;
+            }
+        }
+    }*/
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]
+    public class BarbarianRend : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(70614); 
+
+			if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
         }
     }
 }

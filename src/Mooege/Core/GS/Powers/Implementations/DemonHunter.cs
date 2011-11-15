@@ -39,7 +39,7 @@ using Mooege.Net.GS.Message.Definitions.Player;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Skills;
-using Mooege.Core.GS.Ticker.Helpers;
+using Mooege.Core.GS.Ticker;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {

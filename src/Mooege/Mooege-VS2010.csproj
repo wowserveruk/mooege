@@ -102,6 +102,7 @@
     <Compile Include="Core\GS\Powers\EffectActor.cs" />
     <Compile Include="Core\GS\Powers\ChanneledPowerImplementation.cs" />
     <Compile Include="Core\GS\Powers\DamageType.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\PowerProjectile.cs" />
     <Compile Include="Core\GS\Powers\PowerFormulaScript.cs" />
     <Compile Include="Core\GS\Powers\Implementations\Barbarian.cs" />
     <Compile Include="Core\GS\Powers\Implementations\DemonHunter.cs" />
