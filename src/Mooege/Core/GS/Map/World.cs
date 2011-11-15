@@ -23,10 +23,12 @@ using System.Linq;
 using System.Windows;
 using Mooege.Common;
 using Mooege.Common.Helpers;
+using Mooege.Common.Helpers.Math;
 using Mooege.Common.MPQ.FileFormats.Types;
 using Mooege.Core.GS.Actors.Implementations;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Common.Types.QuadTrees;
+using Mooege.Core.GS.Common.Types.SNO;
 using Mooege.Core.GS.Games;
 using Mooege.Core.GS.Items;
 using Mooege.Core.GS.Items.Implementations;
@@ -36,6 +38,7 @@ using Mooege.Core.GS.Players;
 using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Core.GS.Powers;
+using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Map
 {
@@ -49,9 +52,9 @@ namespace Mooege.Core.GS.Map
         public Game Game { get; private set; }
 
         /// <summary>
-        /// The SNOId for the world.
+        /// SNOHandle for the world.
         /// </summary>
-        public int SNOId { get; set; }
+        public SNOHandle WorldSNO { get; private set; }
 
         /// <summary>
         /// QuadTree that contains scenes & actors.
@@ -109,8 +112,9 @@ namespace Mooege.Core.GS.Map
             : base(game.NewWorldID)
         {
             this.Game = game;
-            this.SNOId = snoId; // NOTE: WorldSNO must be valid before adding it to the game
-            Environment = (Mooege.Common.MPQ.MPQStorage.Data.Assets[Common.Types.SNO.SNOGroup.Worlds][snoId].Data as Mooege.Common.MPQ.FileFormats.World).Environment;
+            this.WorldSNO = new SNOHandle(SNOGroup.Worlds, snoId);
+
+            Environment = ((Mooege.Common.MPQ.FileFormats.World) Mooege.Common.MPQ.MPQStorage.Data.Assets[SNOGroup.Worlds][snoId].Data).Environment;
             this.Game.StartTracking(this); // start tracking the dynamicId for the world.            
             this._scenes = new ConcurrentDictionary<uint, Scene>();
             this._actors = new ConcurrentDictionary<uint, Actor>();
@@ -225,14 +229,14 @@ namespace Mooege.Core.GS.Map
             player.InGameClient.SendMessage(new RevealWorldMessage() // Reveal world to player
             {
                 WorldID = this.DynamicID,
-                WorldSNO = this.SNOId,
+                WorldSNO = this.WorldSNO.Id
             });
 
             player.InGameClient.SendMessage(new EnterWorldMessage()
             {
                 EnterPosition = player.Position,
                 WorldID = this.DynamicID,
-                WorldSNO = this.SNOId,
+                WorldSNO = this.WorldSNO.Id
             });
 
             player.RevealedObjects.Add(this.DynamicID, this);
@@ -586,105 +590,6 @@ namespace Mooege.Core.GS.Map
         {
             return HasActor(dynamicID, ActorType.Item);
         }
-		
-		public IList<Actor> GetActorsInFront(Actor refActor, Vector3D targetPos, float degOpening, float maxDistance)
-        {
-            List<Actor> actors = new List<Actor>();
-
-            //Restrict calculation to actor that are in range radius
-            List<Actor> targets = refActor.World.GetActorsInRange(refActor.Position, maxDistance);
-
-            float deg_ref = getDeg(refActor.Position, targetPos);
-
-            foreach (Actor actor in targets)
-            {     
-                //Calculate deg
-                float deg_target = getDeg(refActor.Position, actor.Position);
-
-                float deg_upper_limit = (deg_ref + degOpening / 2);
-                float deg_lower_limit = (deg_ref - degOpening / 2);
-
-                //Correction need to be made when 0 deg is in the cone
-                if (deg_upper_limit > 360f || deg_lower_limit < 0)
-                {
-                    deg_upper_limit += 360f;
-                    deg_lower_limit += 360f;
-                    deg_target += 360f;
-                }
-
-                if ((deg_upper_limit > deg_target) && (deg_lower_limit < deg_target))
-                {
-                    actors.Add(actor);
-                }
-
-            }
-            return actors;
-        }
-
-        private float getDeg(Vector3D vector3D, Vector3D targetPos)
-        {
-            throw new NotImplementedException();
-        }
-		
-		public List<Actor> GetActorsInRange(int SNO, Vector3D vec, float range)
-        {
-            return GetActorsInRange(SNO, vec.X, vec.Y, vec.Z, range);
-        }
-
-        private List<Actor> GetActorsInRange(int SNO, float p, float p_2, float p_3, float range)
-        {
-            throw new NotImplementedException();
-        }
-              
-
-        public List<Actor> GetActorsInRange(float x, float y, float z, float range)
-        {
-            var result = new List<Actor>();
-            foreach (var actor in this._actors.Values)
-            {
-                if (Math.Sqrt(
-                        Math.Pow(actor.Position.X - x, 2) +
-                        Math.Pow(actor.Position.Y - y, 2) +
-                        Math.Pow(actor.Position.Z - z, 2)) <= range)
-                {
-                    result.Add(actor);
-                }
-            }
-            return result;
-        }
-
-        public List<Actor> GetActorsInRange(Vector3D vec, float range)
-        {
-            return GetActorsInRange(vec.X, vec.Y, vec.Z, range);
-        }
-
-        /*public List<Mooege.Core.GS.Players.Player> GetPlayersInRange(float x, float y, float z, float range)
-        {
-            var result = new List<Mooege.Core.GS.Players.Player>();
-            foreach (var player in this._player.Values)
-            {
-                if (Math.Sqrt(
-                        Math.Pow(player.Position.X - x, 2) +
-                        Math.Pow(player.Position.Y - y, 2) +
-                        Math.Pow(player.Position.Z - z, 2)) <= range)
-                {
-                    result.Add(player);
-                }
-            }
-            return result;
-        }*/
-        
-  
-
-        public List<Mooege.Core.GS.Players.Player> GetPlayersInRange(Vector3D vec, float range)
-        {
-            return GetPlayersInRange(vec.X, vec.Y, vec.Z, range);
-        }
-
-        private List<Player> GetPlayersInRange(float p, float p_2, float p_3, float range)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
@@ -726,17 +631,7 @@ namespace Mooege.Core.GS.Map
 
         public override string ToString()
         {
-            return string.Format("[World] SNOId: {0} DynamicId: {1}", this.SNOId, this.DynamicID);
+            return string.Format("[World] SNOId: {0} DynamicId: {1} Name: {2}", this.WorldSNO.Id, this.DynamicID, this.WorldSNO.Name);
         }
-
-        internal Actor GetActor(uint targetId)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*internal object GetActorsInRange(Vector3D vector3D, float p)
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }

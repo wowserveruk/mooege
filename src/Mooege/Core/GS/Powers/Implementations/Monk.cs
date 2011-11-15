@@ -1,4 +1,7 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+/*
  * Copyright (C) 2011 mooege project
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,9 +19,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Mooege.Core.GS.Skills;
 using Mooege.Net.GS.Message.Fields;
@@ -27,7 +27,7 @@ using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.Actor;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Players;
-using Mooege.Core.GS.Ticker.Helpers;
+using Mooege.Core.GS.Ticker;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
@@ -44,18 +44,18 @@ namespace Mooege.Core.GS.Powers.Implementations
             {
                 case 0:
                     yield return WaitSeconds(0.1f);
-                    effectSNO = 71921;
+                    effectSNO = 140870;
                     reachLength = 13;
                     reachThickness = 6;
                     break;
                 case 1:
-                    effectSNO = 72134;
+                    effectSNO = 140871;
                     reachLength = 14;
                     reachThickness = 8;
                     break;
                 case 2:
                     yield return WaitSeconds(0.3f);
-                    effectSNO = 72331;
+                    effectSNO = 140872;
                     reachLength = 18;
                     reachThickness = 8;
                     break;
@@ -370,125 +370,6 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             foreach (var msg in map.GetChangedMessageList(User.DynamicID))
                 User.World.BroadcastIfRevealed(msg, User);
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BlindingFlash)]
-    public class MonkBlindingFlash : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(30f);
-            
-            StartCooldown(WaitSeconds(30f));           
-
-            User.PlayEffectGroup(137107);
-
-            yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LashingTailKick)]
-    public class MonkLashingTailKick : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(30f);
-			
-			StartCooldown(WaitSeconds(3f));   
-
-			yield return WaitSeconds(0.25f); // wait for swing animation
-
-            User.PlayEffectGroup(142616);
-			
-			if (CanHitMeleeTarget(Target))
-            { 
-                if (Rand.NextDouble() < 0.20)
-                    Knockback(Target, 4f);
-
-                WeaponDamage(Target, 1.45f, DamageType.Physical);
-            }
-			
-            yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LethalDecoy)]
-    public class MonkLethalDecoy : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {			
-			UsePrimaryResource(75f);
-            StartCooldown(WaitSeconds(5f));
-			User.PlayEffectGroup(99504);
-
-            Vector3D startpos;
-            if (Target == null)
-                startpos = User.Position;
-            else
-                startpos = TargetPosition;
-
-            for (int n = 0; n < 7; ++n)
-            {
-                IList<Actor> nearby = GetTargetsInRange(startpos, 20f, 1);
-                if (nearby.Count > 0)
-                {
-                    SpawnEffect(208435, nearby[0].Position, -1);
-                    WeaponDamage(nearby[0], 2.15f, DamageType.Physical);
-                    yield return WaitSeconds(5.0f);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.InnerSanctuary)]
-    public class MonkInnerSanctuary : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UsePrimaryResource(75f);
-            StartCooldown(WaitSeconds(5f));
-			User.PlayEffectGroup(98557);
-
-            yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfEvasion)]
-    public class MonkMantraOfEvasion : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            StartCooldown(WaitSeconds(15f));
-			
-			yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfRetribution)]
-    public class MonkMantraOfRetribution : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            StartCooldown(WaitSeconds(15f));
-			
-			yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BreathOfHeaven)]
-    public class MonkBreathOfHeaven : PowerImplementation
-    {
-        public override IEnumerable<TickTimer> Run()
-        {    		
-            UsePrimaryResource(25f);
-			StartCooldown(WaitSeconds(5f));
-			
-            yield break;
         }
     }
 }

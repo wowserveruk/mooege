@@ -20,12 +20,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Mooege.Core.GS.Ticker.Helpers;
 using Mooege.Net.GS.Message.Definitions.Animation;
 using Mooege.Net.GS.Message.Fields;
 using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Net.GS.Message;
+using Mooege.Core.GS.Ticker;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
@@ -34,10 +34,89 @@ namespace Mooege.Core.GS.Powers.Implementations
     {
         public override IEnumerable<TickTimer> Run()
         {
-            var eff = SpawnProxy(TargetPosition);
-            eff.PlayEffectGroup(106365);
-            yield break;
+            int numProjectiles = (int)ScriptFormula(4);
+            for (int n = 0; n < numProjectiles; ++n)
+            {
+                var proj = new Projectile(this,
+                                          RuneSelectsId(107011, 107030, 107035, 107223, 107265, 107114),
+                                          User.Position);
+                proj.Position.Z += 3f;
+                proj.OnHit = (hit) =>
+                {
+                    // TODO: fix positioning of hit actors. possibly increase model scale?
+                    SpawnEffect(RuneSelectsId(112327, 112338, 112327, 112345, 112347, 112311), proj.Position);
 
+                    proj.Destroy();
+
+                    if (Rune_E > 0 && Rand.NextDouble() < ScriptFormula(11))
+                        hit.PlayEffectGroup(107163);
+
+                    WeaponDamage(hit, (ScriptFormula(13) + 0.16f * Rune_A), (Rune_A > 0 ? DamageType.Fire : DamageType.Poison));
+                };
+                proj.Launch(TargetPosition, 1f);
+
+                yield return WaitSeconds(ScriptFormula(17));
+            }
+        }
+    }
+
+    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.ZombieCharger)]
+    public class WitchDoctorZombieCharger : PowerImplementation
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            // HACK: made up garggy spell :)
+
+            Vector3D inFrontOfTarget = PowerMath.ProjectAndTranslate2D(TargetPosition, User.Position, TargetPosition, 11f);
+            inFrontOfTarget.Z = User.Position.Z;
+            var garggy = SpawnEffect(122305, inFrontOfTarget, TargetPosition, WaitInfinite());
+
+            _PlayAni(garggy, 155988);
+
+            yield return WaitSeconds(2f);
+
+            for (int n = 0; n < 3; ++n)
+            {
+                _PlayAni(garggy, 211382);
+
+                yield return WaitSeconds(0.5f);
+
+                SpawnEffect(192210, TargetPosition);
+                WeaponDamage(GetTargetsInRange(TargetPosition, 12f), 1.00f, DamageType.Poison);
+
+                yield return WaitSeconds(0.4f);
+            }
+
+            _PlayAni(garggy, 155536); //mwhaha
+            yield return WaitSeconds(1.5f);
+
+            _PlayAni(garggy, 171024);
+            yield return WaitSeconds(2f);
+
+            garggy.Destroy();
+
+            yield break;       
+        }
+
+        // hackish animation player until a centralized one can be made
+        private void _PlayAni(Actor actor, int aniSNO)
+        {
+            World.BroadcastIfRevealed(new PlayAnimationMessage()
+            {
+                ActorID = actor.DynamicID,
+                Field1 = 0x3,
+                Field2 = 0,
+                tAnim = new PlayAnimationMessageSpec[1]
+                {
+                    new PlayAnimationMessageSpec()
+                    {
+                        Field0 = -2,
+                        Field1 = aniSNO,
+                        Field2 = 0x0,
+                        Field3 = 1f
+                    }
+                }
+            }, actor);
         }
     }
 
@@ -67,9 +146,9 @@ namespace Mooege.Core.GS.Powers.Implementations
             // calculate time it will take for actors to reach toad
             const float tongueSpeed = 4f;
             int waitMoveTicks = (int)(PowerMath.Distance(bigtoad.Position, TargetPosition) / tongueSpeed);
-
+            
             yield return WaitSeconds(0.3f); // have tongue hang there for a bit
-
+            
             tongueEnd.TranslateNormal(bigtoad.Position, tongueSpeed);
             if (ValidTarget())
                 Target.TranslateNormal(bigtoad.Position, tongueSpeed);
@@ -87,7 +166,7 @@ namespace Mooege.Core.GS.Powers.Implementations
                 _PlayAni(bigtoad, 110636); // disgest ani, 5 seconds
                 for (int n = 0; n < 5 && ValidTarget(); ++n)
                 {
-                    WeaponDamage(Target, 0.039f, DamageType.Poison, true);
+                    WeaponDamage(Target, 0.39f, DamageType.Poison, true);
                     yield return WaitSeconds(1f);
                 }
 
@@ -106,7 +185,7 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield return WaitSeconds(0.7f);
             bigtoad.Destroy();
         }
-
+        
         private void _SetHiddenAttribute(Actor actor, bool active)
         {
             actor.Attributes[GameAttribute.Hidden] = active;

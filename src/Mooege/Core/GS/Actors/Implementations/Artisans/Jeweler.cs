@@ -17,17 +17,17 @@
  */
 
 using System.Collections.Generic;
-using Mooege.Common.MPQ.FileFormats.Types;
 using Mooege.Core.GS.Items;
 using Mooege.Core.GS.Map;
 using Mooege.Net.GS.Message;
+using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Actors.Implementations.Artisans
 {
     [HandledSNO(56949 /* PT_Jewler.acr */)]
     public class Jeweler : Artisan
     {
-        public Jeweler(World world, int snoId, Dictionary<int, TagMapEntry> tags)
+        public Jeweler(World world, int snoId, TagMap tags)
             : base(world, snoId, tags)
         {
         }

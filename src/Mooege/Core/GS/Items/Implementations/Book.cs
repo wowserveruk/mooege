@@ -23,6 +23,8 @@ using Mooege.Core.GS.Map;
 using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Core.GS.Common.Types.SNO;
 using Mooege.Core.GS.Markers;
+using Mooege.Common.MPQ.FileFormats.Types;
+using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Items.Implementations
 {
@@ -37,11 +39,11 @@ namespace Mooege.Core.GS.Items.Implementations
             : base(world, definition)
         {
             // Items are NOT constructed with tags
-            var actorData = (Mooege.Common.MPQ.FileFormats.Actor)Mooege.Common.MPQ.MPQStorage.Data.Assets[SNOGroup.Actor][this.SNOId].Data;
-            var loreTagEntry = actorData.TagMap.TagMapEntries.FirstOrDefault(x => x.TagID == (int)MarkerTagTypes.LoreSNOId);
-            if (loreTagEntry != null)
+            var actorData = ActorSNO.Target as Mooege.Common.MPQ.FileFormats.Actor;
+
+            if (actorData.TagMap.ContainsKey(ActorKeys.Lore))
             {
-                LoreSNOId = loreTagEntry.Int2;
+                LoreSNOId = actorData.TagMap[ActorKeys.Lore].Id;
             }
         }
 

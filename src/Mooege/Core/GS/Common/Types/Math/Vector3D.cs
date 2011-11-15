@@ -102,6 +102,20 @@ namespace Mooege.Core.GS.Common.Types.Math
             this.Z = z;
         }
 
+        /// <summary>
+        /// Calculates the distance squared from this vector to another.
+        /// </summary>
+        /// <param name="point">the second <see cref="Vector3" /></param>
+        /// <returns>the distance squared between the vectors</returns>
+        public float DistanceSquared(ref Vector3D point)
+        {
+            float x = point.X - X;
+            float y = point.Y - Y;
+            float z = point.Z - Z;
+
+            return ((x * x) + (y * y)) + (z * z);
+        }
+
         public static bool operator ==(Vector3D a, Vector3D b)
         {
             if (object.ReferenceEquals(null, a))
@@ -178,16 +192,6 @@ namespace Mooege.Core.GS.Common.Types.Math
         public override string ToString()
         {
             return string.Format("x:{0} y:{1} z:{2}",X, Y,Z);
-        }
-
-        internal Vector3D RotateOnZ(int p)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        internal void Set(Vector3D finalPosition)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Mooege.Common.Helpers.Math;
 using Mooege.Net.GS.Message.Definitions.Conversation;
 using Mooege.Net.GS.Message.Fields;
 using Mooege.Net.GS.Message;
@@ -120,7 +121,7 @@ namespace Mooege.Core.GS.Players
 
         private Mooege.Core.GS.Actors.Actor GetActorBySNO(int sno)
         {
-            var actors = (from a in player.RevealedObjects.Values where a is Mooege.Core.GS.Actors.Actor && (a as Mooege.Core.GS.Actors.Actor).SNOId == sno select a);
+            var actors = (from a in player.RevealedObjects.Values where a is Mooege.Core.GS.Actors.Actor && (a as Mooege.Core.GS.Actors.Actor).ActorSNO.Id == sno select a);
             if (actors.Count() > 1)
                 logger.Warn("Found more than one actors in range");
             if (actors.Count() == 0)
@@ -153,6 +154,15 @@ namespace Mooege.Core.GS.Players
         }
 
         /// <summary>
+        ///  Immediatly ends the conversation
+        /// </summary>
+        public void Stop()
+        {
+            StopLine(true);
+            EndConversation();
+        }
+
+        /// <summary>
         /// Skips to the next line of the conversation
         /// </summary>
         public void Interrupt()
@@ -179,13 +189,13 @@ namespace Mooege.Core.GS.Players
                     Vector3D translation = speaker2.Position - speaker1.Position;
                     Vector2F flatTranslation = new Vector2F(translation.X, translation.Y);
 
-                    speaker1.RotationAmount = flatTranslation.Rotation();
+                    speaker1.FacingAngle = flatTranslation.Rotation();
 
                     player.World.BroadcastIfRevealed(new ACDTranslateFacingMessage
                     {
                         Id = (int)Opcodes.ACDTranslateFacingMessage1,
                         ActorId = speaker1.DynamicID,
-                        Angle = speaker1.RotationAmount,
+                        Angle = speaker1.FacingAngle,
                         Immediately = false
                     }, speaker1);
                 }
@@ -285,7 +295,7 @@ namespace Mooege.Core.GS.Players
                     TextClass = currentLineNode.Speaker1 == Speaker.Player ? (Class)player.Toon.VoiceClassID : Class.None,
                     Gender = (player.Toon.Gender == 0) ? VoiceGender.Male : VoiceGender.Female,
                     AudioClass = (Class)player.Toon.VoiceClassID,
-                    SNOSpeakerActor = GetSpeaker(currentLineNode.Speaker1).SNOId,
+                    SNOSpeakerActor = GetSpeaker(currentLineNode.Speaker1).ActorSNO.Id,
                     Name = player.Toon.Name,
                     Field11 = 0x00000000,  // is this field I1? and if...what does it do?? 2 for level up -farmy
                     AnimationTag = currentLineNode.AnimationTag,
@@ -324,6 +334,24 @@ namespace Mooege.Core.GS.Players
             this.player = player;
             this.quests = quests;
         }
+
+        /// <summary>
+        /// Stops all conversations
+        /// </summary>
+        public void StopAll()
+        {
+            List<Conversation> clonedList;
+
+            // update from a cloned list, so you can remove conversations in their ConversationEnded event
+            lock (openConversations)
+            {
+                clonedList = (from c in openConversations select c.Value).ToList();
+            }
+
+            foreach (Conversation conversation in clonedList)
+                conversation.Stop();
+        }
+
 
         /// <summary>
         /// Starts and plays a conversation

@@ -16,22 +16,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 using Mooege.Common;
-using Mooege.Core.GS.Actors;
-using Mooege.Net.GS.Message.Definitions.World;
-using Mooege.Net.GS.Message.Fields;
-using Mooege.Common.Helpers;
-using Mooege.Core.GS.Ticker.Helpers;
-using Mooege.Core.GS.Common.Types.Math;
+using Mooege.Core.GS.Ticker;
 
 namespace Mooege.Core.GS.Powers
-{	
-	public abstract class PowerImplementation : PowerContextHelper
+{
+    public abstract class PowerImplementation : PowerContext
     {
         public static readonly Logger Logger = LogManager.CreateLogger();
 
@@ -41,6 +32,6 @@ namespace Mooege.Core.GS.Powers
 
         // token instance that can be yielded by Run() to indicate the power manager should stop
         // running a power implementation.
-        public static TickTimer StopExecution = new TickTimer(null, 0);
+        public static readonly TickTimer StopExecution = null;
     }
 }
