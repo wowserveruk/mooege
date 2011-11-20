@@ -361,7 +361,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BlindingFlash)]
-    public class MonkBlindingFlash : PowerImplementation
+    public class MonkBlindingFlash : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -376,7 +376,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LashingTailKick)]
-    public class MonkLashingTailKick : PowerImplementation
+    public class MonkLashingTailKick : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -401,7 +401,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.LethalDecoy)]
-    public class MonkLethalDecoy : PowerImplementation
+    public class MonkLethalDecoy : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {			
@@ -430,10 +430,15 @@ namespace Mooege.Core.GS.Powers.Implementations
                 }
             }
         }
+
+        private IList<Actor> GetTargetsInRange(Vector3D startpos, float p, int p_2)
+        {
+            throw new NotImplementedException();
+        }
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.InnerSanctuary)]
-    public class MonkInnerSanctuary : PowerImplementation
+    public class MonkInnerSanctuary : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -446,7 +451,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfEvasion)]
-    public class MonkMantraOfEvasion : PowerImplementation
+    public class MonkMantraOfEvasion : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -457,7 +462,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.Mantras.MantraOfRetribution)]
-    public class MonkMantraOfRetribution : PowerImplementation
+    public class MonkMantraOfRetribution : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -468,7 +473,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Monk.SpiritSpenders.BreathOfHeaven)]
-    public class MonkBreathOfHeaven : PowerImplementation
+    public class MonkBreathOfHeaven : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {    		

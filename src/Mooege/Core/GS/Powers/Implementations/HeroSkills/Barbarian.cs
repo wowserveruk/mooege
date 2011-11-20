@@ -52,16 +52,16 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]
-    public class BarbarianCleave : PowerImplementation
+    public class BarbarianCleave : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
             yield return WaitSeconds(0.25f); // wait for swing animation
 
             //Cleave have a different animation based on the swing side wich is cointain in the Animpreplay data of the target message
-            if (this.Message.Field6.Field0 == 1)            
+            //if (this.Message.Field6.Field0 == 1)            
                 User.PlayEffectGroup(18671);            
-            else            
+            //else            
                 User.PlayEffectGroup(18672);            
 
             GeneratePrimaryResource(5f);
@@ -76,10 +76,15 @@ namespace Mooege.Core.GS.Powers.Implementations
 
             yield break;
         }
+
+        private IEnumerable<Actor> GetTargetsInRange(Vector3D vector3D, float p)
+        {
+            throw new NotImplementedException();
+        }
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
-    public class BarbarianGroundStomp : PowerImplementation
+    public class BarbarianGroundStomp : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -103,6 +108,11 @@ namespace Mooege.Core.GS.Powers.Implementations
             //Add power cooldown
 
             yield break;
+        }
+
+        private IEnumerable<Actor> GetTargetsInRange(Vector3D vector3D, float p)
+        {
+            throw new NotImplementedException();
         }
 
         private void Stunt(Actor actor)
@@ -276,7 +286,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
-    public class BarbarianFrenzy : PowerImplementation
+    public class BarbarianFrenzy : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {            
@@ -300,7 +310,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.HammerOfTheAncients)]
-    public class BarbarianHammerOfTheAncients : PowerImplementation
+    public class BarbarianHammerOfTheAncients : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -321,7 +331,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.ThreateningShout)]
-    public class BarbarianThreateningShout : PowerImplementation
+    public class BarbarianThreateningShout : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {           
@@ -334,7 +344,7 @@ namespace Mooege.Core.GS.Powers.Implementations
     }
 	
 	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.BattleRage)]
-    public class BarbarianBattleRage : PowerImplementation
+    public class BarbarianBattleRage : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
@@ -345,13 +355,13 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;
         }
     }
-	
-	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]
-    public class BarbarianWeaponThrow : PowerImplementation
+
+    /*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]
+    public class BarbarianWeaponThrow : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
-			UseResources(20f);
+            UseResources(20f);
 
             //Synchronize with animation
             yield return 100;
@@ -374,9 +384,9 @@ namespace Mooege.Core.GS.Powers.Implementations
             }
         }
     }*/
-	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]
-    public class BarbarianRend : PowerImplementation
+
+    [ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]
+    public class BarbarianRend : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
         {
