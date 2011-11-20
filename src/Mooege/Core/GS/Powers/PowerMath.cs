@@ -90,6 +90,10 @@ namespace Mooege.Core.GS.Powers
 
             public Vec2D Normalize()
             {
+                float length = Length();
+                if (length == 0)
+                    return new Vec2D(0, 0);
+
                 Vec2D v = Copy();
                 float len = 1f / Length();
                 v.X *= len;
@@ -112,8 +116,12 @@ namespace Mooege.Core.GS.Powers
 
         public static Vector3D Normalize(Vector3D v)
         {
+            float mag = v.X * v.X + v.Y * v.Y + v.Z * v.Z;
+            if (mag == 0)
+                return new Vector3D(0, 0, 0);
+
             Vector3D r = new Vector3D(v);
-            float len = 1f / (float)Math.Sqrt(v.X*v.X + v.Y*v.Y + v.Z*v.Z);
+            float len = 1f / (float)Math.Sqrt(mag);
             r.X *= len;
             r.Y *= len;
             r.Z *= len;
@@ -175,7 +183,11 @@ namespace Mooege.Core.GS.Powers
         public static bool PointInBeam(Vector3D point, Vector3D beamStart, Vector3D beamEnd, float beamThickness)
         {
             // NOTE: this does everything in 2d, ignoring Z
-            return PointInBeam2D(Vec2D.WithoutZ(point), Vec2D.WithoutZ(beamStart), Vec2D.WithoutZ(beamEnd), beamThickness);
+            // offset start beam position by beam thickness
+            beamStart = ProjectAndTranslate2D(beamStart, beamEnd, beamStart, beamThickness);
+            return MovingCircleCollides(new Circle(beamStart.X, beamStart.Y, beamThickness),
+                                        Vec2D.WithoutZ(beamEnd - beamStart),
+                                        new Circle(point.X, point.Y, 0));
         }
 
         public static bool PointInRectangle(Vec2D point, float r1x, float r1y,

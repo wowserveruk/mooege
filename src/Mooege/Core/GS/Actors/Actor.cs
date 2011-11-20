@@ -323,24 +323,6 @@ namespace Mooege.Core.GS.Actors
             }, this);
         }
 
-        public void TranslateSnapped(Vector3D destination)
-        {
-            this.Position = destination;
-            float angle = (float)Math.Acos(this.FacingAngle) * 2f;
-            if (float.IsNaN(angle)) // just use RotationAmount if Quat is bad
-                angle = this.FacingAngle;
-
-            World.BroadcastIfRevealed(new ACDTranslateSnappedMessage
-            {
-                Id = 0x6f,
-                Field0 = (int)this.DynamicID,
-                Field1 = destination,
-                Field2 = angle,
-                Field3 = false,
-                Field4 = 0x900 // ?
-            }, this);
-        }
-
         public void TranslateFacing(Vector3D target, bool immediately = false)
         {
             float radianAngle = PowerMath.AngleLookAt(this.Position, target);
@@ -351,7 +333,7 @@ namespace Mooege.Core.GS.Actors
 
             World.BroadcastIfRevealed(new ACDTranslateFacingMessage
             {
-                Id = 0x70,
+                Id = 115,
                 ActorId = DynamicID,
                 Angle = radianAngle,
                 Immediately = immediately
@@ -406,7 +388,7 @@ namespace Mooege.Core.GS.Actors
 
             World.BroadcastIfRevealed(new RopeEffectMessageACDToACD
             {
-                Id = 0xab,
+                Id = 175,
                 Field0 = ropeSNO,
                 Field1 = (int)DynamicID,
                 Field2 = 4,
@@ -422,14 +404,14 @@ namespace Mooege.Core.GS.Actors
             // TODO: Might need to track complex effects
             World.BroadcastIfRevealed(new ComplexEffectAddMessage
             {
-                Id = 0x81,
+                Id = 132,
                 Field0 = (int)World.NewActorID, // TODO: maybe not use actor ids?
-                Field1 = 1,
-                Field2 = effectGroupSNO,
-                Field3 = (int)this.DynamicID,
-                Field4 = (int)target.DynamicID,
-                Field5 = 0,
-                Field6 = 0
+                Field1 = 1,  // 0=efg, 1=efg, 2=rope
+                Field2 = effectGroupSNO, // efgSNO or ropeSNO
+                Field3 = (int)this.DynamicID, // source
+                Field4 = (int)target.DynamicID, // target
+                Field5 = 0, // 0=efg, 4=rope1, 3=rope2
+                Field6 = 0 // 0=efg, 1=rope1, 3=rope2
             }, target);
         }
         #endregion

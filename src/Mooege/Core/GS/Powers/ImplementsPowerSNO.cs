@@ -32,5 +32,17 @@ namespace Mooege.Core.GS.Powers
         {
             PowerSNO = powerSNO;
         }
+
+        public static int GetPowerSNOForClass(Type klass)
+        {
+            var attributes = (ImplementsPowerSNO[])klass.GetCustomAttributes(typeof(ImplementsPowerSNO), true);
+            int powerSNO = -1;
+            foreach (var snoAttribute in attributes)
+            {
+                powerSNO = snoAttribute.PowerSNO;
+            }
+
+            return powerSNO;
+        }
     }
 }
