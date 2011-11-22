@@ -25,12 +25,10 @@ using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Players;
 using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.Misc;
-using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Core.GS.Common.Types.Misc;
 using Mooege.Core.GS.Ticker;
 using Mooege.Core.GS.Common.Types.TagMap;
-using Mooege.Common.MPQ;
-using Mooege.Common;
+using Mooege.Common.Logging;
 
 namespace Mooege.Core.GS.Powers
 {
@@ -73,10 +71,9 @@ namespace Mooege.Core.GS.Powers
         {
             if (User is Player)
             {
-                GameAttributeMap map = User.Attributes;
-                map[GameAttribute.Power_Cooldown_Start, PowerSNO] = World.Game.TickCounter;
-                map[GameAttribute.Power_Cooldown, PowerSNO] = timeout.TimeoutTick;
-                map.SendChangedMessage((User as Player).InGameClient, User.DynamicID);
+                User.Attributes[GameAttribute.Power_Cooldown_Start, PowerSNO] = World.Game.TickCounter;
+                User.Attributes[GameAttribute.Power_Cooldown, PowerSNO] = timeout.TimeoutTick;
+                User.Attributes.BroadcastChangedIfRevealed();
             }
         }
 
@@ -136,8 +133,7 @@ namespace Mooege.Core.GS.Powers
             // Update hp, kill if Monster and 0hp
             float new_hp = Math.Max(target.Attributes[GameAttribute.Hitpoints_Cur] - damageAmount, 0f);
             target.Attributes[GameAttribute.Hitpoints_Cur] = new_hp;
-            foreach (var msg in target.Attributes.GetChangedMessageList(target.DynamicID))
-                World.BroadcastIfRevealed(msg, target);
+            target.Attributes.BroadcastChangedIfRevealed();
 
             if (new_hp == 0f && target is Monster && User is Player)
                 (target as Monster).Die(User as Player);
@@ -310,12 +306,6 @@ namespace Mooege.Core.GS.Powers
                 return runeE;
             else
                 return none;
-        }
-
-        public void BroadcastChangedAttributes(Actor actor)
-        {
-            foreach (var msg in actor.Attributes.GetChangedMessageList(actor.DynamicID))
-                actor.World.BroadcastIfRevealed(msg, actor);
         }
 
         public bool AddBuff(Actor target, Buff buff)

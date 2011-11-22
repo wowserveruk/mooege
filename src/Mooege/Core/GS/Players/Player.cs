@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Mooege.Common;
 using Mooege.Common.Helpers.Math;
+using Mooege.Common.Logging;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Items;
 using Mooege.Core.GS.Objects;
@@ -505,7 +506,7 @@ namespace Mooege.Core.GS.Players
             // switch on new skill in hotbar
             this.Attributes[GameAttribute.Skill, message.SNOSkill] = 1;
             this.Attributes[GameAttribute.Skill_Total, message.SNOSkill] = 1;
-            this.Attributes.SendChangedMessage(InGameClient, this.DynamicID);
+            this.Attributes.BroadcastChangedIfRevealed();
 
             foreach (HotbarButtonData button in this.SkillSet.HotBarSkills.Where(button => button.SNOSkill == oldSNOSkill)) // loop through hotbar and replace the old skill with new one
             {
@@ -530,7 +531,7 @@ namespace Mooege.Core.GS.Players
             this.Attributes[GameAttribute.Trait, message.SNOSkill] = 1;
             this.Attributes[GameAttribute.Skill, message.SNOSkill] = 1;
             this.Attributes[GameAttribute.Skill_Total, message.SNOSkill] = 1;
-            this.Attributes.SendChangedMessage(InGameClient, this.DynamicID);
+            this.Attributes.BroadcastChangedIfRevealed();
             this.SkillSet.PassiveSkills[message.SkillIndex] = message.SNOSkill;
             this.UpdateHeroState();
         }
@@ -605,7 +606,7 @@ namespace Mooege.Core.GS.Players
             {
                 this.Inventory.PickUp(oldRune); // pick removed rune
             }
-            this.Attributes.SendChangedMessage(this.InGameClient, this.DynamicID);
+            this.Attributes.BroadcastChangedIfRevealed();
             UpdateHeroState();
         }
 
@@ -746,7 +747,7 @@ namespace Mooege.Core.GS.Players
 
                 if (actor.ActorType == ActorType.Gizmo || actor.ActorType == ActorType.Player 
                     || actor.ActorType == ActorType.Monster || actor.ActorType == ActorType.Enviroment 
-                    || actor.ActorType == ActorType.Critter || actor.ActorType == ActorType.Item)
+                    || actor.ActorType == ActorType.Critter || actor.ActorType == ActorType.Item || actor.ActorType == ActorType.ServerProp)
                     actor.Reveal(this);
             }
         }
@@ -1411,7 +1412,7 @@ namespace Mooege.Core.GS.Players
                 // On level up, health is set to max
                 this.Attributes[GameAttribute.Hitpoints_Cur] = this.Attributes[GameAttribute.Hitpoints_Max_Total];
 
-                this.Attributes.SendChangedMessage(this.InGameClient, this.DynamicID);
+                this.Attributes.BroadcastChangedIfRevealed();
 
                 this.InGameClient.SendMessage(new PlayerLevel()
                 {
@@ -1439,7 +1440,7 @@ namespace Mooege.Core.GS.Players
                 this.Attributes[GameAttribute.Experience_Next] = 0;
 
             }
-            this.Attributes.SendChangedMessage(this.InGameClient, this.DynamicID);
+            this.Attributes.BroadcastChangedIfRevealed();
             //this.Attributes.SendMessage(this.InGameClient, this.DynamicID); kills the player atm
         }
 
@@ -1642,10 +1643,7 @@ namespace Mooege.Core.GS.Players
                     0f);
             }
 
-            // FIXME: better way to update attribute changes?
-            GameAttributeMap map = new GameAttributeMap();
-            map[GameAttribute.Resource_Cur, resourceID] = this.Attributes[GameAttribute.Resource_Cur, resourceID];
-            map.SendMessage(this.InGameClient, this.DynamicID);
+            this.Attributes.BroadcastChangedIfRevealed();
         }
 
         private void _UpdateResources()
@@ -1654,7 +1652,7 @@ namespace Mooege.Core.GS.Players
             if (!InGameClient.TickingEnabled) return;
 
             // update resources once every update for now.
-            if (this.InGameClient.Game.TickCounter - _lastResourceUpdateTick < 6) // assume tick rate is 6
+            if (this.InGameClient.Game.TickCounter - _lastResourceUpdateTick < this.InGameClient.Game.TickRate)
                 return;
 
             _lastResourceUpdateTick = this.InGameClient.Game.TickCounter;
@@ -1663,7 +1661,7 @@ namespace Mooege.Core.GS.Players
             switch (this.Toon.Class)
             {
                 case ToonClass.Barbarian:
-                    UsePrimaryResource(0.2f);
+                    UsePrimaryResource(0.1f);
                     break;
                 case ToonClass.DemonHunter:
                     GeneratePrimaryResource(3f);

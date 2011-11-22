@@ -19,8 +19,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Mooege.Common;
-using Mooege.Common.MPQ.FileFormats.Types;
+using Mooege.Common.Logging;
 using Mooege.Core.GS.Actors.Implementations;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Common.Types.Misc;
@@ -191,7 +190,7 @@ namespace Mooege.Core.GS.Actors
         protected Actor(World world, int snoId, TagMap tags)
             : base(world, world.NewActorID)
         {
-            this.Attributes = new GameAttributeMap();
+            this.Attributes = new GameAttributeMap(this);
             this.AffixList = new List<Affix>();
 
             this.ActorData = (Mooege.Common.MPQ.FileFormats.Actor)Mooege.Common.MPQ.MPQStorage.Data.Assets[SNOGroup.Actor][snoId].Data;
@@ -482,7 +481,7 @@ namespace Mooege.Core.GS.Actors
             });
 
             // Send Attributes
-            Attributes.SendMessage(player.InGameClient, DynamicID);
+            Attributes.SendMessage(player.InGameClient);
 
             // Actor group
             player.InGameClient.SendMessage(new ACDGroupMessage

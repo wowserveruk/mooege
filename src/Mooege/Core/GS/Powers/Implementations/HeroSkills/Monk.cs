@@ -28,6 +28,7 @@ using Mooege.Net.GS.Message.Definitions.Actor;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Players;
 using Mooege.Core.GS.Ticker;
+using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
@@ -89,29 +90,39 @@ namespace Mooege.Core.GS.Powers.Implementations
     [ImplementsPowerSNO(Skills.Skills.Monk.SpiritGenerator.FistsOfThunder)]
     public class MonkFistsOfThunder : PowerScript
     {
+        float waitCombo(int combo)
+        {
+            switch (combo)
+            {
+                case 0: return 0.5f / EvalTag(PowerKeys.ComboAttackSpeed1);
+                case 1: return 0.5f / EvalTag(PowerKeys.ComboAttackSpeed2);
+                case 2: return 0.5f / EvalTag(PowerKeys.ComboAttackSpeed3);
+                default: return 5.0f;
+            }
+        }
+
         public override IEnumerable<TickTimer> Run()
         {
             switch (TargetMessage.Field5)
             {
                 case 0:
-                    yield return WaitSeconds(0.1f);
-                    User.PlayEffectGroup(143570); // cast
-                    User.PlayEffectGroup(96176); // projectile
+                    yield return WaitSeconds(waitCombo(0));
+                    User.PlayEffectGroup(143516);
                     MeleeStageHit();
                     break;
                 case 1:
-                    User.PlayEffectGroup(143561); // cast
-                    User.PlayEffectGroup(96176); // projectile
+                    if (waitCombo(1) > 0)
+                        yield return WaitSeconds(waitCombo(1));
+                    User.PlayEffectGroup(143516);
                     MeleeStageHit();
                     break;
                 case 2:
-                    yield return WaitSeconds(0.3f);
+                    yield return WaitSeconds(waitCombo(2));
                     // put target position a little bit in front of the monk. represents the lightning ball
                     TargetPosition = PowerMath.ProjectAndTranslate2D(User.Position, TargetPosition,
                                         User.Position, 8f);
 
-                    User.PlayEffectGroup(143566); // cast
-                    User.PlayEffectGroup(96178); // ball of lightning
+                    User.PlayEffectGroup(143518);
 
                     bool hitAnything = false;
                     foreach (Actor actor in GetEnemiesInRange(TargetPosition, 7f))
@@ -350,13 +361,10 @@ namespace Mooege.Core.GS.Powers.Implementations
         private void _SetupAttributes(bool active)
         {
             int intval = active ? 1 : 0;
-            GameAttributeMap map = User.Attributes;
-            map[GameAttribute.Buff_Icon_Count0, PowerSNO] = intval;
-            map[GameAttribute.Power_Buff_0_Visual_Effect_None, PowerSNO] = active; // switch on effect
-            map[GameAttribute.Hidden] = active;
-
-            foreach (var msg in map.GetChangedMessageList(User.DynamicID))
-                User.World.BroadcastIfRevealed(msg, User);
+            User.Attributes[GameAttribute.Buff_Icon_Count0, PowerSNO] = intval;
+            User.Attributes[GameAttribute.Power_Buff_0_Visual_Effect_None, PowerSNO] = active; // switch on effect
+            User.Attributes[GameAttribute.Hidden] = active;
+            User.Attributes.BroadcastChangedIfRevealed();
         }
     }
 	
