@@ -29,7 +29,7 @@ using Mooege.Core.GS.Ticker;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
-    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.PoisonDart)]
+    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.PoisonDart)]		// Level 1
     public class WitchDoctorPoisonDart : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -63,68 +63,8 @@ namespace Mooege.Core.GS.Powers.Implementations
             }
         }
     }
-
-    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.ZombieCharger)]
-    public class WitchDoctorZombieCharger : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            // HACK: made up garggy spell :)
-
-            Vector3D inFrontOfTarget = PowerMath.ProjectAndTranslate2D(TargetPosition, User.Position, TargetPosition, 11f);
-            inFrontOfTarget.Z = User.Position.Z;
-            var garggy = SpawnEffect(122305, inFrontOfTarget, TargetPosition, WaitInfinite());
-
-            _PlayAni(garggy, 155988);
-
-            yield return WaitSeconds(2f);
-
-            for (int n = 0; n < 3; ++n)
-            {
-                _PlayAni(garggy, 211382);
-
-                yield return WaitSeconds(0.5f);
-
-                SpawnEffect(192210, TargetPosition);
-                WeaponDamage(GetEnemiesInRange(TargetPosition, 12f), 1.00f, DamageType.Poison);
-
-                yield return WaitSeconds(0.4f);
-            }
-
-            _PlayAni(garggy, 155536); //mwhaha
-            yield return WaitSeconds(1.5f);
-
-            _PlayAni(garggy, 171024);
-            yield return WaitSeconds(2f);
-
-            garggy.Destroy();
-
-            yield break;       
-        }
-
-        // hackish animation player until a centralized one can be made
-        private void _PlayAni(Actor actor, int aniSNO)
-        {
-            World.BroadcastIfRevealed(new PlayAnimationMessage()
-            {
-                ActorID = actor.DynamicID,
-                Field1 = 0x3,
-                Field2 = 0,
-                tAnim = new PlayAnimationMessageSpec[1]
-                {
-                    new PlayAnimationMessageSpec()
-                    {
-                        Field0 = -2,
-                        Field1 = aniSNO,
-                        Field2 = 0x0,
-                        Field3 = 1f
-                    }
-                }
-            }, actor);
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.PlagueOfToads)]
+	
+	    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.PlagueOfToads)]		//Level 2
     public class WitchDoctorPlagueOfToads : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -194,6 +134,66 @@ namespace Mooege.Core.GS.Powers.Implementations
         {
             actor.Attributes[GameAttribute.Hidden] = active;
             actor.Attributes.BroadcastChangedIfRevealed();
+        }
+
+        // hackish animation player until a centralized one can be made
+        private void _PlayAni(Actor actor, int aniSNO)
+        {
+            World.BroadcastIfRevealed(new PlayAnimationMessage()
+            {
+                ActorID = actor.DynamicID,
+                Field1 = 0x3,
+                Field2 = 0,
+                tAnim = new PlayAnimationMessageSpec[1]
+                {
+                    new PlayAnimationMessageSpec()
+                    {
+                        Field0 = -2,
+                        Field1 = aniSNO,
+                        Field2 = 0x0,
+                        Field3 = 1f
+                    }
+                }
+            }, actor);
+        }
+    }
+
+    [ImplementsPowerSNO(Skills.Skills.WitchDoctor.PhysicalRealm.ZombieCharger)]		//Level 5
+    public class WitchDoctorZombieCharger : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            // HACK: made up garggy spell :)
+
+            Vector3D inFrontOfTarget = PowerMath.ProjectAndTranslate2D(TargetPosition, User.Position, TargetPosition, 11f);
+            inFrontOfTarget.Z = User.Position.Z;
+            var garggy = SpawnEffect(122305, inFrontOfTarget, TargetPosition, WaitInfinite());
+
+            _PlayAni(garggy, 155988);
+
+            yield return WaitSeconds(2f);
+
+            for (int n = 0; n < 3; ++n)
+            {
+                _PlayAni(garggy, 211382);
+
+                yield return WaitSeconds(0.5f);
+
+                SpawnEffect(192210, TargetPosition);
+                WeaponDamage(GetEnemiesInRange(TargetPosition, 12f), 1.00f, DamageType.Poison);
+
+                yield return WaitSeconds(0.4f);
+            }
+
+            _PlayAni(garggy, 155536); //mwhaha
+            yield return WaitSeconds(1.5f);
+
+            _PlayAni(garggy, 171024);
+            yield return WaitSeconds(2f);
+
+            garggy.Destroy();
+
+            yield break;       
         }
 
         // hackish animation player until a centralized one can be made
