@@ -28,7 +28,7 @@ using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
-    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Bash)]
+    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Bash)]		//Level 1
     public class BarbarianBash : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -51,7 +51,54 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.HammerOfTheAncients)]		//Level 2
+    public class BarbarianHammerOfTheAncients : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(18705);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.ThreateningShout)]		//Level 2
+    public class BarbarianThreateningShout : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {           
+            UsePrimaryResource(20f);
+			
+			User.PlayEffectGroup(158731);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.BattleRage)]		//Level 3
+    public class BarbarianBattleRage : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+			User.PlayEffectGroup(18666);
+			
+			UsePrimaryResource(20f);
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Cleave)]		//Level 4
     public class BarbarianCleave : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -83,45 +130,7 @@ namespace Mooege.Core.GS.Powers.Implementations
         }
     }
 	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]
-    public class BarbarianGroundStomp : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            yield return WaitSeconds(0.200f); // wait for swing animation
-
-            User.PlayEffectGroup(18685);
-
-            bool hitAnything = false;
-
-            foreach (Actor actor in GetTargetsInRange(User.Position, 17f))
-            {
-                WeaponDamage(actor, 0.7f, DamageType.Physical, true);
-                Stunt(actor);
-                hitAnything = true;
-            }
-
-            if(hitAnything)
-                GeneratePrimaryResource(15f);
-
-            //FIXME
-            //Add power cooldown
-
-            yield break;
-        }
-
-        private IEnumerable<Actor> GetTargetsInRange(Vector3D vector3D, float p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Stunt(Actor actor)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.LeapAttack)]
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.LeapAttack)]		//Level 6
     public class BarbarianLeap : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -171,8 +180,170 @@ namespace Mooege.Core.GS.Powers.Implementations
             yield break;
         }
     }
+	
+	/*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]		//Level 7
+    public class BarbarianWeaponThrow : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            UseResources(20f);
 
-    [ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Whirlwind)]
+            //Synchronize with animation
+            yield return 100;
+            
+            //Spawn Projectile actor
+            PowerProjectile powerProjectile = new PowerProjectile(hero.World, 163462, hero.Position, mousePosition, 1f, 3000, 1f, 3f, 0f, 3f);
+            
+            //Every 100ms calculate if an impact occure with the projectile and check if the projectile is still alive
+            while (powerProjectile.World != null)
+            {
+                //Check if projectile enter in collision with a monster
+                if (powerProjectile.detectCollision())
+                {   
+                    powerProjectile.hittedActor.Effect.addEffect(18707);
+                    powerProjectile.hittedActor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
+                    powerProjectile.Destroy();
+                }
+
+                yield return 100;
+            }
+        }
+    }*/
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.GroundStomp)]		//Level 8
+    public class BarbarianGroundStomp : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            yield return WaitSeconds(0.200f); // wait for swing animation
+
+            User.PlayEffectGroup(18685);
+
+            bool hitAnything = false;
+
+            foreach (Actor actor in GetTargetsInRange(User.Position, 17f))
+            {
+                WeaponDamage(actor, 0.7f, DamageType.Physical, true);
+                Stunt(actor);
+                hitAnything = true;
+            }
+
+            if(hitAnything)
+                GeneratePrimaryResource(15f);
+
+            //FIXME
+            //Add power cooldown
+
+            yield break;
+        }
+
+        private IEnumerable<Actor> GetTargetsInRange(Vector3D vector3D, float p)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Stunt(Actor actor)
+        {
+            throw new NotImplementedException();
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]		//Level 9
+    public class BarbarianRend : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            User.PlayEffectGroup(70614); 
+
+			if (CanHitMeleeTarget(Target))
+            {
+                UsePrimaryResource(20f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            yield break;
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]		//Level 11
+    public class BarbarianFrenzy : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {            
+            //increaseAttackSeep(0.15f);
+
+            if (CanHitMeleeTarget(Target))
+            {
+                GeneratePrimaryResource(3f);
+                
+                if (Rand.NextDouble() < 0.20)
+                    Knockback(Target, 4f);
+
+                WeaponDamage(Target, 1.45f, DamageType.Physical);
+            }
+
+            
+            //decreaseAttackSeep(0.15f);
+            
+			yield break;
+        }           
+    }
+
+    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.AncientSpear)]		//Level 22
+    public class BarbarianAncientSpear : PowerScript
+    {
+        public override IEnumerable<TickTimer> Run()
+        {
+            //StartCooldown(WaitSeconds(10f));
+
+            var projectile = new Projectile(this, 74636, User.Position);
+            projectile.Timeout = WaitSeconds(0.5f);
+            projectile.OnHit = (hit) =>
+            {
+                GeneratePrimaryResource(15f);
+
+                var inFrontOfUser = PowerMath.ProjectAndTranslate2D(User.Position, hit.Position,
+                    User.Position, 5f);
+
+                _setupReturnProjectile(hit.Position);
+
+                // GET OVER HERE
+                hit.TranslateNormal(inFrontOfUser, 2f);
+                WeaponDamage(hit, 1.00f, DamageType.Physical);
+
+                projectile.Destroy();
+            };
+            projectile.OnTimeout = () =>
+            {
+                _setupReturnProjectile(projectile.Position);
+            };
+
+            projectile.Launch(TargetPosition, 2f);
+            User.AddRopeEffect(79402, projectile);
+
+            yield break;
+        }
+
+        private void _setupReturnProjectile(Vector3D spawnPosition)
+        {
+            var return_proj = new Projectile(this, 79400, new Vector3D(spawnPosition.X, spawnPosition.Y, User.Position.Z));
+            Vector3D prevPosition = return_proj.Position;
+            return_proj.OnUpdate = () =>
+            {
+                if (PowerMath.Distance2D(return_proj.Position, User.Position) < 15f)
+                    return_proj.Destroy();
+            };
+
+            return_proj.Launch(User.Position, 2f);
+            User.AddRopeEffect(79402, return_proj);
+        }
+    }
+	
+	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Whirlwind)]		//Level 27
     public class BarbarianWhirlwind : PowerScript
     {
         public override IEnumerable<TickTimer> Run()
@@ -232,177 +403,6 @@ namespace Mooege.Core.GS.Powers.Implementations
 
                 return false;
             }
-        }
-    }
-
-    [ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.AncientSpear)]
-    public class BarbarianAncientSpear : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            //StartCooldown(WaitSeconds(10f));
-
-            var projectile = new Projectile(this, 74636, User.Position);
-            projectile.Timeout = WaitSeconds(0.5f);
-            projectile.OnHit = (hit) =>
-            {
-                GeneratePrimaryResource(15f);
-
-                var inFrontOfUser = PowerMath.ProjectAndTranslate2D(User.Position, hit.Position,
-                    User.Position, 5f);
-
-                _setupReturnProjectile(hit.Position);
-
-                // GET OVER HERE
-                hit.TranslateNormal(inFrontOfUser, 2f);
-                WeaponDamage(hit, 1.00f, DamageType.Physical);
-
-                projectile.Destroy();
-            };
-            projectile.OnTimeout = () =>
-            {
-                _setupReturnProjectile(projectile.Position);
-            };
-
-            projectile.Launch(TargetPosition, 2f);
-            User.AddRopeEffect(79402, projectile);
-
-            yield break;
-        }
-
-        private void _setupReturnProjectile(Vector3D spawnPosition)
-        {
-            var return_proj = new Projectile(this, 79400, new Vector3D(spawnPosition.X, spawnPosition.Y, User.Position.Z));
-            Vector3D prevPosition = return_proj.Position;
-            return_proj.OnUpdate = () =>
-            {
-                if (PowerMath.Distance2D(return_proj.Position, User.Position) < 15f)
-                    return_proj.Destroy();
-            };
-
-            return_proj.Launch(User.Position, 2f);
-            User.AddRopeEffect(79402, return_proj);
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FuryGenerators.Frenzy)]
-    public class BarbarianFrenzy : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {            
-            //increaseAttackSeep(0.15f);
-
-            if (CanHitMeleeTarget(Target))
-            {
-                GeneratePrimaryResource(3f);
-                
-                if (Rand.NextDouble() < 0.20)
-                    Knockback(Target, 4f);
-
-                WeaponDamage(Target, 1.45f, DamageType.Physical);
-            }
-
-            
-            //decreaseAttackSeep(0.15f);
-            
-			yield break;
-        }           
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.HammerOfTheAncients)]
-    public class BarbarianHammerOfTheAncients : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            User.PlayEffectGroup(18705);
-
-            if (CanHitMeleeTarget(Target))
-            {
-                UsePrimaryResource(20f);
-                
-                if (Rand.NextDouble() < 0.20)
-                    Knockback(Target, 4f);
-
-                WeaponDamage(Target, 1.45f, DamageType.Physical);
-            }
-
-            yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.ThreateningShout)]
-    public class BarbarianThreateningShout : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {           
-            UsePrimaryResource(20f);
-			
-			User.PlayEffectGroup(158731);
-
-            yield break;
-        }
-    }
-	
-	[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.BattleRage)]
-    public class BarbarianBattleRage : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-			User.PlayEffectGroup(18666);
-			
-			UsePrimaryResource(20f);
-
-            yield break;
-        }
-    }
-
-    /*[ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.WeaponThrow)]
-    public class BarbarianWeaponThrow : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            UseResources(20f);
-
-            //Synchronize with animation
-            yield return 100;
-            
-            //Spawn Projectile actor
-            PowerProjectile powerProjectile = new PowerProjectile(hero.World, 163462, hero.Position, mousePosition, 1f, 3000, 1f, 3f, 0f, 3f);
-            
-            //Every 100ms calculate if an impact occure with the projectile and check if the projectile is still alive
-            while (powerProjectile.World != null)
-            {
-                //Check if projectile enter in collision with a monster
-                if (powerProjectile.detectCollision())
-                {   
-                    powerProjectile.hittedActor.Effect.addEffect(18707);
-                    powerProjectile.hittedActor.ReceiveDamage(50f, FloatingNumberMessage.FloatType.White);
-                    powerProjectile.Destroy();
-                }
-
-                yield return 100;
-            }
-        }
-    }*/
-
-    [ImplementsPowerSNO(Skills.Skills.Barbarian.FurySpenders.Rend)]
-    public class BarbarianRend : PowerScript
-    {
-        public override IEnumerable<TickTimer> Run()
-        {
-            User.PlayEffectGroup(70614); 
-
-			if (CanHitMeleeTarget(Target))
-            {
-                UsePrimaryResource(20f);
-                
-                if (Rand.NextDouble() < 0.20)
-                    Knockback(Target, 4f);
-
-                WeaponDamage(Target, 1.45f, DamageType.Physical);
-            }
-
-            yield break;
         }
     }
 }
