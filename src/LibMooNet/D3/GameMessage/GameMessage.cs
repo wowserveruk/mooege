@@ -46,8 +46,76 @@ namespace D3.GameMessage {
     internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.TooltipGenerators, global::D3.GameMessage.TooltipGenerators.Builder> internal__static_D3_GameMessage_TooltipGenerators__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_D3_GameMessage_TutorialMessage__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.TutorialMessage, global::D3.GameMessage.TutorialMessage.Builder> internal__static_D3_GameMessage_TutorialMessage__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_SetAchievementShowcase__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetAchievementShowcase, global::D3.GameMessage.SetAchievementShowcase.Builder> internal__static_D3_GameMessage_SetAchievementShowcase__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_TutorialState__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.TutorialState, global::D3.GameMessage.TutorialState.Builder> internal__static_D3_GameMessage_TutorialState__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_DeleteHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.DeleteHero, global::D3.GameMessage.DeleteHero.Builder> internal__static_D3_GameMessage_DeleteHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_UndeleteHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.UndeleteHero, global::D3.GameMessage.UndeleteHero.Builder> internal__static_D3_GameMessage_UndeleteHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetFallenHeros__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetFallenHeros, global::D3.GameMessage.GetFallenHeros.Builder> internal__static_D3_GameMessage_GetFallenHeros__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ArchiveHardcore__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ArchiveHardcore, global::D3.GameMessage.ArchiveHardcore.Builder> internal__static_D3_GameMessage_ArchiveHardcore__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_DeleteFallenHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.DeleteFallenHero, global::D3.GameMessage.DeleteFallenHero.Builder> internal__static_D3_GameMessage_DeleteFallenHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerDeleteHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerDeleteHero, global::D3.GameMessage.ServerDeleteHero.Builder> internal__static_D3_GameMessage_ServerDeleteHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerUndeleteHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerUndeleteHero, global::D3.GameMessage.ServerUndeleteHero.Builder> internal__static_D3_GameMessage_ServerUndeleteHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerForceRenameHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerForceRenameHero, global::D3.GameMessage.ServerForceRenameHero.Builder> internal__static_D3_GameMessage_ServerForceRenameHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerFetchHeros__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchHeros, global::D3.GameMessage.ServerFetchHeros.Builder> internal__static_D3_GameMessage_ServerFetchHeros__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerFetchInventory__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchInventory, global::D3.GameMessage.ServerFetchInventory.Builder> internal__static_D3_GameMessage_ServerFetchInventory__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerSnapshot, global::D3.GameMessage.ServerSnapshot.Builder> internal__static_D3_GameMessage_ServerSnapshot__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerSnapshotResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerSnapshotResponse, global::D3.GameMessage.ServerSnapshotResponse.Builder> internal__static_D3_GameMessage_ServerSnapshotResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerFetchSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchSnapshot, global::D3.GameMessage.ServerFetchSnapshot.Builder> internal__static_D3_GameMessage_ServerFetchSnapshot__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_ServerRevokeItem__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerRevokeItem, global::D3.GameMessage.ServerRevokeItem.Builder> internal__static_D3_GameMessage_ServerRevokeItem__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_RenameHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.RenameHero, global::D3.GameMessage.RenameHero.Builder> internal__static_D3_GameMessage_RenameHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetGameAccountSettings__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetGameAccountSettings, global::D3.GameMessage.GetGameAccountSettings.Builder> internal__static_D3_GameMessage_GetGameAccountSettings__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_SetGameAccountSettings__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetGameAccountSettings, global::D3.GameMessage.SetGameAccountSettings.Builder> internal__static_D3_GameMessage_SetGameAccountSettings__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetToonSettings__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetToonSettings, global::D3.GameMessage.GetToonSettings.Builder> internal__static_D3_GameMessage_GetToonSettings__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_SetToonSettings__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetToonSettings, global::D3.GameMessage.SetToonSettings.Builder> internal__static_D3_GameMessage_SetToonSettings__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetAccountDigest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountDigest, global::D3.GameMessage.GetAccountDigest.Builder> internal__static_D3_GameMessage_GetAccountDigest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetHeroItems__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroItems, global::D3.GameMessage.GetHeroItems.Builder> internal__static_D3_GameMessage_GetHeroItems__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetAccountItems__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountItems, global::D3.GameMessage.GetAccountItems.Builder> internal__static_D3_GameMessage_GetAccountItems__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetAccountProfile__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountProfile, global::D3.GameMessage.GetAccountProfile.Builder> internal__static_D3_GameMessage_GetAccountProfile__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetHeroProfiles__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroProfiles, global::D3.GameMessage.GetHeroProfiles.Builder> internal__static_D3_GameMessage_GetHeroProfiles__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetAccountPrefs__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountPrefs, global::D3.GameMessage.GetAccountPrefs.Builder> internal__static_D3_GameMessage_GetAccountPrefs__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_SetAccountPrefs__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetAccountPrefs, global::D3.GameMessage.SetAccountPrefs.Builder> internal__static_D3_GameMessage_SetAccountPrefs__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetHeroDigest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroDigest, global::D3.GameMessage.GetHeroDigest.Builder> internal__static_D3_GameMessage_GetHeroDigest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetHeroIds__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroIds, global::D3.GameMessage.GetHeroIds.Builder> internal__static_D3_GameMessage_GetHeroIds__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_GetDeletedHero__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetDeletedHero, global::D3.GameMessage.GetDeletedHero.Builder> internal__static_D3_GameMessage_GetDeletedHero__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_CSGetSnapshots__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSGetSnapshots, global::D3.GameMessage.CSGetSnapshots.Builder> internal__static_D3_GameMessage_CSGetSnapshots__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_CSPullSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSPullSnapshot, global::D3.GameMessage.CSPullSnapshot.Builder> internal__static_D3_GameMessage_CSPullSnapshot__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_CSPushSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSPushSnapshot, global::D3.GameMessage.CSPushSnapshot.Builder> internal__static_D3_GameMessage_CSPushSnapshot__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_CSRestoreToSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSRestoreToSnapshot, global::D3.GameMessage.CSRestoreToSnapshot.Builder> internal__static_D3_GameMessage_CSRestoreToSnapshot__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_D3_GameMessage_CSWriteSnapshot__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSWriteSnapshot, global::D3.GameMessage.CSWriteSnapshot.Builder> internal__static_D3_GameMessage_CSWriteSnapshot__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -59,36 +127,93 @@ namespace D3.GameMessage {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "ChFHYW1lTWVzc2FnZS5wcm90bxIORDMuR2FtZU1lc3NhZ2UaCkhlcm8ucHJv" + 
           "dG8aE09ubGluZVNlcnZpY2UucHJvdG8aDlNldHRpbmdzLnByb3RvGg1BY2Nv" + 
-          "dW50LnByb3RvGgtJdGVtcy5wcm90byJmCg5IZXJvRGlnZXN0TGlzdBIuCgph" + 
-          "Y2NvdW50X2lkGAEgAigLMhouRDMuT25saW5lU2VydmljZS5FbnRpdHlJZBIk" + 
-          "CgtkaWdlc3RfbGlzdBgCIAMoCzIPLkQzLkhlcm8uRGlnZXN0IngKEkNsaWVu" + 
-          "dFRvb25TZXR0aW5ncxIrCgd0b29uX2lkGAEgAigLMhouRDMuT25saW5lU2Vy" + 
-          "dmljZS5FbnRpdHlJZBI1ChRjbGllbnRfdG9vbl9zZXR0aW5ncxgCIAIoCzIX" + 
-          "LkQzLkNsaWVudC5Ub29uU2V0dGluZ3MiRAoVSGVyb0RpZ2VzdExpc3RSZXF1" + 
-          "ZXN0EisKB3Rvb25faWQYASADKAsyGi5EMy5PbmxpbmVTZXJ2aWNlLkVudGl0" + 
-          "eUlkIngKEkhlcm9EaWdlc3RSZXNwb25zZRIrCgd0b29uX2lkGAEgAigLMhou" + 
-          "RDMuT25saW5lU2VydmljZS5FbnRpdHlJZBIPCgdzdWNjZXNzGAIgAigIEiQK" + 
-          "C2hlcm9fZGlnZXN0GAMgASgLMg8uRDMuSGVyby5EaWdlc3QiUQoWSGVyb0Rp" + 
-          "Z2VzdExpc3RSZXNwb25zZRI3CgtkaWdlc3RfbGlzdBgBIAMoCzIiLkQzLkdh" + 
-          "bWVNZXNzYWdlLkhlcm9EaWdlc3RSZXNwb25zZSJVCgxQbGF5ZXJCYW5uZXIS" + 
-          "FAoMcGxheWVyX2luZGV4GAEgAigNEi8KBmJhbm5lchgCIAIoCzIfLkQzLkFj" + 
-          "Y291bnQuQmFubmVyQ29uZmlndXJhdGlvbiJ8ChdTYXZlQmFubmVyQ29uZmln" + 
-          "dXJhdGlvbhIvCgZiYW5uZXIYASACKAsyHy5EMy5BY2NvdW50LkJhbm5lckNv" + 
-          "bmZpZ3VyYXRpb24SFQoKc2xvdF9pbmRleBgCIAEoDToBMBIZCgttYWtlX2Fj" + 
-          "dGl2ZRgDIAEoCDoEdHJ1ZSJpChBIZXJvRGlnZXN0QmFubmVyEiQKC2hlcm9f" + 
-          "ZGlnZXN0GAEgAigLMg8uRDMuSGVyby5EaWdlc3QSLwoGYmFubmVyGAIgAigL" + 
-          "Mh8uRDMuQWNjb3VudC5CYW5uZXJDb25maWd1cmF0aW9uIkcKEkdhbWVDdXJy" + 
-          "ZW50UGxheWVycxIxCgdwbGF5ZXJzGAEgAygLMiAuRDMuR2FtZU1lc3NhZ2Uu" + 
-          "SGVyb0RpZ2VzdEJhbm5lciJEChJBY2NvdW50VmVyc2lvbkxpc3QSLgoKYWNj" + 
-          "b3VudF9pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQiVQoS" + 
-          "QWNjb3VudFZlcnNpb25TeW5jEi4KCmFjY291bnRfaWQYASACKAsyGi5EMy5P" + 
-          "bmxpbmVTZXJ2aWNlLkVudGl0eUlkEg8KB3ZlcnNpb24YAiACKAQiQwoKVG9v" + 
-          "bHRpcElkcxIOCgZsb2NhbGUYASACKA0SJQoDaWRzGAIgAygLMhguRDMuT25s" + 
-          "aW5lU2VydmljZS5JdGVtSWQiRgoRVG9vbHRpcEdlbmVyYXRvcnMSDgoGbG9j" + 
-          "YWxlGAEgAigNEiEKBWl0ZW1zGAIgAigLMhIuRDMuSXRlbXMuSXRlbUxpc3Qi" + 
-          "PwoPVHV0b3JpYWxNZXNzYWdlEhQKDHR1dG9yaWFsX3NubxgBIAIoDRIWCg51" + 
-          "aV9hbmNob3JfbmFtZRgCIAEoCSI+ChZTZXRBY2hpZXZlbWVudFNob3djYXNl" + 
-          "EhYKDmFjaGlldmVtZW50X2lkGAEgAigEEgwKBHNsb3QYAiACKA0=");
+          "dW50LnByb3RvGgtJdGVtcy5wcm90bxoIQ1MucHJvdG8iZgoOSGVyb0RpZ2Vz" + 
+          "dExpc3QSLgoKYWNjb3VudF9pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2Uu" + 
+          "RW50aXR5SWQSJAoLZGlnZXN0X2xpc3QYAiADKAsyDy5EMy5IZXJvLkRpZ2Vz" + 
+          "dCJ4ChJDbGllbnRUb29uU2V0dGluZ3MSKwoHdG9vbl9pZBgBIAIoCzIaLkQz" + 
+          "Lk9ubGluZVNlcnZpY2UuRW50aXR5SWQSNQoUY2xpZW50X3Rvb25fc2V0dGlu" + 
+          "Z3MYAiACKAsyFy5EMy5DbGllbnQuVG9vblNldHRpbmdzInQKFUhlcm9EaWdl" + 
+          "c3RMaXN0UmVxdWVzdBIuCgphY2NvdW50X2lkGAEgAigLMhouRDMuT25saW5l" + 
+          "U2VydmljZS5FbnRpdHlJZBIrCgd0b29uX2lkGAIgAygLMhouRDMuT25saW5l" + 
+          "U2VydmljZS5FbnRpdHlJZCJ4ChJIZXJvRGlnZXN0UmVzcG9uc2USKwoHdG9v" + 
+          "bl9pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQSDwoHc3Vj" + 
+          "Y2VzcxgCIAIoCBIkCgtoZXJvX2RpZ2VzdBgDIAEoCzIPLkQzLkhlcm8uRGln" + 
+          "ZXN0IlEKFkhlcm9EaWdlc3RMaXN0UmVzcG9uc2USNwoLZGlnZXN0X2xpc3QY" + 
+          "ASADKAsyIi5EMy5HYW1lTWVzc2FnZS5IZXJvRGlnZXN0UmVzcG9uc2UiVQoM" + 
+          "UGxheWVyQmFubmVyEhQKDHBsYXllcl9pbmRleBgBIAIoDRIvCgZiYW5uZXIY" + 
+          "AiACKAsyHy5EMy5BY2NvdW50LkJhbm5lckNvbmZpZ3VyYXRpb24ifAoXU2F2" + 
+          "ZUJhbm5lckNvbmZpZ3VyYXRpb24SLwoGYmFubmVyGAEgAigLMh8uRDMuQWNj" + 
+          "b3VudC5CYW5uZXJDb25maWd1cmF0aW9uEhUKCnNsb3RfaW5kZXgYAiABKA06" + 
+          "ATASGQoLbWFrZV9hY3RpdmUYAyABKAg6BHRydWUiaQoQSGVyb0RpZ2VzdEJh" + 
+          "bm5lchIkCgtoZXJvX2RpZ2VzdBgBIAIoCzIPLkQzLkhlcm8uRGlnZXN0Ei8K" + 
+          "BmJhbm5lchgCIAIoCzIfLkQzLkFjY291bnQuQmFubmVyQ29uZmlndXJhdGlv" + 
+          "biJHChJHYW1lQ3VycmVudFBsYXllcnMSMQoHcGxheWVycxgBIAMoCzIgLkQz" + 
+          "LkdhbWVNZXNzYWdlLkhlcm9EaWdlc3RCYW5uZXIiZQoSQWNjb3VudFZlcnNp" + 
+          "b25MaXN0Ei4KCmFjY291bnRfaWQYASACKAsyGi5EMy5PbmxpbmVTZXJ2aWNl" + 
+          "LkVudGl0eUlkEh8KEHJldHVybl9zbmFwc2hvdHMYAiABKAg6BWZhbHNlIlUK" + 
+          "EkFjY291bnRWZXJzaW9uU3luYxIuCgphY2NvdW50X2lkGAEgAigLMhouRDMu" + 
+          "T25saW5lU2VydmljZS5FbnRpdHlJZBIPCgd2ZXJzaW9uGAIgAigEIkMKClRv" + 
+          "b2x0aXBJZHMSDgoGbG9jYWxlGAEgAigNEiUKA2lkcxgCIAMoCzIYLkQzLk9u" + 
+          "bGluZVNlcnZpY2UuSXRlbUlkIkYKEVRvb2x0aXBHZW5lcmF0b3JzEg4KBmxv" + 
+          "Y2FsZRgBIAIoDRIhCgVpdGVtcxgCIAIoCzISLkQzLkl0ZW1zLkl0ZW1MaXN0" + 
+          "Ij8KD1R1dG9yaWFsTWVzc2FnZRIUCgx0dXRvcmlhbF9zbm8YASACKA0SFgoO" + 
+          "dWlfYW5jaG9yX25hbWUYAiABKAkiJwoNVHV0b3JpYWxTdGF0ZRIWCg5zZWVu" + 
+          "X3R1dG9yaWFscxgBIAIoDCI5CgpEZWxldGVIZXJvEisKB2hlcm9faWQYASAC" + 
+          "KAsyGi5EMy5PbmxpbmVTZXJ2aWNlLkVudGl0eUlkInkKDFVuZGVsZXRlSGVy" + 
+          "bxI0ChB1bmRlbGV0ZV9oZXJvX2lkGAEgAigLMhouRDMuT25saW5lU2Vydmlj" + 
+          "ZS5FbnRpdHlJZBIzCg9yZXBsYWNlX2hlcm9faWQYAiABKAsyGi5EMy5Pbmxp" + 
+          "bmVTZXJ2aWNlLkVudGl0eUlkIkAKDkdldEZhbGxlbkhlcm9zEi4KCmFjY291" + 
+          "bnRfaWQYASACKAsyGi5EMy5PbmxpbmVTZXJ2aWNlLkVudGl0eUlkIk8KD0Fy" + 
+          "Y2hpdmVIYXJkY29yZRIrCgdoZXJvX2lkGAEgAigLMhouRDMuT25saW5lU2Vy" + 
+          "dmljZS5FbnRpdHlJZBIPCgdlcGl0YXBoGAIgAigJIj8KEERlbGV0ZUZhbGxl" + 
+          "bkhlcm8SKwoHaGVyb19pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50" + 
+          "aXR5SWQibwoQU2VydmVyRGVsZXRlSGVybxIuCgphY2NvdW50X2lkGAEgAigL" + 
+          "MhouRDMuT25saW5lU2VydmljZS5FbnRpdHlJZBIrCgdoZXJvX2lkGAIgAigL" + 
+          "MhouRDMuT25saW5lU2VydmljZS5FbnRpdHlJZCKvAQoSU2VydmVyVW5kZWxl" + 
+          "dGVIZXJvEi4KCmFjY291bnRfaWQYASACKAsyGi5EMy5PbmxpbmVTZXJ2aWNl" + 
+          "LkVudGl0eUlkEjQKEHVuZGVsZXRlX2hlcm9faWQYAiACKAsyGi5EMy5Pbmxp" + 
+          "bmVTZXJ2aWNlLkVudGl0eUlkEjMKD3JlcGxhY2VfaGVyb19pZBgDIAEoCzIa" + 
+          "LkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQidAoVU2VydmVyRm9yY2VSZW5h" + 
+          "bWVIZXJvEi4KCmFjY291bnRfaWQYASACKAsyGi5EMy5PbmxpbmVTZXJ2aWNl" + 
+          "LkVudGl0eUlkEisKB2hlcm9faWQYAiACKAsyGi5EMy5PbmxpbmVTZXJ2aWNl" + 
+          "LkVudGl0eUlkIkIKEFNlcnZlckZldGNoSGVyb3MSLgoKYWNjb3VudF9pZBgB" + 
+          "IAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQicwoUU2VydmVyRmV0" + 
+          "Y2hJbnZlbnRvcnkSLgoKYWNjb3VudF9pZBgBIAIoCzIaLkQzLk9ubGluZVNl" + 
+          "cnZpY2UuRW50aXR5SWQSKwoHaGVyb19pZBgCIAIoCzIaLkQzLk9ubGluZVNl" + 
+          "cnZpY2UuRW50aXR5SWQiQAoOU2VydmVyU25hcHNob3QSLgoKYWNjb3VudF9p" + 
+          "ZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQiWQoWU2VydmVy" + 
+          "U25hcHNob3RSZXNwb25zZRIuCgphY2NvdW50X2lkGAEgAigLMhouRDMuT25s" + 
+          "aW5lU2VydmljZS5FbnRpdHlJZBIPCgd2ZXJzaW9uGAIgAigEIlYKE1NlcnZl" + 
+          "ckZldGNoU25hcHNob3QSLgoKYWNjb3VudF9pZBgBIAIoCzIaLkQzLk9ubGlu" + 
+          "ZVNlcnZpY2UuRW50aXR5SWQSDwoHdmVyc2lvbhgCIAIoBCKaAQoQU2VydmVy" + 
+          "UmV2b2tlSXRlbRIuCgphY2NvdW50X2lkGAEgAigLMhouRDMuT25saW5lU2Vy" + 
+          "dmljZS5FbnRpdHlJZBIrCgdoZXJvX2lkGAIgAigLMhouRDMuT25saW5lU2Vy" + 
+          "dmljZS5FbnRpdHlJZBIpCgdpdGVtX2lkGAMgAigLMhguRDMuT25saW5lU2Vy" + 
+          "dmljZS5JdGVtSWQiSwoKUmVuYW1lSGVybxIrCgdoZXJvX2lkGAEgAigLMhou" + 
+          "RDMuT25saW5lU2VydmljZS5FbnRpdHlJZBIQCghuZXdfbmFtZRgCIAIoCSIY" + 
+          "ChZHZXRHYW1lQWNjb3VudFNldHRpbmdzIkoKFlNldEdhbWVBY2NvdW50U2V0" + 
+          "dGluZ3MSMAoIc2V0dGluZ3MYASACKAsyHi5EMy5DbGllbnQuR2FtZUFjY291" + 
+          "bnRTZXR0aW5ncyI+Cg9HZXRUb29uU2V0dGluZ3MSKwoHaGVyb19pZBgBIAIo" + 
+          "CzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQiaQoPU2V0VG9vblNldHRp" + 
+          "bmdzEisKB2hlcm9faWQYASACKAsyGi5EMy5PbmxpbmVTZXJ2aWNlLkVudGl0" + 
+          "eUlkEikKCHNldHRpbmdzGAIgAigLMhcuRDMuQ2xpZW50LlRvb25TZXR0aW5n" + 
+          "cyISChBHZXRBY2NvdW50RGlnZXN0IjsKDEdldEhlcm9JdGVtcxIrCgdoZXJv" + 
+          "X2lkGAEgAigLMhouRDMuT25saW5lU2VydmljZS5FbnRpdHlJZCIjCg9HZXRB" + 
+          "Y2NvdW50SXRlbXMSEAoIaGFyZGNvcmUYASACKAgiQwoRR2V0QWNjb3VudFBy" + 
+          "b2ZpbGUSLgoKYWNjb3VudF9pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2Uu" + 
+          "RW50aXR5SWQibwoPR2V0SGVyb1Byb2ZpbGVzEi4KCmFjY291bnRfaWQYASAC" + 
+          "KAsyGi5EMy5PbmxpbmVTZXJ2aWNlLkVudGl0eUlkEiwKCGhlcm9faWRzGAIg" + 
+          "AygLMhouRDMuT25saW5lU2VydmljZS5FbnRpdHlJZCIRCg9HZXRBY2NvdW50" + 
+          "UHJlZnMiOAoPU2V0QWNjb3VudFByZWZzEiUKBXByZWZzGAEgAigLMhYuRDMu" + 
+          "Q2xpZW50LlByZWZlcmVuY2VzImwKDUdldEhlcm9EaWdlc3QSLgoKYWNjb3Vu" + 
+          "dF9pZBgBIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQSKwoHaGVy" + 
+          "b19pZBgCIAIoCzIaLkQzLk9ubGluZVNlcnZpY2UuRW50aXR5SWQiPAoKR2V0" + 
+          "SGVyb0lkcxIuCgphY2NvdW50X2lkGAEgAigLMhouRDMuT25saW5lU2Vydmlj" + 
+          "ZS5FbnRpdHlJZCIQCg5HZXREZWxldGVkSGVybyIQCg5DU0dldFNuYXBzaG90" + 
+          "cyIhCg5DU1B1bGxTbmFwc2hvdBIPCgd2ZXJzaW9uGAEgAigEIi8KDkNTUHVz" + 
+          "aFNuYXBzaG90Eh0KBGRhdGEYASACKAsyDy5EMy5DUy5TbmFwc2hvdCImChND" + 
+          "U1Jlc3RvcmVUb1NuYXBzaG90Eg8KB3ZlcnNpb24YASACKAQiEQoPQ1NXcml0" + 
+          "ZVNuYXBzaG90");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_D3_GameMessage_HeroDigestList__Descriptor = Descriptor.MessageTypes[0];
@@ -102,7 +227,7 @@ namespace D3.GameMessage {
         internal__static_D3_GameMessage_HeroDigestListRequest__Descriptor = Descriptor.MessageTypes[2];
         internal__static_D3_GameMessage_HeroDigestListRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.HeroDigestListRequest, global::D3.GameMessage.HeroDigestListRequest.Builder>(internal__static_D3_GameMessage_HeroDigestListRequest__Descriptor,
-                new string[] { "ToonId", });
+                new string[] { "AccountId", "ToonId", });
         internal__static_D3_GameMessage_HeroDigestResponse__Descriptor = Descriptor.MessageTypes[3];
         internal__static_D3_GameMessage_HeroDigestResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.HeroDigestResponse, global::D3.GameMessage.HeroDigestResponse.Builder>(internal__static_D3_GameMessage_HeroDigestResponse__Descriptor,
@@ -130,7 +255,7 @@ namespace D3.GameMessage {
         internal__static_D3_GameMessage_AccountVersionList__Descriptor = Descriptor.MessageTypes[9];
         internal__static_D3_GameMessage_AccountVersionList__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.AccountVersionList, global::D3.GameMessage.AccountVersionList.Builder>(internal__static_D3_GameMessage_AccountVersionList__Descriptor,
-                new string[] { "AccountId", });
+                new string[] { "AccountId", "ReturnSnapshots", });
         internal__static_D3_GameMessage_AccountVersionSync__Descriptor = Descriptor.MessageTypes[10];
         internal__static_D3_GameMessage_AccountVersionSync__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.AccountVersionSync, global::D3.GameMessage.AccountVersionSync.Builder>(internal__static_D3_GameMessage_AccountVersionSync__Descriptor,
@@ -147,10 +272,146 @@ namespace D3.GameMessage {
         internal__static_D3_GameMessage_TutorialMessage__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.TutorialMessage, global::D3.GameMessage.TutorialMessage.Builder>(internal__static_D3_GameMessage_TutorialMessage__Descriptor,
                 new string[] { "TutorialSno", "UiAnchorName", });
-        internal__static_D3_GameMessage_SetAchievementShowcase__Descriptor = Descriptor.MessageTypes[14];
-        internal__static_D3_GameMessage_SetAchievementShowcase__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetAchievementShowcase, global::D3.GameMessage.SetAchievementShowcase.Builder>(internal__static_D3_GameMessage_SetAchievementShowcase__Descriptor,
-                new string[] { "AchievementId", "Slot", });
+        internal__static_D3_GameMessage_TutorialState__Descriptor = Descriptor.MessageTypes[14];
+        internal__static_D3_GameMessage_TutorialState__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.TutorialState, global::D3.GameMessage.TutorialState.Builder>(internal__static_D3_GameMessage_TutorialState__Descriptor,
+                new string[] { "SeenTutorials", });
+        internal__static_D3_GameMessage_DeleteHero__Descriptor = Descriptor.MessageTypes[15];
+        internal__static_D3_GameMessage_DeleteHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.DeleteHero, global::D3.GameMessage.DeleteHero.Builder>(internal__static_D3_GameMessage_DeleteHero__Descriptor,
+                new string[] { "HeroId", });
+        internal__static_D3_GameMessage_UndeleteHero__Descriptor = Descriptor.MessageTypes[16];
+        internal__static_D3_GameMessage_UndeleteHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.UndeleteHero, global::D3.GameMessage.UndeleteHero.Builder>(internal__static_D3_GameMessage_UndeleteHero__Descriptor,
+                new string[] { "UndeleteHeroId", "ReplaceHeroId", });
+        internal__static_D3_GameMessage_GetFallenHeros__Descriptor = Descriptor.MessageTypes[17];
+        internal__static_D3_GameMessage_GetFallenHeros__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetFallenHeros, global::D3.GameMessage.GetFallenHeros.Builder>(internal__static_D3_GameMessage_GetFallenHeros__Descriptor,
+                new string[] { "AccountId", });
+        internal__static_D3_GameMessage_ArchiveHardcore__Descriptor = Descriptor.MessageTypes[18];
+        internal__static_D3_GameMessage_ArchiveHardcore__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ArchiveHardcore, global::D3.GameMessage.ArchiveHardcore.Builder>(internal__static_D3_GameMessage_ArchiveHardcore__Descriptor,
+                new string[] { "HeroId", "Epitaph", });
+        internal__static_D3_GameMessage_DeleteFallenHero__Descriptor = Descriptor.MessageTypes[19];
+        internal__static_D3_GameMessage_DeleteFallenHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.DeleteFallenHero, global::D3.GameMessage.DeleteFallenHero.Builder>(internal__static_D3_GameMessage_DeleteFallenHero__Descriptor,
+                new string[] { "HeroId", });
+        internal__static_D3_GameMessage_ServerDeleteHero__Descriptor = Descriptor.MessageTypes[20];
+        internal__static_D3_GameMessage_ServerDeleteHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerDeleteHero, global::D3.GameMessage.ServerDeleteHero.Builder>(internal__static_D3_GameMessage_ServerDeleteHero__Descriptor,
+                new string[] { "AccountId", "HeroId", });
+        internal__static_D3_GameMessage_ServerUndeleteHero__Descriptor = Descriptor.MessageTypes[21];
+        internal__static_D3_GameMessage_ServerUndeleteHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerUndeleteHero, global::D3.GameMessage.ServerUndeleteHero.Builder>(internal__static_D3_GameMessage_ServerUndeleteHero__Descriptor,
+                new string[] { "AccountId", "UndeleteHeroId", "ReplaceHeroId", });
+        internal__static_D3_GameMessage_ServerForceRenameHero__Descriptor = Descriptor.MessageTypes[22];
+        internal__static_D3_GameMessage_ServerForceRenameHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerForceRenameHero, global::D3.GameMessage.ServerForceRenameHero.Builder>(internal__static_D3_GameMessage_ServerForceRenameHero__Descriptor,
+                new string[] { "AccountId", "HeroId", });
+        internal__static_D3_GameMessage_ServerFetchHeros__Descriptor = Descriptor.MessageTypes[23];
+        internal__static_D3_GameMessage_ServerFetchHeros__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchHeros, global::D3.GameMessage.ServerFetchHeros.Builder>(internal__static_D3_GameMessage_ServerFetchHeros__Descriptor,
+                new string[] { "AccountId", });
+        internal__static_D3_GameMessage_ServerFetchInventory__Descriptor = Descriptor.MessageTypes[24];
+        internal__static_D3_GameMessage_ServerFetchInventory__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchInventory, global::D3.GameMessage.ServerFetchInventory.Builder>(internal__static_D3_GameMessage_ServerFetchInventory__Descriptor,
+                new string[] { "AccountId", "HeroId", });
+        internal__static_D3_GameMessage_ServerSnapshot__Descriptor = Descriptor.MessageTypes[25];
+        internal__static_D3_GameMessage_ServerSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerSnapshot, global::D3.GameMessage.ServerSnapshot.Builder>(internal__static_D3_GameMessage_ServerSnapshot__Descriptor,
+                new string[] { "AccountId", });
+        internal__static_D3_GameMessage_ServerSnapshotResponse__Descriptor = Descriptor.MessageTypes[26];
+        internal__static_D3_GameMessage_ServerSnapshotResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerSnapshotResponse, global::D3.GameMessage.ServerSnapshotResponse.Builder>(internal__static_D3_GameMessage_ServerSnapshotResponse__Descriptor,
+                new string[] { "AccountId", "Version", });
+        internal__static_D3_GameMessage_ServerFetchSnapshot__Descriptor = Descriptor.MessageTypes[27];
+        internal__static_D3_GameMessage_ServerFetchSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerFetchSnapshot, global::D3.GameMessage.ServerFetchSnapshot.Builder>(internal__static_D3_GameMessage_ServerFetchSnapshot__Descriptor,
+                new string[] { "AccountId", "Version", });
+        internal__static_D3_GameMessage_ServerRevokeItem__Descriptor = Descriptor.MessageTypes[28];
+        internal__static_D3_GameMessage_ServerRevokeItem__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.ServerRevokeItem, global::D3.GameMessage.ServerRevokeItem.Builder>(internal__static_D3_GameMessage_ServerRevokeItem__Descriptor,
+                new string[] { "AccountId", "HeroId", "ItemId", });
+        internal__static_D3_GameMessage_RenameHero__Descriptor = Descriptor.MessageTypes[29];
+        internal__static_D3_GameMessage_RenameHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.RenameHero, global::D3.GameMessage.RenameHero.Builder>(internal__static_D3_GameMessage_RenameHero__Descriptor,
+                new string[] { "HeroId", "NewName", });
+        internal__static_D3_GameMessage_GetGameAccountSettings__Descriptor = Descriptor.MessageTypes[30];
+        internal__static_D3_GameMessage_GetGameAccountSettings__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetGameAccountSettings, global::D3.GameMessage.GetGameAccountSettings.Builder>(internal__static_D3_GameMessage_GetGameAccountSettings__Descriptor,
+                new string[] { });
+        internal__static_D3_GameMessage_SetGameAccountSettings__Descriptor = Descriptor.MessageTypes[31];
+        internal__static_D3_GameMessage_SetGameAccountSettings__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetGameAccountSettings, global::D3.GameMessage.SetGameAccountSettings.Builder>(internal__static_D3_GameMessage_SetGameAccountSettings__Descriptor,
+                new string[] { "Settings", });
+        internal__static_D3_GameMessage_GetToonSettings__Descriptor = Descriptor.MessageTypes[32];
+        internal__static_D3_GameMessage_GetToonSettings__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetToonSettings, global::D3.GameMessage.GetToonSettings.Builder>(internal__static_D3_GameMessage_GetToonSettings__Descriptor,
+                new string[] { "HeroId", });
+        internal__static_D3_GameMessage_SetToonSettings__Descriptor = Descriptor.MessageTypes[33];
+        internal__static_D3_GameMessage_SetToonSettings__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetToonSettings, global::D3.GameMessage.SetToonSettings.Builder>(internal__static_D3_GameMessage_SetToonSettings__Descriptor,
+                new string[] { "HeroId", "Settings", });
+        internal__static_D3_GameMessage_GetAccountDigest__Descriptor = Descriptor.MessageTypes[34];
+        internal__static_D3_GameMessage_GetAccountDigest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountDigest, global::D3.GameMessage.GetAccountDigest.Builder>(internal__static_D3_GameMessage_GetAccountDigest__Descriptor,
+                new string[] { });
+        internal__static_D3_GameMessage_GetHeroItems__Descriptor = Descriptor.MessageTypes[35];
+        internal__static_D3_GameMessage_GetHeroItems__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroItems, global::D3.GameMessage.GetHeroItems.Builder>(internal__static_D3_GameMessage_GetHeroItems__Descriptor,
+                new string[] { "HeroId", });
+        internal__static_D3_GameMessage_GetAccountItems__Descriptor = Descriptor.MessageTypes[36];
+        internal__static_D3_GameMessage_GetAccountItems__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountItems, global::D3.GameMessage.GetAccountItems.Builder>(internal__static_D3_GameMessage_GetAccountItems__Descriptor,
+                new string[] { "Hardcore", });
+        internal__static_D3_GameMessage_GetAccountProfile__Descriptor = Descriptor.MessageTypes[37];
+        internal__static_D3_GameMessage_GetAccountProfile__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountProfile, global::D3.GameMessage.GetAccountProfile.Builder>(internal__static_D3_GameMessage_GetAccountProfile__Descriptor,
+                new string[] { "AccountId", });
+        internal__static_D3_GameMessage_GetHeroProfiles__Descriptor = Descriptor.MessageTypes[38];
+        internal__static_D3_GameMessage_GetHeroProfiles__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroProfiles, global::D3.GameMessage.GetHeroProfiles.Builder>(internal__static_D3_GameMessage_GetHeroProfiles__Descriptor,
+                new string[] { "AccountId", "HeroIds", });
+        internal__static_D3_GameMessage_GetAccountPrefs__Descriptor = Descriptor.MessageTypes[39];
+        internal__static_D3_GameMessage_GetAccountPrefs__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetAccountPrefs, global::D3.GameMessage.GetAccountPrefs.Builder>(internal__static_D3_GameMessage_GetAccountPrefs__Descriptor,
+                new string[] { });
+        internal__static_D3_GameMessage_SetAccountPrefs__Descriptor = Descriptor.MessageTypes[40];
+        internal__static_D3_GameMessage_SetAccountPrefs__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.SetAccountPrefs, global::D3.GameMessage.SetAccountPrefs.Builder>(internal__static_D3_GameMessage_SetAccountPrefs__Descriptor,
+                new string[] { "Prefs", });
+        internal__static_D3_GameMessage_GetHeroDigest__Descriptor = Descriptor.MessageTypes[41];
+        internal__static_D3_GameMessage_GetHeroDigest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroDigest, global::D3.GameMessage.GetHeroDigest.Builder>(internal__static_D3_GameMessage_GetHeroDigest__Descriptor,
+                new string[] { "AccountId", "HeroId", });
+        internal__static_D3_GameMessage_GetHeroIds__Descriptor = Descriptor.MessageTypes[42];
+        internal__static_D3_GameMessage_GetHeroIds__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetHeroIds, global::D3.GameMessage.GetHeroIds.Builder>(internal__static_D3_GameMessage_GetHeroIds__Descriptor,
+                new string[] { "AccountId", });
+        internal__static_D3_GameMessage_GetDeletedHero__Descriptor = Descriptor.MessageTypes[43];
+        internal__static_D3_GameMessage_GetDeletedHero__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.GetDeletedHero, global::D3.GameMessage.GetDeletedHero.Builder>(internal__static_D3_GameMessage_GetDeletedHero__Descriptor,
+                new string[] { });
+        internal__static_D3_GameMessage_CSGetSnapshots__Descriptor = Descriptor.MessageTypes[44];
+        internal__static_D3_GameMessage_CSGetSnapshots__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSGetSnapshots, global::D3.GameMessage.CSGetSnapshots.Builder>(internal__static_D3_GameMessage_CSGetSnapshots__Descriptor,
+                new string[] { });
+        internal__static_D3_GameMessage_CSPullSnapshot__Descriptor = Descriptor.MessageTypes[45];
+        internal__static_D3_GameMessage_CSPullSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSPullSnapshot, global::D3.GameMessage.CSPullSnapshot.Builder>(internal__static_D3_GameMessage_CSPullSnapshot__Descriptor,
+                new string[] { "Version", });
+        internal__static_D3_GameMessage_CSPushSnapshot__Descriptor = Descriptor.MessageTypes[46];
+        internal__static_D3_GameMessage_CSPushSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSPushSnapshot, global::D3.GameMessage.CSPushSnapshot.Builder>(internal__static_D3_GameMessage_CSPushSnapshot__Descriptor,
+                new string[] { "Data", });
+        internal__static_D3_GameMessage_CSRestoreToSnapshot__Descriptor = Descriptor.MessageTypes[47];
+        internal__static_D3_GameMessage_CSRestoreToSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSRestoreToSnapshot, global::D3.GameMessage.CSRestoreToSnapshot.Builder>(internal__static_D3_GameMessage_CSRestoreToSnapshot__Descriptor,
+                new string[] { "Version", });
+        internal__static_D3_GameMessage_CSWriteSnapshot__Descriptor = Descriptor.MessageTypes[48];
+        internal__static_D3_GameMessage_CSWriteSnapshot__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::D3.GameMessage.CSWriteSnapshot, global::D3.GameMessage.CSWriteSnapshot.Builder>(internal__static_D3_GameMessage_CSWriteSnapshot__Descriptor,
+                new string[] { });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -160,6 +421,7 @@ namespace D3.GameMessage {
           global::D3.Client.Settings.Descriptor, 
           global::D3.Account.Account.Descriptor, 
           global::D3.Items.Items.Descriptor, 
+          global::D3.CS.CS.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -916,8 +1178,8 @@ namespace D3.GameMessage {
   public sealed partial class HeroDigestListRequest : pb::GeneratedMessage<HeroDigestListRequest, HeroDigestListRequest.Builder> {
     private HeroDigestListRequest() { }
     private static readonly HeroDigestListRequest defaultInstance = new HeroDigestListRequest().MakeReadOnly();
-    private static readonly string[] _heroDigestListRequestFieldNames = new string[] { "toon_id" };
-    private static readonly uint[] _heroDigestListRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _heroDigestListRequestFieldNames = new string[] { "account_id", "toon_id" };
+    private static readonly uint[] _heroDigestListRequestFieldTags = new uint[] { 10, 18 };
     public static HeroDigestListRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -938,7 +1200,17 @@ namespace D3.GameMessage {
       get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_HeroDigestListRequest__FieldAccessorTable; }
     }
     
-    public const int ToonIdFieldNumber = 1;
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int ToonIdFieldNumber = 2;
     private pbc::PopsicleList<global::D3.OnlineService.EntityId> toonId_ = new pbc::PopsicleList<global::D3.OnlineService.EntityId>();
     public scg::IList<global::D3.OnlineService.EntityId> ToonIdList {
       get { return toonId_; }
@@ -952,6 +1224,8 @@ namespace D3.GameMessage {
     
     public override bool IsInitialized {
       get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
         foreach (global::D3.OnlineService.EntityId element in ToonIdList) {
           if (!element.IsInitialized) return false;
         }
@@ -962,8 +1236,11 @@ namespace D3.GameMessage {
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
       string[] field_names = _heroDigestListRequestFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
       if (toonId_.Count > 0) {
-        output.WriteMessageArray(1, field_names[0], toonId_);
+        output.WriteMessageArray(2, field_names[1], toonId_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -975,8 +1252,11 @@ namespace D3.GameMessage {
         if (size != -1) return size;
         
         size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
         foreach (global::D3.OnlineService.EntityId element in ToonIdList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+          size += pb::CodedOutputStream.ComputeMessageSize(2, element);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1105,6 +1385,9 @@ namespace D3.GameMessage {
       public override Builder MergeFrom(HeroDigestListRequest other) {
         if (other == global::D3.GameMessage.HeroDigestListRequest.DefaultInstance) return this;
         PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
         if (other.toonId_.Count != 0) {
           result.toonId_.Add(other.toonId_);
         }
@@ -1152,6 +1435,15 @@ namespace D3.GameMessage {
               break;
             }
             case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
               input.ReadMessageArray(tag, field_name, result.toonId_, global::D3.OnlineService.EntityId.DefaultInstance, extensionRegistry);
               break;
             }
@@ -1164,6 +1456,46 @@ namespace D3.GameMessage {
         return this;
       }
       
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
       
       public pbc::IPopsicleList<global::D3.OnlineService.EntityId> ToonIdList {
         get { return PrepareBuilder().toonId_; }
@@ -3347,8 +3679,8 @@ namespace D3.GameMessage {
   public sealed partial class AccountVersionList : pb::GeneratedMessage<AccountVersionList, AccountVersionList.Builder> {
     private AccountVersionList() { }
     private static readonly AccountVersionList defaultInstance = new AccountVersionList().MakeReadOnly();
-    private static readonly string[] _accountVersionListFieldNames = new string[] { "account_id" };
-    private static readonly uint[] _accountVersionListFieldTags = new uint[] { 10 };
+    private static readonly string[] _accountVersionListFieldNames = new string[] { "account_id", "return_snapshots" };
+    private static readonly uint[] _accountVersionListFieldTags = new uint[] { 10, 16 };
     public static AccountVersionList DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3379,6 +3711,16 @@ namespace D3.GameMessage {
       get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
     }
     
+    public const int ReturnSnapshotsFieldNumber = 2;
+    private bool hasReturnSnapshots;
+    private bool returnSnapshots_;
+    public bool HasReturnSnapshots {
+      get { return hasReturnSnapshots; }
+    }
+    public bool ReturnSnapshots {
+      get { return returnSnapshots_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasAccountId) return false;
@@ -3393,6 +3735,9 @@ namespace D3.GameMessage {
       if (hasAccountId) {
         output.WriteMessage(1, field_names[0], AccountId);
       }
+      if (hasReturnSnapshots) {
+        output.WriteBool(2, field_names[1], ReturnSnapshots);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -3405,6 +3750,9 @@ namespace D3.GameMessage {
         size = 0;
         if (hasAccountId) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasReturnSnapshots) {
+          size += pb::CodedOutputStream.ComputeBoolSize(2, ReturnSnapshots);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -3535,6 +3883,9 @@ namespace D3.GameMessage {
         if (other.HasAccountId) {
           MergeAccountId(other.AccountId);
         }
+        if (other.HasReturnSnapshots) {
+          ReturnSnapshots = other.ReturnSnapshots;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -3587,6 +3938,10 @@ namespace D3.GameMessage {
               AccountId = subBuilder.BuildPartial();
               break;
             }
+            case 16: {
+              result.hasReturnSnapshots = input.ReadBool(ref result.returnSnapshots_);
+              break;
+            }
           }
         }
         
@@ -3634,6 +3989,26 @@ namespace D3.GameMessage {
         PrepareBuilder();
         result.hasAccountId = false;
         result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasReturnSnapshots {
+        get { return result.hasReturnSnapshots; }
+      }
+      public bool ReturnSnapshots {
+        get { return result.ReturnSnapshots; }
+        set { SetReturnSnapshots(value); }
+      }
+      public Builder SetReturnSnapshots(bool value) {
+        PrepareBuilder();
+        result.hasReturnSnapshots = true;
+        result.returnSnapshots_ = value;
+        return this;
+      }
+      public Builder ClearReturnSnapshots() {
+        PrepareBuilder();
+        result.hasReturnSnapshots = false;
+        result.returnSnapshots_ = false;
         return this;
       }
     }
@@ -5002,67 +5377,53 @@ namespace D3.GameMessage {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class SetAchievementShowcase : pb::GeneratedMessage<SetAchievementShowcase, SetAchievementShowcase.Builder> {
-    private SetAchievementShowcase() { }
-    private static readonly SetAchievementShowcase defaultInstance = new SetAchievementShowcase().MakeReadOnly();
-    private static readonly string[] _setAchievementShowcaseFieldNames = new string[] { "achievement_id", "slot" };
-    private static readonly uint[] _setAchievementShowcaseFieldTags = new uint[] { 8, 16 };
-    public static SetAchievementShowcase DefaultInstance {
+  public sealed partial class TutorialState : pb::GeneratedMessage<TutorialState, TutorialState.Builder> {
+    private TutorialState() { }
+    private static readonly TutorialState defaultInstance = new TutorialState().MakeReadOnly();
+    private static readonly string[] _tutorialStateFieldNames = new string[] { "seen_tutorials" };
+    private static readonly uint[] _tutorialStateFieldTags = new uint[] { 10 };
+    public static TutorialState DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override SetAchievementShowcase DefaultInstanceForType {
+    public override TutorialState DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override SetAchievementShowcase ThisMessage {
+    protected override TutorialState ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetAchievementShowcase__Descriptor; }
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_TutorialState__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<SetAchievementShowcase, SetAchievementShowcase.Builder> InternalFieldAccessors {
-      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetAchievementShowcase__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<TutorialState, TutorialState.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_TutorialState__FieldAccessorTable; }
     }
     
-    public const int AchievementIdFieldNumber = 1;
-    private bool hasAchievementId;
-    private ulong achievementId_;
-    public bool HasAchievementId {
-      get { return hasAchievementId; }
+    public const int SeenTutorialsFieldNumber = 1;
+    private bool hasSeenTutorials;
+    private pb::ByteString seenTutorials_ = pb::ByteString.Empty;
+    public bool HasSeenTutorials {
+      get { return hasSeenTutorials; }
     }
-    public ulong AchievementId {
-      get { return achievementId_; }
-    }
-    
-    public const int SlotFieldNumber = 2;
-    private bool hasSlot;
-    private uint slot_;
-    public bool HasSlot {
-      get { return hasSlot; }
-    }
-    public uint Slot {
-      get { return slot_; }
+    public pb::ByteString SeenTutorials {
+      get { return seenTutorials_; }
     }
     
     public override bool IsInitialized {
       get {
-        if (!hasAchievementId) return false;
-        if (!hasSlot) return false;
+        if (!hasSeenTutorials) return false;
         return true;
       }
     }
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _setAchievementShowcaseFieldNames;
-      if (hasAchievementId) {
-        output.WriteUInt64(1, field_names[0], AchievementId);
-      }
-      if (hasSlot) {
-        output.WriteUInt32(2, field_names[1], Slot);
+      string[] field_names = _tutorialStateFieldNames;
+      if (hasSeenTutorials) {
+        output.WriteBytes(1, field_names[0], SeenTutorials);
       }
       UnknownFields.WriteTo(output);
     }
@@ -5074,11 +5435,8 @@ namespace D3.GameMessage {
         if (size != -1) return size;
         
         size = 0;
-        if (hasAchievementId) {
-          size += pb::CodedOutputStream.ComputeUInt64Size(1, AchievementId);
-        }
-        if (hasSlot) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(2, Slot);
+        if (hasSeenTutorials) {
+          size += pb::CodedOutputStream.ComputeBytesSize(1, SeenTutorials);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -5086,51 +5444,51 @@ namespace D3.GameMessage {
       }
     }
     
-    public static SetAchievementShowcase ParseFrom(pb::ByteString data) {
+    public static TutorialState ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static TutorialState ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(byte[] data) {
+    public static TutorialState ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static TutorialState ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(global::System.IO.Stream input) {
+    public static TutorialState ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static TutorialState ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static TutorialState ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static SetAchievementShowcase ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static TutorialState ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(pb::ICodedInputStream input) {
+    public static TutorialState ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static SetAchievementShowcase ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static TutorialState ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private SetAchievementShowcase MakeReadOnly() {
+    private TutorialState MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(SetAchievementShowcase prototype) {
+    public static Builder CreateBuilder(TutorialState prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<SetAchievementShowcase, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<TutorialState, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -5138,18 +5496,18 @@ namespace D3.GameMessage {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(SetAchievementShowcase cloneFrom) {
+      internal Builder(TutorialState cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private SetAchievementShowcase result;
+      private TutorialState result;
       
-      private SetAchievementShowcase PrepareBuilder() {
+      private TutorialState PrepareBuilder() {
         if (resultIsReadOnly) {
-          SetAchievementShowcase original = result;
-          result = new SetAchievementShowcase();
+          TutorialState original = result;
+          result = new TutorialState();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -5160,7 +5518,7 @@ namespace D3.GameMessage {
         get { return result.IsInitialized; }
       }
       
-      protected override SetAchievementShowcase MessageBeingBuilt {
+      protected override TutorialState MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -5179,14 +5537,14 @@ namespace D3.GameMessage {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::D3.GameMessage.SetAchievementShowcase.Descriptor; }
+        get { return global::D3.GameMessage.TutorialState.Descriptor; }
       }
       
-      public override SetAchievementShowcase DefaultInstanceForType {
-        get { return global::D3.GameMessage.SetAchievementShowcase.DefaultInstance; }
+      public override TutorialState DefaultInstanceForType {
+        get { return global::D3.GameMessage.TutorialState.DefaultInstance; }
       }
       
-      public override SetAchievementShowcase BuildPartial() {
+      public override TutorialState BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -5195,22 +5553,19 @@ namespace D3.GameMessage {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is SetAchievementShowcase) {
-          return MergeFrom((SetAchievementShowcase) other);
+        if (other is TutorialState) {
+          return MergeFrom((TutorialState) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(SetAchievementShowcase other) {
-        if (other == global::D3.GameMessage.SetAchievementShowcase.DefaultInstance) return this;
+      public override Builder MergeFrom(TutorialState other) {
+        if (other == global::D3.GameMessage.TutorialState.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasAchievementId) {
-          AchievementId = other.AchievementId;
-        }
-        if (other.HasSlot) {
-          Slot = other.Slot;
+        if (other.HasSeenTutorials) {
+          SeenTutorials = other.SeenTutorials;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -5227,9 +5582,7274 @@ namespace D3.GameMessage {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_setAchievementShowcaseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_tutorialStateFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _setAchievementShowcaseFieldTags[field_ordinal];
+              tag = _tutorialStateFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasSeenTutorials = input.ReadBytes(ref result.seenTutorials_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasSeenTutorials {
+        get { return result.hasSeenTutorials; }
+      }
+      public pb::ByteString SeenTutorials {
+        get { return result.SeenTutorials; }
+        set { SetSeenTutorials(value); }
+      }
+      public Builder SetSeenTutorials(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasSeenTutorials = true;
+        result.seenTutorials_ = value;
+        return this;
+      }
+      public Builder ClearSeenTutorials() {
+        PrepareBuilder();
+        result.hasSeenTutorials = false;
+        result.seenTutorials_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+    static TutorialState() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class DeleteHero : pb::GeneratedMessage<DeleteHero, DeleteHero.Builder> {
+    private DeleteHero() { }
+    private static readonly DeleteHero defaultInstance = new DeleteHero().MakeReadOnly();
+    private static readonly string[] _deleteHeroFieldNames = new string[] { "hero_id" };
+    private static readonly uint[] _deleteHeroFieldTags = new uint[] { 10 };
+    public static DeleteHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override DeleteHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override DeleteHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_DeleteHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<DeleteHero, DeleteHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_DeleteHero__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _deleteHeroFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static DeleteHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static DeleteHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DeleteHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private DeleteHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(DeleteHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<DeleteHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(DeleteHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private DeleteHero result;
+      
+      private DeleteHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          DeleteHero original = result;
+          result = new DeleteHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override DeleteHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.DeleteHero.Descriptor; }
+      }
+      
+      public override DeleteHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.DeleteHero.DefaultInstance; }
+      }
+      
+      public override DeleteHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is DeleteHero) {
+          return MergeFrom((DeleteHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(DeleteHero other) {
+        if (other == global::D3.GameMessage.DeleteHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_deleteHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _deleteHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static DeleteHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class UndeleteHero : pb::GeneratedMessage<UndeleteHero, UndeleteHero.Builder> {
+    private UndeleteHero() { }
+    private static readonly UndeleteHero defaultInstance = new UndeleteHero().MakeReadOnly();
+    private static readonly string[] _undeleteHeroFieldNames = new string[] { "replace_hero_id", "undelete_hero_id" };
+    private static readonly uint[] _undeleteHeroFieldTags = new uint[] { 18, 10 };
+    public static UndeleteHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override UndeleteHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override UndeleteHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_UndeleteHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<UndeleteHero, UndeleteHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_UndeleteHero__FieldAccessorTable; }
+    }
+    
+    public const int UndeleteHeroIdFieldNumber = 1;
+    private bool hasUndeleteHeroId;
+    private global::D3.OnlineService.EntityId undeleteHeroId_;
+    public bool HasUndeleteHeroId {
+      get { return hasUndeleteHeroId; }
+    }
+    public global::D3.OnlineService.EntityId UndeleteHeroId {
+      get { return undeleteHeroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int ReplaceHeroIdFieldNumber = 2;
+    private bool hasReplaceHeroId;
+    private global::D3.OnlineService.EntityId replaceHeroId_;
+    public bool HasReplaceHeroId {
+      get { return hasReplaceHeroId; }
+    }
+    public global::D3.OnlineService.EntityId ReplaceHeroId {
+      get { return replaceHeroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasUndeleteHeroId) return false;
+        if (!UndeleteHeroId.IsInitialized) return false;
+        if (HasReplaceHeroId) {
+          if (!ReplaceHeroId.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _undeleteHeroFieldNames;
+      if (hasUndeleteHeroId) {
+        output.WriteMessage(1, field_names[1], UndeleteHeroId);
+      }
+      if (hasReplaceHeroId) {
+        output.WriteMessage(2, field_names[0], ReplaceHeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasUndeleteHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, UndeleteHeroId);
+        }
+        if (hasReplaceHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, ReplaceHeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static UndeleteHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static UndeleteHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static UndeleteHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static UndeleteHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private UndeleteHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(UndeleteHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<UndeleteHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(UndeleteHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private UndeleteHero result;
+      
+      private UndeleteHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          UndeleteHero original = result;
+          result = new UndeleteHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override UndeleteHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.UndeleteHero.Descriptor; }
+      }
+      
+      public override UndeleteHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.UndeleteHero.DefaultInstance; }
+      }
+      
+      public override UndeleteHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is UndeleteHero) {
+          return MergeFrom((UndeleteHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(UndeleteHero other) {
+        if (other == global::D3.GameMessage.UndeleteHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasUndeleteHeroId) {
+          MergeUndeleteHeroId(other.UndeleteHeroId);
+        }
+        if (other.HasReplaceHeroId) {
+          MergeReplaceHeroId(other.ReplaceHeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_undeleteHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _undeleteHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasUndeleteHeroId) {
+                subBuilder.MergeFrom(UndeleteHeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              UndeleteHeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasReplaceHeroId) {
+                subBuilder.MergeFrom(ReplaceHeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplaceHeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasUndeleteHeroId {
+       get { return result.hasUndeleteHeroId; }
+      }
+      public global::D3.OnlineService.EntityId UndeleteHeroId {
+        get { return result.UndeleteHeroId; }
+        set { SetUndeleteHeroId(value); }
+      }
+      public Builder SetUndeleteHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasUndeleteHeroId = true;
+        result.undeleteHeroId_ = value;
+        return this;
+      }
+      public Builder SetUndeleteHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasUndeleteHeroId = true;
+        result.undeleteHeroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeUndeleteHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasUndeleteHeroId &&
+            result.undeleteHeroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.undeleteHeroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.undeleteHeroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.undeleteHeroId_ = value;
+        }
+        result.hasUndeleteHeroId = true;
+        return this;
+      }
+      public Builder ClearUndeleteHeroId() {
+        PrepareBuilder();
+        result.hasUndeleteHeroId = false;
+        result.undeleteHeroId_ = null;
+        return this;
+      }
+      
+      public bool HasReplaceHeroId {
+       get { return result.hasReplaceHeroId; }
+      }
+      public global::D3.OnlineService.EntityId ReplaceHeroId {
+        get { return result.ReplaceHeroId; }
+        set { SetReplaceHeroId(value); }
+      }
+      public Builder SetReplaceHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasReplaceHeroId = true;
+        result.replaceHeroId_ = value;
+        return this;
+      }
+      public Builder SetReplaceHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasReplaceHeroId = true;
+        result.replaceHeroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplaceHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasReplaceHeroId &&
+            result.replaceHeroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.replaceHeroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.replaceHeroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replaceHeroId_ = value;
+        }
+        result.hasReplaceHeroId = true;
+        return this;
+      }
+      public Builder ClearReplaceHeroId() {
+        PrepareBuilder();
+        result.hasReplaceHeroId = false;
+        result.replaceHeroId_ = null;
+        return this;
+      }
+    }
+    static UndeleteHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetFallenHeros : pb::GeneratedMessage<GetFallenHeros, GetFallenHeros.Builder> {
+    private GetFallenHeros() { }
+    private static readonly GetFallenHeros defaultInstance = new GetFallenHeros().MakeReadOnly();
+    private static readonly string[] _getFallenHerosFieldNames = new string[] { "account_id" };
+    private static readonly uint[] _getFallenHerosFieldTags = new uint[] { 10 };
+    public static GetFallenHeros DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetFallenHeros DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetFallenHeros ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetFallenHeros__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetFallenHeros, GetFallenHeros.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetFallenHeros__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getFallenHerosFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetFallenHeros ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetFallenHeros ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetFallenHeros ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetFallenHeros ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetFallenHeros MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetFallenHeros prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetFallenHeros, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetFallenHeros cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetFallenHeros result;
+      
+      private GetFallenHeros PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetFallenHeros original = result;
+          result = new GetFallenHeros();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetFallenHeros MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetFallenHeros.Descriptor; }
+      }
+      
+      public override GetFallenHeros DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetFallenHeros.DefaultInstance; }
+      }
+      
+      public override GetFallenHeros BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetFallenHeros) {
+          return MergeFrom((GetFallenHeros) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetFallenHeros other) {
+        if (other == global::D3.GameMessage.GetFallenHeros.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getFallenHerosFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getFallenHerosFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+    }
+    static GetFallenHeros() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ArchiveHardcore : pb::GeneratedMessage<ArchiveHardcore, ArchiveHardcore.Builder> {
+    private ArchiveHardcore() { }
+    private static readonly ArchiveHardcore defaultInstance = new ArchiveHardcore().MakeReadOnly();
+    private static readonly string[] _archiveHardcoreFieldNames = new string[] { "epitaph", "hero_id" };
+    private static readonly uint[] _archiveHardcoreFieldTags = new uint[] { 18, 10 };
+    public static ArchiveHardcore DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ArchiveHardcore DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ArchiveHardcore ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ArchiveHardcore__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ArchiveHardcore, ArchiveHardcore.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ArchiveHardcore__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int EpitaphFieldNumber = 2;
+    private bool hasEpitaph;
+    private string epitaph_ = "";
+    public bool HasEpitaph {
+      get { return hasEpitaph; }
+    }
+    public string Epitaph {
+      get { return epitaph_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!hasEpitaph) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _archiveHardcoreFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[1], HeroId);
+      }
+      if (hasEpitaph) {
+        output.WriteString(2, field_names[0], Epitaph);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        if (hasEpitaph) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, Epitaph);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ArchiveHardcore ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ArchiveHardcore ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ArchiveHardcore ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ArchiveHardcore MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ArchiveHardcore prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ArchiveHardcore, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ArchiveHardcore cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ArchiveHardcore result;
+      
+      private ArchiveHardcore PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ArchiveHardcore original = result;
+          result = new ArchiveHardcore();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ArchiveHardcore MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ArchiveHardcore.Descriptor; }
+      }
+      
+      public override ArchiveHardcore DefaultInstanceForType {
+        get { return global::D3.GameMessage.ArchiveHardcore.DefaultInstance; }
+      }
+      
+      public override ArchiveHardcore BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ArchiveHardcore) {
+          return MergeFrom((ArchiveHardcore) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ArchiveHardcore other) {
+        if (other == global::D3.GameMessage.ArchiveHardcore.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        if (other.HasEpitaph) {
+          Epitaph = other.Epitaph;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_archiveHardcoreFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _archiveHardcoreFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              result.hasEpitaph = input.ReadString(ref result.epitaph_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+      
+      public bool HasEpitaph {
+        get { return result.hasEpitaph; }
+      }
+      public string Epitaph {
+        get { return result.Epitaph; }
+        set { SetEpitaph(value); }
+      }
+      public Builder SetEpitaph(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasEpitaph = true;
+        result.epitaph_ = value;
+        return this;
+      }
+      public Builder ClearEpitaph() {
+        PrepareBuilder();
+        result.hasEpitaph = false;
+        result.epitaph_ = "";
+        return this;
+      }
+    }
+    static ArchiveHardcore() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class DeleteFallenHero : pb::GeneratedMessage<DeleteFallenHero, DeleteFallenHero.Builder> {
+    private DeleteFallenHero() { }
+    private static readonly DeleteFallenHero defaultInstance = new DeleteFallenHero().MakeReadOnly();
+    private static readonly string[] _deleteFallenHeroFieldNames = new string[] { "hero_id" };
+    private static readonly uint[] _deleteFallenHeroFieldTags = new uint[] { 10 };
+    public static DeleteFallenHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override DeleteFallenHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override DeleteFallenHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_DeleteFallenHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<DeleteFallenHero, DeleteFallenHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_DeleteFallenHero__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _deleteFallenHeroFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static DeleteFallenHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static DeleteFallenHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DeleteFallenHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private DeleteFallenHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(DeleteFallenHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<DeleteFallenHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(DeleteFallenHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private DeleteFallenHero result;
+      
+      private DeleteFallenHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          DeleteFallenHero original = result;
+          result = new DeleteFallenHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override DeleteFallenHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.DeleteFallenHero.Descriptor; }
+      }
+      
+      public override DeleteFallenHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.DeleteFallenHero.DefaultInstance; }
+      }
+      
+      public override DeleteFallenHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is DeleteFallenHero) {
+          return MergeFrom((DeleteFallenHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(DeleteFallenHero other) {
+        if (other == global::D3.GameMessage.DeleteFallenHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_deleteFallenHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _deleteFallenHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static DeleteFallenHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerDeleteHero : pb::GeneratedMessage<ServerDeleteHero, ServerDeleteHero.Builder> {
+    private ServerDeleteHero() { }
+    private static readonly ServerDeleteHero defaultInstance = new ServerDeleteHero().MakeReadOnly();
+    private static readonly string[] _serverDeleteHeroFieldNames = new string[] { "account_id", "hero_id" };
+    private static readonly uint[] _serverDeleteHeroFieldTags = new uint[] { 10, 18 };
+    public static ServerDeleteHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerDeleteHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerDeleteHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerDeleteHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerDeleteHero, ServerDeleteHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerDeleteHero__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdFieldNumber = 2;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasHeroId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverDeleteHeroFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasHeroId) {
+        output.WriteMessage(2, field_names[1], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerDeleteHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerDeleteHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerDeleteHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerDeleteHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerDeleteHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerDeleteHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerDeleteHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerDeleteHero result;
+      
+      private ServerDeleteHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerDeleteHero original = result;
+          result = new ServerDeleteHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerDeleteHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerDeleteHero.Descriptor; }
+      }
+      
+      public override ServerDeleteHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerDeleteHero.DefaultInstance; }
+      }
+      
+      public override ServerDeleteHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerDeleteHero) {
+          return MergeFrom((ServerDeleteHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerDeleteHero other) {
+        if (other == global::D3.GameMessage.ServerDeleteHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverDeleteHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverDeleteHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static ServerDeleteHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerUndeleteHero : pb::GeneratedMessage<ServerUndeleteHero, ServerUndeleteHero.Builder> {
+    private ServerUndeleteHero() { }
+    private static readonly ServerUndeleteHero defaultInstance = new ServerUndeleteHero().MakeReadOnly();
+    private static readonly string[] _serverUndeleteHeroFieldNames = new string[] { "account_id", "replace_hero_id", "undelete_hero_id" };
+    private static readonly uint[] _serverUndeleteHeroFieldTags = new uint[] { 10, 26, 18 };
+    public static ServerUndeleteHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerUndeleteHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerUndeleteHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerUndeleteHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerUndeleteHero, ServerUndeleteHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerUndeleteHero__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int UndeleteHeroIdFieldNumber = 2;
+    private bool hasUndeleteHeroId;
+    private global::D3.OnlineService.EntityId undeleteHeroId_;
+    public bool HasUndeleteHeroId {
+      get { return hasUndeleteHeroId; }
+    }
+    public global::D3.OnlineService.EntityId UndeleteHeroId {
+      get { return undeleteHeroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int ReplaceHeroIdFieldNumber = 3;
+    private bool hasReplaceHeroId;
+    private global::D3.OnlineService.EntityId replaceHeroId_;
+    public bool HasReplaceHeroId {
+      get { return hasReplaceHeroId; }
+    }
+    public global::D3.OnlineService.EntityId ReplaceHeroId {
+      get { return replaceHeroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasUndeleteHeroId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!UndeleteHeroId.IsInitialized) return false;
+        if (HasReplaceHeroId) {
+          if (!ReplaceHeroId.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverUndeleteHeroFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasUndeleteHeroId) {
+        output.WriteMessage(2, field_names[2], UndeleteHeroId);
+      }
+      if (hasReplaceHeroId) {
+        output.WriteMessage(3, field_names[1], ReplaceHeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasUndeleteHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, UndeleteHeroId);
+        }
+        if (hasReplaceHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, ReplaceHeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerUndeleteHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerUndeleteHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerUndeleteHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerUndeleteHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerUndeleteHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerUndeleteHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerUndeleteHero result;
+      
+      private ServerUndeleteHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerUndeleteHero original = result;
+          result = new ServerUndeleteHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerUndeleteHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerUndeleteHero.Descriptor; }
+      }
+      
+      public override ServerUndeleteHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerUndeleteHero.DefaultInstance; }
+      }
+      
+      public override ServerUndeleteHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerUndeleteHero) {
+          return MergeFrom((ServerUndeleteHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerUndeleteHero other) {
+        if (other == global::D3.GameMessage.ServerUndeleteHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasUndeleteHeroId) {
+          MergeUndeleteHeroId(other.UndeleteHeroId);
+        }
+        if (other.HasReplaceHeroId) {
+          MergeReplaceHeroId(other.ReplaceHeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverUndeleteHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverUndeleteHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasUndeleteHeroId) {
+                subBuilder.MergeFrom(UndeleteHeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              UndeleteHeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 26: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasReplaceHeroId) {
+                subBuilder.MergeFrom(ReplaceHeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplaceHeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasUndeleteHeroId {
+       get { return result.hasUndeleteHeroId; }
+      }
+      public global::D3.OnlineService.EntityId UndeleteHeroId {
+        get { return result.UndeleteHeroId; }
+        set { SetUndeleteHeroId(value); }
+      }
+      public Builder SetUndeleteHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasUndeleteHeroId = true;
+        result.undeleteHeroId_ = value;
+        return this;
+      }
+      public Builder SetUndeleteHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasUndeleteHeroId = true;
+        result.undeleteHeroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeUndeleteHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasUndeleteHeroId &&
+            result.undeleteHeroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.undeleteHeroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.undeleteHeroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.undeleteHeroId_ = value;
+        }
+        result.hasUndeleteHeroId = true;
+        return this;
+      }
+      public Builder ClearUndeleteHeroId() {
+        PrepareBuilder();
+        result.hasUndeleteHeroId = false;
+        result.undeleteHeroId_ = null;
+        return this;
+      }
+      
+      public bool HasReplaceHeroId {
+       get { return result.hasReplaceHeroId; }
+      }
+      public global::D3.OnlineService.EntityId ReplaceHeroId {
+        get { return result.ReplaceHeroId; }
+        set { SetReplaceHeroId(value); }
+      }
+      public Builder SetReplaceHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasReplaceHeroId = true;
+        result.replaceHeroId_ = value;
+        return this;
+      }
+      public Builder SetReplaceHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasReplaceHeroId = true;
+        result.replaceHeroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplaceHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasReplaceHeroId &&
+            result.replaceHeroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.replaceHeroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.replaceHeroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replaceHeroId_ = value;
+        }
+        result.hasReplaceHeroId = true;
+        return this;
+      }
+      public Builder ClearReplaceHeroId() {
+        PrepareBuilder();
+        result.hasReplaceHeroId = false;
+        result.replaceHeroId_ = null;
+        return this;
+      }
+    }
+    static ServerUndeleteHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerForceRenameHero : pb::GeneratedMessage<ServerForceRenameHero, ServerForceRenameHero.Builder> {
+    private ServerForceRenameHero() { }
+    private static readonly ServerForceRenameHero defaultInstance = new ServerForceRenameHero().MakeReadOnly();
+    private static readonly string[] _serverForceRenameHeroFieldNames = new string[] { "account_id", "hero_id" };
+    private static readonly uint[] _serverForceRenameHeroFieldTags = new uint[] { 10, 18 };
+    public static ServerForceRenameHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerForceRenameHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerForceRenameHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerForceRenameHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerForceRenameHero, ServerForceRenameHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerForceRenameHero__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdFieldNumber = 2;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasHeroId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverForceRenameHeroFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasHeroId) {
+        output.WriteMessage(2, field_names[1], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerForceRenameHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerForceRenameHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerForceRenameHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerForceRenameHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerForceRenameHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerForceRenameHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerForceRenameHero result;
+      
+      private ServerForceRenameHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerForceRenameHero original = result;
+          result = new ServerForceRenameHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerForceRenameHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerForceRenameHero.Descriptor; }
+      }
+      
+      public override ServerForceRenameHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerForceRenameHero.DefaultInstance; }
+      }
+      
+      public override ServerForceRenameHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerForceRenameHero) {
+          return MergeFrom((ServerForceRenameHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerForceRenameHero other) {
+        if (other == global::D3.GameMessage.ServerForceRenameHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverForceRenameHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverForceRenameHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static ServerForceRenameHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerFetchHeros : pb::GeneratedMessage<ServerFetchHeros, ServerFetchHeros.Builder> {
+    private ServerFetchHeros() { }
+    private static readonly ServerFetchHeros defaultInstance = new ServerFetchHeros().MakeReadOnly();
+    private static readonly string[] _serverFetchHerosFieldNames = new string[] { "account_id" };
+    private static readonly uint[] _serverFetchHerosFieldTags = new uint[] { 10 };
+    public static ServerFetchHeros DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerFetchHeros DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerFetchHeros ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchHeros__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerFetchHeros, ServerFetchHeros.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchHeros__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverFetchHerosFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerFetchHeros ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerFetchHeros ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchHeros ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerFetchHeros MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerFetchHeros prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerFetchHeros, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerFetchHeros cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerFetchHeros result;
+      
+      private ServerFetchHeros PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerFetchHeros original = result;
+          result = new ServerFetchHeros();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerFetchHeros MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerFetchHeros.Descriptor; }
+      }
+      
+      public override ServerFetchHeros DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerFetchHeros.DefaultInstance; }
+      }
+      
+      public override ServerFetchHeros BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerFetchHeros) {
+          return MergeFrom((ServerFetchHeros) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerFetchHeros other) {
+        if (other == global::D3.GameMessage.ServerFetchHeros.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverFetchHerosFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverFetchHerosFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+    }
+    static ServerFetchHeros() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerFetchInventory : pb::GeneratedMessage<ServerFetchInventory, ServerFetchInventory.Builder> {
+    private ServerFetchInventory() { }
+    private static readonly ServerFetchInventory defaultInstance = new ServerFetchInventory().MakeReadOnly();
+    private static readonly string[] _serverFetchInventoryFieldNames = new string[] { "account_id", "hero_id" };
+    private static readonly uint[] _serverFetchInventoryFieldTags = new uint[] { 10, 18 };
+    public static ServerFetchInventory DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerFetchInventory DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerFetchInventory ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchInventory__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerFetchInventory, ServerFetchInventory.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchInventory__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdFieldNumber = 2;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasHeroId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverFetchInventoryFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasHeroId) {
+        output.WriteMessage(2, field_names[1], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerFetchInventory ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerFetchInventory ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchInventory ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerFetchInventory MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerFetchInventory prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerFetchInventory, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerFetchInventory cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerFetchInventory result;
+      
+      private ServerFetchInventory PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerFetchInventory original = result;
+          result = new ServerFetchInventory();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerFetchInventory MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerFetchInventory.Descriptor; }
+      }
+      
+      public override ServerFetchInventory DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerFetchInventory.DefaultInstance; }
+      }
+      
+      public override ServerFetchInventory BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerFetchInventory) {
+          return MergeFrom((ServerFetchInventory) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerFetchInventory other) {
+        if (other == global::D3.GameMessage.ServerFetchInventory.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverFetchInventoryFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverFetchInventoryFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static ServerFetchInventory() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerSnapshot : pb::GeneratedMessage<ServerSnapshot, ServerSnapshot.Builder> {
+    private ServerSnapshot() { }
+    private static readonly ServerSnapshot defaultInstance = new ServerSnapshot().MakeReadOnly();
+    private static readonly string[] _serverSnapshotFieldNames = new string[] { "account_id" };
+    private static readonly uint[] _serverSnapshotFieldTags = new uint[] { 10 };
+    public static ServerSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerSnapshot, ServerSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerSnapshot__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverSnapshotFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerSnapshot result;
+      
+      private ServerSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerSnapshot original = result;
+          result = new ServerSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerSnapshot.Descriptor; }
+      }
+      
+      public override ServerSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerSnapshot.DefaultInstance; }
+      }
+      
+      public override ServerSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerSnapshot) {
+          return MergeFrom((ServerSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerSnapshot other) {
+        if (other == global::D3.GameMessage.ServerSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+    }
+    static ServerSnapshot() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerSnapshotResponse : pb::GeneratedMessage<ServerSnapshotResponse, ServerSnapshotResponse.Builder> {
+    private ServerSnapshotResponse() { }
+    private static readonly ServerSnapshotResponse defaultInstance = new ServerSnapshotResponse().MakeReadOnly();
+    private static readonly string[] _serverSnapshotResponseFieldNames = new string[] { "account_id", "version" };
+    private static readonly uint[] _serverSnapshotResponseFieldTags = new uint[] { 10, 16 };
+    public static ServerSnapshotResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerSnapshotResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerSnapshotResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerSnapshotResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerSnapshotResponse, ServerSnapshotResponse.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerSnapshotResponse__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int VersionFieldNumber = 2;
+    private bool hasVersion;
+    private ulong version_;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public ulong Version {
+      get { return version_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasVersion) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverSnapshotResponseFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasVersion) {
+        output.WriteUInt64(2, field_names[1], Version);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasVersion) {
+          size += pb::CodedOutputStream.ComputeUInt64Size(2, Version);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerSnapshotResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerSnapshotResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerSnapshotResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerSnapshotResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerSnapshotResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerSnapshotResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerSnapshotResponse result;
+      
+      private ServerSnapshotResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerSnapshotResponse original = result;
+          result = new ServerSnapshotResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerSnapshotResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerSnapshotResponse.Descriptor; }
+      }
+      
+      public override ServerSnapshotResponse DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerSnapshotResponse.DefaultInstance; }
+      }
+      
+      public override ServerSnapshotResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerSnapshotResponse) {
+          return MergeFrom((ServerSnapshotResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerSnapshotResponse other) {
+        if (other == global::D3.GameMessage.ServerSnapshotResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverSnapshotResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverSnapshotResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              result.hasVersion = input.ReadUInt64(ref result.version_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasVersion {
+        get { return result.hasVersion; }
+      }
+      public ulong Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(ulong value) {
+        PrepareBuilder();
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        PrepareBuilder();
+        result.hasVersion = false;
+        result.version_ = 0UL;
+        return this;
+      }
+    }
+    static ServerSnapshotResponse() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerFetchSnapshot : pb::GeneratedMessage<ServerFetchSnapshot, ServerFetchSnapshot.Builder> {
+    private ServerFetchSnapshot() { }
+    private static readonly ServerFetchSnapshot defaultInstance = new ServerFetchSnapshot().MakeReadOnly();
+    private static readonly string[] _serverFetchSnapshotFieldNames = new string[] { "account_id", "version" };
+    private static readonly uint[] _serverFetchSnapshotFieldTags = new uint[] { 10, 16 };
+    public static ServerFetchSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerFetchSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerFetchSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerFetchSnapshot, ServerFetchSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerFetchSnapshot__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int VersionFieldNumber = 2;
+    private bool hasVersion;
+    private ulong version_;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public ulong Version {
+      get { return version_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasVersion) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverFetchSnapshotFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasVersion) {
+        output.WriteUInt64(2, field_names[1], Version);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasVersion) {
+          size += pb::CodedOutputStream.ComputeUInt64Size(2, Version);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerFetchSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerFetchSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerFetchSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerFetchSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerFetchSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerFetchSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerFetchSnapshot result;
+      
+      private ServerFetchSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerFetchSnapshot original = result;
+          result = new ServerFetchSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerFetchSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerFetchSnapshot.Descriptor; }
+      }
+      
+      public override ServerFetchSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerFetchSnapshot.DefaultInstance; }
+      }
+      
+      public override ServerFetchSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerFetchSnapshot) {
+          return MergeFrom((ServerFetchSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerFetchSnapshot other) {
+        if (other == global::D3.GameMessage.ServerFetchSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverFetchSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverFetchSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              result.hasVersion = input.ReadUInt64(ref result.version_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasVersion {
+        get { return result.hasVersion; }
+      }
+      public ulong Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(ulong value) {
+        PrepareBuilder();
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        PrepareBuilder();
+        result.hasVersion = false;
+        result.version_ = 0UL;
+        return this;
+      }
+    }
+    static ServerFetchSnapshot() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class ServerRevokeItem : pb::GeneratedMessage<ServerRevokeItem, ServerRevokeItem.Builder> {
+    private ServerRevokeItem() { }
+    private static readonly ServerRevokeItem defaultInstance = new ServerRevokeItem().MakeReadOnly();
+    private static readonly string[] _serverRevokeItemFieldNames = new string[] { "account_id", "hero_id", "item_id" };
+    private static readonly uint[] _serverRevokeItemFieldTags = new uint[] { 10, 18, 26 };
+    public static ServerRevokeItem DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ServerRevokeItem DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override ServerRevokeItem ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerRevokeItem__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ServerRevokeItem, ServerRevokeItem.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_ServerRevokeItem__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdFieldNumber = 2;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int ItemIdFieldNumber = 3;
+    private bool hasItemId;
+    private global::D3.OnlineService.ItemId itemId_;
+    public bool HasItemId {
+      get { return hasItemId; }
+    }
+    public global::D3.OnlineService.ItemId ItemId {
+      get { return itemId_ ?? global::D3.OnlineService.ItemId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasHeroId) return false;
+        if (!hasItemId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!HeroId.IsInitialized) return false;
+        if (!ItemId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _serverRevokeItemFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasHeroId) {
+        output.WriteMessage(2, field_names[1], HeroId);
+      }
+      if (hasItemId) {
+        output.WriteMessage(3, field_names[2], ItemId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, HeroId);
+        }
+        if (hasItemId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, ItemId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ServerRevokeItem ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static ServerRevokeItem ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ServerRevokeItem ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private ServerRevokeItem MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ServerRevokeItem prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<ServerRevokeItem, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(ServerRevokeItem cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private ServerRevokeItem result;
+      
+      private ServerRevokeItem PrepareBuilder() {
+        if (resultIsReadOnly) {
+          ServerRevokeItem original = result;
+          result = new ServerRevokeItem();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override ServerRevokeItem MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.ServerRevokeItem.Descriptor; }
+      }
+      
+      public override ServerRevokeItem DefaultInstanceForType {
+        get { return global::D3.GameMessage.ServerRevokeItem.DefaultInstance; }
+      }
+      
+      public override ServerRevokeItem BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ServerRevokeItem) {
+          return MergeFrom((ServerRevokeItem) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ServerRevokeItem other) {
+        if (other == global::D3.GameMessage.ServerRevokeItem.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        if (other.HasItemId) {
+          MergeItemId(other.ItemId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_serverRevokeItemFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _serverRevokeItemFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 26: {
+              global::D3.OnlineService.ItemId.Builder subBuilder = global::D3.OnlineService.ItemId.CreateBuilder();
+              if (result.hasItemId) {
+                subBuilder.MergeFrom(ItemId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ItemId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+      
+      public bool HasItemId {
+       get { return result.hasItemId; }
+      }
+      public global::D3.OnlineService.ItemId ItemId {
+        get { return result.ItemId; }
+        set { SetItemId(value); }
+      }
+      public Builder SetItemId(global::D3.OnlineService.ItemId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasItemId = true;
+        result.itemId_ = value;
+        return this;
+      }
+      public Builder SetItemId(global::D3.OnlineService.ItemId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasItemId = true;
+        result.itemId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeItemId(global::D3.OnlineService.ItemId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasItemId &&
+            result.itemId_ != global::D3.OnlineService.ItemId.DefaultInstance) {
+            result.itemId_ = global::D3.OnlineService.ItemId.CreateBuilder(result.itemId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.itemId_ = value;
+        }
+        result.hasItemId = true;
+        return this;
+      }
+      public Builder ClearItemId() {
+        PrepareBuilder();
+        result.hasItemId = false;
+        result.itemId_ = null;
+        return this;
+      }
+    }
+    static ServerRevokeItem() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class RenameHero : pb::GeneratedMessage<RenameHero, RenameHero.Builder> {
+    private RenameHero() { }
+    private static readonly RenameHero defaultInstance = new RenameHero().MakeReadOnly();
+    private static readonly string[] _renameHeroFieldNames = new string[] { "hero_id", "new_name" };
+    private static readonly uint[] _renameHeroFieldTags = new uint[] { 10, 18 };
+    public static RenameHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override RenameHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override RenameHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_RenameHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<RenameHero, RenameHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_RenameHero__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int NewNameFieldNumber = 2;
+    private bool hasNewName;
+    private string newName_ = "";
+    public bool HasNewName {
+      get { return hasNewName; }
+    }
+    public string NewName {
+      get { return newName_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!hasNewName) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _renameHeroFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      if (hasNewName) {
+        output.WriteString(2, field_names[1], NewName);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        if (hasNewName) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, NewName);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static RenameHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static RenameHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static RenameHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static RenameHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RenameHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private RenameHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(RenameHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<RenameHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(RenameHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private RenameHero result;
+      
+      private RenameHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          RenameHero original = result;
+          result = new RenameHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override RenameHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.RenameHero.Descriptor; }
+      }
+      
+      public override RenameHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.RenameHero.DefaultInstance; }
+      }
+      
+      public override RenameHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is RenameHero) {
+          return MergeFrom((RenameHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(RenameHero other) {
+        if (other == global::D3.GameMessage.RenameHero.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        if (other.HasNewName) {
+          NewName = other.NewName;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_renameHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _renameHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              result.hasNewName = input.ReadString(ref result.newName_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+      
+      public bool HasNewName {
+        get { return result.hasNewName; }
+      }
+      public string NewName {
+        get { return result.NewName; }
+        set { SetNewName(value); }
+      }
+      public Builder SetNewName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasNewName = true;
+        result.newName_ = value;
+        return this;
+      }
+      public Builder ClearNewName() {
+        PrepareBuilder();
+        result.hasNewName = false;
+        result.newName_ = "";
+        return this;
+      }
+    }
+    static RenameHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetGameAccountSettings : pb::GeneratedMessage<GetGameAccountSettings, GetGameAccountSettings.Builder> {
+    private GetGameAccountSettings() { }
+    private static readonly GetGameAccountSettings defaultInstance = new GetGameAccountSettings().MakeReadOnly();
+    private static readonly string[] _getGameAccountSettingsFieldNames = new string[] {  };
+    private static readonly uint[] _getGameAccountSettingsFieldTags = new uint[] {  };
+    public static GetGameAccountSettings DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetGameAccountSettings DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetGameAccountSettings ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetGameAccountSettings__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetGameAccountSettings, GetGameAccountSettings.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetGameAccountSettings__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getGameAccountSettingsFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetGameAccountSettings ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetGameAccountSettings ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetGameAccountSettings MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetGameAccountSettings prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetGameAccountSettings, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetGameAccountSettings cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetGameAccountSettings result;
+      
+      private GetGameAccountSettings PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetGameAccountSettings original = result;
+          result = new GetGameAccountSettings();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetGameAccountSettings MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetGameAccountSettings.Descriptor; }
+      }
+      
+      public override GetGameAccountSettings DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetGameAccountSettings.DefaultInstance; }
+      }
+      
+      public override GetGameAccountSettings BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetGameAccountSettings) {
+          return MergeFrom((GetGameAccountSettings) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetGameAccountSettings other) {
+        if (other == global::D3.GameMessage.GetGameAccountSettings.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getGameAccountSettingsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getGameAccountSettingsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static GetGameAccountSettings() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class SetGameAccountSettings : pb::GeneratedMessage<SetGameAccountSettings, SetGameAccountSettings.Builder> {
+    private SetGameAccountSettings() { }
+    private static readonly SetGameAccountSettings defaultInstance = new SetGameAccountSettings().MakeReadOnly();
+    private static readonly string[] _setGameAccountSettingsFieldNames = new string[] { "settings" };
+    private static readonly uint[] _setGameAccountSettingsFieldTags = new uint[] { 10 };
+    public static SetGameAccountSettings DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override SetGameAccountSettings DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override SetGameAccountSettings ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetGameAccountSettings__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<SetGameAccountSettings, SetGameAccountSettings.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetGameAccountSettings__FieldAccessorTable; }
+    }
+    
+    public const int SettingsFieldNumber = 1;
+    private bool hasSettings;
+    private global::D3.Client.GameAccountSettings settings_;
+    public bool HasSettings {
+      get { return hasSettings; }
+    }
+    public global::D3.Client.GameAccountSettings Settings {
+      get { return settings_ ?? global::D3.Client.GameAccountSettings.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasSettings) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _setGameAccountSettingsFieldNames;
+      if (hasSettings) {
+        output.WriteMessage(1, field_names[0], Settings);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasSettings) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Settings);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static SetGameAccountSettings ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetGameAccountSettings ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private SetGameAccountSettings MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(SetGameAccountSettings prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<SetGameAccountSettings, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(SetGameAccountSettings cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private SetGameAccountSettings result;
+      
+      private SetGameAccountSettings PrepareBuilder() {
+        if (resultIsReadOnly) {
+          SetGameAccountSettings original = result;
+          result = new SetGameAccountSettings();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override SetGameAccountSettings MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.SetGameAccountSettings.Descriptor; }
+      }
+      
+      public override SetGameAccountSettings DefaultInstanceForType {
+        get { return global::D3.GameMessage.SetGameAccountSettings.DefaultInstance; }
+      }
+      
+      public override SetGameAccountSettings BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is SetGameAccountSettings) {
+          return MergeFrom((SetGameAccountSettings) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(SetGameAccountSettings other) {
+        if (other == global::D3.GameMessage.SetGameAccountSettings.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasSettings) {
+          MergeSettings(other.Settings);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_setGameAccountSettingsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _setGameAccountSettingsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.Client.GameAccountSettings.Builder subBuilder = global::D3.Client.GameAccountSettings.CreateBuilder();
+              if (result.hasSettings) {
+                subBuilder.MergeFrom(Settings);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Settings = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasSettings {
+       get { return result.hasSettings; }
+      }
+      public global::D3.Client.GameAccountSettings Settings {
+        get { return result.Settings; }
+        set { SetSettings(value); }
+      }
+      public Builder SetSettings(global::D3.Client.GameAccountSettings value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasSettings = true;
+        result.settings_ = value;
+        return this;
+      }
+      public Builder SetSettings(global::D3.Client.GameAccountSettings.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasSettings = true;
+        result.settings_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeSettings(global::D3.Client.GameAccountSettings value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasSettings &&
+            result.settings_ != global::D3.Client.GameAccountSettings.DefaultInstance) {
+            result.settings_ = global::D3.Client.GameAccountSettings.CreateBuilder(result.settings_).MergeFrom(value).BuildPartial();
+        } else {
+          result.settings_ = value;
+        }
+        result.hasSettings = true;
+        return this;
+      }
+      public Builder ClearSettings() {
+        PrepareBuilder();
+        result.hasSettings = false;
+        result.settings_ = null;
+        return this;
+      }
+    }
+    static SetGameAccountSettings() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetToonSettings : pb::GeneratedMessage<GetToonSettings, GetToonSettings.Builder> {
+    private GetToonSettings() { }
+    private static readonly GetToonSettings defaultInstance = new GetToonSettings().MakeReadOnly();
+    private static readonly string[] _getToonSettingsFieldNames = new string[] { "hero_id" };
+    private static readonly uint[] _getToonSettingsFieldTags = new uint[] { 10 };
+    public static GetToonSettings DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetToonSettings DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetToonSettings ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetToonSettings__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetToonSettings, GetToonSettings.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetToonSettings__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getToonSettingsFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetToonSettings ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetToonSettings ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetToonSettings ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetToonSettings ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetToonSettings MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetToonSettings prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetToonSettings, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetToonSettings cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetToonSettings result;
+      
+      private GetToonSettings PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetToonSettings original = result;
+          result = new GetToonSettings();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetToonSettings MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetToonSettings.Descriptor; }
+      }
+      
+      public override GetToonSettings DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetToonSettings.DefaultInstance; }
+      }
+      
+      public override GetToonSettings BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetToonSettings) {
+          return MergeFrom((GetToonSettings) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetToonSettings other) {
+        if (other == global::D3.GameMessage.GetToonSettings.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getToonSettingsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getToonSettingsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static GetToonSettings() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class SetToonSettings : pb::GeneratedMessage<SetToonSettings, SetToonSettings.Builder> {
+    private SetToonSettings() { }
+    private static readonly SetToonSettings defaultInstance = new SetToonSettings().MakeReadOnly();
+    private static readonly string[] _setToonSettingsFieldNames = new string[] { "hero_id", "settings" };
+    private static readonly uint[] _setToonSettingsFieldTags = new uint[] { 10, 18 };
+    public static SetToonSettings DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override SetToonSettings DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override SetToonSettings ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetToonSettings__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<SetToonSettings, SetToonSettings.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetToonSettings__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int SettingsFieldNumber = 2;
+    private bool hasSettings;
+    private global::D3.Client.ToonSettings settings_;
+    public bool HasSettings {
+      get { return hasSettings; }
+    }
+    public global::D3.Client.ToonSettings Settings {
+      get { return settings_ ?? global::D3.Client.ToonSettings.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!hasSettings) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _setToonSettingsFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      if (hasSettings) {
+        output.WriteMessage(2, field_names[1], Settings);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        if (hasSettings) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Settings);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static SetToonSettings ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static SetToonSettings ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static SetToonSettings ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetToonSettings ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private SetToonSettings MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(SetToonSettings prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<SetToonSettings, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(SetToonSettings cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private SetToonSettings result;
+      
+      private SetToonSettings PrepareBuilder() {
+        if (resultIsReadOnly) {
+          SetToonSettings original = result;
+          result = new SetToonSettings();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override SetToonSettings MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.SetToonSettings.Descriptor; }
+      }
+      
+      public override SetToonSettings DefaultInstanceForType {
+        get { return global::D3.GameMessage.SetToonSettings.DefaultInstance; }
+      }
+      
+      public override SetToonSettings BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is SetToonSettings) {
+          return MergeFrom((SetToonSettings) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(SetToonSettings other) {
+        if (other == global::D3.GameMessage.SetToonSettings.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        if (other.HasSettings) {
+          MergeSettings(other.Settings);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_setToonSettingsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _setToonSettingsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.Client.ToonSettings.Builder subBuilder = global::D3.Client.ToonSettings.CreateBuilder();
+              if (result.hasSettings) {
+                subBuilder.MergeFrom(Settings);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Settings = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+      
+      public bool HasSettings {
+       get { return result.hasSettings; }
+      }
+      public global::D3.Client.ToonSettings Settings {
+        get { return result.Settings; }
+        set { SetSettings(value); }
+      }
+      public Builder SetSettings(global::D3.Client.ToonSettings value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasSettings = true;
+        result.settings_ = value;
+        return this;
+      }
+      public Builder SetSettings(global::D3.Client.ToonSettings.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasSettings = true;
+        result.settings_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeSettings(global::D3.Client.ToonSettings value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasSettings &&
+            result.settings_ != global::D3.Client.ToonSettings.DefaultInstance) {
+            result.settings_ = global::D3.Client.ToonSettings.CreateBuilder(result.settings_).MergeFrom(value).BuildPartial();
+        } else {
+          result.settings_ = value;
+        }
+        result.hasSettings = true;
+        return this;
+      }
+      public Builder ClearSettings() {
+        PrepareBuilder();
+        result.hasSettings = false;
+        result.settings_ = null;
+        return this;
+      }
+    }
+    static SetToonSettings() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetAccountDigest : pb::GeneratedMessage<GetAccountDigest, GetAccountDigest.Builder> {
+    private GetAccountDigest() { }
+    private static readonly GetAccountDigest defaultInstance = new GetAccountDigest().MakeReadOnly();
+    private static readonly string[] _getAccountDigestFieldNames = new string[] {  };
+    private static readonly uint[] _getAccountDigestFieldTags = new uint[] {  };
+    public static GetAccountDigest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetAccountDigest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetAccountDigest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountDigest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetAccountDigest, GetAccountDigest.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountDigest__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getAccountDigestFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetAccountDigest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountDigest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetAccountDigest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountDigest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetAccountDigest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetAccountDigest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetAccountDigest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetAccountDigest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetAccountDigest result;
+      
+      private GetAccountDigest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetAccountDigest original = result;
+          result = new GetAccountDigest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetAccountDigest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetAccountDigest.Descriptor; }
+      }
+      
+      public override GetAccountDigest DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetAccountDigest.DefaultInstance; }
+      }
+      
+      public override GetAccountDigest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetAccountDigest) {
+          return MergeFrom((GetAccountDigest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetAccountDigest other) {
+        if (other == global::D3.GameMessage.GetAccountDigest.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getAccountDigestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getAccountDigestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static GetAccountDigest() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetHeroItems : pb::GeneratedMessage<GetHeroItems, GetHeroItems.Builder> {
+    private GetHeroItems() { }
+    private static readonly GetHeroItems defaultInstance = new GetHeroItems().MakeReadOnly();
+    private static readonly string[] _getHeroItemsFieldNames = new string[] { "hero_id" };
+    private static readonly uint[] _getHeroItemsFieldTags = new uint[] { 10 };
+    public static GetHeroItems DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetHeroItems DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetHeroItems ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroItems__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetHeroItems, GetHeroItems.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroItems__FieldAccessorTable; }
+    }
+    
+    public const int HeroIdFieldNumber = 1;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHeroId) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getHeroItemsFieldNames;
+      if (hasHeroId) {
+        output.WriteMessage(1, field_names[0], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetHeroItems ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroItems ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetHeroItems ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroItems ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetHeroItems MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetHeroItems prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetHeroItems, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetHeroItems cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetHeroItems result;
+      
+      private GetHeroItems PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetHeroItems original = result;
+          result = new GetHeroItems();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetHeroItems MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetHeroItems.Descriptor; }
+      }
+      
+      public override GetHeroItems DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetHeroItems.DefaultInstance; }
+      }
+      
+      public override GetHeroItems BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetHeroItems) {
+          return MergeFrom((GetHeroItems) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetHeroItems other) {
+        if (other == global::D3.GameMessage.GetHeroItems.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getHeroItemsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getHeroItemsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static GetHeroItems() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetAccountItems : pb::GeneratedMessage<GetAccountItems, GetAccountItems.Builder> {
+    private GetAccountItems() { }
+    private static readonly GetAccountItems defaultInstance = new GetAccountItems().MakeReadOnly();
+    private static readonly string[] _getAccountItemsFieldNames = new string[] { "hardcore" };
+    private static readonly uint[] _getAccountItemsFieldTags = new uint[] { 8 };
+    public static GetAccountItems DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetAccountItems DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetAccountItems ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountItems__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetAccountItems, GetAccountItems.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountItems__FieldAccessorTable; }
+    }
+    
+    public const int HardcoreFieldNumber = 1;
+    private bool hasHardcore;
+    private bool hardcore_;
+    public bool HasHardcore {
+      get { return hasHardcore; }
+    }
+    public bool Hardcore {
+      get { return hardcore_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHardcore) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getAccountItemsFieldNames;
+      if (hasHardcore) {
+        output.WriteBool(1, field_names[0], Hardcore);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHardcore) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, Hardcore);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetAccountItems ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountItems ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetAccountItems ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountItems ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetAccountItems MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetAccountItems prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetAccountItems, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetAccountItems cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetAccountItems result;
+      
+      private GetAccountItems PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetAccountItems original = result;
+          result = new GetAccountItems();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetAccountItems MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetAccountItems.Descriptor; }
+      }
+      
+      public override GetAccountItems DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetAccountItems.DefaultInstance; }
+      }
+      
+      public override GetAccountItems BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetAccountItems) {
+          return MergeFrom((GetAccountItems) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetAccountItems other) {
+        if (other == global::D3.GameMessage.GetAccountItems.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHardcore) {
+          Hardcore = other.Hardcore;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getAccountItemsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getAccountItemsFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -5256,11 +12876,7 @@ namespace D3.GameMessage {
               break;
             }
             case 8: {
-              result.hasAchievementId = input.ReadUInt64(ref result.achievementId_);
-              break;
-            }
-            case 16: {
-              result.hasSlot = input.ReadUInt32(ref result.slot_);
+              result.hasHardcore = input.ReadBool(ref result.hardcore_);
               break;
             }
           }
@@ -5273,47 +12889,3450 @@ namespace D3.GameMessage {
       }
       
       
-      public bool HasAchievementId {
-        get { return result.hasAchievementId; }
+      public bool HasHardcore {
+        get { return result.hasHardcore; }
       }
-      public ulong AchievementId {
-        get { return result.AchievementId; }
-        set { SetAchievementId(value); }
+      public bool Hardcore {
+        get { return result.Hardcore; }
+        set { SetHardcore(value); }
       }
-      public Builder SetAchievementId(ulong value) {
+      public Builder SetHardcore(bool value) {
         PrepareBuilder();
-        result.hasAchievementId = true;
-        result.achievementId_ = value;
+        result.hasHardcore = true;
+        result.hardcore_ = value;
         return this;
       }
-      public Builder ClearAchievementId() {
+      public Builder ClearHardcore() {
         PrepareBuilder();
-        result.hasAchievementId = false;
-        result.achievementId_ = 0UL;
-        return this;
-      }
-      
-      public bool HasSlot {
-        get { return result.hasSlot; }
-      }
-      public uint Slot {
-        get { return result.Slot; }
-        set { SetSlot(value); }
-      }
-      public Builder SetSlot(uint value) {
-        PrepareBuilder();
-        result.hasSlot = true;
-        result.slot_ = value;
-        return this;
-      }
-      public Builder ClearSlot() {
-        PrepareBuilder();
-        result.hasSlot = false;
-        result.slot_ = 0;
+        result.hasHardcore = false;
+        result.hardcore_ = false;
         return this;
       }
     }
-    static SetAchievementShowcase() {
+    static GetAccountItems() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetAccountProfile : pb::GeneratedMessage<GetAccountProfile, GetAccountProfile.Builder> {
+    private GetAccountProfile() { }
+    private static readonly GetAccountProfile defaultInstance = new GetAccountProfile().MakeReadOnly();
+    private static readonly string[] _getAccountProfileFieldNames = new string[] { "account_id" };
+    private static readonly uint[] _getAccountProfileFieldTags = new uint[] { 10 };
+    public static GetAccountProfile DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetAccountProfile DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetAccountProfile ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountProfile__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetAccountProfile, GetAccountProfile.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountProfile__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getAccountProfileFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetAccountProfile ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountProfile ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetAccountProfile ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountProfile ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetAccountProfile MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetAccountProfile prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetAccountProfile, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetAccountProfile cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetAccountProfile result;
+      
+      private GetAccountProfile PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetAccountProfile original = result;
+          result = new GetAccountProfile();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetAccountProfile MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetAccountProfile.Descriptor; }
+      }
+      
+      public override GetAccountProfile DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetAccountProfile.DefaultInstance; }
+      }
+      
+      public override GetAccountProfile BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetAccountProfile) {
+          return MergeFrom((GetAccountProfile) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetAccountProfile other) {
+        if (other == global::D3.GameMessage.GetAccountProfile.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getAccountProfileFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getAccountProfileFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+    }
+    static GetAccountProfile() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetHeroProfiles : pb::GeneratedMessage<GetHeroProfiles, GetHeroProfiles.Builder> {
+    private GetHeroProfiles() { }
+    private static readonly GetHeroProfiles defaultInstance = new GetHeroProfiles().MakeReadOnly();
+    private static readonly string[] _getHeroProfilesFieldNames = new string[] { "account_id", "hero_ids" };
+    private static readonly uint[] _getHeroProfilesFieldTags = new uint[] { 10, 18 };
+    public static GetHeroProfiles DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetHeroProfiles DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetHeroProfiles ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroProfiles__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetHeroProfiles, GetHeroProfiles.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroProfiles__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdsFieldNumber = 2;
+    private pbc::PopsicleList<global::D3.OnlineService.EntityId> heroIds_ = new pbc::PopsicleList<global::D3.OnlineService.EntityId>();
+    public scg::IList<global::D3.OnlineService.EntityId> HeroIdsList {
+      get { return heroIds_; }
+    }
+    public int HeroIdsCount {
+      get { return heroIds_.Count; }
+    }
+    public global::D3.OnlineService.EntityId GetHeroIds(int index) {
+      return heroIds_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        foreach (global::D3.OnlineService.EntityId element in HeroIdsList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getHeroProfilesFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (heroIds_.Count > 0) {
+        output.WriteMessageArray(2, field_names[1], heroIds_);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        foreach (global::D3.OnlineService.EntityId element in HeroIdsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetHeroProfiles ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetHeroProfiles ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroProfiles ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetHeroProfiles MakeReadOnly() {
+      heroIds_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetHeroProfiles prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetHeroProfiles, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetHeroProfiles cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetHeroProfiles result;
+      
+      private GetHeroProfiles PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetHeroProfiles original = result;
+          result = new GetHeroProfiles();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetHeroProfiles MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetHeroProfiles.Descriptor; }
+      }
+      
+      public override GetHeroProfiles DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetHeroProfiles.DefaultInstance; }
+      }
+      
+      public override GetHeroProfiles BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetHeroProfiles) {
+          return MergeFrom((GetHeroProfiles) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetHeroProfiles other) {
+        if (other == global::D3.GameMessage.GetHeroProfiles.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.heroIds_.Count != 0) {
+          result.heroIds_.Add(other.heroIds_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getHeroProfilesFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getHeroProfilesFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              input.ReadMessageArray(tag, field_name, result.heroIds_, global::D3.OnlineService.EntityId.DefaultInstance, extensionRegistry);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::D3.OnlineService.EntityId> HeroIdsList {
+        get { return PrepareBuilder().heroIds_; }
+      }
+      public int HeroIdsCount {
+        get { return result.HeroIdsCount; }
+      }
+      public global::D3.OnlineService.EntityId GetHeroIds(int index) {
+        return result.GetHeroIds(index);
+      }
+      public Builder SetHeroIds(int index, global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.heroIds_[index] = value;
+        return this;
+      }
+      public Builder SetHeroIds(int index, global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.heroIds_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddHeroIds(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.heroIds_.Add(value);
+        return this;
+      }
+      public Builder AddHeroIds(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.heroIds_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeHeroIds(scg::IEnumerable<global::D3.OnlineService.EntityId> values) {
+        PrepareBuilder();
+        result.heroIds_.Add(values);
+        return this;
+      }
+      public Builder ClearHeroIds() {
+        PrepareBuilder();
+        result.heroIds_.Clear();
+        return this;
+      }
+    }
+    static GetHeroProfiles() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetAccountPrefs : pb::GeneratedMessage<GetAccountPrefs, GetAccountPrefs.Builder> {
+    private GetAccountPrefs() { }
+    private static readonly GetAccountPrefs defaultInstance = new GetAccountPrefs().MakeReadOnly();
+    private static readonly string[] _getAccountPrefsFieldNames = new string[] {  };
+    private static readonly uint[] _getAccountPrefsFieldTags = new uint[] {  };
+    public static GetAccountPrefs DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetAccountPrefs DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetAccountPrefs ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountPrefs__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetAccountPrefs, GetAccountPrefs.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetAccountPrefs__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getAccountPrefsFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetAccountPrefs ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetAccountPrefs ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetAccountPrefs ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetAccountPrefs MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetAccountPrefs prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetAccountPrefs, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetAccountPrefs cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetAccountPrefs result;
+      
+      private GetAccountPrefs PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetAccountPrefs original = result;
+          result = new GetAccountPrefs();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetAccountPrefs MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetAccountPrefs.Descriptor; }
+      }
+      
+      public override GetAccountPrefs DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetAccountPrefs.DefaultInstance; }
+      }
+      
+      public override GetAccountPrefs BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetAccountPrefs) {
+          return MergeFrom((GetAccountPrefs) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetAccountPrefs other) {
+        if (other == global::D3.GameMessage.GetAccountPrefs.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getAccountPrefsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getAccountPrefsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static GetAccountPrefs() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class SetAccountPrefs : pb::GeneratedMessage<SetAccountPrefs, SetAccountPrefs.Builder> {
+    private SetAccountPrefs() { }
+    private static readonly SetAccountPrefs defaultInstance = new SetAccountPrefs().MakeReadOnly();
+    private static readonly string[] _setAccountPrefsFieldNames = new string[] { "prefs" };
+    private static readonly uint[] _setAccountPrefsFieldTags = new uint[] { 10 };
+    public static SetAccountPrefs DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override SetAccountPrefs DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override SetAccountPrefs ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetAccountPrefs__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<SetAccountPrefs, SetAccountPrefs.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_SetAccountPrefs__FieldAccessorTable; }
+    }
+    
+    public const int PrefsFieldNumber = 1;
+    private bool hasPrefs;
+    private global::D3.Client.Preferences prefs_;
+    public bool HasPrefs {
+      get { return hasPrefs; }
+    }
+    public global::D3.Client.Preferences Prefs {
+      get { return prefs_ ?? global::D3.Client.Preferences.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasPrefs) return false;
+        if (!Prefs.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _setAccountPrefsFieldNames;
+      if (hasPrefs) {
+        output.WriteMessage(1, field_names[0], Prefs);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasPrefs) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Prefs);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static SetAccountPrefs ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static SetAccountPrefs ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SetAccountPrefs ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private SetAccountPrefs MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(SetAccountPrefs prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<SetAccountPrefs, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(SetAccountPrefs cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private SetAccountPrefs result;
+      
+      private SetAccountPrefs PrepareBuilder() {
+        if (resultIsReadOnly) {
+          SetAccountPrefs original = result;
+          result = new SetAccountPrefs();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override SetAccountPrefs MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.SetAccountPrefs.Descriptor; }
+      }
+      
+      public override SetAccountPrefs DefaultInstanceForType {
+        get { return global::D3.GameMessage.SetAccountPrefs.DefaultInstance; }
+      }
+      
+      public override SetAccountPrefs BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is SetAccountPrefs) {
+          return MergeFrom((SetAccountPrefs) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(SetAccountPrefs other) {
+        if (other == global::D3.GameMessage.SetAccountPrefs.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasPrefs) {
+          MergePrefs(other.Prefs);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_setAccountPrefsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _setAccountPrefsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.Client.Preferences.Builder subBuilder = global::D3.Client.Preferences.CreateBuilder();
+              if (result.hasPrefs) {
+                subBuilder.MergeFrom(Prefs);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Prefs = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasPrefs {
+       get { return result.hasPrefs; }
+      }
+      public global::D3.Client.Preferences Prefs {
+        get { return result.Prefs; }
+        set { SetPrefs(value); }
+      }
+      public Builder SetPrefs(global::D3.Client.Preferences value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPrefs = true;
+        result.prefs_ = value;
+        return this;
+      }
+      public Builder SetPrefs(global::D3.Client.Preferences.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasPrefs = true;
+        result.prefs_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergePrefs(global::D3.Client.Preferences value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasPrefs &&
+            result.prefs_ != global::D3.Client.Preferences.DefaultInstance) {
+            result.prefs_ = global::D3.Client.Preferences.CreateBuilder(result.prefs_).MergeFrom(value).BuildPartial();
+        } else {
+          result.prefs_ = value;
+        }
+        result.hasPrefs = true;
+        return this;
+      }
+      public Builder ClearPrefs() {
+        PrepareBuilder();
+        result.hasPrefs = false;
+        result.prefs_ = null;
+        return this;
+      }
+    }
+    static SetAccountPrefs() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetHeroDigest : pb::GeneratedMessage<GetHeroDigest, GetHeroDigest.Builder> {
+    private GetHeroDigest() { }
+    private static readonly GetHeroDigest defaultInstance = new GetHeroDigest().MakeReadOnly();
+    private static readonly string[] _getHeroDigestFieldNames = new string[] { "account_id", "hero_id" };
+    private static readonly uint[] _getHeroDigestFieldTags = new uint[] { 10, 18 };
+    public static GetHeroDigest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetHeroDigest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetHeroDigest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroDigest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetHeroDigest, GetHeroDigest.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroDigest__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public const int HeroIdFieldNumber = 2;
+    private bool hasHeroId;
+    private global::D3.OnlineService.EntityId heroId_;
+    public bool HasHeroId {
+      get { return hasHeroId; }
+    }
+    public global::D3.OnlineService.EntityId HeroId {
+      get { return heroId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!hasHeroId) return false;
+        if (!AccountId.IsInitialized) return false;
+        if (!HeroId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getHeroDigestFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      if (hasHeroId) {
+        output.WriteMessage(2, field_names[1], HeroId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        if (hasHeroId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, HeroId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetHeroDigest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroDigest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetHeroDigest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroDigest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetHeroDigest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetHeroDigest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetHeroDigest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetHeroDigest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetHeroDigest result;
+      
+      private GetHeroDigest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetHeroDigest original = result;
+          result = new GetHeroDigest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetHeroDigest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetHeroDigest.Descriptor; }
+      }
+      
+      public override GetHeroDigest DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetHeroDigest.DefaultInstance; }
+      }
+      
+      public override GetHeroDigest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetHeroDigest) {
+          return MergeFrom((GetHeroDigest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetHeroDigest other) {
+        if (other == global::D3.GameMessage.GetHeroDigest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        if (other.HasHeroId) {
+          MergeHeroId(other.HeroId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getHeroDigestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getHeroDigestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+            case 18: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasHeroId) {
+                subBuilder.MergeFrom(HeroId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              HeroId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+      
+      public bool HasHeroId {
+       get { return result.hasHeroId; }
+      }
+      public global::D3.OnlineService.EntityId HeroId {
+        get { return result.HeroId; }
+        set { SetHeroId(value); }
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = value;
+        return this;
+      }
+      public Builder SetHeroId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasHeroId = true;
+        result.heroId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeHeroId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasHeroId &&
+            result.heroId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.heroId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.heroId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.heroId_ = value;
+        }
+        result.hasHeroId = true;
+        return this;
+      }
+      public Builder ClearHeroId() {
+        PrepareBuilder();
+        result.hasHeroId = false;
+        result.heroId_ = null;
+        return this;
+      }
+    }
+    static GetHeroDigest() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetHeroIds : pb::GeneratedMessage<GetHeroIds, GetHeroIds.Builder> {
+    private GetHeroIds() { }
+    private static readonly GetHeroIds defaultInstance = new GetHeroIds().MakeReadOnly();
+    private static readonly string[] _getHeroIdsFieldNames = new string[] { "account_id" };
+    private static readonly uint[] _getHeroIdsFieldTags = new uint[] { 10 };
+    public static GetHeroIds DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetHeroIds DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetHeroIds ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroIds__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetHeroIds, GetHeroIds.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetHeroIds__FieldAccessorTable; }
+    }
+    
+    public const int AccountIdFieldNumber = 1;
+    private bool hasAccountId;
+    private global::D3.OnlineService.EntityId accountId_;
+    public bool HasAccountId {
+      get { return hasAccountId; }
+    }
+    public global::D3.OnlineService.EntityId AccountId {
+      get { return accountId_ ?? global::D3.OnlineService.EntityId.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasAccountId) return false;
+        if (!AccountId.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getHeroIdsFieldNames;
+      if (hasAccountId) {
+        output.WriteMessage(1, field_names[0], AccountId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, AccountId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetHeroIds ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetHeroIds ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetHeroIds ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetHeroIds ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetHeroIds MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetHeroIds prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetHeroIds, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetHeroIds cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetHeroIds result;
+      
+      private GetHeroIds PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetHeroIds original = result;
+          result = new GetHeroIds();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetHeroIds MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetHeroIds.Descriptor; }
+      }
+      
+      public override GetHeroIds DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetHeroIds.DefaultInstance; }
+      }
+      
+      public override GetHeroIds BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetHeroIds) {
+          return MergeFrom((GetHeroIds) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetHeroIds other) {
+        if (other == global::D3.GameMessage.GetHeroIds.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasAccountId) {
+          MergeAccountId(other.AccountId);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getHeroIdsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getHeroIdsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.OnlineService.EntityId.Builder subBuilder = global::D3.OnlineService.EntityId.CreateBuilder();
+              if (result.hasAccountId) {
+                subBuilder.MergeFrom(AccountId);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AccountId = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountId {
+       get { return result.hasAccountId; }
+      }
+      public global::D3.OnlineService.EntityId AccountId {
+        get { return result.AccountId; }
+        set { SetAccountId(value); }
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = value;
+        return this;
+      }
+      public Builder SetAccountId(global::D3.OnlineService.EntityId.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasAccountId = true;
+        result.accountId_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAccountId(global::D3.OnlineService.EntityId value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasAccountId &&
+            result.accountId_ != global::D3.OnlineService.EntityId.DefaultInstance) {
+            result.accountId_ = global::D3.OnlineService.EntityId.CreateBuilder(result.accountId_).MergeFrom(value).BuildPartial();
+        } else {
+          result.accountId_ = value;
+        }
+        result.hasAccountId = true;
+        return this;
+      }
+      public Builder ClearAccountId() {
+        PrepareBuilder();
+        result.hasAccountId = false;
+        result.accountId_ = null;
+        return this;
+      }
+    }
+    static GetHeroIds() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class GetDeletedHero : pb::GeneratedMessage<GetDeletedHero, GetDeletedHero.Builder> {
+    private GetDeletedHero() { }
+    private static readonly GetDeletedHero defaultInstance = new GetDeletedHero().MakeReadOnly();
+    private static readonly string[] _getDeletedHeroFieldNames = new string[] {  };
+    private static readonly uint[] _getDeletedHeroFieldTags = new uint[] {  };
+    public static GetDeletedHero DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetDeletedHero DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override GetDeletedHero ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetDeletedHero__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetDeletedHero, GetDeletedHero.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_GetDeletedHero__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _getDeletedHeroFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetDeletedHero ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetDeletedHero ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static GetDeletedHero ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetDeletedHero ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private GetDeletedHero MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetDeletedHero prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<GetDeletedHero, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(GetDeletedHero cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private GetDeletedHero result;
+      
+      private GetDeletedHero PrepareBuilder() {
+        if (resultIsReadOnly) {
+          GetDeletedHero original = result;
+          result = new GetDeletedHero();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override GetDeletedHero MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.GetDeletedHero.Descriptor; }
+      }
+      
+      public override GetDeletedHero DefaultInstanceForType {
+        get { return global::D3.GameMessage.GetDeletedHero.DefaultInstance; }
+      }
+      
+      public override GetDeletedHero BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetDeletedHero) {
+          return MergeFrom((GetDeletedHero) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetDeletedHero other) {
+        if (other == global::D3.GameMessage.GetDeletedHero.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_getDeletedHeroFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _getDeletedHeroFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static GetDeletedHero() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CSGetSnapshots : pb::GeneratedMessage<CSGetSnapshots, CSGetSnapshots.Builder> {
+    private CSGetSnapshots() { }
+    private static readonly CSGetSnapshots defaultInstance = new CSGetSnapshots().MakeReadOnly();
+    private static readonly string[] _cSGetSnapshotsFieldNames = new string[] {  };
+    private static readonly uint[] _cSGetSnapshotsFieldTags = new uint[] {  };
+    public static CSGetSnapshots DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CSGetSnapshots DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CSGetSnapshots ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSGetSnapshots__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CSGetSnapshots, CSGetSnapshots.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSGetSnapshots__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cSGetSnapshotsFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CSGetSnapshots ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CSGetSnapshots ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSGetSnapshots ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CSGetSnapshots MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CSGetSnapshots prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CSGetSnapshots, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CSGetSnapshots cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CSGetSnapshots result;
+      
+      private CSGetSnapshots PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CSGetSnapshots original = result;
+          result = new CSGetSnapshots();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CSGetSnapshots MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.CSGetSnapshots.Descriptor; }
+      }
+      
+      public override CSGetSnapshots DefaultInstanceForType {
+        get { return global::D3.GameMessage.CSGetSnapshots.DefaultInstance; }
+      }
+      
+      public override CSGetSnapshots BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CSGetSnapshots) {
+          return MergeFrom((CSGetSnapshots) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CSGetSnapshots other) {
+        if (other == global::D3.GameMessage.CSGetSnapshots.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cSGetSnapshotsFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cSGetSnapshotsFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static CSGetSnapshots() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CSPullSnapshot : pb::GeneratedMessage<CSPullSnapshot, CSPullSnapshot.Builder> {
+    private CSPullSnapshot() { }
+    private static readonly CSPullSnapshot defaultInstance = new CSPullSnapshot().MakeReadOnly();
+    private static readonly string[] _cSPullSnapshotFieldNames = new string[] { "version" };
+    private static readonly uint[] _cSPullSnapshotFieldTags = new uint[] { 8 };
+    public static CSPullSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CSPullSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CSPullSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSPullSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CSPullSnapshot, CSPullSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSPullSnapshot__FieldAccessorTable; }
+    }
+    
+    public const int VersionFieldNumber = 1;
+    private bool hasVersion;
+    private ulong version_;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public ulong Version {
+      get { return version_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasVersion) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cSPullSnapshotFieldNames;
+      if (hasVersion) {
+        output.WriteUInt64(1, field_names[0], Version);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasVersion) {
+          size += pb::CodedOutputStream.ComputeUInt64Size(1, Version);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CSPullSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CSPullSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSPullSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CSPullSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CSPullSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CSPullSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CSPullSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CSPullSnapshot result;
+      
+      private CSPullSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CSPullSnapshot original = result;
+          result = new CSPullSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CSPullSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.CSPullSnapshot.Descriptor; }
+      }
+      
+      public override CSPullSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.CSPullSnapshot.DefaultInstance; }
+      }
+      
+      public override CSPullSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CSPullSnapshot) {
+          return MergeFrom((CSPullSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CSPullSnapshot other) {
+        if (other == global::D3.GameMessage.CSPullSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cSPullSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cSPullSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 8: {
+              result.hasVersion = input.ReadUInt64(ref result.version_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasVersion {
+        get { return result.hasVersion; }
+      }
+      public ulong Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(ulong value) {
+        PrepareBuilder();
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        PrepareBuilder();
+        result.hasVersion = false;
+        result.version_ = 0UL;
+        return this;
+      }
+    }
+    static CSPullSnapshot() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CSPushSnapshot : pb::GeneratedMessage<CSPushSnapshot, CSPushSnapshot.Builder> {
+    private CSPushSnapshot() { }
+    private static readonly CSPushSnapshot defaultInstance = new CSPushSnapshot().MakeReadOnly();
+    private static readonly string[] _cSPushSnapshotFieldNames = new string[] { "data" };
+    private static readonly uint[] _cSPushSnapshotFieldTags = new uint[] { 10 };
+    public static CSPushSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CSPushSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CSPushSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSPushSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CSPushSnapshot, CSPushSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSPushSnapshot__FieldAccessorTable; }
+    }
+    
+    public const int DataFieldNumber = 1;
+    private bool hasData;
+    private global::D3.CS.Snapshot data_;
+    public bool HasData {
+      get { return hasData; }
+    }
+    public global::D3.CS.Snapshot Data {
+      get { return data_ ?? global::D3.CS.Snapshot.DefaultInstance; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasData) return false;
+        if (!Data.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cSPushSnapshotFieldNames;
+      if (hasData) {
+        output.WriteMessage(1, field_names[0], Data);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasData) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Data);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CSPushSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CSPushSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSPushSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CSPushSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CSPushSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CSPushSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CSPushSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CSPushSnapshot result;
+      
+      private CSPushSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CSPushSnapshot original = result;
+          result = new CSPushSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CSPushSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.CSPushSnapshot.Descriptor; }
+      }
+      
+      public override CSPushSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.CSPushSnapshot.DefaultInstance; }
+      }
+      
+      public override CSPushSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CSPushSnapshot) {
+          return MergeFrom((CSPushSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CSPushSnapshot other) {
+        if (other == global::D3.GameMessage.CSPushSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasData) {
+          MergeData(other.Data);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cSPushSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cSPushSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              global::D3.CS.Snapshot.Builder subBuilder = global::D3.CS.Snapshot.CreateBuilder();
+              if (result.hasData) {
+                subBuilder.MergeFrom(Data);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Data = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasData {
+       get { return result.hasData; }
+      }
+      public global::D3.CS.Snapshot Data {
+        get { return result.Data; }
+        set { SetData(value); }
+      }
+      public Builder SetData(global::D3.CS.Snapshot value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasData = true;
+        result.data_ = value;
+        return this;
+      }
+      public Builder SetData(global::D3.CS.Snapshot.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasData = true;
+        result.data_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeData(global::D3.CS.Snapshot value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasData &&
+            result.data_ != global::D3.CS.Snapshot.DefaultInstance) {
+            result.data_ = global::D3.CS.Snapshot.CreateBuilder(result.data_).MergeFrom(value).BuildPartial();
+        } else {
+          result.data_ = value;
+        }
+        result.hasData = true;
+        return this;
+      }
+      public Builder ClearData() {
+        PrepareBuilder();
+        result.hasData = false;
+        result.data_ = null;
+        return this;
+      }
+    }
+    static CSPushSnapshot() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CSRestoreToSnapshot : pb::GeneratedMessage<CSRestoreToSnapshot, CSRestoreToSnapshot.Builder> {
+    private CSRestoreToSnapshot() { }
+    private static readonly CSRestoreToSnapshot defaultInstance = new CSRestoreToSnapshot().MakeReadOnly();
+    private static readonly string[] _cSRestoreToSnapshotFieldNames = new string[] { "version" };
+    private static readonly uint[] _cSRestoreToSnapshotFieldTags = new uint[] { 8 };
+    public static CSRestoreToSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CSRestoreToSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CSRestoreToSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSRestoreToSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CSRestoreToSnapshot, CSRestoreToSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSRestoreToSnapshot__FieldAccessorTable; }
+    }
+    
+    public const int VersionFieldNumber = 1;
+    private bool hasVersion;
+    private ulong version_;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public ulong Version {
+      get { return version_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasVersion) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cSRestoreToSnapshotFieldNames;
+      if (hasVersion) {
+        output.WriteUInt64(1, field_names[0], Version);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasVersion) {
+          size += pb::CodedOutputStream.ComputeUInt64Size(1, Version);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CSRestoreToSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSRestoreToSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CSRestoreToSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CSRestoreToSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CSRestoreToSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CSRestoreToSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CSRestoreToSnapshot result;
+      
+      private CSRestoreToSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CSRestoreToSnapshot original = result;
+          result = new CSRestoreToSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CSRestoreToSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.CSRestoreToSnapshot.Descriptor; }
+      }
+      
+      public override CSRestoreToSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.CSRestoreToSnapshot.DefaultInstance; }
+      }
+      
+      public override CSRestoreToSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CSRestoreToSnapshot) {
+          return MergeFrom((CSRestoreToSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CSRestoreToSnapshot other) {
+        if (other == global::D3.GameMessage.CSRestoreToSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cSRestoreToSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cSRestoreToSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 8: {
+              result.hasVersion = input.ReadUInt64(ref result.version_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasVersion {
+        get { return result.hasVersion; }
+      }
+      public ulong Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(ulong value) {
+        PrepareBuilder();
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        PrepareBuilder();
+        result.hasVersion = false;
+        result.version_ = 0UL;
+        return this;
+      }
+    }
+    static CSRestoreToSnapshot() {
+      object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CSWriteSnapshot : pb::GeneratedMessage<CSWriteSnapshot, CSWriteSnapshot.Builder> {
+    private CSWriteSnapshot() { }
+    private static readonly CSWriteSnapshot defaultInstance = new CSWriteSnapshot().MakeReadOnly();
+    private static readonly string[] _cSWriteSnapshotFieldNames = new string[] {  };
+    private static readonly uint[] _cSWriteSnapshotFieldTags = new uint[] {  };
+    public static CSWriteSnapshot DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CSWriteSnapshot DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CSWriteSnapshot ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSWriteSnapshot__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CSWriteSnapshot, CSWriteSnapshot.Builder> InternalFieldAccessors {
+      get { return global::D3.GameMessage.GameMessage.internal__static_D3_GameMessage_CSWriteSnapshot__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cSWriteSnapshotFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CSWriteSnapshot ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CSWriteSnapshot ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CSWriteSnapshot MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CSWriteSnapshot prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CSWriteSnapshot, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CSWriteSnapshot cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CSWriteSnapshot result;
+      
+      private CSWriteSnapshot PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CSWriteSnapshot original = result;
+          result = new CSWriteSnapshot();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CSWriteSnapshot MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::D3.GameMessage.CSWriteSnapshot.Descriptor; }
+      }
+      
+      public override CSWriteSnapshot DefaultInstanceForType {
+        get { return global::D3.GameMessage.CSWriteSnapshot.DefaultInstance; }
+      }
+      
+      public override CSWriteSnapshot BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CSWriteSnapshot) {
+          return MergeFrom((CSWriteSnapshot) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CSWriteSnapshot other) {
+        if (other == global::D3.GameMessage.CSWriteSnapshot.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cSWriteSnapshotFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cSWriteSnapshotFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static CSWriteSnapshot() {
       object.ReferenceEquals(global::D3.GameMessage.GameMessage.Descriptor, null);
     }
   }

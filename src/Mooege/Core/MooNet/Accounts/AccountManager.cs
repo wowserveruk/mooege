@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,107 +18,153 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using Mooege.Common.Logging;
 using Mooege.Common.Storage;
+using Mooege.Common.Storage.AccountDataBase.Entities;
+using Mooege.Core.Cryptography;
+using NHibernate.Linq;
 
 namespace Mooege.Core.MooNet.Accounts
 {
     public static class AccountManager
     {
+        private static readonly HashSet<Account> LoadedAccounts = new HashSet<Account>();
         private static readonly Logger Logger = LogManager.CreateLogger();
-        private static readonly Dictionary<string, Account> Accounts = new Dictionary<string, Account>();
 
         public static int TotalAccounts
         {
-            get { return Accounts.Count; }
+            get { return DBSessions.AccountSession.Query<DBAccount>().Count(); }
         }
 
-        static AccountManager()
+
+        #region AccountGetter
+        public static Account CreateAccount(string email, string password, string battleTag, Account.UserLevels userLevel = Account.UserLevels.User)
         {
-            LoadAccounts();
+            if (password.Length > 16) password = password.Substring(0, 16); // make sure the password does not exceed 16 chars.
+            var hashCode = GetRandomHashCodeForBattleTag();
+            var salt = SRP6a.GetRandomBytes(32);
+            var passwordVerifier = SRP6a.CalculatePasswordVerifierForAccount(email, password, salt);
+
+
+            var newDBAccount = new DBAccount
+                                   {
+                                       Email = email,
+                                       Salt = salt,
+                                       PasswordVerifier = passwordVerifier,
+                                       BattleTagName = battleTag,
+                                       UserLevel = userLevel,
+                                       HashCode = hashCode
+                                   };
+
+
+            DBSessions.AccountSession.SaveOrUpdate(newDBAccount);
+            DBSessions.AccountSession.Flush();
+
+            return GetAccountByDBAccount(newDBAccount);
         }
 
         public static Account GetAccountByEmail(string email)
         {
-            return Accounts.ContainsKey(email) ? Accounts[email] : null;
+            if (DBSessions.AccountSession.Query<DBAccount>().Any(dba => dba.Email.ToLower() == email.ToLower()))
+                return
+                    GetAccountByDBAccount(
+                        DBSessions.AccountSession.Query<DBAccount>().Single(
+                            dba => dba.Email.ToLower() == email.ToLower()));
+            return null;
         }
 
-        public static Account CreateAccount(string email, string password, Account.UserLevels userLevel = Account.UserLevels.User)
+        public static Account GetAccountByBattletag(string battletag)
         {
-            var account = new Account(email, password, userLevel);
-            Accounts.Add(email, account);
-            account.SaveToDB();
-
-            return account;
+            if (DBSessions.AccountSession.Query<DBAccount>().Any(dba => dba.BattleTagName.ToLower() == battletag.ToLower()))
+                return
+                    GetAccountByDBAccount(
+                        DBSessions.AccountSession.Query<DBAccount>().Single(
+                            dba => dba.BattleTagName.ToLower() == battletag.ToLower()));
+            return null;
         }
 
         public static Account GetAccountByPersistentID(ulong persistentId)
         {
-            return Accounts.Where(account => account.Value.PersistentID == persistentId).Select(account => account.Value).FirstOrDefault();
+            var dbAccount = DBSessions.AccountSession.Get<DBAccount>(persistentId);
+            return GetAccountByDBAccount(dbAccount);
         }
 
-        public static bool DeleteAccount(Account account)
+        public static Account GetAccountByDBAccount(DBAccount dbAccount)
         {
-            if (account == null) return false;
-            if (!Accounts.ContainsKey(account.Email)) return false;
+            if (!LoadedAccounts.Any(acc => acc.DBAccount.Id == dbAccount.Id))
+                LoadedAccounts.Add(new Account(dbAccount));
+            return LoadedAccounts.Single(acc => acc.DBAccount.Id == dbAccount.Id);
+        }
+        #endregion
 
+        #region Managing Functions, also extending Account
+        public static void SaveToDB(this Account account)
+        {
+
+            Logger.Debug("Saving account \"{0}\"", account.Email);
             try
             {
-                var query = string.Format("DELETE from accounts where id={0}", account.PersistentID);
-                var cmd = new SQLiteCommand(query, DBManager.Connection);
-                cmd.ExecuteNonQuery();
+                DBSessions.AccountSession.SaveOrUpdate(account.DBAccount);
+                DBSessions.AccountSession.Flush();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Logger.ErrorException(e, "DeleteAccount()");
-                return false;
+                Logger.ErrorException(e, "SaveToDB()");
             }
+        }
 
-            Accounts.Remove(account.Email);
+        public static bool DeleteAccount(this Account account)
+        {
+            if (account == null)
+                return false;
+
+            if (LoadedAccounts.Contains(account))
+                LoadedAccounts.Remove(account);
+
+            DBSessions.AccountSession.Delete(account.DBAccount);
+            DBSessions.AccountSession.Flush();
             // we should be also disconnecting the account if he's online. /raist.
 
             return true;
         }
 
-        private static void LoadAccounts()
+        public static bool UpdatePassword(this Account account, string newPassword)
         {
-            var query = "SELECT * from accounts";
-            var cmd = new SQLiteCommand(query, DBManager.Connection);
-            var reader = cmd.ExecuteReader();
-
-            if (!reader.HasRows) return;
-
-            while (reader.Read())
+            account.PasswordVerifier = SRP6a.CalculatePasswordVerifierForAccount(account.Email, newPassword, account.Salt);
+            try
             {
-                var accountId = (ulong)reader.GetInt64(0);
-                var email = reader.GetString(1);
 
-                var salt = new byte[32];
-                var readBytes = reader.GetBytes(2, 0, salt, 0, 32);
-
-                var passwordVerifier = new byte[128];
-                readBytes = reader.GetBytes(3, 0, passwordVerifier, 0, 128);
-
-                var userLevel = (byte) reader.GetByte(4);
-
-                var account = new Account(accountId, email, salt, passwordVerifier, (Account.UserLevels)userLevel);
-                Accounts.Add(email, account);
+                SaveToDB(account);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.ErrorException(e, "UpdatePassword()");
+                return false;
             }
         }
 
-        public static ulong GetNextAvailablePersistentId()
+        public static void UpdateUserLevel(this Account account, Account.UserLevels userLevel)
         {
-            var cmd = new SQLiteCommand("SELECT max(id) from accounts", DBManager.Connection);
+            account.UserLevel = userLevel;
             try
             {
-                return Convert.ToUInt64(cmd.ExecuteScalar());
+                SaveToDB(account);
             }
-            catch (InvalidCastException)
+            catch (Exception e)
             {
-                return 0;
+                Logger.ErrorException(e, "UpdateUserLevel()");
             }
-        }       
+        }
+        #endregion
+
+
+
+        private static int GetRandomHashCodeForBattleTag()
+        {
+            var rnd = new Random();
+            return rnd.Next(1, 1000);
+        }
     }
 }

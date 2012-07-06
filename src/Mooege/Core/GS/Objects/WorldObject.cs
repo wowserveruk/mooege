@@ -1,5 +1,5 @@
 ﻿﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
  */
 
 using System;
+using System.Diagnostics;
 using System.Windows;
 using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Common.Types.Math;
@@ -35,7 +36,7 @@ namespace Mooege.Core.GS.Objects
         /// </summary>
         public World World { get; protected set; }
 
-        private Vector3D _position;
+        protected Vector3D _position;
 
         /// <summary>
         /// The position of the object.
@@ -43,7 +44,8 @@ namespace Mooege.Core.GS.Objects
         public Vector3D Position
         {
             get { return _position; }
-            set { 
+            set
+            {
                 _position = value;
                 this.Bounds = new Rect(this.Position.X, this.Position.Y, this.Size.Width, this.Size.Height);
                 var handler = PositionChanged;
@@ -73,7 +75,7 @@ namespace Mooege.Core.GS.Objects
 
         public Vector3D RotationAxis { get; set; }
 
-        public float FacingAngle { get; set; }
+        public float RotationW { get; set; }
 
         /// <summary>
         /// Creates a new world object.
@@ -83,6 +85,7 @@ namespace Mooege.Core.GS.Objects
         protected WorldObject(World world, uint dynamicID)
             : base(dynamicID)
         {
+            Debug.Assert(world != null);
             this.World = world;
             this.World.Game.StartTracking(this); // track the object.
             this.RotationAxis = new Vector3D();

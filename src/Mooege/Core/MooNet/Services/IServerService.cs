@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ using Mooege.Net.MooNet;
 namespace Mooege.Core.MooNet.Services
 {
     public interface IServerService
-    {       
+    {
         /// <summary>
         ///  Last client that made a RPC call for the service.
         /// </summary>
@@ -30,6 +30,11 @@ namespace Mooege.Core.MooNet.Services
         /// <summary>
         /// Last rpc call's header.
         /// </summary>
-        bnet.protocol.Header LastCallHeader {get; set;}
+        bnet.protocol.Header LastCallHeader { get; set; }
+
+        /// <summary>
+        /// Sets the outgoing header status if needed, default = 0
+        /// </summary>
+        uint Status { get; set; }
     }
 }

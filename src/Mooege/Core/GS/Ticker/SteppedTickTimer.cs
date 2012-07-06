@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ namespace Mooege.Core.GS.Ticker
         /// <param name="stepCallback">The action to be called on each step.</param>
         /// <param name="completionCallback">The completition action to be called on timeout.</param>
         public SteppedRelativeTickTimer(Game game, int ticksPerStep, int ticks, Action<int> stepCallback, Action<int> completionCallback)
-            :base(game, ticksPerStep, game.TickCounter + ticks, stepCallback, completionCallback)
+            : base(game, ticksPerStep, game.TickCounter + ticks, stepCallback, completionCallback)
         { }
     }
 

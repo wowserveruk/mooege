@@ -16,17 +16,11 @@ namespace bnet.protocol {
     #region Extension registration
     public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
       registry.Add(global::bnet.protocol.Rpc.MethodId);
-      registry.Add(global::bnet.protocol.Rpc.Cost);
-      registry.Add(global::bnet.protocol.Rpc.Timeout);
     }
     #endregion
     #region Extensions
     public const int MethodIdFieldNumber = 50000;
     public static pb::GeneratedExtensionBase<uint> MethodId;
-    public const int CostFieldNumber = 50001;
-    public static pb::GeneratedExtensionBase<uint> Cost;
-    public const int TimeoutFieldNumber = 50002;
-    public static pb::GeneratedExtensionBase<float> Timeout;
     #endregion
     
     #region Static variables
@@ -53,23 +47,20 @@ namespace bnet.protocol {
     
     static Rpc() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "ChFsaWIvcnBjL3JwYy5wcm90bxINYm5ldC5wcm90b2NvbBogZ29vZ2xlL3By" + 
-          "b3RvYnVmL2Rlc2NyaXB0b3IucHJvdG8iDQoLTk9fUkVTUE9OU0UiTgoHQWRk" + 
-          "cmVzcxIPCgdhZGRyZXNzGAEgAigJEgwKBHBvcnQYAiABKA0SJAoEbmV4dBgD" + 
-          "IAEoCzIWLmJuZXQucHJvdG9jb2wuQWRkcmVzcyIpCglQcm9jZXNzSWQSDQoF" + 
-          "bGFiZWwYASACKA0SDQoFZXBvY2gYAiACKA0iTQoNT2JqZWN0QWRkcmVzcxIm" + 
-          "CgRob3N0GAEgAigLMhguYm5ldC5wcm90b2NvbC5Qcm9jZXNzSWQSFAoJb2Jq" + 
-          "ZWN0X2lkGAIgASgEOgEwIggKBk5vRGF0YSJ6CglFcnJvckluZm8SNAoOb2Jq" + 
-          "ZWN0X2FkZHJlc3MYASACKAsyHC5ibmV0LnByb3RvY29sLk9iamVjdEFkZHJl" + 
-          "c3MSDgoGc3RhdHVzGAIgAigNEhQKDHNlcnZpY2VfaGFzaBgDIAIoDRIRCglt" + 
-          "ZXRob2RfaWQYBCACKA0ioQEKBkhlYWRlchISCgpzZXJ2aWNlX2lkGAEgAigN" + 
-          "EhEKCW1ldGhvZF9pZBgCIAEoDRINCgV0b2tlbhgDIAIoDRIUCglvYmplY3Rf" + 
-          "aWQYBCABKAQ6ATASDwoEc2l6ZRgFIAEoDToBMBIRCgZzdGF0dXMYBiABKA06" + 
-          "ATASJwoFZXJyb3IYByADKAsyGC5ibmV0LnByb3RvY29sLkVycm9ySW5mbzoz" + 
-          "CgltZXRob2RfaWQSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxjQ" + 
-          "hgMgASgNOi4KBGNvc3QSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9u" + 
-          "cxjRhgMgASgNOjEKB3RpbWVvdXQSHi5nb29nbGUucHJvdG9idWYuTWV0aG9k" + 
-          "T3B0aW9ucxjShgMgASgC");
+          "Cg5ibmV0L3JwYy5wcm90bxINYm5ldC5wcm90b2NvbBogZ29vZ2xlL3Byb3Rv" + 
+          "YnVmL2Rlc2NyaXB0b3IucHJvdG8iDQoLTk9fUkVTUE9OU0UiKAoHQWRkcmVz" + 
+          "cxIPCgdhZGRyZXNzGAEgAigJEgwKBHBvcnQYAiABKA0iKQoJUHJvY2Vzc0lk" + 
+          "Eg0KBWxhYmVsGAEgAigNEg0KBWVwb2NoGAIgAigNIk0KDU9iamVjdEFkZHJl" + 
+          "c3MSJgoEaG9zdBgBIAIoCzIYLmJuZXQucHJvdG9jb2wuUHJvY2Vzc0lkEhQK" + 
+          "CW9iamVjdF9pZBgCIAEoBDoBMCIICgZOb0RhdGEiegoJRXJyb3JJbmZvEjQK" + 
+          "Dm9iamVjdF9hZGRyZXNzGAEgAigLMhwuYm5ldC5wcm90b2NvbC5PYmplY3RB" + 
+          "ZGRyZXNzEg4KBnN0YXR1cxgCIAIoDRIUCgxzZXJ2aWNlX2hhc2gYAyACKA0S" + 
+          "EQoJbWV0aG9kX2lkGAQgAigNIqEBCgZIZWFkZXISEgoKc2VydmljZV9pZBgB" + 
+          "IAIoDRIRCgltZXRob2RfaWQYAiABKA0SDQoFdG9rZW4YAyACKA0SFAoJb2Jq" + 
+          "ZWN0X2lkGAQgASgEOgEwEg8KBHNpemUYBSABKA06ATASEQoGc3RhdHVzGAYg" + 
+          "ASgNOgEwEicKBWVycm9yGAcgAygLMhguYm5ldC5wcm90b2NvbC5FcnJvcklu" + 
+          "Zm86MwoJbWV0aG9kX2lkEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlv" + 
+          "bnMY0IYDIAEoDQ==");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_bnet_protocol_NO_RESPONSE__Descriptor = Descriptor.MessageTypes[0];
@@ -79,7 +70,7 @@ namespace bnet.protocol {
         internal__static_bnet_protocol_Address__Descriptor = Descriptor.MessageTypes[1];
         internal__static_bnet_protocol_Address__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.Address, global::bnet.protocol.Address.Builder>(internal__static_bnet_protocol_Address__Descriptor,
-                new string[] { "Address_", "Port", "Next", });
+                new string[] { "Address_", "Port", });
         internal__static_bnet_protocol_ProcessId__Descriptor = Descriptor.MessageTypes[2];
         internal__static_bnet_protocol_ProcessId__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.ProcessId, global::bnet.protocol.ProcessId.Builder>(internal__static_bnet_protocol_ProcessId__Descriptor,
@@ -101,8 +92,6 @@ namespace bnet.protocol {
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.Header, global::bnet.protocol.Header.Builder>(internal__static_bnet_protocol_Header__Descriptor,
                 new string[] { "ServiceId", "MethodId", "Token", "ObjectId", "Size", "Status", "Error", });
         global::bnet.protocol.Rpc.MethodId = pb::GeneratedSingleExtension<uint>.CreateInstance(global::bnet.protocol.Rpc.Descriptor.Extensions[0]);
-        global::bnet.protocol.Rpc.Cost = pb::GeneratedSingleExtension<uint>.CreateInstance(global::bnet.protocol.Rpc.Descriptor.Extensions[1]);
-        global::bnet.protocol.Rpc.Timeout = pb::GeneratedSingleExtension<float>.CreateInstance(global::bnet.protocol.Rpc.Descriptor.Extensions[2]);
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -351,8 +340,8 @@ namespace bnet.protocol {
   public sealed partial class Address : pb::GeneratedMessage<Address, Address.Builder> {
     private Address() { }
     private static readonly Address defaultInstance = new Address().MakeReadOnly();
-    private static readonly string[] _addressFieldNames = new string[] { "address", "next", "port" };
-    private static readonly uint[] _addressFieldTags = new uint[] { 10, 26, 16 };
+    private static readonly string[] _addressFieldNames = new string[] { "address", "port" };
+    private static readonly uint[] _addressFieldTags = new uint[] { 10, 16 };
     public static Address DefaultInstance {
       get { return defaultInstance; }
     }
@@ -393,22 +382,9 @@ namespace bnet.protocol {
       get { return port_; }
     }
     
-    public const int NextFieldNumber = 3;
-    private bool hasNext;
-    private global::bnet.protocol.Address next_;
-    public bool HasNext {
-      get { return hasNext; }
-    }
-    public global::bnet.protocol.Address Next {
-      get { return next_ ?? global::bnet.protocol.Address.DefaultInstance; }
-    }
-    
     public override bool IsInitialized {
       get {
         if (!hasAddress_) return false;
-        if (HasNext) {
-          if (!Next.IsInitialized) return false;
-        }
         return true;
       }
     }
@@ -420,10 +396,7 @@ namespace bnet.protocol {
         output.WriteString(1, field_names[0], Address_);
       }
       if (hasPort) {
-        output.WriteUInt32(2, field_names[2], Port);
-      }
-      if (hasNext) {
-        output.WriteMessage(3, field_names[1], Next);
+        output.WriteUInt32(2, field_names[1], Port);
       }
       UnknownFields.WriteTo(output);
     }
@@ -440,9 +413,6 @@ namespace bnet.protocol {
         }
         if (hasPort) {
           size += pb::CodedOutputStream.ComputeUInt32Size(2, Port);
-        }
-        if (hasNext) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, Next);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -576,9 +546,6 @@ namespace bnet.protocol {
         if (other.HasPort) {
           Port = other.Port;
         }
-        if (other.HasNext) {
-          MergeNext(other.Next);
-        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -630,15 +597,6 @@ namespace bnet.protocol {
               result.hasPort = input.ReadUInt32(ref result.port_);
               break;
             }
-            case 26: {
-              global::bnet.protocol.Address.Builder subBuilder = global::bnet.protocol.Address.CreateBuilder();
-              if (result.hasNext) {
-                subBuilder.MergeFrom(Next);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Next = subBuilder.BuildPartial();
-              break;
-            }
           }
         }
         
@@ -687,46 +645,6 @@ namespace bnet.protocol {
         PrepareBuilder();
         result.hasPort = false;
         result.port_ = 0;
-        return this;
-      }
-      
-      public bool HasNext {
-       get { return result.hasNext; }
-      }
-      public global::bnet.protocol.Address Next {
-        get { return result.Next; }
-        set { SetNext(value); }
-      }
-      public Builder SetNext(global::bnet.protocol.Address value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasNext = true;
-        result.next_ = value;
-        return this;
-      }
-      public Builder SetNext(global::bnet.protocol.Address.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        PrepareBuilder();
-        result.hasNext = true;
-        result.next_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeNext(global::bnet.protocol.Address value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        if (result.hasNext &&
-            result.next_ != global::bnet.protocol.Address.DefaultInstance) {
-            result.next_ = global::bnet.protocol.Address.CreateBuilder(result.next_).MergeFrom(value).BuildPartial();
-        } else {
-          result.next_ = value;
-        }
-        result.hasNext = true;
-        return this;
-      }
-      public Builder ClearNext() {
-        PrepareBuilder();
-        result.hasNext = false;
-        result.next_ = null;
         return this;
       }
     }

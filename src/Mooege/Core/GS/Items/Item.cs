@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+using System.Collections.Generic;
 using Mooege.Common.Helpers.Math;
 using Mooege.Common.Logging;
+using Mooege.Common.Storage.AccountDataBase.Entities;
 using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Common.Types.Math;
+using Mooege.Core.GS.Objects;
 using Mooege.Core.GS.Players;
 using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Net.GS.Message.Definitions.Misc;
@@ -29,6 +32,8 @@ using Mooege.Net.GS.Message;
 using Mooege.Common.MPQ.FileFormats;
 using Actor = Mooege.Core.GS.Actors.Actor;
 using World = Mooege.Core.GS.Map.World;
+using Mooege.Core.GS.Common.Types.TagMap;
+using Mooege.Core.GS.Common.Types.SNO;
 
 // TODO: This entire namespace belongs in GS. Bnet only needs a certain representation of items whereas nearly everything here is GS-specific
 
@@ -50,7 +55,12 @@ namespace Mooege.Core.GS.Items
     */
     public class Item : Actor
     {
+        public DBInventory DBInventory = null;
+        public DBItemInstance DBItemInstance = null;
+
         private static readonly Logger Logger = LogManager.CreateLogger();
+        public bool ItemHasChanges { get; private set; }//needed in Future, set this to true if Item affixes or item attributes have changed.
+
 
         public override ActorType ActorType { get { return ActorType.Item; } }
 
@@ -79,6 +89,22 @@ namespace Mooege.Core.GS.Items
             }
         }
 
+        public SNOHandle SnoFlippyActory
+        {
+            get
+            {
+                return ActorData.TagMap.ContainsKey(ActorKeys.Flippy) ? ActorData.TagMap[ActorKeys.Flippy] : null;
+            }
+        }
+
+        public SNOHandle SnoFlippyParticle
+        {
+            get
+            {
+                return ActorData.TagMap.ContainsKey(ActorKeys.FlippyParticle) ? ActorData.TagMap[ActorKeys.FlippyParticle] : null;
+            }
+        }
+
         public override bool HasWorldLocation
         {
             get { return this.Owner == null; }
@@ -97,6 +123,11 @@ namespace Mooege.Core.GS.Items
             }
         }
 
+        public bool IsStackable()
+        {
+            return ItemDefinition.MaxStackAmount > 1;
+        }
+
         public InvLoc InvLoc
         {
             get
@@ -111,18 +142,45 @@ namespace Mooege.Core.GS.Items
             }
         }
 
-        public Item(GS.Map.World world, ItemTable definition)
+        public Item(GS.Map.World world, ItemTable definition, IEnumerable<Affix> affixList, string serializedGameAttributeMap)
             : base(world, definition.SNOActor)
         {
-            this.ItemDefinition = definition;
+            SetInitialValues(definition);
+            this.Attributes.FillBySerialized(serializedGameAttributeMap);
+            this.AffixList.Clear();
+            this.AffixList.AddRange(affixList);
 
+            // level requirement
+            // Attributes[GameAttribute.Requirement, 38] = definition.RequiredLevel;
+            /*
+            Attributes[GameAttribute.Item_Quality_Level] = 1;
+            if (Item.IsArmor(this.ItemType) || Item.IsWeapon(this.ItemType) || Item.IsOffhand(this.ItemType))
+                Attributes[GameAttribute.Item_Quality_Level] = RandomHelper.Next(6);
+            if (this.ItemType.Flags.HasFlag(ItemFlags.AtLeastMagical) && Attributes[GameAttribute.Item_Quality_Level] < 3)
+                Attributes[GameAttribute.Item_Quality_Level] = 3;
+            */
+            //Attributes[GameAttribute.ItemStackQuantityLo] = 1;
+            //Attributes[GameAttribute.Seed] = RandomHelper.Next(); //unchecked((int)2286800181);
+            /*
+            RandomGenerator = new ItemRandomHelper(Attributes[GameAttribute.Seed]);
+            RandomGenerator.Next();
+            if (Item.IsArmor(this.ItemType))
+                RandomGenerator.Next(); // next value is used but unknown if armor
+            RandomGenerator.ReinitSeed();*/
+        }
+
+
+        private void SetInitialValues(ItemTable definition)
+        {
+            this.ItemDefinition = definition;
+            this.ItemLevel = definition.ItemLevel;
             this.GBHandle.Type = (int)GBHandleType.Gizmo;
             this.GBHandle.GBID = definition.Hash;
             this.ItemType = ItemGroup.FromHash(definition.ItemType1);
             this.EquipmentSlot = 0;
             this.InventoryLocation = new Vector2D { X = 0, Y = 0 };
             this.Scale = 1.0f;
-            this.FacingAngle = 0.0f;
+            this.RotationW = 0.0f;
             this.RotationAxis.Set(0.0f, 0.0f, 1.0f);
             this.CurrentState = ItemState.Normal;
             this.Field2 = 0x00000000;
@@ -130,26 +188,28 @@ namespace Mooege.Core.GS.Items
             this.NameSNOId = -1;      // I think it is ignored anyways - farmy
             this.Field10 = 0x00;
 
-            this.ItemLevel = definition.ItemLevel;
 
+
+
+
+
+        }
+        public Item(GS.Map.World world, ItemTable definition)
+            : base(world, definition.SNOActor)
+        {
+            SetInitialValues(definition);
+            this.ItemHasChanges = true;//initial, this is set to true.
             // level requirement
             // Attributes[GameAttribute.Requirement, 38] = definition.RequiredLevel;
 
             Attributes[GameAttribute.Item_Quality_Level] = 1;
-            if (Item.IsArmor(this.ItemType) || Item.IsWeapon(this.ItemType)|| Item.IsOffhand(this.ItemType))
+            if (Item.IsArmor(this.ItemType) || Item.IsWeapon(this.ItemType) || Item.IsOffhand(this.ItemType))
                 Attributes[GameAttribute.Item_Quality_Level] = RandomHelper.Next(6);
-            if(this.ItemType.Flags.HasFlag(ItemFlags.AtLeastMagical) && Attributes[GameAttribute.Item_Quality_Level] < 3)
+            if (this.ItemType.Flags.HasFlag(ItemFlags.AtLeastMagical) && Attributes[GameAttribute.Item_Quality_Level] < 3)
                 Attributes[GameAttribute.Item_Quality_Level] = 3;
 
+            Attributes[GameAttribute.ItemStackQuantityLo] = 1;
             Attributes[GameAttribute.Seed] = RandomHelper.Next(); //unchecked((int)2286800181);
-
-            /*
-            List<IItemAttributeCreator> attributeCreators = new AttributeCreatorFactory().Create(this.ItemType);
-            foreach (IItemAttributeCreator creator in attributeCreators)
-            {
-                creator.CreateAttributes(this);
-            }
-            */
 
             RandomGenerator = new ItemRandomHelper(Attributes[GameAttribute.Seed]);
             RandomGenerator.Next();
@@ -169,26 +229,29 @@ namespace Mooege.Core.GS.Items
             AffixGenerator.Generate(this, affixNumber);
         }
 
+
+
+
         private void ApplyWeaponSpecificOptions(ItemTable definition)
         {
             if (definition.WeaponDamageMin > 0)
             {
                 Attributes[GameAttribute.Attacks_Per_Second_Item] += definition.AttacksPerSecond;
-                Attributes[GameAttribute.Attacks_Per_Second_Item_Subtotal] += definition.AttacksPerSecond;
-                Attributes[GameAttribute.Attacks_Per_Second_Item_Total] += definition.AttacksPerSecond;
+                //scripted //Attributes[GameAttribute.Attacks_Per_Second_Item_Subtotal] += definition.AttacksPerSecond;
+                //scripted //Attributes[GameAttribute.Attacks_Per_Second_Item_Total] += definition.AttacksPerSecond;
 
                 Attributes[GameAttribute.Damage_Weapon_Min, 0] += definition.WeaponDamageMin;
-                Attributes[GameAttribute.Damage_Weapon_Min_Total, 0] += definition.WeaponDamageMin;
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Min_Total, 0] += definition.WeaponDamageMin;
 
                 Attributes[GameAttribute.Damage_Weapon_Delta, 0] += definition.WeaponDamageDelta;
-                Attributes[GameAttribute.Damage_Weapon_Delta_SubTotal, 0] += definition.WeaponDamageDelta;
-                Attributes[GameAttribute.Damage_Weapon_Delta_Total, 0] += definition.WeaponDamageDelta;
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Delta_SubTotal, 0] += definition.WeaponDamageDelta;
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Delta_Total, 0] += definition.WeaponDamageDelta;
 
-                Attributes[GameAttribute.Damage_Weapon_Max, 0] += Attributes[GameAttribute.Damage_Weapon_Min, 0] + Attributes[GameAttribute.Damage_Weapon_Delta, 0];
-                Attributes[GameAttribute.Damage_Weapon_Max_Total, 0] += Attributes[GameAttribute.Damage_Weapon_Min_Total, 0] + Attributes[GameAttribute.Damage_Weapon_Delta_Total, 0];
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Max, 0] += Attributes[GameAttribute.Damage_Weapon_Min, 0] + Attributes[GameAttribute.Damage_Weapon_Delta, 0];
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Max_Total, 0] += Attributes[GameAttribute.Damage_Weapon_Min_Total, 0] + Attributes[GameAttribute.Damage_Weapon_Delta_Total, 0];
 
-                Attributes[GameAttribute.Damage_Weapon_Min_Total_All] = definition.WeaponDamageMin;
-                Attributes[GameAttribute.Damage_Weapon_Delta_Total_All] = definition.WeaponDamageDelta;
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Min_Total_All] = definition.WeaponDamageMin;
+                //scripted //Attributes[GameAttribute.Damage_Weapon_Delta_Total_All] = definition.WeaponDamageDelta;
             }
         }
 
@@ -197,8 +260,8 @@ namespace Mooege.Core.GS.Items
             if (definition.ArmorValue > 0)
             {
                 Attributes[GameAttribute.Armor_Item] += definition.ArmorValue;
-                Attributes[GameAttribute.Armor_Item_SubTotal] += definition.ArmorValue;
-                Attributes[GameAttribute.Armor_Item_Total] += definition.ArmorValue;
+                //scripted //Attributes[GameAttribute.Armor_Item_SubTotal] += definition.ArmorValue;
+                //scripted //Attributes[GameAttribute.Armor_Item_Total] += definition.ArmorValue;
             }
         }
 
@@ -273,6 +336,18 @@ namespace Mooege.Core.GS.Items
             };
         }
 
+        //TODO: Move to proper D3.Hero.Visual item classes
+        public D3.Hero.VisualItem GetVisualItem()
+        {
+            var visualItem = D3.Hero.VisualItem.CreateBuilder()
+                .SetGbid(this.GBHandle.GBID)
+                .SetDyeType(Attributes[GameAttribute.DyeType])
+                .SetEffectLevel(0)
+                .SetItemEffectType(-1)
+                .Build();
+            return visualItem;
+        }
+
         #region Is*
         public static bool IsHealthGlobe(ItemTypeTable itemType)
         {
@@ -296,14 +371,12 @@ namespace Mooege.Core.GS.Items
 
         public static bool IsRuneOrJewel(ItemTypeTable itemType)
         {
-            return ItemGroup.IsSubType(itemType, "Gem") ||
-                ItemGroup.IsSubType(itemType, "SpellRune");
+            return ItemGroup.IsSubType(itemType, "Gem") || ItemGroup.IsSubType(itemType, "SpellRune");
         }
 
         public static bool IsJournalOrScroll(ItemTypeTable itemType)
         {
-            return ItemGroup.IsSubType(itemType, "Scroll") ||
-                ItemGroup.IsSubType(itemType, "Book");
+            return ItemGroup.IsSubType(itemType, "Scroll") || ItemGroup.IsSubType(itemType, "Book");
         }
 
         public static bool IsDye(ItemTypeTable itemType)
@@ -374,18 +447,11 @@ namespace Mooege.Core.GS.Items
 
         public override bool Reveal(Player player)
         {
-            if (this.CurrentState == ItemState.PickingUp)
+            if (this.CurrentState == ItemState.PickingUp && HasWorldLocation)
                 return false;
 
             if (!base.Reveal(player))
                 return false;
-
-            // Drop effect/sound? TODO find out
-            player.InGameClient.SendMessage(new PlayEffectMessage()
-            {
-                ActorId = this.DynamicID,
-                Effect = Effect.SecondaryRessourceEffect
-            });
 
             var affixGbis = new int[AffixList.Count];
             for (int i = 0; i < AffixList.Count; i++)
@@ -412,14 +478,12 @@ namespace Mooege.Core.GS.Items
 
         public override bool Unreveal(Player player)
         {
-            if (CurrentState == ItemState.PickingUp && player == Owner) 
+            if (CurrentState == ItemState.PickingUp && player == Owner)
             {
                 return false;
             }
             return base.Unreveal(player);
         }
-
-
     }
 
     public enum ItemState

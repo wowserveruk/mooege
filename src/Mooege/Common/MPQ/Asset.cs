@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,52 @@
  */
 
 using System;
-using System.Globalization;
-using System.Threading;
-using CrystalMpq;
 using Mooege.Core.GS.Common.Types.SNO;
+using Mooege.Common.Logging;
 
 namespace Mooege.Common.MPQ
 {
-    public class Asset
+    public abstract class Asset
     {
-        public SNOGroup Group {get; private set;}
-        public Int32 SNOId {get; private set;}
-        public string Name {get; private set;}
-        public string FileName {get; private set;}
-        public virtual FileFormat Data {get; private set;}
+        public SNOGroup Group { get; private set; }
+        public Int32 SNOId { get; private set; }
+        public string Name { get; private set; }
+        public string FileName { get; protected set; }
+        public Type Parser { get; set; }
+
+        protected FileFormat _data = null;
+        protected static readonly Logger Logger = LogManager.CreateLogger();
+
+        public FileFormat Data
+        {
+            get
+            {
+                if (_data == null && SourceAvailable && Parser != null)
+                {
+                    try
+                    {
+                        RunParser();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.FatalException(e, "Bad MPQ detected, failed parsing asset: {0}", this.FileName);
+                    }
+                }
+                return _data;
+            }
+        }
+
+        protected abstract bool SourceAvailable { get; }
+
 
         public Asset(SNOGroup group, Int32 snoId, string name)
         {
-            this.Data = null;
+            this.FileName = group + "\\" + name + FileExtensions.Extensions[(int)group];
             this.Group = group;
             this.SNOId = snoId;
             this.Name = name;
-            this.FileName = group + "\\" + this.Name + FileExtensions.Extensions[(int)group];
         }
 
-        public virtual void RunParser(Type parser, MpqFile file)
-        {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture; // Use invariant culture so that we don't hit pitfalls in non en/US systems with different number formats.
-            this.Data = (FileFormat) Activator.CreateInstance(parser, new object[] {file});
-        }
+        public abstract void RunParser();
     }
 }

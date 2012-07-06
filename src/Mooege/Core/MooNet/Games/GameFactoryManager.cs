@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Mooege.Common;
 using Mooege.Common.Logging;
 using Mooege.Core.MooNet.Channels;
-using Mooege.Core.MooNet.Toons;
 using Mooege.Net.MooNet;
 
 namespace Mooege.Core.MooNet.Games
@@ -42,6 +39,11 @@ namespace Mooege.Core.MooNet.Games
 
         private static readonly Logger Logger = LogManager.CreateLogger();
 
+        public static GameFactory JoinGame(MooNetClient client, bnet.protocol.game_master.JoinGameRequest request, ulong requetId)
+        {
+            var game = FindGameByEntityId(request.GameHandle.GameId);
+            return game;
+        }
         public static GameFactory CreateGame(MooNetClient owner, bnet.protocol.game_master.FindGameRequest request, ulong requestId)
         {
             var gameFactory = new GameFactory(owner, request, requestId);
@@ -50,13 +52,22 @@ namespace Mooege.Core.MooNet.Games
             return gameFactory;
         }
 
+        public static GameFactory FindGameByEntityId(bnet.protocol.EntityId entityId)
+        {
+            foreach (GameFactory game in GameCreators.Values)
+            {
+                if (game.BnetEntityId == entityId)
+                    return game;
+            }
+            return null;
+        }
         public static GameFactory FindGame(MooNetClient client, bnet.protocol.game_master.FindGameRequest request, ulong requestId)
-        { 
+        {
             List<GameFactory> matchingGames = FindMatchingGames(request);
             var rand = new Random();
             GameFactory gameFactory = null;
 
-            if (!request.Properties.Create && matchingGames.Count > 0)                
+            if (!request.Properties.Create && matchingGames.Count > 0)
                 gameFactory = matchingGames[rand.Next(matchingGames.Count)];
             else
                 gameFactory = CreateGame(client, request, requestId);
@@ -102,9 +113,9 @@ namespace Mooege.Core.MooNet.Games
 
             List<GameFactory> matches = new List<GameFactory>();
             foreach (GameFactory game in GameCreators.Values)
-            {   
+            {
                 //FIXME: don't currently track max players allowed in a game, hardcoded 4 /dustinconrad
-                if (game.InGame != null && !game.GameCreateParams.IsPrivate && game.InGame.Players.Count < 4)
+                if (game.InGame != null && game.InGame.Players.Count < 4)
                 {
                     if (matchOp(version == game.Version, difficulty == game.GameCreateParams.Coop.DifficultyLevel, currentQuest == game.GameCreateParams.Coop.SnoQuest))
                     {
@@ -154,9 +165,9 @@ namespace Mooege.Core.MooNet.Games
 
             uint games = 0;
             int players = 0;
-            foreach(GameFactory game in GameCreators.Values)
+            foreach (GameFactory game in GameCreators.Values)
             {
-                if (game.InGame != null && !game.GameCreateParams.IsPrivate)
+                if (game.InGame != null)
                 {
                     if (matchOp(version == game.Version, difficulty == game.GameCreateParams.Coop.DifficultyLevel, currentQuest == game.GameCreateParams.Coop.SnoQuest))
                     {
@@ -172,7 +183,7 @@ namespace Mooege.Core.MooNet.Games
                 .SetActivePlayers((uint)players)
                 .SetFormingGames(0)
                 .SetWaitingPlayers(0);
-                
+
             return bucket;
         }
     }

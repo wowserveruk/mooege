@@ -17,10 +17,12 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 using Mooege.Common;
 using Mooege.Core.GS.Ticker;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Net.GS.Message.Definitions.World;
+using Mooege.Core.GS.Actors;
 
 namespace Mooege.Core.GS.Powers
 {
@@ -36,5 +38,24 @@ namespace Mooege.Core.GS.Powers
         // token instance that can be yielded by Run() to indicate the power manager should stop
         // running a power implementation.
         public static readonly TickTimer StopExecution = null;
+
+
+        public TargetList GetBestMeleeEnemy()
+        {
+            float meleeRange = 10f;  // TODO: possibly use equipped weapon range for this?
+
+            // get all targets that could be hit by melee attack, then select the script's target if
+            // it has one, otherwise use the closest target in range.
+            TargetList targets = GetEnemiesInBeamDirection(User.Position, TargetPosition, meleeRange);
+
+            Actor bestEnemy;
+            if (targets.Actors.Contains(Target))
+                bestEnemy = Target;
+            else
+                bestEnemy = targets.GetClosestTo(User.Position);
+
+            targets.Actors.RemoveAll(actor => actor != bestEnemy);
+            return targets;
+        }
     }
 }

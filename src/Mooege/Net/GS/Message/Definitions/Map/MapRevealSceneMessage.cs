@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,6 @@
 
 using System.Text;
 using Mooege.Core.GS.Common.Types.Math;
-using Mooege.Net.GS.Message.Fields;
-using Mooege.Core.GS.Map;
 
 namespace Mooege.Net.GS.Message.Definitions.Map
 {
@@ -30,7 +28,7 @@ namespace Mooege.Net.GS.Message.Definitions.Map
         public int /* sno */ SceneSNO;
         public PRTransform Transform;
         public uint WorldID;
-        public SceneMiniMapVisibility MiniMapVisibility;
+        public bool MiniMapVisibility;
 
         public MapRevealSceneMessage() : base(Opcodes.MapRevealSceneMessage) {}
 
@@ -41,7 +39,7 @@ namespace Mooege.Net.GS.Message.Definitions.Map
             Transform = new PRTransform();
             Transform.Parse(buffer);
             WorldID = buffer.ReadUInt(32);
-            MiniMapVisibility = (SceneMiniMapVisibility)buffer.ReadInt(3);
+            MiniMapVisibility = buffer.ReadBool(); ;
         }
 
         public override void Encode(GameBitBuffer buffer)
@@ -50,7 +48,7 @@ namespace Mooege.Net.GS.Message.Definitions.Map
             buffer.WriteInt(32, SceneSNO);
             Transform.Encode(buffer);
             buffer.WriteUInt(32, WorldID);
-            buffer.WriteInt(3, (int)MiniMapVisibility);
+            buffer.WriteBool(MiniMapVisibility);
         }
 
         public override void AsText(StringBuilder b, int pad)
@@ -63,7 +61,7 @@ namespace Mooege.Net.GS.Message.Definitions.Map
             b.Append(' ', pad); b.AppendLine("SceneSNO: 0x" + SceneSNO.ToString("X8"));
             Transform.AsText(b, pad);
             b.Append(' ', pad); b.AppendLine("WorldID: 0x" + WorldID.ToString("X8") + " (" + WorldID + ")");
-            b.Append(' ', pad); b.AppendLine("MiniMapVisibility: 0x" + ((int)MiniMapVisibility).ToString("X8") + " (" + MiniMapVisibility + ")");
+            b.Append(' ', pad); b.AppendLine("MiniMapVisibility: " + (MiniMapVisibility ? "true" : "false"));
             b.Append(' ', --pad);
             b.AppendLine("}");
         }

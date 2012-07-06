@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ namespace Mooege.Core.MooNet.Toons
         public ToonHandleHelper(D3.OnlineService.EntityId entityID)
         {
             var stream = CodedInputStream.CreateInstance(entityID.ToByteArray());
-            ulong tmp=0;
+            ulong tmp = 0;
             // I believe this actually calls ReadRawVarint64(), but just to be sure..
             stream.ReadUInt64(ref tmp);
             this.ID = tmp;

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,29 +18,76 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using Mooege.Common.Helpers;
-using Mooege.Common.Helpers.Hash;
+using System.Linq;
+using Mooege.Common.MPQ;
+using Mooege.Common.MPQ.FileFormats;
 using Mooege.Common.Storage;
+using Mooege.Common.Storage.AccountDataBase.Entities;
 using Mooege.Core.MooNet.Accounts;
 using Mooege.Core.MooNet.Helpers;
 using Mooege.Core.MooNet.Objects;
-using Mooege.Core.MooNet.Channels;
-using Mooege.Net.MooNet;
+using Mooege.Core.GS.Players;
+using NHibernate.Linq;
 
 namespace Mooege.Core.MooNet.Toons
 {
     public class Toon : PersistentRPCObject
     {
+        public DBToon DBToon { get; private set; }
+        public IntPresenceField HeroClassField
+        {
+            get
+            {
+                var val = new IntPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 1, 0, this.ClassID);
+                return val;
+            }
+        }
+        public IntPresenceField HeroFlagsField
+        {
+            get
+            {
+                var val = new IntPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 4, 0, (int)this.DBToon.Flags);
+                return val;
+            }
+        }
+        public IntPresenceField HeroLevelField
+        {
+            get
+            {
+                var val = new IntPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 2, 0, this.DBToon.Level);
+                return val;
+            }
+        }
+        public StringPresenceField HeroNameField
+        { get { return new StringPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 5, 0, this.DBToon.Name); } }
+
+
+
+
+        public ByteStringPresenceField<D3.Hero.VisualEquipment> HeroVisualEquipmentField = new ByteStringPresenceField<D3.Hero.VisualEquipment>(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 3, 0);
+
+
+
+
+
+
+        public IntPresenceField HighestUnlockedAct = new IntPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 6, 0, 0);
+
+        public IntPresenceField HighestUnlockedDifficulty = new IntPresenceField(FieldKeyHelper.Program.D3, FieldKeyHelper.OriginatingClass.Hero, 7, 0, 0);
+
         /// <summary>
         /// D3 EntityID encoded id.
         /// </summary>
         public D3.OnlineService.EntityId D3EntityID { get; private set; }
 
         /// <summary>
-        /// Bnet EntityID encoded id.
+        /// True if toon has been recently deleted;
         /// </summary>
-        public bnet.protocol.EntityId BnetEntityID { get; private set; }
+        public bool Deleted
+        {
+            get { return this.DBToon.Deleted; }
+            set { this.DBToon.Deleted = value; }
+        }
 
         /// <summary>
         /// Toon handle struct.
@@ -50,63 +97,129 @@ namespace Mooege.Core.MooNet.Toons
         /// <summary>
         /// Toon's name.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name
+        {
+            get
+            {
+                return this.DBToon.Name;
+            }
+            private set
+            {
+                this.DBToon.Name = value;
+                this.HeroNameField.Value = value;
+            }
+        }
 
+        /*
         /// <summary>
         /// Toon's hash-code.
         /// </summary>
         public int HashCode { get; set; }
-
-        /// <summary>
-        /// Toon's hash-code as string.
-        /// </summary>
-        public string HashCodeString { get; private set; }
-
-        /// <summary>
-        /// NameText as name#hashcode.
-        /// </summary>
-        public D3.Hero.NameText NameText { get; private set; }
-
+        */
         /// <summary>
         /// Toon's owner account.
         /// </summary>
-        public Account Owner { get; set; }
+        public GameAccount GameAccount { get { return GameAccountManager.GetGameAccountByDBGameAccount(this.DBToon.DBGameAccount); } set { this.DBToon.DBGameAccount = value.DBGameAccount; } }
 
         /// <summary>
         /// Toon's class.
         /// </summary>
-        public ToonClass Class { get; private set; }
+        public ToonClass Class
+        {
+            get
+            {
+                return DBToon.Class;
+            }
+            private set
+            {
+                DBToon.Class = value;
+                /*
+                switch (DBToon.Class)
+                {
+                    case ToonClass.Barbarian:
+                        this.HeroClassField.Value = 0x4FB91EE2;
+                        break;
+                    case ToonClass.DemonHunter:
+                        this.HeroClassField.Value = unchecked((int)0xC88B9649);
+                        break;
+                    case ToonClass.Monk:
+                        this.HeroClassField.Value = 0x3DAC15;
+                        break;
+                    case ToonClass.WitchDoctor:
+                        this.HeroClassField.Value = 0x343C22A;
+                        break;
+                    case ToonClass.Wizard:
+                        this.HeroClassField.Value = 0x1D4681B1;
+                        break;
+                    default:
+                        this.HeroClassField.Value = 0x0;
+                        break;
+                }*/
+            }
+        }
 
         /// <summary>
         /// Toon's flags.
         /// </summary>
-        public ToonFlags Flags { get; private set; }
+        public ToonFlags Flags
+        {
+            get
+            {
+                return this.DBToon.Flags;
+            }
+            private set
+            {
+                this.DBToon.Flags = value | ToonFlags.AllUnknowns;
+                //this.HeroFlagsField.Value = (int)(value | ToonFlags.AllUnknowns);
+            }
+        }
 
         /// <summary>
         /// Toon's level.
         /// </summary>
-        public byte Level { get; private set; }
+        public byte Level
+        {
+            get
+            {
+                return DBToon.Level;
+            }
+            private set
+            {
+                this.DBToon.Level = value;
+            }
+        }
+
+        /// <summary>
+        /// Experience to next level
+        /// </summary>
+        public int ExperienceNext { get; set; }
 
         /// <summary>
         /// Total time played for toon.
         /// </summary>
-        public uint TimePlayed { get; set; }
+        public uint TimePlayed { get { return this.DBToon.TimePlayed; } set { this.DBToon.TimePlayed = value; } }
 
         /// <summary>
         /// Last login time for toon.
         /// </summary>
         public uint LoginTime { get; set; }
-        
-        /// <summary>
-        /// Away status for the toon? (shouldn't it be account stuff? /raist).
-        /// </summary>
-        public AwayStatus AwayStatus { get; private set; }
 
         /// <summary>
-        /// The visual equipment for toon.
+        /// Settings for toon.
         /// </summary>
-        public D3.Hero.VisualEquipment Equipment { get; protected set; }
-        
+        private D3.Client.ToonSettings _settings = D3.Client.ToonSettings.CreateBuilder().Build();
+        public D3.Client.ToonSettings Settings
+        {
+            get
+            {
+                return this._settings;
+            }
+            set
+            {
+                this._settings = value;
+            }
+        }
+
         /// <summary>
         /// Toon digest.
         /// </summary>
@@ -114,13 +227,13 @@ namespace Mooege.Core.MooNet.Toons
         {
             get
             {
-                return D3.Hero.Digest.CreateBuilder().SetVersion(891)
+                return D3.Hero.Digest.CreateBuilder().SetVersion(902)
                                 .SetHeroId(this.D3EntityID)
-                                //.SetHeroName(this.Name) //no longer used in 7728, uses D3.Hero.NameText query -Egris
+                                .SetHeroName(this.Name)
                                 .SetGbidClass((int)this.ClassID)
                                 .SetPlayerFlags((uint)this.Flags)
                                 .SetLevel(this.Level)
-                                .SetVisualEquipment(this.Equipment)
+                                .SetVisualEquipment(this.HeroVisualEquipmentField.Value)
                                 .SetLastPlayedAct(0)
                                 .SetHighestUnlockedAct(0)
                                 .SetLastPlayedDifficulty(0)
@@ -132,31 +245,36 @@ namespace Mooege.Core.MooNet.Toons
             }
         }
 
+        /// <summary>
+        /// Hero Profile.
+        /// </summary>
+        public D3.Profile.HeroProfile Profile
+        {
+            get
+            {
+                return D3.Profile.HeroProfile.CreateBuilder()
+                    .SetHardcore(false)
+                    .SetHeroId(this.D3EntityID)
+                    .SetHighestDifficulty(0)
+                    .SetHighestLevel(this.Level)
+                    .SetMonstersKilled(923)
+                    .Build();
+            }
+        }
+
         public bool IsSelected
         {
             get
             {
-                if (!this.Owner.IsOnline) return false;
+                if (!this.GameAccount.IsOnline) return false;
                 else
                 {
-                    if (this.Owner.LoggedInClient.CurrentToon != null)
-                        return this.Owner.LoggedInClient.CurrentToon.BnetEntityID == this.BnetEntityID;
+                    if (this.GameAccount.CurrentToon != null)
+                        return this.GameAccount.CurrentToon == this;
                     else
                         return false;
                 }
             }
-        }
-
-        public Toon(ulong persistentId, string name, int hashCode, byte @class, byte gender, byte level, long accountId, uint timePlayed) // Toon with given persistent ID
-            : base(persistentId)
-        {
-            this.SetFields(name, hashCode, (ToonClass)@class, (ToonFlags)gender, level, AccountManager.GetAccountByPersistentID((ulong)accountId),timePlayed);
-        }
-
-        public Toon(string name, int hashCode, int classId, ToonFlags flags, byte level, Account account) // Toon with **newly generated** persistent ID
-            : base(StringHashHelper.HashIdentity(name + "#" + hashCode.ToString("D3")))
-        {
-            this.SetFields(name, hashCode, GetClassByID(classId), flags, level, account, 0);
         }
 
         public int ClassID
@@ -209,20 +327,69 @@ namespace Mooege.Core.MooNet.Toons
             }
         }
 
-        private void SetFields(string name, int hashCode, ToonClass @class, ToonFlags flags, byte level, Account owner,uint timePlayed)
+        #region c-tor and setfields
+
+        public readonly HeroTable HeroTable;
+        private static readonly Mooege.Common.MPQ.FileFormats.GameBalance HeroData = (Mooege.Common.MPQ.FileFormats.GameBalance)MPQStorage.Data.Assets[Mooege.Core.GS.Common.Types.SNO.SNOGroup.GameBalance][19740].Data;
+
+        public Toon(DBToon dbToon)
+            : base(dbToon.Id)
         {
-            this.ToonHandle = new ToonHandleHelper(this.PersistentID);
-            this.D3EntityID = this.ToonHandle.ToD3EntityID();
-            this.BnetEntityID = this.ToonHandle.ToBnetEntityID();
+            this.D3EntityID = D3.OnlineService.EntityId.CreateBuilder().SetIdHigh((ulong)EntityIdHelper.HighIdType.ToonId).SetIdLow(this.PersistentID).Build();
+
+            this.DBToon = dbToon;
+            this.HeroTable = HeroData.Heros.Find(item => item.Name == this.Class.ToString());
+            this.ExperienceNext = Player.LevelBorders[this.Level];
+
+            var visualItems = new[]
+            {
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Head
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Chest
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Feet
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Hands
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Weapon (1)
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Weapon (2)
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Shoulders
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Legs
+            };
+
+            // Load Visual Equipment
+            var visualToSlotMapping = new Dictionary<int, int> { { 1, 0 }, { 2, 1 }, { 7, 2 }, { 5, 3 }, { 4, 4 }, { 3, 5 }, { 8, 6 }, { 9, 7 } };
+
+            //add visual equipment from DB, only the visualizable equipment, not everything
+            var visibleEquipment = DBSessions.AccountSession.Query<DBInventory>().Where(inv => inv.DBItemInstance != null && inv.DBToon.Id == dbToon.Id && inv.EquipmentSlot != -1).ToList();
+
+            foreach (var inv in visibleEquipment)
+            {
+                var slot = inv.EquipmentSlot;
+                if (!visualToSlotMapping.ContainsKey(slot))
+                    continue;
+                // decode vislual slot from equipment slot
+                slot = visualToSlotMapping[slot];
+                var gbid = inv.DBItemInstance.GbId;
+                visualItems[slot] = D3.Hero.VisualItem.CreateBuilder()
+                    .SetGbid(gbid)
+                    .SetEffectLevel(0)
+                    .Build();
+            }
+
+            this.HeroVisualEquipmentField.Value = D3.Hero.VisualEquipment.CreateBuilder().AddRangeVisualItem(visualItems).Build();
+        }
+
+        /* old non-db toon creation ctor. /raist.
+        public Toon(string name, int hashCode, int classId, ToonFlags flags, byte level, GameAccount account) // Toon with **newly generated** persistent ID
+            : base(StringHashHelper.HashIdentity(name + "#" + hashCode.ToString("D3")))
+        {
+            this.D3EntityID = D3.OnlineService.EntityId.CreateBuilder().SetIdHigh((ulong)EntityIdHelper.HighIdType.ToonId).SetIdLow(this.PersistentID).Build();
+
             this.Name = name;
             this.HashCode = hashCode;
-            this.HashCodeString = HashCode.ToString("D3");
-            this.NameText = D3.Hero.NameText.CreateBuilder().SetName(string.Format("{0}#{1}", this.Name, this.HashCodeString)).Build();
-            this.Class = @class;
+            this.Class = @GetClassByID(classId);
             this.Flags = flags;
             this.Level = level;
-            this.Owner = owner;
-            this.TimePlayed = timePlayed;
+            this.ExperienceNext = Player.LevelBorders[level];
+            this.GameAccount = account;
+            this.TimePlayed = 0;
 
             var visualItems = new[]
             {                                
@@ -236,17 +403,114 @@ namespace Mooege.Core.MooNet.Toons
                 D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Legs
             };
 
-            this.Equipment = D3.Hero.VisualEquipment.CreateBuilder().AddRangeVisualItem(visualItems).Build();
-
+            this.HeroVisualEquipmentField.Value = D3.Hero.VisualEquipment.CreateBuilder().AddRangeVisualItem(visualItems).Build();
         }
 
+        public Toon(ulong persistentId)     // Load a toon from database with a given persistentId
+            : base(persistentId)
+        {
+            this.D3EntityID = D3.OnlineService.EntityId.CreateBuilder().SetIdHigh((ulong)EntityIdHelper.HighIdType.ToonId).SetIdLow(this.PersistentID).Build();
+
+            var sqlQuery  = string.Format("SELECT * FROM toons WHERE id = {0}", persistentId);
+            var sqlCmd    = new SQLiteCommand(sqlQuery, DBManager.Connection);
+            var sqlReader = sqlCmd.ExecuteReader();
+
+            // Use name of column to prevent errors if column moved
+            while (sqlReader.Read())
+            {
+                this.Name = Convert.ToString(sqlReader["name"]);
+                this.HashCode = Convert.ToInt32(sqlReader["hashCode"]);
+                this.Class = (ToonClass)Convert.ToInt32(sqlReader["class"]);
+                this.Flags = (ToonFlags)Convert.ToInt32(sqlReader["gender"]);
+                this.Level = Convert.ToByte(sqlReader["level"]);
+                this.ExperienceNext = Convert.ToInt32(sqlReader["experience"]);
+                this.GameAccount = GameAccountManager.GetAccountByPersistentID(Convert.ToUInt64(sqlReader["accountId"]));
+                this.TimePlayed = Convert.ToUInt32(sqlReader["timePlayed"]);
+                this.Deleted = Convert.ToBoolean(sqlReader["deleted"]);
+            }
+
+            var visualItems = new[]
+            {                                
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Head
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Chest
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Feet
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Hands
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Weapon (1)
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Weapon (2)
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Shoulders
+                D3.Hero.VisualItem.CreateBuilder().SetEffectLevel(0).Build(), // Legs
+            };
+            
+            // Load Visual Equipment
+            Dictionary<int, int> visualToSlotMapping = new Dictionary<int, int>();
+            visualToSlotMapping.Add(1, 0);
+            visualToSlotMapping.Add(2, 1);
+            visualToSlotMapping.Add(7, 2);
+            visualToSlotMapping.Add(5, 3);
+            visualToSlotMapping.Add(4, 4);
+            visualToSlotMapping.Add(3, 5);
+            visualToSlotMapping.Add(8, 6);
+            visualToSlotMapping.Add(9, 7);
+            
+            //add visual equipment form DB, only the visualizable equipment, not everything
+            var itemQuery = string.Format("SELECT * FROM inventory WHERE toon_id = {0} AND equipment_slot <> -1 AND item_id <> -1", persistentId);
+            var itemCmd = new SQLiteCommand(itemQuery, DBManager.Connection);
+            var itemReader = itemCmd.ExecuteReader();
+            if (itemReader.HasRows)
+            {
+                while (itemReader.Read())
+                {
+                    var slot = Convert.ToInt32(itemReader["equipment_slot"]);
+                    if (!visualToSlotMapping.ContainsKey(slot))
+                        continue;
+                    // decode vislual slot from equipment slot
+                    slot = visualToSlotMapping[slot];
+                    var gbid = Convert.ToInt32(itemReader["item_id"]);
+                    visualItems[slot] = D3.Hero.VisualItem.CreateBuilder()
+                        .SetGbid(gbid)
+                        .SetEffectLevel(0)
+                        .Build();
+                }
+            }
+            this.HeroVisualEquipmentField.Value = D3.Hero.VisualEquipment.CreateBuilder().AddRangeVisualItem(visualItems).Build();
+        }
+        */
+        #endregion
 
         public void LevelUp()
         {
             this.Level++;
+            this.GameAccount.ChangedFields.SetIntPresenceFieldValue(this.HeroLevelField);
         }
 
-        private static ToonClass GetClassByID(int classId)
+        #region Notifications
+
+        //hero class generated
+        //D3,Hero,1,0 -> D3.Hero.GbidClass: Hero Class
+        //D3,Hero,2,0 -> D3.Hero.Level: Hero's current level
+        //D3,Hero,3,0 -> D3.Hero.VisualEquipment: VisualEquipment
+        //D3,Hero,4,0 -> D3.Hero.PlayerFlags: Hero's flags
+        //D3,Hero,5,0 -> ?D3.Hero.NameText: Hero's Name
+        //D3,Hero,6,0 -> Unk Int64 (0)
+        //D3,Hero,7,0 -> Unk Int64 (0)
+
+        public override List<bnet.protocol.presence.FieldOperation> GetSubscriptionNotifications()
+        {
+            var operationList = new List<bnet.protocol.presence.FieldOperation>();
+            operationList.Add(this.HeroClassField.GetFieldOperation());
+            operationList.Add(this.HeroLevelField.GetFieldOperation());
+            operationList.Add(this.HeroVisualEquipmentField.GetFieldOperation());
+            operationList.Add(this.HeroFlagsField.GetFieldOperation());
+            operationList.Add(this.HeroNameField.GetFieldOperation());
+            operationList.Add(this.HighestUnlockedAct.GetFieldOperation());
+            operationList.Add(this.HighestUnlockedDifficulty.GetFieldOperation());
+
+            return operationList;
+        }
+
+        #endregion
+
+        public static ToonClass GetClassByID(int classId)
         {
             switch (classId)
             {
@@ -254,9 +518,9 @@ namespace Mooege.Core.MooNet.Toons
                     return ToonClass.Barbarian;
                 case unchecked((int)0xC88B9649):
                     return ToonClass.DemonHunter;
-                case 0x3DAC15:
+                case 0x003DAC15:
                     return ToonClass.Monk;
-                case 0x343C22A:
+                case 0x0343C22A:
                     return ToonClass.WitchDoctor;
                 case 0x1D4681B1:
                     return ToonClass.Wizard;
@@ -265,297 +529,34 @@ namespace Mooege.Core.MooNet.Toons
             return ToonClass.Barbarian;
         }
 
-        public bnet.protocol.presence.Field QueryField(bnet.protocol.presence.FieldKey queryKey)
-        {
-            var field = bnet.protocol.presence.Field.CreateBuilder().SetKey(queryKey);
-
-            switch ((FieldKeyHelper.Program)queryKey.Program)
-            {
-                case FieldKeyHelper.Program.D3:
-                    if (queryKey.Group == 2 && queryKey.Field == 1) // Banner configuration
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetMessageValue(this.Owner.BannerConfiguration.ToByteString()).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 1) // Hero's class (GbidClass)
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(this.ClassID).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 2) // Hero's current level
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(this.Level).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 3) // Hero's visible equipment
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetMessageValue(this.Equipment.ToByteString()).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 4) // Hero's flags (gender and such)
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue((uint)(this.Flags | ToonFlags.AllUnknowns)).Build());
-                    }
-                    else if (queryKey.Group == 4 && queryKey.Field == 1) // Channel ID if the client is online
-                    {
-                        if (this.Owner.LoggedInClient != null && this.Owner.LoggedInClient.CurrentChannel != null) field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetMessageValue(this.Owner.LoggedInClient.CurrentChannel.D3EntityId.ToByteString()).Build());
-                        else field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().Build());
-                    }
-                    else if (queryKey.Group == 4 && queryKey.Field == 2) // Current screen (all known values are just "in-menu"; also see ScreenStatuses sent in ChannelService.UpdateChannelState)
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(0).Build());
-                    }
-                    else
-                    {
-                        Logger.Warn("Unknown query-key: {0}, {1}, {2}", queryKey.Program, queryKey.Group, queryKey.Field);
-                    }
-                    break;
-                case FieldKeyHelper.Program.BNet:
-                    if (queryKey.Group == 3 && queryKey.Field == 2) // Toon name
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetStringValue(this.Name + "#" + this.HashCodeString).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 3) // Whether the toon is selected one for owner account.
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetBoolValue(this.IsSelected).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 5) // Away status - 0 for online
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue((uint)this.AwayStatus).Build());
-                    }
-                    else if (queryKey.Group == 3 && queryKey.Field == 9) // Program - always D3
-                    {
-                        field.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetFourccValue("D3").Build());
-                    }
-                    else
-                    {
-                        Logger.Warn("Unknown query-key: {0}, {1}, {2}", queryKey.Program, queryKey.Group, queryKey.Field);
-                    }
-                    break;
-            }
-
-            return field.HasValue ? field.Build() : null;
-        }
-
-        public void Update(bnet.protocol.presence.FieldOperation operation)
-        {
-            switch (operation.Operation)
-            {
-                case bnet.protocol.presence.FieldOperation.Types.OperationType.SET:
-                    DoSet(operation.Field);
-                    break;
-                case bnet.protocol.presence.FieldOperation.Types.OperationType.CLEAR:
-                    DoClear(operation.Field);
-                    break;
-            }
-        }
-
-        private void DoSet(bnet.protocol.presence.Field field)
-        {
-            switch ((FieldKeyHelper.Program)field.Key.Program)
-            {
-                case FieldKeyHelper.Program.D3:
-                    if (field.Key.Group == 4 && field.Key.Field == 1)
-                    {
-                        if (field.Value.HasMessageValue) //7727 Sends empty SET instead of a CLEAR -Egris
-                        {
-                            var entityId = D3.OnlineService.EntityId.ParseFrom(field.Value.MessageValue);
-                            var channel = ChannelManager.GetChannelByEntityId(entityId);
-                            this.Owner.LoggedInClient.CurrentChannel = channel;
-                        }
-                        else
-                        {
-                            Logger.Warn("Emtpy-field: {0}, {1}, {2}", field.Key.Program, field.Key.Group, field.Key.Field);
-                        }
-                    }
-                    else if (field.Key.Group == 4 && field.Key.Field == 2)
-                    {
-                        //catch to stop Logger.Warn spam on client start and exit
-                        // should D3.4.2 int64 Current screen (0=in-menus, 1=in-menus, 3=in-menus); see ScreenStatus sent to ChannelService.UpdateChannelState call /raist
-                    }
-                    else if (field.Key.Group == 4 && field.Key.Field == 3)
-                    {
-                        //Looks to be the ToonFlags of the party leader/inviter when it is an int, OR the message set in an open to friends game when it is a string /dustinconrad
-                    }
-                    else
-                    {
-                        Logger.Warn("Unknown set-field: {0}, {1}, {2} := {3}", field.Key.Program, field.Key.Group, field.Key.Field, field.Value);
-                    }
-                    break;
-                case FieldKeyHelper.Program.BNet:
-                    if (field.Key.Group == 3 && field.Key.Field == 5) // Away status
-                    {
-                        AwayStatus = (AwayStatus)field.Value.IntValue;
-                    }
-                    else
-                    {
-                        Logger.Warn("Unknown set-field: {0}, {1}, {2} := {3}", field.Key.Program, field.Key.Group, field.Key.Field, field.Value);
-                    }
-                    break;
-            }
-        }
-
-        private void DoClear(bnet.protocol.presence.Field field)
-        {
-            switch ((FieldKeyHelper.Program)field.Key.Program)
-            {
-                case FieldKeyHelper.Program.D3:
-                    {
-                        Logger.Warn("Unknown clear-field: {0}, {1}, {2}", field.Key.Program, field.Key.Group, field.Key.Field);
-                    }
-                    break;
-                case FieldKeyHelper.Program.BNet:
-                    {
-                        Logger.Warn("Unknown clear-field: {0}, {1}, {2}", field.Key.Program, field.Key.Group, field.Key.Field);
-                    }
-                    break;
-            }
-        }
-
-        protected override void NotifySubscriptionAdded(MooNetClient client)
-        {
-            var operations = new List<bnet.protocol.presence.FieldOperation>();
-
-            // Banner configuration
-            var fieldKey1 = FieldKeyHelper.Create(FieldKeyHelper.Program.D3, 2, 1, 0);
-            var field1 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey1).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetMessageValue(client.Account.BannerConfiguration.ToByteString()).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field1).Build());
-
-            // Class
-            var fieldKey2 = FieldKeyHelper.Create(FieldKeyHelper.Program.D3, 3, 1, 0);
-            var field2 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey2).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(this.ClassID).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field2).Build());
-
-            // Level
-            var fieldKey3 = FieldKeyHelper.Create(FieldKeyHelper.Program.D3, 3, 2, 0);
-            var field3 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey3).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(this.Level).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field3).Build());
-
-            // Equipment
-            var fieldKey4 = FieldKeyHelper.Create(FieldKeyHelper.Program.D3, 3, 3, 0);
-            var field4 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey4).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetMessageValue(this.Equipment.ToByteString()).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field4).Build());
-
-            // Flags
-            var fieldKey5 = FieldKeyHelper.Create(FieldKeyHelper.Program.D3, 3, 4, 0);
-            var field5 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey5).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue((uint)(this.Flags | ToonFlags.AllUnknowns)).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field5).Build());
-
-            // Name
-            var fieldKey6 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 2, 0);
-            var field6 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey6).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetStringValue(this.Name + "#" + this.HashCodeString).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field6).Build());
-
-            // Is it selected toon?
-            var fieldKey7 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 3, 0);
-            var field7 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey7).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetBoolValue(this.IsSelected).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field7).Build());
-
-            //AwayStatus - Available, Away, Busy
-            var fieldKey10 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 5, 0);
-            var field10 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey10).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue((uint)(this.AwayStatus)).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field10).Build());
-
-            // Program - FourCC "D3"
-            var fieldKey8 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 9, 0);
-            var field8 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey8).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetFourccValue("D3").Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field8).Build());
-
-            // Unknown int - maybe highest completed act? /raist
-            var fieldKey9 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 10, 0);
-            var field9 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey9).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetIntValue(0).Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field9).Build());
-
-            //Unknown string = always "NICKTEMPNAME" -Egris
-            var fieldKey11 = FieldKeyHelper.Create(FieldKeyHelper.Program.BNet, 3, 12, 0);
-            var field11 = bnet.protocol.presence.Field.CreateBuilder().SetKey(fieldKey11).SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetStringValue("NICKTEMPNAME").Build()).Build();
-            operations.Add(bnet.protocol.presence.FieldOperation.CreateBuilder().SetField(field11).Build());
-
-            // Create a presence.ChannelState
-            var state = bnet.protocol.presence.ChannelState.CreateBuilder().SetEntityId(this.BnetEntityID).AddRangeFieldOperation(operations).Build();
-
-            // Embed in channel.ChannelState
-            var channelState = bnet.protocol.channel.ChannelState.CreateBuilder().SetExtension(bnet.protocol.presence.ChannelState.Presence, state);
-
-            // Put in AddNotification message
-            var builder = bnet.protocol.channel.AddNotification.CreateBuilder().SetChannelState(channelState);
-
-            // Make the RPC call
-            client.MakeTargetedRPC(this, () => 
-                bnet.protocol.channel.ChannelSubscriber.CreateStub(client).NotifyAdd(null, builder.Build(), callback => { }));
-        }
-
         public override string ToString()
         {
-            return String.Format("{{ Toon: {0} [lowId: {1}] }}", this.Name, this.BnetEntityID.Low);
+            return String.Format("{{ Toon: {0} [lowId: {1}] }}", this.Name, this.D3EntityID.IdLow);
         }
 
-        public void SaveToDB()
+        #region DB
+
+
+        /*
+        private bool VisualItemExistsInDb(int slot)
         {
-            try
-            {
-                if (ExistsInDB())
-                {
-                    var query =
-                        string.Format(
-                            "UPDATE toons SET name='{0}', hashCode={1}, class={2}, gender={3}, level={4}, accountId={5}, timePlayed={6} WHERE id={7}",
-                            Name, this.HashCode, (byte)this.Class, (byte)this.Gender, this.Level, this.Owner.PersistentID, this.TimePlayed, this.PersistentID);
-
-                    var cmd = new SQLiteCommand(query, DBManager.Connection);
-                    cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    var query =
-                        string.Format(
-                            "INSERT INTO toons (id, name, hashCode, class, gender, level, timePlayed, accountId) VALUES({0},'{1}',{2},{3},{4},{5},{6},{7})",
-                            this.PersistentID, this.Name, this.HashCode, (byte)this.Class, (byte)this.Gender, this.Level, this.TimePlayed, this.Owner.PersistentID);
-
-                    var cmd = new SQLiteCommand(query, DBManager.Connection);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.ErrorException(e, "Toon.SaveToDB()");
-            }
-        }
-
-        public bool DeleteFromDB()
-        {
-            try
-            {
-                // Remove from DB
-                if (!ExistsInDB()) return false;
-
-                var query = string.Format("DELETE FROM toons WHERE id={0}", this.PersistentID);
-                var cmd = new SQLiteCommand(query, DBManager.Connection);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.ErrorException(e, "Toon.DeleteFromDB()");
-                return false;
-            }
-        }
-
-        private bool ExistsInDB()
-        {
-            var query =
-                string.Format(
-                    "SELECT id from toons where id={0}",
-                    this.PersistentID);
-
+            var query = string.Format("SELECT toon_id FROM inventory WHERE toon_id = {0} AND equipment_slot = {1}", this.PersistentID, slot);
             var cmd = new SQLiteCommand(query, DBManager.Connection);
             var reader = cmd.ExecuteReader();
             return reader.HasRows;
-        }
+        }*/
     }
+        #endregion
 
-    public enum ToonClass
+    #region Definitions and Enums
+    //Order is important as actor voices and saved data is based on enum index
+    public enum ToonClass// : uint
     {
-        Barbarian, // 0x4FB91EE2
-        Monk, // 0x3DAC15
-        DemonHunter, // 0xC88B9649
-        WitchDoctor, // 0x343C22A
-        Wizard // 0x1D4681B1
+        Barbarian,// = 0x4FB91EE2,
+        Monk,//= 0x3DAC15,
+        DemonHunter,// = 0xC88B9649,
+        WitchDoctor,// = 0x343C22A,
+        Wizard,// = 0x1D4681B1
     }
 
     [Flags]
@@ -564,21 +565,11 @@ namespace Mooege.Core.MooNet.Toons
         Male = 0x00,
         Female = 0x02,
         // TODO: These two need to be figured out still.. /plash
-        Unknown1 = 0x20,
+        //Unknown1 = 0x20,
         Unknown2 = 0x40,
         Unknown3 = 0x80000,
         Unknown4 = 0x2000000,
-        AllUnknowns = Unknown1 | Unknown2 | Unknown3 | Unknown4
+        AllUnknowns = Unknown2 | Unknown3 | Unknown4
     }
-
-    //TODO: figure out what 1 and 3 represent, or if it is a flag since all observed values are powers of 2 so far /dustinconrad
-    public enum AwayStatus : uint
-    {
-        Available = 0x00,
-        UnknownStatus1 = 0x01,
-        Away = 0x02,
-        UnknownStatus2 = 0x03,
-        Busy = 0x04
-    }
-
+    #endregion
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ namespace Mooege.Core.MooNet.Services
         private static readonly Logger Logger = LogManager.CreateLogger();
         public MooNetClient Client { get; set; }
         public bnet.protocol.Header LastCallHeader { get; set; }
+        public uint Status { get; set; }
 
         public override void CreateChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.CreateChannelRequest request, System.Action<bnet.protocol.channel.CreateChannelResponse> done)
         {
@@ -37,15 +38,19 @@ namespace Mooege.Core.MooNet.Services
                 .SetObjectId(channel.DynamicId)
                 .SetChannelId(channel.BnetEntityId);
 
+            Logger.Trace("CreateChannel() {0} for {1}", channel, Client.Account.CurrentGameAccount.CurrentToon);
+
             done(builder.Build());
             channel.SetOwner(Client); // Set the client that requested the creation of channel as the owner           
 
-            Logger.Trace("CreateChannel() {0} for {1}", channel, Client.CurrentToon);
         }
 
         public override void FindChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.FindChannelRequest request, System.Action<bnet.protocol.channel.FindChannelResponse> done)
         {
-            throw new NotImplementedException();
+            Logger.Trace("FindChannel(): Filter={0}", request.Options.AttributeFilter);
+            var builder = bnet.protocol.channel.FindChannelResponse.CreateBuilder();
+
+            done(builder.Build());
         }
 
         public override void GetChannelId(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.GetChannelIdRequest request, System.Action<bnet.protocol.channel.GetChannelIdResponse> done)
@@ -55,7 +60,7 @@ namespace Mooege.Core.MooNet.Services
 
         public override void GetChannelInfo(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.GetChannelInfoRequest request, System.Action<bnet.protocol.channel.GetChannelInfoResponse> done)
         {
-            Logger.Trace("GetChannelInfoRequest() to channel {0}:{1} by toon {2}", request.ChannelId.High, request.ChannelId.Low, Client.CurrentToon.Name);
+            Logger.Trace("GetChannelInfoRequest() to channel {0}:{1} by toon {2}", request.ChannelId.High, request.ChannelId.Low, Client.Account.CurrentGameAccount.CurrentToon.Name);
 
             var builder = bnet.protocol.channel.GetChannelInfoResponse.CreateBuilder();
             var channel = ChannelManager.GetChannelByEntityId(request.ChannelId);
@@ -69,7 +74,7 @@ namespace Mooege.Core.MooNet.Services
 
         public override void JoinChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.JoinChannelRequest request, System.Action<bnet.protocol.channel.JoinChannelResponse> done)
         {
-            Logger.Warn("ChannelOwnerService:JoinChannel()");
+            Logger.Trace("ChannelOwnerService:JoinChannel()");
 
             var channel = ChannelManager.GetChannelByEntityId(request.ChannelId);
             channel.Join(this.Client, request.ObjectId);

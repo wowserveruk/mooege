@@ -30,30 +30,26 @@ namespace Mooege.Core.GS.Powers
 
         public void Update()
         {
-            List<Actor> emptyKeys = new List<Actor>();
+            // make copy of keys as the dictionary will be modified during update/cleaning
+            Actor[] keys = _buffs.Keys.ToArray();
 
-            foreach (var buffKV in _buffs)
+            // update buffs and mark finished ones as removed
+            foreach (Actor target in keys)
+                _RemoveBuffsIf(target, buff => buff.Update());
+
+            // clean up removed buffs
+            foreach (Actor target in keys)
             {
-                buffKV.Value.RemoveAll((buff) =>
-                {
-                    bool removing = buff.Update();
-                    if (removing)
-                        buff.Remove();
-
-                    return removing;
-                });
-
-                if (buffKV.Value.Count == 0)
-                    emptyKeys.Add(buffKV.Key);
+                _buffs[target].RemoveAll(buff => buff == null);
+                if (_buffs[target].Count == 0)
+                    _buffs.Remove(target);
             }
-
-            // clean up empty buff lists
-            foreach (var key in emptyKeys)
-                _buffs.Remove(key);
         }
 
         public bool AddBuff(Actor user, Actor target, Buff buff)
         {
+            if (user.World == null || target.World == null) return false;
+
             buff.User = user;
             buff.Target = target;
             buff.World = target.World;
@@ -77,6 +73,63 @@ namespace Mooege.Core.GS.Powers
             return _AddBuff(buff);
         }
 
+        public void RemoveBuffs(Actor target, Type buffClass)
+        {
+            if (!_buffs.ContainsKey(target)) return;
+
+            _RemoveBuffsIf(target, buff => buff.GetType() == buffClass);
+        }
+
+        public void RemoveBuffs(Actor target, int powerSNO)
+        {
+            if (!_buffs.ContainsKey(target)) return;
+
+            _RemoveBuffsIf(target, buff => buff.PowerSNO == powerSNO);
+        }
+
+        public void RemoveAllBuffs(Actor target)
+        {
+            if (!_buffs.ContainsKey(target)) return;
+
+            _RemoveBuffsIf(target, buff => true);
+        }
+
+        public T GetFirstBuff<T>(Actor target) where T : Buff
+        {
+            if (!_buffs.ContainsKey(target)) return null;
+
+            Buff buff = _buffs[target].FirstOrDefault(b => b != null && b.GetType() == typeof(T));
+            if (buff != null)
+                return (T)buff;
+            else
+                return null;
+        }
+
+        public Buff[] GetAllBuffs(Actor target)
+        {
+            if (!_buffs.ContainsKey(target)) return null;
+            return _buffs[target].Where(b => b != null).ToArray();
+        }
+
+        public bool HasBuff<T>(Actor target) where T : Buff
+        {
+            return GetFirstBuff<T>(target) != null;
+        }
+
+        public void SendTargetPayload(Actor target, Payloads.Payload payload)
+        {
+            if (_buffs.ContainsKey(target))
+            {
+                List<Buff> buffs = _buffs[target];
+                int buffCount = buffs.Count;
+                for (int i = 0; i < buffCount; ++i)
+                {
+                    if (buffs[i] != null)
+                        buffs[i].OnPayload(payload);
+                }
+            }
+        }
+
         private bool _AddBuff(Buff buff)
         {
             // look up or create a buff list for the target, then add/stack the buff according to its class type.
@@ -87,7 +140,7 @@ namespace Mooege.Core.GS.Powers
             if (_buffs.ContainsKey(buff.Target))
             {
                 Type buffType = buff.GetType();
-                Buff existingBuff = _buffs[buff.Target].FirstOrDefault((b) => b.GetType() == buffType);
+                Buff existingBuff = _buffs[buff.Target].FirstOrDefault(b => b != null && b.GetType() == buffType);
                 if (existingBuff != null)
                 {
                     if (existingBuff.Stack(buff))
@@ -119,6 +172,26 @@ namespace Mooege.Core.GS.Powers
                 {
                     _buffs.Remove(buff.Target);
                     return false;
+                }
+            }
+        }
+
+        private void _RemoveBuffsIf(Actor target, Func<Buff, bool> pred)
+        {
+            List<Buff> buffs = _buffs[target];
+            int buffCount = buffs.Count;
+            for (int i = 0; i < buffCount; ++i)
+            {
+                if (buffs[i] != null)
+                {
+                    if (pred(buffs[i]))
+                    {
+                        if (buffs[i] != null)
+                        {
+                            buffs[i].Remove();
+                            buffs[i] = null;
+                        }
+                    }
                 }
             }
         }

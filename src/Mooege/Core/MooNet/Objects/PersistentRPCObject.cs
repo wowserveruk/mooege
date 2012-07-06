@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ namespace Mooege.Core.MooNet.Objects
             // NOTE: Resharper or sample tools may give a warning over this line indicating: "virtual member call in constructor",
             // but in C# virtual method calls always run on the most derived type. So we're fine.
             // Check these for more information: http://goo.gl/xv7WE, http://goo.gl/x4ep2
-            this.PersistentID = this.GenerateNewPersistentId(); 
+            this.PersistentID = this.GenerateNewPersistentId();
         }
 
         /// <summary>
@@ -87,5 +87,5 @@ namespace Mooege.Core.MooNet.Objects
         //        _persistentIdCounter = GetFromDB(); // Get the value from the domain's table
         //    }
         // }
-    }    
+    }
 }

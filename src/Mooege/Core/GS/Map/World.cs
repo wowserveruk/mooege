@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Mooege.Common;
-using Mooege.Common.Helpers;
 using Mooege.Common.Helpers.Math;
 using Mooege.Common.Logging;
-using Mooege.Common.MPQ.FileFormats.Types;
+using Mooege.Common.Storage;
 using Mooege.Core.GS.Actors.Implementations;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Common.Types.QuadTrees;
@@ -40,12 +38,18 @@ using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Core.GS.Powers;
 using Mooege.Core.GS.Common.Types.TagMap;
+using Mooege.Core.GS.Ticker;
+using Mooege.Net.GS.Message.Definitions.Misc;
 
 namespace Mooege.Core.GS.Map
 {
     public sealed class World : DynamicObject, IRevealable, IUpdateable
     {
         static readonly Logger Logger = LogManager.CreateLogger();
+        public readonly Dictionary<World, List<Item>> DbItems = new Dictionary<World, List<Item>>(); //we need this list to delete item_instances from items which have no owner anymore.
+        public readonly Dictionary<ulong, Item> CachedItems = new Dictionary<ulong, Item>();
+
+
 
         /// <summary>
         /// Game that the world belongs to.
@@ -93,7 +97,6 @@ namespace Mooege.Core.GS.Map
         // Environment
         public Mooege.Common.MPQ.FileFormats.Environment Environment { get; private set; }
 
-
         /// <summary>
         /// Returns list of available starting points.
         /// </summary>
@@ -116,7 +119,7 @@ namespace Mooege.Core.GS.Map
             this.Game = game;
             this.WorldSNO = new SNOHandle(SNOGroup.Worlds, snoId);
 
-            Environment = ((Mooege.Common.MPQ.FileFormats.World) Mooege.Common.MPQ.MPQStorage.Data.Assets[SNOGroup.Worlds][snoId].Data).Environment;
+            Environment = ((Mooege.Common.MPQ.FileFormats.World)Mooege.Common.MPQ.MPQStorage.Data.Assets[SNOGroup.Worlds][snoId].Data).Environment;
             this.Game.StartTracking(this); // start tracking the dynamicId for the world.            
             this._scenes = new ConcurrentDictionary<uint, Scene>();
             this._actors = new ConcurrentDictionary<uint, Actor>();
@@ -131,14 +134,11 @@ namespace Mooege.Core.GS.Map
 
         public void Update(int tickCounter)
         {
-            this.PowerManager.Update();
-            this.BuffManager.Update();
-
             var actorsToUpdate = new List<IUpdateable>(); // list of actor to update.
 
-            foreach(var player in this.Players.Values) // get players in the world.
+            foreach (var player in this.Players.Values) // get players in the world.
             {
-                foreach(var actor in player.GetActorsInRange().OfType<IUpdateable>()) // get IUpdateable actors in range.
+                foreach (var actor in player.GetActorsInRange().OfType<IUpdateable>()) // get IUpdateable actors in range.
                 {
                     if (actorsToUpdate.Contains(actor as IUpdateable)) // don't let a single actor in range of more than players to get updated more thance per tick /raist.
                         continue;
@@ -147,9 +147,19 @@ namespace Mooege.Core.GS.Map
                 }
             }
 
-            foreach(var actor in actorsToUpdate) // trigger the updates.
+            foreach (var actor in actorsToUpdate) // trigger the updates.
             {
                 actor.Update(tickCounter);
+            }
+
+            this.BuffManager.Update();
+            this.PowerManager.Update();
+
+            UpdateFlippy(tickCounter);
+
+            foreach (var player in this.Players.Values)
+            {
+                player.InGameClient.SendTick(); // if there's available messages to send, will handle ticking and flush the outgoing buffer.
             }
         }
 
@@ -195,7 +205,7 @@ namespace Mooege.Core.GS.Map
         /// <param name="actor">The actor.</param>
         public void BroadcastInclusive(GameMessage message, Actor actor)
         {
-            var players=actor.GetPlayersInRange();
+            var players = actor.GetPlayersInRange();
             foreach (var player in players)
             {
                 player.InGameClient.SendMessage(message);
@@ -233,7 +243,13 @@ namespace Mooege.Core.GS.Map
             player.InGameClient.SendMessage(new RevealWorldMessage() // Reveal world to player
             {
                 WorldID = this.DynamicID,
-                WorldSNO = this.WorldSNO.Id
+                WorldSNO = this.WorldSNO.Id,
+                Field2 = 540,
+                Field3 = -600,
+                Field4 = 60,
+                Field5 = 60,
+                Field6 = 3300,
+                Field7 = 5040
             });
 
             player.InGameClient.SendMessage(new EnterWorldMessage()
@@ -259,7 +275,7 @@ namespace Mooege.Core.GS.Map
                 return false;
 
             // player.InGameClient.SendMessage(new WorldDeletedMessage() { WorldID = DynamicID });/ / don't delete the old world or beta-client will be crashing! /raist.
-            player.RevealedObjects.Remove(this.DynamicID);            
+            player.RevealedObjects.Remove(this.DynamicID);
             return true;
         }
 
@@ -277,10 +293,10 @@ namespace Mooege.Core.GS.Map
             actor.OnEnter(this);
 
             // reveal actor to player's in-range.
-            foreach(var player in  actor.GetPlayersInRange())
+            foreach (var player in actor.GetPlayersInRange())
             {
                 actor.Reveal(player);
-            }            
+            }
         }
 
         /// <summary>
@@ -298,14 +314,15 @@ namespace Mooege.Core.GS.Map
                     actor.Unreveal(player);
                 }
             }
-            
-            this.RemoveActor(actor);
+
+            if (this.HasActor(actor.DynamicID))
+                this.RemoveActor(actor);
 
             if (!(actor is Player)) return; // if the leaving actors is a player, unreveal the actors revealed to him contained in the world.
             var revealedObjects = (actor as Player).RevealedObjects.Values.ToList(); // list of revealed actors.
             foreach (var @object in revealedObjects)
-                    if(@object!=actor) // do not unreveal the player itself.
-                        @object.Unreveal(actor as Player);
+                if (@object != actor) // do not unreveal the player itself.
+                    @object.Unreveal(actor as Player);
         }
 
         #endregion
@@ -320,27 +337,34 @@ namespace Mooege.Core.GS.Map
         public void SpawnMonster(int monsterSNOId, Vector3D position)
         {
             var monster = ActorFactory.Create(this, monsterSNOId, new TagMap());
-            monster.Scale = 1.35f;
+            //monster.Scale = 1.35f; // this shoudln't be here
             monster.EnterWorld(position);
         }
+
+        private List<TickTimer> _flippyTimers = new List<TickTimer>();
+        private const int FlippyDurationInTicks = 30;
+        private const int FlippyMaxDistanceManhattan = 10;  // length of one side of the square around the player where the item will appear
+        private const int FlippyDefaultFlippy = 0x6d82;     // g_flippy.prt
 
         /// <summary>
         /// Spawns a random item drop for given player.
         /// </summary>
         /// <param name="player">The player.</param>
         /// <param name="position">The position for drop.</param>
-        public void SpawnRandomItemDrop(Player player, Vector3D position)
+        public void SpawnRandomItemDrop(Actor source, Player player)
         {
             var item = ItemGenerator.GenerateRandom(player);
-            if ((item is SpellRune) && (item.Attributes[GameAttribute.Rune_Rank] == 0)) {
+            if ((item is SpellRune) /*&& (item.Attributes[GameAttribute.Rune_Rank] == 0)*/)
+            {
                 // favor player's class in attuned runes // TODO: remove or move this
                 if (RandomHelper.NextDouble() > 0.6f)
                 {
                     (item as SpellRune).ReAttuneToClass(player.Toon.Class);
                 }
             }
-            item.Drop(null, position); // NOTE: The owner field for an item is only set when it is in the owner's inventory. /komiga
+            // NOTE: The owner field for an item is only set when it is in the owner's inventory. /komiga
             player.GroundItems[item.DynamicID] = item; // FIXME: Hacky. /komiga
+            DropItem(source, null, item);
         }
 
         /// <summary>
@@ -348,11 +372,60 @@ namespace Mooege.Core.GS.Map
         /// </summary>
         /// <param name="player">The player.</param>
         /// <param name="position">The position for drop.</param>
-        public void SpawnGold(Player player, Vector3D position)
+        public void SpawnGold(Actor source, Player player)
         {
-            var item = ItemGenerator.CreateGold(player, RandomHelper.Next(1000, 3000)); // somehow the actual ammount is not shown on ground /raist.
             // TODO: Gold should be spawned for all players in range. /raist.
-            item.Drop(null, position);
+            var item = ItemGenerator.CreateGold(player, RandomHelper.Next(1000, 3000)); // somehow the actual ammount is not shown on ground /raist.
+            DropItem(source, player, item);
+        }
+
+        /// <summary>
+        /// Returns the first actor found with a given sno id
+        /// </summary>
+        /// <param name="sno"></param>
+        /// <returns></returns>
+        public Actor GetActorBySNO(int sno)
+        {
+            foreach (var actor in this._actors.Values)
+            {
+                if (actor.ActorSNO.Id == sno)
+                    return actor;
+            } return null;
+        }
+
+        /// <summary>
+        /// Returns true if any actors exist under a well defined group
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public bool HasActorsInGroup(string group)
+        {
+            var groupHash = Mooege.Common.Helpers.Hash.StringHashHelper.HashItemName(group);
+            foreach (var actor in this._actors.Values)
+            {
+                if (actor.Tags != null)
+                    if (actor.Tags.ContainsKey(MarkerKeys.Group1Hash))
+                        if (actor.Tags[MarkerKeys.Group1Hash] == groupHash) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns all actors matching a group
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public List<Actor> GetActorsInGroup(string group)
+        {
+            List<Actor> matchingActors = new List<Actor>();
+            var groupHash = Mooege.Common.Helpers.Hash.StringHashHelper.HashItemName(group);
+            foreach (var actor in this._actors.Values)
+            {
+                if (actor.Tags != null)
+                    if (actor.Tags.ContainsKey(MarkerKeys.Group1Hash))
+                        if (actor.Tags[MarkerKeys.Group1Hash] == groupHash) matchingActors.Add(actor);
+            }
+            return matchingActors;
         }
 
         /// <summary>
@@ -360,11 +433,95 @@ namespace Mooege.Core.GS.Map
         /// </summary>
         /// <param name="player">The player.</param>
         /// <param name="position">The position for drop.</param>
-        public void SpawnHealthGlobe(Player player, Vector3D position)
+        public void SpawnHealthGlobe(Actor source, Player player, Vector3D position)
         {
             // TODO: Health-globe should be spawned for all players in range. /raist.
             var item = ItemGenerator.CreateGlobe(player, RandomHelper.Next(1, 28)); // somehow the actual ammount is not shown on ground /raist.
-            item.Drop(null, position);
+            DropItem(source, player, item);
+        }
+
+        /// <summary>
+        /// Update the flippy animations and remove them once they have timed out
+        /// </summary>
+        /// <param name="tickCounter"></param>
+        private void UpdateFlippy(int tickCounter)
+        {
+            List<TickTimer> finished = new List<TickTimer>();
+            foreach (var flippy in _flippyTimers)
+            {
+                flippy.Update(tickCounter);
+
+                if (!flippy.Running)
+                {
+                    finished.Add(flippy);
+                }
+            }
+
+            lock (_flippyTimers)
+            {
+                foreach (var finishedFlippy in finished)
+                {
+                    _flippyTimers.Remove(finishedFlippy);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Drops a given item to a random position close to the player
+        /// </summary>
+        /// <param name="player">Player to which to reveal the item</param>
+        /// <param name="item">Item to reveal</param>
+        public void DropItem(Player player, Item item)
+        {
+            DropItem(player, player, item);
+        }
+
+        /// <summary>
+        /// Drops a given item to a random position close to a source actor
+        /// </summary>
+        /// <param name="source">Source actor of the flippy animation</param>
+        /// <param name="player">Player to which to reveal the item</param>
+        /// <param name="item">Item to reveal</param>
+        public void DropItem(Actor source, Player player, Item item)
+        {
+            lock (_flippyTimers)
+            {
+                _flippyTimers.Add(new RelativeTickTimer(
+                    Game,
+                    FlippyDurationInTicks,
+                    (p) => item.Drop(null, item.Position)             // drop the item after FlippyDuration ticks
+                    ));
+            }
+
+            // Get a random location close to the source
+            // TODO Make sure the location actually allows items (not occupied by something)
+            float x = (float)(RandomHelper.NextDouble() - 0.5) * FlippyMaxDistanceManhattan;
+            float y = (float)(RandomHelper.NextDouble() - 0.5) * FlippyMaxDistanceManhattan;
+            item.Position = source.Position + new Vector3D(x, y, 0);
+
+            // Items send either only a particle effect or default particle and either FlippyTag.Actor or their own actorsno
+            int particleSNO = -1;
+            int actorSNO = -1;
+
+            if (item.SnoFlippyParticle != null)
+            {
+                particleSNO = item.SnoFlippyParticle.Id;
+            }
+            else
+            {
+                actorSNO = item.SnoFlippyActory == null ? -1 : item.SnoFlippyActory.Id;
+                particleSNO = FlippyDefaultFlippy;
+            }
+
+            BroadcastIfRevealed(new FlippyMessage
+            {
+                ActorID = (int)source.DynamicID,
+                Destination = item.Position,
+                SNOFlippyActor = actorSNO,
+                SNOParticleEffect = particleSNO
+            }, source);
+
         }
 
         #endregion
@@ -444,7 +601,7 @@ namespace Mooege.Core.GS.Map
         {
             if (actor.DynamicID == 0 || !this._actors.ContainsKey(actor.DynamicID))
                 throw new Exception(String.Format("Object has an invalid ID or was not present (ID = {0})", actor.DynamicID));
-            
+
             Actor removedActor;
             this._actors.TryRemove(actor.DynamicID, out removedActor); // remove it from actors collection.
             this.QuadTree.Remove(actor); // remove from quad-tree too.
@@ -513,7 +670,7 @@ namespace Mooege.Core.GS.Map
         /// </summary>
         /// <typeparam name="T">Type of the actor.</typeparam>
         /// <returns>Actor</returns>
-        public T GetActorInstance<T>() where T: Actor
+        public T GetActorInstance<T>() where T : Actor
         {
             return this._actors.Values.OfType<T>().FirstOrDefault();
         }
@@ -632,6 +789,76 @@ namespace Mooege.Core.GS.Map
         }
 
         #endregion
+
+        public bool CheckLocationForFlag(Vector3D location, Mooege.Common.MPQ.FileFormats.Scene.NavCellFlags flags)
+        {
+            // We loop Scenes as its far quicker than looking thru the QuadTree - DarkLotus
+
+            foreach (Scene s in this._scenes.Values)
+            {
+                if (s.Bounds.IntersectsWith(new Rect(location.X, location.Y, 1f, 1f)))
+                {
+                    /*if (s.DynamicID != QuadTree.Query<Scene>(new Common.Types.Misc.Circle(location.X, location.Y, 2f)).FirstOrDefault().DynamicID)
+                    {
+                        Logger.Debug("Quadtree");// This is here because quadtree has the same problem finding the master scene instead of subscene
+                    }*/
+                    Scene scene = s;
+                    if (s.Parent != null) { scene = s.Parent; }
+                    if (s.Subscenes.Count > 0)
+                    {
+                        foreach (var subscene in s.Subscenes)
+                        {
+                            if (subscene.Bounds.IntersectsWith(new Rect(location.X, location.Y, 1f, 1f)))
+                            {
+                                scene = subscene;
+                            }
+                        }
+                    }
+
+                    int x = (int)((location.X - scene.Bounds.Left) / 2.5f);
+                    int y = (int)((location.Y - scene.Bounds.Top) / 2.5f);
+                    /*if (s.NavMesh.WalkGrid[x, y] == 1)
+                    {
+                        return true;
+                    }*/
+                    int total = (int)((y * scene.NavMesh.SquaresCountY) + x);
+                    if (total < 0 || total > scene.NavMesh.NavMeshSquareCount)
+                    {
+                        Logger.Error("DarkLotus Cant Code:( Navmesh overflow");
+                        return false;
+                    }
+                    if (scene.NavMesh.Squares[total].Flags.HasFlag(flags))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        Logger.Debug("Flags: " + scene.NavMesh.Squares[total].Flags.ToString());
+                        return false;
+                    }
+                    //return false;
+
+                }
+            }
+            // Location not inside a known scene - DarkLotus
+            return false;
+        }
+
+        public void CleanupItemInstances()
+        {
+            if (DbItems.ContainsKey(this))
+            {
+                var itemInstancesToDelete = DbItems[this].Where(dbi => dbi.Owner == null);
+                foreach (var itm in itemInstancesToDelete)
+                {
+                    if (itm.DBInventory == null)
+                        ItemGenerator.DeleteFromDB(itm);
+                }
+                DbItems.Remove(this);
+            }
+
+        }
+
 
         public override string ToString()
         {

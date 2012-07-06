@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Mooege.Core.GS.Actors.Actions;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Ticker;
@@ -32,10 +28,10 @@ namespace Mooege.Core.GS.Actors.Movement
 
         public SteppedRelativeTickTimer Timer;
 
-        public MoveToPointAction(Actor owner, Vector3D heading) 
+        public MoveToPointAction(Actor owner, Vector3D heading)
             : base(owner)
         {
-            this.Heading = heading;            
+            this.Heading = heading;
         }
 
         public override void Start(int tickCounter)
@@ -44,13 +40,13 @@ namespace Mooege.Core.GS.Actors.Movement
             var facingAngle = MovementHelpers.GetFacingAngle(this.Owner, this.Heading);
             this.Owner.Move(this.Heading, facingAngle);
 
-            Logger.Trace("Heading: " + this.Heading); 
+            Logger.Trace("Heading: " + this.Heading);
             Logger.Trace("Start point: " + this.Owner.Position);
 
-            this.Timer = new SteppedRelativeTickTimer(this.Owner.World.Game, 6, (int)(distance/this.Owner.WalkSpeed), 
+            this.Timer = new SteppedRelativeTickTimer(this.Owner.World.Game, 6, (int)(distance / this.Owner.WalkSpeed),
             (tick) =>
             {
-                this.Owner.Position = MovementHelpers.GetMovementPosition(this.Owner.Position, this.Owner.WalkSpeed, facingAngle, 6);                
+                this.Owner.Position = MovementHelpers.GetMovementPosition(this.Owner.Position, this.Owner.WalkSpeed, facingAngle, 6);
                 Logger.Trace("Step: " + this.Owner.Position);
             },
             (tick) =>

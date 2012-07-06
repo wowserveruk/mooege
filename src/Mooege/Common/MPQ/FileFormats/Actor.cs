@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -126,24 +126,9 @@ namespace Mooege.Common.MPQ.FileFormats
             this.Int4 = stream.ReadValueS32();
             stream.Position += 4;
             BitField0 = stream.ReadValueS32();
-            var serVOCastingNotes = stream.GetSerializedDataPointer();
-            if (serVOCastingNotes.Size > 0)
-            {
-                long x = stream.Position;
-                stream.Position = serVOCastingNotes.Offset + 16;
-                CastingNotes = stream.ReadString((uint)serVOCastingNotes.Size,true);                
-                stream.Position = x;
-            }
+            CastingNotes = stream.ReadSerializedString();
+            VoiceOverRole = stream.ReadSerializedString();
 
-            BitField1 = stream.ReadValueS32();// not sure
-            var serVORole = stream.GetSerializedDataPointer();
-            if (serVORole.Size > 0)
-            {
-                long x = stream.Position;
-                stream.Position = serVOCastingNotes.Offset + 16;
-                VoiceOverRole = stream.ReadString((uint)serVORole.Size,true); 
-                stream.Position = x;
-            }
             // Updated based on BoyC's 010 template and Moack's work. Think we just about read all data from actor now.- DarkLotus
             stream.Close();
         }

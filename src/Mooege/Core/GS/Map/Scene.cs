@@ -1,5 +1,5 @@
 ﻿﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using Mooege.Common;
 using Mooege.Common.Logging;
 using Mooege.Common.MPQ;
 using Mooege.Core.GS.Actors;
@@ -31,7 +30,6 @@ using Mooege.Core.GS.Objects;
 using Mooege.Core.GS.Players;
 using Mooege.Net.GS.Message.Definitions.Map;
 using Mooege.Net.GS.Message.Definitions.Scene;
-using Mooege.Common.Helpers;
 using Mooege.Common.Helpers.Math;
 
 namespace Mooege.Core.GS.Map
@@ -73,7 +71,7 @@ namespace Mooege.Core.GS.Map
         /// <summary>
         /// Visibility in MiniMap.
         /// </summary>
-        public SceneMiniMapVisibility MiniMapVisibility { get; set; }
+        public bool MiniMapVisibility { get; set; }
 
         /// <summary>
         /// Scene Specification.
@@ -84,14 +82,14 @@ namespace Mooege.Core.GS.Map
         /// Applied labels.
         /// Not sure on usage /raist.
         /// </summary>
-        public int[] AppliedLabels;       
+        public int[] AppliedLabels;
 
         /// <summary>
         /// PRTransform for the scene.
         /// </summary>
         public PRTransform Transform
         {
-            get { return new PRTransform { Quaternion = new Quaternion { W = this.FacingAngle, Vector3D = this.RotationAxis }, Vector3D = this.Position }; }
+            get { return new PRTransform { Quaternion = new Quaternion { W = this.RotationW, Vector3D = this.RotationAxis }, Vector3D = this.Position }; }
         }
 
         /// <summary>
@@ -142,22 +140,24 @@ namespace Mooege.Core.GS.Map
             this.SceneSNO = new SNOHandle(SNOGroup.Scene, snoId);
             this.Parent = parent;
             this.Subscenes = new List<Scene>();
-            this.Scale = 1.0f;                   
+            this.Scale = 1.0f;
             this.AppliedLabels = new int[0];
             this.LoadSceneData(); // load data from mpqs.
-
-            this.Size = new Size(this.NavZone.V0.X*this.NavZone.Float0, this.NavZone.V0.Y*this.NavZone.Float0);
+            this.Size = new Size(this.NavZone.V0.X * this.NavZone.Float0, this.NavZone.V0.Y * this.NavZone.Float0);
             this.Position = position;
             this.World.AddScene(this); // add scene to the world.
         }
 
-        #region mpq-data 
+        #region mpq-data
 
         /// <summary>
         /// Loads scene data from mpqs.
         /// </summary>
         private void LoadSceneData()
         {
+            // oh yeah, this really happens to me sometimes, i dont know why! ~weltmeyer
+            if (!MPQStorage.Data.Assets[SNOGroup.Scene].ContainsKey(this.SceneSNO.Id))
+                Logger.Debug("AssetsForScene not found in MPQ Storage:Scene:{0}, Asset:{1}", SNOGroup.Scene, this.SceneSNO.Id);
             var data = MPQStorage.Data.Assets[SNOGroup.Scene][this.SceneSNO.Id].Data as Mooege.Common.MPQ.FileFormats.Scene;
             if (data == null) return;
 
@@ -224,11 +224,21 @@ namespace Mooege.Core.GS.Map
                         case Mooege.Common.MPQ.FileFormats.MarkerType.Light:
                         case Mooege.Common.MPQ.FileFormats.MarkerType.Particle:
                         case Mooege.Common.MPQ.FileFormats.MarkerType.SubScenePosition:
-                            // nothing to do for these here
+                        case Mooege.Common.MPQ.FileFormats.MarkerType.AudioVolume:
+                            // nothing to do for these here, client load them on its own
+                            break;
+
+                        case Mooege.Common.MPQ.FileFormats.MarkerType.Script:
+                            Logger.Trace("Ignoring marker {0} in {1} ({2}) because scripts are not handled yet", marker.Name, markerSetData.FileName, markerSetData.Header.SNOId);
+                            break;
+
+                        case Mooege.Common.MPQ.FileFormats.MarkerType.Event:
+                            Logger.Trace("Ignoring marker {0} in {1} ({2}) because events are not handled yet", marker.Name, markerSetData.FileName, markerSetData.Header.SNOId);
                             break;
 
                         case Mooege.Common.MPQ.FileFormats.MarkerType.MinimapMarker:
-                            // TODO Load minimap markers here
+                            Logger.Trace("Ignoring marker {0} in {1} ({2}) because minimap marker are not handled yet", marker.Name, markerSetData.FileName, markerSetData.Header.SNOId);
+
                             break;
 
                         case Mooege.Common.MPQ.FileFormats.MarkerType.Actor:
@@ -237,7 +247,7 @@ namespace Mooege.Core.GS.Map
                             if (actor == null) continue;
 
                             var position = marker.PRTransform.Vector3D + this.Position; // calculate the position for the actor.
-                            actor.FacingAngle = marker.PRTransform.Quaternion.W;
+                            actor.RotationW = marker.PRTransform.Quaternion.W;
                             actor.RotationAxis = marker.PRTransform.Quaternion.Vector3D;
 
                             actor.EnterWorld(position);
@@ -251,7 +261,7 @@ namespace Mooege.Core.GS.Map
                             if (actor2 == null) continue;
 
                             var position2 = marker.PRTransform.Vector3D + this.Position; // calculate the position for the actor.
-                            actor2.FacingAngle = marker.PRTransform.Quaternion.W;
+                            actor2.RotationW = marker.PRTransform.Quaternion.W;
                             actor2.RotationAxis = marker.PRTransform.Quaternion.Vector3D;
 
                             actor2.EnterWorld(position2);
@@ -284,7 +294,7 @@ namespace Mooege.Core.GS.Map
 
         #endregion
 
-        #region scene revealing & unrevealing 
+        #region scene revealing & unrevealing
 
         /// <summary>
         /// Returns true if the actor is revealed to player.
@@ -305,8 +315,8 @@ namespace Mooege.Core.GS.Map
         {
             if (player.RevealedObjects.ContainsKey(this.DynamicID)) return false; // return if already revealed.
 
-            player.InGameClient.SendMessage(this.RevealMessage,true); // reveal the scene itself.
-            player.InGameClient.SendMessage(this.MapRevealMessage,true); // reveal the scene in minimap.
+            player.InGameClient.SendMessage(this.RevealMessage, true); // reveal the scene itself.
+            player.InGameClient.SendMessage(this.MapRevealMessage, true); // reveal the scene in minimap.
 
             foreach (var sub in this.Subscenes) // reveal subscenes too.
             {
@@ -326,8 +336,8 @@ namespace Mooege.Core.GS.Map
         {
             if (!player.RevealedObjects.ContainsKey(this.DynamicID)) return false; // if it's not revealed already, just return.
 
-            player.InGameClient.SendMessage(new DestroySceneMessage() { WorldID = this.World.DynamicID, SceneID = this.DynamicID },true); // send the unreveal message.
-            
+            player.InGameClient.SendMessage(new DestroySceneMessage() { WorldID = this.World.DynamicID, SceneID = this.DynamicID }, true); // send the unreveal message.
+
             foreach (var subScene in this.Subscenes) // unreveal subscenes too.
             {
                 subScene.Unreveal(player);
@@ -353,7 +363,11 @@ namespace Mooege.Core.GS.Map
                 specification.SNOCombatMusic = World.Environment.snoCombatMusic;
                 specification.SNOAmbient = World.Environment.snoAmbient;
                 specification.SNOReverb = World.Environment.snoReverb;
-                specification.SNOWeather = World.Environment.snoWeather;
+                //specification.SNOWeather = World.Environment.snoWeather;
+                //World data is being read from olders mpq patch files and reading the wrong
+                //weather.  forcing new weather from town to all scenes for now
+                //since it's much more pleasing on the eyes than the blue haze
+                specification.SNOWeather = 0x00013220;
 
                 return new RevealSceneMessage
                 {
@@ -382,7 +396,7 @@ namespace Mooege.Core.GS.Map
                     SceneSNO = this.SceneSNO.Id,
                     Transform = this.Transform,
                     WorldID = this.World.DynamicID,
-                    MiniMapVisibility = this.MiniMapVisibility
+                    MiniMapVisibility = false //= this.MiniMapVisibility
                 };
             }
         }

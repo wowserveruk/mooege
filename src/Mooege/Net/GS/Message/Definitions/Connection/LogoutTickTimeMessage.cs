@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ namespace Mooege.Net.GS.Message.Definitions.Connection
         public bool Field0;
         public int Ticks;
         public int Field2;
+
+        public LogoutTickTimeMessage() : base(Opcodes.LogoutTickTimeMessage) { }
 
         public override void Parse(GameBitBuffer buffer)
         {

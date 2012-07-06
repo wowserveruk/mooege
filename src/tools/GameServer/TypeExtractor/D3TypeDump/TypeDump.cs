@@ -30,6 +30,7 @@ namespace D3TypeDump
         const int HashAddress = 0x01318A30;
         const int HashOffset = 0x24;
 
+        #region BETA
         #region build 7447 addresses
         //const int OpcodeSwitch_Address = 0x008C22F0;
         //const int TypeDescriptorsAddress = 0x157F5CC;
@@ -57,19 +58,168 @@ namespace D3TypeDump
         #endregion
 
         #region build 7841 addresses
-        const int OpcodeSwitch_Address = 0x008C4260;
-        const int TypeDescriptorsAddress = 0x15C9008;
-        const int TypeDescriptorsOffset = 40;
-        const int AttributesAddress = 0x013AC420;
-        const int AttributeCount = 728;
-        const int Attribute_Int = 0x11D4C5C;
-        const int Attribute_IntMinMax = 0x011D4C64;
-        const int Attribute_FloatMinMax = 0x011D4C6C;
-        const int Attribute_Float16 = 0x011D4C74;
-        const int Attribute_Float16Or32 = 0x011D4C7C;
+        //const int OpcodeSwitch_Address = 0x008C4260;
+        //const int TypeDescriptorsAddress = 0x15C9008;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x013AC420;
+        //const int AttributeCount = 728;
+        //const int Attribute_Int = 0x11D4C5C;
+        //const int Attribute_IntMinMax = 0x011D4C64;
+        //const int Attribute_FloatMinMax = 0x011D4C6C;
+        //const int Attribute_Float16 = 0x011D4C74;
+        //const int Attribute_Float16Or32 = 0x011D4C7C;
         #endregion
 
+        #region build 8101 addresses
+        //const int OpcodeSwitch_Address = 0x008C61F0; //D3 .text
+
+        //const int TypeDescriptorsAddress = 0x016259F8; //D3 .data
+        //const int TypeDescriptorsOffset = 40;
+
+        //const int AttributesAddress = 0x013E73B0; //D3 .data
+        //const int AttributeCount = 769;
+        //const int Attribute_Int = 0x12054EC; //D3 .rdata
+        //const int Attribute_IntMinMax = 0x12054F4; //D3 .rdata
+        //const int Attribute_FloatMinMax = 0x12054FC; //D3 .rdata
+        //const int Attribute_Float16 = 0x1205504; //D3 .rdata
+        //const int Attribute_Float16Or32 = 0x120550C; //D3 .rdata
+        #endregion
+
+        #region build 8296 addresses
+        //const int OpcodeSwitch_Address = 0x008C05B0; //D3 .text
+
+        //const int TypeDescriptorsAddress = 0x01435E7C; //D3 .data
+        //const int TypeDescriptorsOffset = 40;
+
+        //const int AttributesAddress = 0x0141D338; //D3 .data
+        //const int AttributeCount = 784;
+        //const int Attribute_Int = 0X122FF0C; //D3 .rdata
+        //const int Attribute_IntMinMax = 0X122FF14; //D3 .rdata
+        //const int Attribute_FloatMinMax = 0X122FF1C; //D3 .rdata
+        //const int Attribute_Float16 = 0X122FF24; //D3 .rdata
+        //const int Attribute_Float16Or32 = 0X122FF2C; //D3 .rdata
+        #endregion
+
+        #region build 8610 addresses
+        //const int OpcodeSwitch_Address = 0x008BEA00;
+
+        //const int TypeDescriptorsAddress = 0x016BAF60;
+        //const int TypeDescriptorsOffset = 40;
+
+        //const int AttributesAddress = 0x01482338;
+        //const int AttributeCount = 819;
+        //const int Attribute_Int = 0X1288354;
+        //const int Attribute_IntMinMax = 0X128835C;
+        //const int Attribute_FloatMinMax = 0X1288364;
+        //const int Attribute_Float16 = 0X128836C;
+        //const int Attribute_Float16Or32 = 0X1288374;
+        #endregion
+
+        #region build 8815 addresses
+        //const int OpcodeSwitch_Address = 0x008C1350;
+        //const int TypeDescriptorsAddress = 0x016EFEB0;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x14A3340;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int         = 0X12A2BD4;
+        //const int Attribute_IntMinMax   = 0X12A2BDC;
+        //const int Attribute_FloatMinMax = 0X12A2BE4;
+        //const int Attribute_Float16     = 0X12A2BEC;
+        //const int Attribute_Float16Or32 = 0X12A2BF4;
+        #endregion
+
+        #region build 8896 addresses
+        //const int OpcodeSwitch_Address = 0x008C0A10;
+        //const int TypeDescriptorsAddress = 0x014E561C;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x14C95A8;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0X12C3004;
+        //const int Attribute_IntMinMax = 0X12C300C;
+        //const int Attribute_FloatMinMax = 0X12C3014;
+        //const int Attribute_Float16 = 0X12C301C;
+        //const int Attribute_Float16Or32 = 0X12C3024;
+        #endregion
+
+        #region build 9183 addresses
+        //const int OpcodeSwitch_Address = 0x008C0770;
+        //const int TypeDescriptorsAddress = 0x0151628C;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x014FA3D0;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0x012ED0C4;
+        //const int Attribute_IntMinMax = 0x012ED0CC;
+        //const int Attribute_FloatMinMax = 0x012ED0D4;
+        //const int Attribute_Float16 = 0x012ED0DC;
+        //const int Attribute_Float16Or32 = 0x012ED0E4;
+        #endregion
+
+        #region build 9327 addresses
+        //const int OpcodeSwitch_Address = 0x008C0B00;
+        //const int TypeDescriptorsAddress = 0x0151828C;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x014FC3D0;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0x012EF0F4;
+        //const int Attribute_IntMinMax = 0x012EF0FC;
+        //const int Attribute_FloatMinMax = 0x012EF104;
+        //const int Attribute_Float16 = 0x012EF10C;
+        //const int Attribute_Float16Or32 = 0x012EF114;
+        #endregion
+        #endregion
         // TODO: Add patterns
+
+        #region build 9558 addresses
+        //const int OpcodeSwitch_Address = 0x008E4F10;
+        //const int TypeDescriptorsAddress = 0x01565EAC;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x015494E8;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0x01347EC8;
+        //const int Attribute_IntMinMax = 0x01347ED0;
+        //const int Attribute_FloatMinMax = 0x01347ED8;
+        //const int Attribute_Float16 = 0x01347EE0;
+        //const int Attribute_Float16Or32 = 0x01347EE8;
+        #endregion
+
+        #region build 9858 addresses
+        //const int OpcodeSwitch_Address = 0x008E52D0;
+        //const int TypeDescriptorsAddress = 0x01572FAC;
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x015564E8;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0x01352058;
+        //const int Attribute_IntMinMax = 0x01352060;
+        //const int Attribute_FloatMinMax = 0x01352068;
+        //const int Attribute_Float16 = 0x01352070;
+        //const int Attribute_Float16Or32 = 0x01352078;
+        #endregion
+
+        #region build 9950 addresses
+        //const int OpcodeSwitch_Address = 0x008E53B0;
+        //const int TypeDescriptorsAddress = 0x01573FDC; 
+        //const int TypeDescriptorsOffset = 40;
+        //const int AttributesAddress = 0x01557518;
+        //const int AttributeCount = 823;
+        //const int Attribute_Int = 0x01353168;
+        //const int Attribute_IntMinMax = 0x01353170;
+        //const int Attribute_FloatMinMax = 0x01353178;
+        //const int Attribute_Float16 = 0x01353180;
+        //const int Attribute_Float16Or32 = 0x01353188;
+        #endregion
+
+        #region build 10057 addresses
+        const int OpcodeSwitch_Address = 0x008E6240;
+        const int TypeDescriptorsAddress = 0x0159A19C;
+        const int TypeDescriptorsOffset = 40;
+        const int AttributesAddress = 0x0157D518;
+        const int AttributeCount = 826;
+        const int Attribute_Int = 0x01373660;
+        const int Attribute_IntMinMax = 0x01373668;
+        const int Attribute_FloatMinMax = 0x01373670;
+        const int Attribute_Float16 = 0x01373678;
+        const int Attribute_Float16Or32 = 0x01373680;
+        #endregion
 
         class GameMessageInfo
         {
@@ -257,7 +407,10 @@ namespace D3TypeDump
                     case Attribute_Int:
                         {
                             int bitCount = decoder[12].Int32;
-                            NetAttribute.Attributes[id] = new NetAttribute(id, u2, u3, u4, u5, scriptA, scriptB, name, NetAttributeEncoding.Int, u10, 0, 0, bitCount);
+                            if (u5 == 1)
+                                NetAttribute.Attributes[id] = new NetAttribute(id, u2, u3, u4, u5, scriptA, scriptB, name, NetAttributeEncoding.Int, u10, 0, 0, bitCount);
+                            else
+                                NetAttribute.Attributes[id] = new NetAttribute(id, u2, u3, u4, u5, scriptA, scriptB, name, NetAttributeEncoding.Float32, u10, 0, 0, bitCount);
                             break;
                         }
                     case Attribute_IntMinMax:

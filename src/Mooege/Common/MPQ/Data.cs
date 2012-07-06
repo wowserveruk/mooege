@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using CrystalMpq;
 using Gibbed.IO;
+using Mooege.Common.Logging;
 using Mooege.Common.Versions;
 using Mooege.Core.GS.Common.Types.SNO;
 using System.Linq;
+using System.Data.SQLite;
+using Mooege.Common.Storage;
 
 namespace Mooege.Common.MPQ
 {
@@ -34,7 +37,9 @@ namespace Mooege.Common.MPQ
         public Dictionary<SNOGroup, ConcurrentDictionary<int, Asset>> Assets = new Dictionary<SNOGroup, ConcurrentDictionary<int, Asset>>();
         public readonly Dictionary<SNOGroup, Type> Parsers = new Dictionary<SNOGroup, Type>();
         private readonly List<Task> _tasks = new List<Task>();
-        private static readonly SNOGroup[] PatchExceptions = new[] { SNOGroup.TreasureClass, SNOGroup.TimedEvent, SNOGroup.ConversationList };
+        private static readonly SNOGroup[] PatchExceptions = new[] { SNOGroup.TimedEvent, SNOGroup.Script, SNOGroup.AiBehavior, SNOGroup.AiState, SNOGroup.Conductor, SNOGroup.FlagSet, SNOGroup.Code };
+
+        protected static new readonly Logger Logger = LogManager.CreateLogger();
 
         public Data()
             : base(VersionInfo.MPQ.RequiredPatchVersion, new List<string> { "CoreData.mpq", "ClientData.mpq" }, "/base/d3-update-base-(?<version>.*?).mpq")
@@ -42,6 +47,7 @@ namespace Mooege.Common.MPQ
 
         public void Init()
         {
+            Logger.Info("Reading assets from MPQ data..");
             this.InitCatalog(); // init asset-group dictionaries and parsers.
             this.LoadCatalogs(); // process the assets.
         }
@@ -56,7 +62,7 @@ namespace Mooege.Common.MPQ
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
             {
                 if (!type.IsSubclassOf(typeof(FileFormat))) continue;
-                var attributes = (FileFormatAttribute[])type.GetCustomAttributes(typeof(FileFormatAttribute), true);
+                var attributes = (FileFormatAttribute[])type.GetCustomAttributes(typeof(FileFormatAttribute), false);
                 if (attributes.Length == 0) continue;
 
                 Parsers.Add(attributes[0].Group, type);
@@ -66,7 +72,7 @@ namespace Mooege.Common.MPQ
         private void LoadCatalogs()
         {
             this.LoadCatalog("CoreTOC.dat"); // as of patch beta patch 7841, blizz renamed TOC.dat as CoreTOC.dat
-            this.LoadCatalog("TOC.dat", true, PatchExceptions.ToList()); // used for reading assets patched to zero bytes and removed from mainCatalog file.          
+            this.LoadDBCatalog();
         }
 
         private void LoadCatalog(string fileName, bool useBaseMPQ = false, List<SNOGroup> groupsToLoad = null)
@@ -95,8 +101,10 @@ namespace Mooege.Common.MPQ
                 if (groupsToLoad != null && !groupsToLoad.Contains(group)) // if we're handled groups to load, just ignore the ones not in the list.
                     continue;
 
-                var asset = this.ProcessAsset(group, snoId, name); // process the asset.
-                this.Assets[group].TryAdd(snoId, asset); // add it to our assets dictionary.
+                var asset = new MPQAsset(group, snoId, name);
+                asset.MpqFile = this.GetFile(asset.FileName, PatchExceptions.Contains(asset.Group)); // get the file. note: if file is in any of the groups in PatchExceptions it'll from load the original version - the reason is that assets in those groups got patched to 0 bytes. /raist.
+                if (asset.MpqFile != null)
+                    this.ProcessAsset(asset); // process the asset.
             }
 
             stream.Close();
@@ -118,28 +126,75 @@ namespace Mooege.Common.MPQ
 
             var elapsedTime = DateTime.Now - timerStart;
 
-            if(Storage.Config.Instance.LazyLoading)
-                Logger.Info("Found a total of {0} assets from {1} catalog and postponed loading because lazy loading is activated.", assetsCount, fileName);
+            if (Storage.Config.Instance.LazyLoading)
+                Logger.Trace("Found a total of {0} assets from {1} catalog and postponed loading because lazy loading is activated.", assetsCount, fileName);
             else
-                Logger.Info("Found a total of {0} assets from {1} catalog and parsed {2} of them in {3:c}.", assetsCount, fileName, this._tasks.Count, elapsedTime);
+                Logger.Trace("Found a total of {0} assets from {1} catalog and parsed {2} of them in {3:c}.", assetsCount, fileName, this._tasks.Count, elapsedTime);
         }
 
-        private Asset ProcessAsset(SNOGroup group, Int32 snoId, string name)
+        /// <summary>
+        /// Load the table of contents from the database. the database toc contains the sno ids of all objects
+        /// that should / can no longer be loaded from mpq because it is zeroed out or because we need to edit
+        /// some of the fields
+        /// </summary>
+        private void LoadDBCatalog()
         {
-            var asset = Storage.Config.Instance.LazyLoading ? new LazyAsset(group, snoId, name) : new Asset(group, snoId, name); // create the asset.
-            if (!this.Parsers.ContainsKey(asset.Group)) return asset; // if we don't have a proper parser for asset, just give up.
+            int assetCount = 0;
+            var timerStart = DateTime.Now;
 
-            var parser = this.Parsers[asset.Group]; // get the type the asset's parser.
-            var file = this.GetFile(asset.FileName, PatchExceptions.Contains(asset.Group)); // get the file. note: if file is in any of the groups in PatchExceptions it'll from load the original version - the reason is that assets in those groups got patched to 0 bytes. /raist.
+            using (var cmd = new SQLiteCommand("SELECT * FROM TOC", DBManager.MPQMirror))
+            {
+                var itemReader = cmd.ExecuteReader();
 
-            if (file == null || file.Size < 10) return asset; // if it's empty, give up again.
+                if (itemReader.HasRows)
+                {
+                    while (itemReader.Read())
+                    {
+                        ProcessAsset(new DBAsset(
+                            (SNOGroup)Enum.Parse(typeof(SNOGroup), itemReader["SNOGroup"].ToString()),
+                            Convert.ToInt32(itemReader["SNOId"]),
+                            itemReader["Name"].ToString()));
+                        assetCount++;
+                    }
+                }
+            }
 
-            if (Storage.Config.Instance.EnableTasks)
-                this._tasks.Add(new Task(() => asset.RunParser(parser, file))); // add it to our task list, so we can parse them concurrently.        
+            if (Storage.Config.Instance.LazyLoading)
+                Logger.Trace("Found a total of {0} assets from DB catalog and postponed loading because lazy loading is activated.", assetCount);
             else
-                asset.RunParser(parser, file); // run the parsers sequentally.
+                Logger.Trace("Found a total of {0} assets from DB catalog and parsed {1} of them in {2:c}.", assetCount, this._tasks.Count, DateTime.Now - timerStart);
 
-            return asset;
+        }
+
+        /// <summary>
+        /// Adds the asset to the dictionary and tries to parse it if a parser
+        /// is found and lazy loading is deactivated
+        /// </summary>
+        /// <param name="asset">New asset to be processed</param>
+        private void ProcessAsset(Asset asset)
+        {
+            this.Assets[asset.Group].TryAdd(asset.SNOId, asset);
+            if (!this.Parsers.ContainsKey(asset.Group)) return;
+
+            asset.Parser = this.Parsers[asset.Group];
+
+            // If lazy loading is deactivated, immediatly run parsers sequentially or threaded
+            if (Storage.Config.Instance.LazyLoading == false)
+            {
+                if (Storage.Config.Instance.EnableTasks)
+                    this._tasks.Add(new Task(() => asset.RunParser()));
+                else
+                {
+                    try
+                    {
+                        asset.RunParser();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error("Error parsing {0}.\nMessage: {1}\n InnerException:{2}\nStack Trace:{3}", asset.FileName, e.Message, e.InnerException == null ? "(null)" : e.InnerException.Message, e.StackTrace);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -151,6 +206,10 @@ namespace Mooege.Common.MPQ
         private MpqFile GetFile(string fileName, bool startSearchingFromBaseMPQ = false)
         {
             MpqFile file = null;
+
+            //Ignore loading lvl files for now.
+            if (fileName.Contains(".lvl"))
+                return null;
 
             if (!startSearchingFromBaseMPQ)
                 file = this.FileSystem.FindFile(fileName);

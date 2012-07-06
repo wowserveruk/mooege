@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ namespace Mooege.Net.GS.Message
 
         public MessageAttribute(Opcodes opcode, Consumers consumer = Consumers.None)
         {
-            this.Opcodes = new List<Opcodes> {opcode};
+            this.Opcodes = new List<Opcodes> { opcode };
             this.Consumer = consumer;
         }
 
@@ -41,7 +41,7 @@ namespace Mooege.Net.GS.Message
             foreach (var opcode in opcodes)
             {
                 this.Opcodes.Add(opcode);
-            }            
+            }
         }
     }
 }

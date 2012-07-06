@@ -28,6 +28,8 @@ namespace bnet.protocol.game_master {
     internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.GameFactoryDescription, global::bnet.protocol.game_master.GameFactoryDescription.Builder> internal__static_bnet_protocol_game_master_GameFactoryDescription__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_bnet_protocol_game_master_GameHandle__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.GameHandle, global::bnet.protocol.game_master.GameHandle.Builder> internal__static_bnet_protocol_game_master_GameHandle__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_game_master_CancelGameEntryRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.CancelGameEntryRequest, global::bnet.protocol.game_master.CancelGameEntryRequest.Builder> internal__static_bnet_protocol_game_master_CancelGameEntryRequest__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -37,41 +39,41 @@ namespace bnet.protocol.game_master {
     
     static GameMasterTypes() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "CjZzZXJ2aWNlL2dhbWVfbWFzdGVyL2RlZmluaXRpb24vZ2FtZV9tYXN0ZXJf" + 
-          "dHlwZXMucHJvdG8SGWJuZXQucHJvdG9jb2wuZ2FtZV9tYXN0ZXIaHGxpYi9w" + 
-          "cm90b2NvbC9hdHRyaWJ1dGUucHJvdG8aGWxpYi9wcm90b2NvbC9lbnRpdHku" + 
-          "cHJvdG8iqQIKBlBsYXllchI6CgR0eXBlGAEgASgOMiYuYm5ldC5wcm90b2Nv" + 
-          "bC5nYW1lX21hc3Rlci5QbGF5ZXIuVHlwZToEVE9PThIoCgd0b29uX2lkGAIg" + 
-          "ASgLMhcuYm5ldC5wcm90b2NvbC5FbnRpdHlJZBIwCg9nYW1lX2FjY291bnRf" + 
-          "aWQYAyABKAsyFy5ibmV0LnByb3RvY29sLkVudGl0eUlkEjAKD2JuZXRfYWNj" + 
-          "b3VudF9pZBgEIAEoCzIXLmJuZXQucHJvdG9jb2wuRW50aXR5SWQSNQoJYXR0" + 
-          "cmlidXRlGAUgAygLMiIuYm5ldC5wcm90b2NvbC5hdHRyaWJ1dGUuQXR0cmli" + 
-          "dXRlIh4KBFR5cGUSCAoEVE9PThAAEgwKCENPTVBVVEVSEAEimQEKC0Nvbm5l" + 
-          "Y3RJbmZvEigKB3Rvb25faWQYASACKAsyFy5ibmV0LnByb3RvY29sLkVudGl0" + 
-          "eUlkEgwKBGhvc3QYAiACKAkSDAoEcG9ydBgDIAIoBRINCgV0b2tlbhgEIAEo" + 
-          "DBI1CglhdHRyaWJ1dGUYBSADKAsyIi5ibmV0LnByb3RvY29sLmF0dHJpYnV0" + 
-          "ZS5BdHRyaWJ1dGUi7wEKD0dhbWVTdGF0c0J1Y2tldBIVCgpidWNrZXRfbWlu" + 
-          "GAEgASgCOgEwEiIKCmJ1Y2tldF9tYXgYAiABKAI6DjQuMjk0OTY3M2UrMDA5" + 
-          "EhwKEXdhaXRfbWlsbGlzZWNvbmRzGAMgASgNOgEwEhkKDmdhbWVzX3Blcl9o" + 
-          "b3VyGAQgASgNOgEwEhcKDGFjdGl2ZV9nYW1lcxgFIAEoDToBMBIZCg5hY3Rp" + 
-          "dmVfcGxheWVycxgGIAEoDToBMBIYCg1mb3JtaW5nX2dhbWVzGAcgASgNOgEw" + 
-          "EhoKD3dhaXRpbmdfcGxheWVycxgIIAEoDToBMCKrAQoWR2FtZUZhY3RvcnlE" + 
-          "ZXNjcmlwdGlvbhIKCgJpZBgBIAIoBhIMCgRuYW1lGAIgASgJEjUKCWF0dHJp" + 
-          "YnV0ZRgDIAMoCzIiLmJuZXQucHJvdG9jb2wuYXR0cmlidXRlLkF0dHJpYnV0" + 
-          "ZRJACgxzdGF0c19idWNrZXQYBCADKAsyKi5ibmV0LnByb3RvY29sLmdhbWVf" + 
-          "bWFzdGVyLkdhbWVTdGF0c0J1Y2tldCJKCgpHYW1lSGFuZGxlEhIKCmZhY3Rv" + 
-          "cnlfaWQYASACKAYSKAoHZ2FtZV9pZBgCIAIoCzIXLmJuZXQucHJvdG9jb2wu" + 
-          "RW50aXR5SWQ=");
+          "ChxibmV0L2dhbWVfbWFzdGVyX3R5cGVzLnByb3RvEhlibmV0LnByb3RvY29s" + 
+          "LmdhbWVfbWFzdGVyGhRibmV0L2F0dHJpYnV0ZS5wcm90bxoRYm5ldC9lbnRp" + 
+          "dHkucHJvdG8iyAEKBlBsYXllchI7CgR0eXBlGAEgASgOMiYuYm5ldC5wcm90" + 
+          "b2NvbC5nYW1lX21hc3Rlci5QbGF5ZXIuVHlwZToFSFVNQU4SKQoIaWRlbnRp" + 
+          "dHkYAiABKAsyFy5ibmV0LnByb3RvY29sLklkZW50aXR5EjUKCWF0dHJpYnV0" + 
+          "ZRgDIAMoCzIiLmJuZXQucHJvdG9jb2wuYXR0cmlidXRlLkF0dHJpYnV0ZSIf" + 
+          "CgRUeXBlEgkKBUhVTUFOEAASDAoIQ09NUFVURVIQASKbAQoLQ29ubmVjdElu" + 
+          "Zm8SKgoJbWVtYmVyX2lkGAEgAigLMhcuYm5ldC5wcm90b2NvbC5FbnRpdHlJ" + 
+          "ZBIMCgRob3N0GAIgAigJEgwKBHBvcnQYAyACKAUSDQoFdG9rZW4YBCABKAwS" + 
+          "NQoJYXR0cmlidXRlGAUgAygLMiIuYm5ldC5wcm90b2NvbC5hdHRyaWJ1dGUu" + 
+          "QXR0cmlidXRlIu8BCg9HYW1lU3RhdHNCdWNrZXQSFQoKYnVja2V0X21pbhgB" + 
+          "IAEoAjoBMBIiCgpidWNrZXRfbWF4GAIgASgCOg40LjI5NDk2NzNlKzAwORIc" + 
+          "ChF3YWl0X21pbGxpc2Vjb25kcxgDIAEoDToBMBIZCg5nYW1lc19wZXJfaG91" + 
+          "chgEIAEoDToBMBIXCgxhY3RpdmVfZ2FtZXMYBSABKA06ATASGQoOYWN0aXZl" + 
+          "X3BsYXllcnMYBiABKA06ATASGAoNZm9ybWluZ19nYW1lcxgHIAEoDToBMBIa" + 
+          "Cg93YWl0aW5nX3BsYXllcnMYCCABKA06ATAiwwEKFkdhbWVGYWN0b3J5RGVz" + 
+          "Y3JpcHRpb24SCgoCaWQYASACKAYSDAoEbmFtZRgCIAEoCRI1CglhdHRyaWJ1" + 
+          "dGUYAyADKAsyIi5ibmV0LnByb3RvY29sLmF0dHJpYnV0ZS5BdHRyaWJ1dGUS" + 
+          "QAoMc3RhdHNfYnVja2V0GAQgAygLMiouYm5ldC5wcm90b2NvbC5nYW1lX21h" + 
+          "c3Rlci5HYW1lU3RhdHNCdWNrZXQSFgoLdW5zZWVkZWRfaWQYBSABKAY6ATAi" + 
+          "SgoKR2FtZUhhbmRsZRISCgpmYWN0b3J5X2lkGAEgAigGEigKB2dhbWVfaWQY" + 
+          "AiACKAsyFy5ibmV0LnByb3RvY29sLkVudGl0eUlkInMKFkNhbmNlbEdhbWVF" + 
+          "bnRyeVJlcXVlc3QSEgoKcmVxdWVzdF9pZBgBIAIoBhISCgpmYWN0b3J5X2lk" + 
+          "GAIgASgGEjEKBnBsYXllchgDIAMoCzIhLmJuZXQucHJvdG9jb2wuZ2FtZV9t" + 
+          "YXN0ZXIuUGxheWVy");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_bnet_protocol_game_master_Player__Descriptor = Descriptor.MessageTypes[0];
         internal__static_bnet_protocol_game_master_Player__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.Player, global::bnet.protocol.game_master.Player.Builder>(internal__static_bnet_protocol_game_master_Player__Descriptor,
-                new string[] { "Type", "ToonId", "GameAccountId", "BnetAccountId", "Attribute", });
+                new string[] { "Type", "Identity", "Attribute", });
         internal__static_bnet_protocol_game_master_ConnectInfo__Descriptor = Descriptor.MessageTypes[1];
         internal__static_bnet_protocol_game_master_ConnectInfo__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.ConnectInfo, global::bnet.protocol.game_master.ConnectInfo.Builder>(internal__static_bnet_protocol_game_master_ConnectInfo__Descriptor,
-                new string[] { "ToonId", "Host", "Port", "Token", "Attribute", });
+                new string[] { "MemberId", "Host", "Port", "Token", "Attribute", });
         internal__static_bnet_protocol_game_master_GameStatsBucket__Descriptor = Descriptor.MessageTypes[2];
         internal__static_bnet_protocol_game_master_GameStatsBucket__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.GameStatsBucket, global::bnet.protocol.game_master.GameStatsBucket.Builder>(internal__static_bnet_protocol_game_master_GameStatsBucket__Descriptor,
@@ -79,11 +81,15 @@ namespace bnet.protocol.game_master {
         internal__static_bnet_protocol_game_master_GameFactoryDescription__Descriptor = Descriptor.MessageTypes[3];
         internal__static_bnet_protocol_game_master_GameFactoryDescription__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.GameFactoryDescription, global::bnet.protocol.game_master.GameFactoryDescription.Builder>(internal__static_bnet_protocol_game_master_GameFactoryDescription__Descriptor,
-                new string[] { "Id", "Name", "Attribute", "StatsBucket", });
+                new string[] { "Id", "Name", "Attribute", "StatsBucket", "UnseededId", });
         internal__static_bnet_protocol_game_master_GameHandle__Descriptor = Descriptor.MessageTypes[4];
         internal__static_bnet_protocol_game_master_GameHandle__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.GameHandle, global::bnet.protocol.game_master.GameHandle.Builder>(internal__static_bnet_protocol_game_master_GameHandle__Descriptor,
                 new string[] { "FactoryId", "GameId", });
+        internal__static_bnet_protocol_game_master_CancelGameEntryRequest__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_bnet_protocol_game_master_CancelGameEntryRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.game_master.CancelGameEntryRequest, global::bnet.protocol.game_master.CancelGameEntryRequest.Builder>(internal__static_bnet_protocol_game_master_CancelGameEntryRequest__Descriptor,
+                new string[] { "RequestId", "FactoryId", "Player", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -102,8 +108,8 @@ namespace bnet.protocol.game_master {
   public sealed partial class Player : pb::GeneratedMessage<Player, Player.Builder> {
     private Player() { }
     private static readonly Player defaultInstance = new Player().MakeReadOnly();
-    private static readonly string[] _playerFieldNames = new string[] { "attribute", "bnet_account_id", "game_account_id", "toon_id", "type" };
-    private static readonly uint[] _playerFieldTags = new uint[] { 42, 34, 26, 18, 8 };
+    private static readonly string[] _playerFieldNames = new string[] { "attribute", "identity", "type" };
+    private static readonly uint[] _playerFieldTags = new uint[] { 26, 18, 8 };
     public static Player DefaultInstance {
       get { return defaultInstance; }
     }
@@ -132,7 +138,7 @@ namespace bnet.protocol.game_master {
       [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
       [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
       public enum Type {
-        TOON = 0,
+        HUMAN = 0,
         COMPUTER = 1,
       }
       
@@ -141,7 +147,7 @@ namespace bnet.protocol.game_master {
     
     public const int TypeFieldNumber = 1;
     private bool hasType;
-    private global::bnet.protocol.game_master.Player.Types.Type type_ = global::bnet.protocol.game_master.Player.Types.Type.TOON;
+    private global::bnet.protocol.game_master.Player.Types.Type type_ = global::bnet.protocol.game_master.Player.Types.Type.HUMAN;
     public bool HasType {
       get { return hasType; }
     }
@@ -149,37 +155,17 @@ namespace bnet.protocol.game_master {
       get { return type_; }
     }
     
-    public const int ToonIdFieldNumber = 2;
-    private bool hasToonId;
-    private global::bnet.protocol.EntityId toonId_;
-    public bool HasToonId {
-      get { return hasToonId; }
+    public const int IdentityFieldNumber = 2;
+    private bool hasIdentity;
+    private global::bnet.protocol.Identity identity_;
+    public bool HasIdentity {
+      get { return hasIdentity; }
     }
-    public global::bnet.protocol.EntityId ToonId {
-      get { return toonId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
-    }
-    
-    public const int GameAccountIdFieldNumber = 3;
-    private bool hasGameAccountId;
-    private global::bnet.protocol.EntityId gameAccountId_;
-    public bool HasGameAccountId {
-      get { return hasGameAccountId; }
-    }
-    public global::bnet.protocol.EntityId GameAccountId {
-      get { return gameAccountId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
+    public global::bnet.protocol.Identity Identity {
+      get { return identity_ ?? global::bnet.protocol.Identity.DefaultInstance; }
     }
     
-    public const int BnetAccountIdFieldNumber = 4;
-    private bool hasBnetAccountId;
-    private global::bnet.protocol.EntityId bnetAccountId_;
-    public bool HasBnetAccountId {
-      get { return hasBnetAccountId; }
-    }
-    public global::bnet.protocol.EntityId BnetAccountId {
-      get { return bnetAccountId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
-    }
-    
-    public const int AttributeFieldNumber = 5;
+    public const int AttributeFieldNumber = 3;
     private pbc::PopsicleList<global::bnet.protocol.attribute.Attribute> attribute_ = new pbc::PopsicleList<global::bnet.protocol.attribute.Attribute>();
     public scg::IList<global::bnet.protocol.attribute.Attribute> AttributeList {
       get { return attribute_; }
@@ -193,14 +179,8 @@ namespace bnet.protocol.game_master {
     
     public override bool IsInitialized {
       get {
-        if (HasToonId) {
-          if (!ToonId.IsInitialized) return false;
-        }
-        if (HasGameAccountId) {
-          if (!GameAccountId.IsInitialized) return false;
-        }
-        if (HasBnetAccountId) {
-          if (!BnetAccountId.IsInitialized) return false;
+        if (HasIdentity) {
+          if (!Identity.IsInitialized) return false;
         }
         foreach (global::bnet.protocol.attribute.Attribute element in AttributeList) {
           if (!element.IsInitialized) return false;
@@ -213,19 +193,13 @@ namespace bnet.protocol.game_master {
       int size = SerializedSize;
       string[] field_names = _playerFieldNames;
       if (hasType) {
-        output.WriteEnum(1, field_names[4], (int) Type, Type);
+        output.WriteEnum(1, field_names[2], (int) Type, Type);
       }
-      if (hasToonId) {
-        output.WriteMessage(2, field_names[3], ToonId);
-      }
-      if (hasGameAccountId) {
-        output.WriteMessage(3, field_names[2], GameAccountId);
-      }
-      if (hasBnetAccountId) {
-        output.WriteMessage(4, field_names[1], BnetAccountId);
+      if (hasIdentity) {
+        output.WriteMessage(2, field_names[1], Identity);
       }
       if (attribute_.Count > 0) {
-        output.WriteMessageArray(5, field_names[0], attribute_);
+        output.WriteMessageArray(3, field_names[0], attribute_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -240,17 +214,11 @@ namespace bnet.protocol.game_master {
         if (hasType) {
           size += pb::CodedOutputStream.ComputeEnumSize(1, (int) Type);
         }
-        if (hasToonId) {
-          size += pb::CodedOutputStream.ComputeMessageSize(2, ToonId);
-        }
-        if (hasGameAccountId) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, GameAccountId);
-        }
-        if (hasBnetAccountId) {
-          size += pb::CodedOutputStream.ComputeMessageSize(4, BnetAccountId);
+        if (hasIdentity) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, Identity);
         }
         foreach (global::bnet.protocol.attribute.Attribute element in AttributeList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(5, element);
+          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -382,14 +350,8 @@ namespace bnet.protocol.game_master {
         if (other.HasType) {
           Type = other.Type;
         }
-        if (other.HasToonId) {
-          MergeToonId(other.ToonId);
-        }
-        if (other.HasGameAccountId) {
-          MergeGameAccountId(other.GameAccountId);
-        }
-        if (other.HasBnetAccountId) {
-          MergeBnetAccountId(other.BnetAccountId);
+        if (other.HasIdentity) {
+          MergeIdentity(other.Identity);
         }
         if (other.attribute_.Count != 0) {
           result.attribute_.Add(other.attribute_);
@@ -450,33 +412,15 @@ namespace bnet.protocol.game_master {
               break;
             }
             case 18: {
-              global::bnet.protocol.EntityId.Builder subBuilder = global::bnet.protocol.EntityId.CreateBuilder();
-              if (result.hasToonId) {
-                subBuilder.MergeFrom(ToonId);
+              global::bnet.protocol.Identity.Builder subBuilder = global::bnet.protocol.Identity.CreateBuilder();
+              if (result.hasIdentity) {
+                subBuilder.MergeFrom(Identity);
               }
               input.ReadMessage(subBuilder, extensionRegistry);
-              ToonId = subBuilder.BuildPartial();
+              Identity = subBuilder.BuildPartial();
               break;
             }
             case 26: {
-              global::bnet.protocol.EntityId.Builder subBuilder = global::bnet.protocol.EntityId.CreateBuilder();
-              if (result.hasGameAccountId) {
-                subBuilder.MergeFrom(GameAccountId);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              GameAccountId = subBuilder.BuildPartial();
-              break;
-            }
-            case 34: {
-              global::bnet.protocol.EntityId.Builder subBuilder = global::bnet.protocol.EntityId.CreateBuilder();
-              if (result.hasBnetAccountId) {
-                subBuilder.MergeFrom(BnetAccountId);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              BnetAccountId = subBuilder.BuildPartial();
-              break;
-            }
-            case 42: {
               input.ReadMessageArray(tag, field_name, result.attribute_, global::bnet.protocol.attribute.Attribute.DefaultInstance, extensionRegistry);
               break;
             }
@@ -506,127 +450,47 @@ namespace bnet.protocol.game_master {
       public Builder ClearType() {
         PrepareBuilder();
         result.hasType = false;
-        result.type_ = global::bnet.protocol.game_master.Player.Types.Type.TOON;
+        result.type_ = global::bnet.protocol.game_master.Player.Types.Type.HUMAN;
         return this;
       }
       
-      public bool HasToonId {
-       get { return result.hasToonId; }
+      public bool HasIdentity {
+       get { return result.hasIdentity; }
       }
-      public global::bnet.protocol.EntityId ToonId {
-        get { return result.ToonId; }
-        set { SetToonId(value); }
+      public global::bnet.protocol.Identity Identity {
+        get { return result.Identity; }
+        set { SetIdentity(value); }
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId value) {
+      public Builder SetIdentity(global::bnet.protocol.Identity value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = value;
+        result.hasIdentity = true;
+        result.identity_ = value;
         return this;
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId.Builder builderForValue) {
+      public Builder SetIdentity(global::bnet.protocol.Identity.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = builderForValue.Build();
+        result.hasIdentity = true;
+        result.identity_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeToonId(global::bnet.protocol.EntityId value) {
+      public Builder MergeIdentity(global::bnet.protocol.Identity value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        if (result.hasToonId &&
-            result.toonId_ != global::bnet.protocol.EntityId.DefaultInstance) {
-            result.toonId_ = global::bnet.protocol.EntityId.CreateBuilder(result.toonId_).MergeFrom(value).BuildPartial();
+        if (result.hasIdentity &&
+            result.identity_ != global::bnet.protocol.Identity.DefaultInstance) {
+            result.identity_ = global::bnet.protocol.Identity.CreateBuilder(result.identity_).MergeFrom(value).BuildPartial();
         } else {
-          result.toonId_ = value;
+          result.identity_ = value;
         }
-        result.hasToonId = true;
+        result.hasIdentity = true;
         return this;
       }
-      public Builder ClearToonId() {
+      public Builder ClearIdentity() {
         PrepareBuilder();
-        result.hasToonId = false;
-        result.toonId_ = null;
-        return this;
-      }
-      
-      public bool HasGameAccountId {
-       get { return result.hasGameAccountId; }
-      }
-      public global::bnet.protocol.EntityId GameAccountId {
-        get { return result.GameAccountId; }
-        set { SetGameAccountId(value); }
-      }
-      public Builder SetGameAccountId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasGameAccountId = true;
-        result.gameAccountId_ = value;
-        return this;
-      }
-      public Builder SetGameAccountId(global::bnet.protocol.EntityId.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        PrepareBuilder();
-        result.hasGameAccountId = true;
-        result.gameAccountId_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeGameAccountId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        if (result.hasGameAccountId &&
-            result.gameAccountId_ != global::bnet.protocol.EntityId.DefaultInstance) {
-            result.gameAccountId_ = global::bnet.protocol.EntityId.CreateBuilder(result.gameAccountId_).MergeFrom(value).BuildPartial();
-        } else {
-          result.gameAccountId_ = value;
-        }
-        result.hasGameAccountId = true;
-        return this;
-      }
-      public Builder ClearGameAccountId() {
-        PrepareBuilder();
-        result.hasGameAccountId = false;
-        result.gameAccountId_ = null;
-        return this;
-      }
-      
-      public bool HasBnetAccountId {
-       get { return result.hasBnetAccountId; }
-      }
-      public global::bnet.protocol.EntityId BnetAccountId {
-        get { return result.BnetAccountId; }
-        set { SetBnetAccountId(value); }
-      }
-      public Builder SetBnetAccountId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasBnetAccountId = true;
-        result.bnetAccountId_ = value;
-        return this;
-      }
-      public Builder SetBnetAccountId(global::bnet.protocol.EntityId.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        PrepareBuilder();
-        result.hasBnetAccountId = true;
-        result.bnetAccountId_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeBnetAccountId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        if (result.hasBnetAccountId &&
-            result.bnetAccountId_ != global::bnet.protocol.EntityId.DefaultInstance) {
-            result.bnetAccountId_ = global::bnet.protocol.EntityId.CreateBuilder(result.bnetAccountId_).MergeFrom(value).BuildPartial();
-        } else {
-          result.bnetAccountId_ = value;
-        }
-        result.hasBnetAccountId = true;
-        return this;
-      }
-      public Builder ClearBnetAccountId() {
-        PrepareBuilder();
-        result.hasBnetAccountId = false;
-        result.bnetAccountId_ = null;
+        result.hasIdentity = false;
+        result.identity_ = null;
         return this;
       }
       
@@ -685,8 +549,8 @@ namespace bnet.protocol.game_master {
   public sealed partial class ConnectInfo : pb::GeneratedMessage<ConnectInfo, ConnectInfo.Builder> {
     private ConnectInfo() { }
     private static readonly ConnectInfo defaultInstance = new ConnectInfo().MakeReadOnly();
-    private static readonly string[] _connectInfoFieldNames = new string[] { "attribute", "host", "port", "token", "toon_id" };
-    private static readonly uint[] _connectInfoFieldTags = new uint[] { 42, 18, 24, 34, 10 };
+    private static readonly string[] _connectInfoFieldNames = new string[] { "attribute", "host", "member_id", "port", "token" };
+    private static readonly uint[] _connectInfoFieldTags = new uint[] { 42, 18, 10, 24, 34 };
     public static ConnectInfo DefaultInstance {
       get { return defaultInstance; }
     }
@@ -707,14 +571,14 @@ namespace bnet.protocol.game_master {
       get { return global::bnet.protocol.game_master.GameMasterTypes.internal__static_bnet_protocol_game_master_ConnectInfo__FieldAccessorTable; }
     }
     
-    public const int ToonIdFieldNumber = 1;
-    private bool hasToonId;
-    private global::bnet.protocol.EntityId toonId_;
-    public bool HasToonId {
-      get { return hasToonId; }
+    public const int MemberIdFieldNumber = 1;
+    private bool hasMemberId;
+    private global::bnet.protocol.EntityId memberId_;
+    public bool HasMemberId {
+      get { return hasMemberId; }
     }
-    public global::bnet.protocol.EntityId ToonId {
-      get { return toonId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
+    public global::bnet.protocol.EntityId MemberId {
+      get { return memberId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
     }
     
     public const int HostFieldNumber = 2;
@@ -761,10 +625,10 @@ namespace bnet.protocol.game_master {
     
     public override bool IsInitialized {
       get {
-        if (!hasToonId) return false;
+        if (!hasMemberId) return false;
         if (!hasHost) return false;
         if (!hasPort) return false;
-        if (!ToonId.IsInitialized) return false;
+        if (!MemberId.IsInitialized) return false;
         foreach (global::bnet.protocol.attribute.Attribute element in AttributeList) {
           if (!element.IsInitialized) return false;
         }
@@ -775,17 +639,17 @@ namespace bnet.protocol.game_master {
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
       string[] field_names = _connectInfoFieldNames;
-      if (hasToonId) {
-        output.WriteMessage(1, field_names[4], ToonId);
+      if (hasMemberId) {
+        output.WriteMessage(1, field_names[2], MemberId);
       }
       if (hasHost) {
         output.WriteString(2, field_names[1], Host);
       }
       if (hasPort) {
-        output.WriteInt32(3, field_names[2], Port);
+        output.WriteInt32(3, field_names[3], Port);
       }
       if (hasToken) {
-        output.WriteBytes(4, field_names[3], Token);
+        output.WriteBytes(4, field_names[4], Token);
       }
       if (attribute_.Count > 0) {
         output.WriteMessageArray(5, field_names[0], attribute_);
@@ -800,8 +664,8 @@ namespace bnet.protocol.game_master {
         if (size != -1) return size;
         
         size = 0;
-        if (hasToonId) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, ToonId);
+        if (hasMemberId) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, MemberId);
         }
         if (hasHost) {
           size += pb::CodedOutputStream.ComputeStringSize(2, Host);
@@ -942,8 +806,8 @@ namespace bnet.protocol.game_master {
       public override Builder MergeFrom(ConnectInfo other) {
         if (other == global::bnet.protocol.game_master.ConnectInfo.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasToonId) {
-          MergeToonId(other.ToonId);
+        if (other.HasMemberId) {
+          MergeMemberId(other.MemberId);
         }
         if (other.HasHost) {
           Host = other.Host;
@@ -1002,11 +866,11 @@ namespace bnet.protocol.game_master {
             }
             case 10: {
               global::bnet.protocol.EntityId.Builder subBuilder = global::bnet.protocol.EntityId.CreateBuilder();
-              if (result.hasToonId) {
-                subBuilder.MergeFrom(ToonId);
+              if (result.hasMemberId) {
+                subBuilder.MergeFrom(MemberId);
               }
               input.ReadMessage(subBuilder, extensionRegistry);
-              ToonId = subBuilder.BuildPartial();
+              MemberId = subBuilder.BuildPartial();
               break;
             }
             case 18: {
@@ -1035,43 +899,43 @@ namespace bnet.protocol.game_master {
       }
       
       
-      public bool HasToonId {
-       get { return result.hasToonId; }
+      public bool HasMemberId {
+       get { return result.hasMemberId; }
       }
-      public global::bnet.protocol.EntityId ToonId {
-        get { return result.ToonId; }
-        set { SetToonId(value); }
+      public global::bnet.protocol.EntityId MemberId {
+        get { return result.MemberId; }
+        set { SetMemberId(value); }
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId value) {
+      public Builder SetMemberId(global::bnet.protocol.EntityId value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = value;
+        result.hasMemberId = true;
+        result.memberId_ = value;
         return this;
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId.Builder builderForValue) {
+      public Builder SetMemberId(global::bnet.protocol.EntityId.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = builderForValue.Build();
+        result.hasMemberId = true;
+        result.memberId_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeToonId(global::bnet.protocol.EntityId value) {
+      public Builder MergeMemberId(global::bnet.protocol.EntityId value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        if (result.hasToonId &&
-            result.toonId_ != global::bnet.protocol.EntityId.DefaultInstance) {
-            result.toonId_ = global::bnet.protocol.EntityId.CreateBuilder(result.toonId_).MergeFrom(value).BuildPartial();
+        if (result.hasMemberId &&
+            result.memberId_ != global::bnet.protocol.EntityId.DefaultInstance) {
+            result.memberId_ = global::bnet.protocol.EntityId.CreateBuilder(result.memberId_).MergeFrom(value).BuildPartial();
         } else {
-          result.toonId_ = value;
+          result.memberId_ = value;
         }
-        result.hasToonId = true;
+        result.hasMemberId = true;
         return this;
       }
-      public Builder ClearToonId() {
+      public Builder ClearMemberId() {
         PrepareBuilder();
-        result.hasToonId = false;
-        result.toonId_ = null;
+        result.hasMemberId = false;
+        result.memberId_ = null;
         return this;
       }
       
@@ -1767,8 +1631,8 @@ namespace bnet.protocol.game_master {
   public sealed partial class GameFactoryDescription : pb::GeneratedMessage<GameFactoryDescription, GameFactoryDescription.Builder> {
     private GameFactoryDescription() { }
     private static readonly GameFactoryDescription defaultInstance = new GameFactoryDescription().MakeReadOnly();
-    private static readonly string[] _gameFactoryDescriptionFieldNames = new string[] { "attribute", "id", "name", "stats_bucket" };
-    private static readonly uint[] _gameFactoryDescriptionFieldTags = new uint[] { 26, 9, 18, 34 };
+    private static readonly string[] _gameFactoryDescriptionFieldNames = new string[] { "attribute", "id", "name", "stats_bucket", "unseeded_id" };
+    private static readonly uint[] _gameFactoryDescriptionFieldTags = new uint[] { 26, 9, 18, 34, 41 };
     public static GameFactoryDescription DefaultInstance {
       get { return defaultInstance; }
     }
@@ -1833,6 +1697,16 @@ namespace bnet.protocol.game_master {
       return statsBucket_[index];
     }
     
+    public const int UnseededIdFieldNumber = 5;
+    private bool hasUnseededId;
+    private ulong unseededId_;
+    public bool HasUnseededId {
+      get { return hasUnseededId; }
+    }
+    public ulong UnseededId {
+      get { return unseededId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasId) return false;
@@ -1858,6 +1732,9 @@ namespace bnet.protocol.game_master {
       if (statsBucket_.Count > 0) {
         output.WriteMessageArray(4, field_names[3], statsBucket_);
       }
+      if (hasUnseededId) {
+        output.WriteFixed64(5, field_names[4], UnseededId);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -1879,6 +1756,9 @@ namespace bnet.protocol.game_master {
         }
         foreach (global::bnet.protocol.game_master.GameStatsBucket element in StatsBucketList) {
           size += pb::CodedOutputStream.ComputeMessageSize(4, element);
+        }
+        if (hasUnseededId) {
+          size += pb::CodedOutputStream.ComputeFixed64Size(5, UnseededId);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -2020,6 +1900,9 @@ namespace bnet.protocol.game_master {
         if (other.statsBucket_.Count != 0) {
           result.statsBucket_.Add(other.statsBucket_);
         }
+        if (other.HasUnseededId) {
+          UnseededId = other.UnseededId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -2077,6 +1960,10 @@ namespace bnet.protocol.game_master {
             }
             case 34: {
               input.ReadMessageArray(tag, field_name, result.statsBucket_, global::bnet.protocol.game_master.GameStatsBucket.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 41: {
+              result.hasUnseededId = input.ReadFixed64(ref result.unseededId_);
               break;
             }
           }
@@ -2215,6 +2102,26 @@ namespace bnet.protocol.game_master {
       public Builder ClearStatsBucket() {
         PrepareBuilder();
         result.statsBucket_.Clear();
+        return this;
+      }
+      
+      public bool HasUnseededId {
+        get { return result.hasUnseededId; }
+      }
+      public ulong UnseededId {
+        get { return result.UnseededId; }
+        set { SetUnseededId(value); }
+      }
+      public Builder SetUnseededId(ulong value) {
+        PrepareBuilder();
+        result.hasUnseededId = true;
+        result.unseededId_ = value;
+        return this;
+      }
+      public Builder ClearUnseededId() {
+        PrepareBuilder();
+        result.hasUnseededId = false;
+        result.unseededId_ = 0;
         return this;
       }
     }
@@ -2564,6 +2471,397 @@ namespace bnet.protocol.game_master {
       }
     }
     static GameHandle() {
+      object.ReferenceEquals(global::bnet.protocol.game_master.GameMasterTypes.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class CancelGameEntryRequest : pb::GeneratedMessage<CancelGameEntryRequest, CancelGameEntryRequest.Builder> {
+    private CancelGameEntryRequest() { }
+    private static readonly CancelGameEntryRequest defaultInstance = new CancelGameEntryRequest().MakeReadOnly();
+    private static readonly string[] _cancelGameEntryRequestFieldNames = new string[] { "factory_id", "player", "request_id" };
+    private static readonly uint[] _cancelGameEntryRequestFieldTags = new uint[] { 17, 26, 9 };
+    public static CancelGameEntryRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CancelGameEntryRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CancelGameEntryRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.game_master.GameMasterTypes.internal__static_bnet_protocol_game_master_CancelGameEntryRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CancelGameEntryRequest, CancelGameEntryRequest.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.game_master.GameMasterTypes.internal__static_bnet_protocol_game_master_CancelGameEntryRequest__FieldAccessorTable; }
+    }
+    
+    public const int RequestIdFieldNumber = 1;
+    private bool hasRequestId;
+    private ulong requestId_;
+    public bool HasRequestId {
+      get { return hasRequestId; }
+    }
+    public ulong RequestId {
+      get { return requestId_; }
+    }
+    
+    public const int FactoryIdFieldNumber = 2;
+    private bool hasFactoryId;
+    private ulong factoryId_;
+    public bool HasFactoryId {
+      get { return hasFactoryId; }
+    }
+    public ulong FactoryId {
+      get { return factoryId_; }
+    }
+    
+    public const int PlayerFieldNumber = 3;
+    private pbc::PopsicleList<global::bnet.protocol.game_master.Player> player_ = new pbc::PopsicleList<global::bnet.protocol.game_master.Player>();
+    public scg::IList<global::bnet.protocol.game_master.Player> PlayerList {
+      get { return player_; }
+    }
+    public int PlayerCount {
+      get { return player_.Count; }
+    }
+    public global::bnet.protocol.game_master.Player GetPlayer(int index) {
+      return player_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasRequestId) return false;
+        foreach (global::bnet.protocol.game_master.Player element in PlayerList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _cancelGameEntryRequestFieldNames;
+      if (hasRequestId) {
+        output.WriteFixed64(1, field_names[2], RequestId);
+      }
+      if (hasFactoryId) {
+        output.WriteFixed64(2, field_names[0], FactoryId);
+      }
+      if (player_.Count > 0) {
+        output.WriteMessageArray(3, field_names[1], player_);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasRequestId) {
+          size += pb::CodedOutputStream.ComputeFixed64Size(1, RequestId);
+        }
+        if (hasFactoryId) {
+          size += pb::CodedOutputStream.ComputeFixed64Size(2, FactoryId);
+        }
+        foreach (global::bnet.protocol.game_master.Player element in PlayerList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CancelGameEntryRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CancelGameEntryRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CancelGameEntryRequest MakeReadOnly() {
+      player_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CancelGameEntryRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<CancelGameEntryRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CancelGameEntryRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CancelGameEntryRequest result;
+      
+      private CancelGameEntryRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CancelGameEntryRequest original = result;
+          result = new CancelGameEntryRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CancelGameEntryRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.game_master.CancelGameEntryRequest.Descriptor; }
+      }
+      
+      public override CancelGameEntryRequest DefaultInstanceForType {
+        get { return global::bnet.protocol.game_master.CancelGameEntryRequest.DefaultInstance; }
+      }
+      
+      public override CancelGameEntryRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CancelGameEntryRequest) {
+          return MergeFrom((CancelGameEntryRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CancelGameEntryRequest other) {
+        if (other == global::bnet.protocol.game_master.CancelGameEntryRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasRequestId) {
+          RequestId = other.RequestId;
+        }
+        if (other.HasFactoryId) {
+          FactoryId = other.FactoryId;
+        }
+        if (other.player_.Count != 0) {
+          result.player_.Add(other.player_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_cancelGameEntryRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _cancelGameEntryRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 9: {
+              result.hasRequestId = input.ReadFixed64(ref result.requestId_);
+              break;
+            }
+            case 17: {
+              result.hasFactoryId = input.ReadFixed64(ref result.factoryId_);
+              break;
+            }
+            case 26: {
+              input.ReadMessageArray(tag, field_name, result.player_, global::bnet.protocol.game_master.Player.DefaultInstance, extensionRegistry);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasRequestId {
+        get { return result.hasRequestId; }
+      }
+      public ulong RequestId {
+        get { return result.RequestId; }
+        set { SetRequestId(value); }
+      }
+      public Builder SetRequestId(ulong value) {
+        PrepareBuilder();
+        result.hasRequestId = true;
+        result.requestId_ = value;
+        return this;
+      }
+      public Builder ClearRequestId() {
+        PrepareBuilder();
+        result.hasRequestId = false;
+        result.requestId_ = 0;
+        return this;
+      }
+      
+      public bool HasFactoryId {
+        get { return result.hasFactoryId; }
+      }
+      public ulong FactoryId {
+        get { return result.FactoryId; }
+        set { SetFactoryId(value); }
+      }
+      public Builder SetFactoryId(ulong value) {
+        PrepareBuilder();
+        result.hasFactoryId = true;
+        result.factoryId_ = value;
+        return this;
+      }
+      public Builder ClearFactoryId() {
+        PrepareBuilder();
+        result.hasFactoryId = false;
+        result.factoryId_ = 0;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::bnet.protocol.game_master.Player> PlayerList {
+        get { return PrepareBuilder().player_; }
+      }
+      public int PlayerCount {
+        get { return result.PlayerCount; }
+      }
+      public global::bnet.protocol.game_master.Player GetPlayer(int index) {
+        return result.GetPlayer(index);
+      }
+      public Builder SetPlayer(int index, global::bnet.protocol.game_master.Player value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.player_[index] = value;
+        return this;
+      }
+      public Builder SetPlayer(int index, global::bnet.protocol.game_master.Player.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.player_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddPlayer(global::bnet.protocol.game_master.Player value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.player_.Add(value);
+        return this;
+      }
+      public Builder AddPlayer(global::bnet.protocol.game_master.Player.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.player_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangePlayer(scg::IEnumerable<global::bnet.protocol.game_master.Player> values) {
+        PrepareBuilder();
+        result.player_.Add(values);
+        return this;
+      }
+      public Builder ClearPlayer() {
+        PrepareBuilder();
+        result.player_.Clear();
+        return this;
+      }
+    }
+    static CancelGameEntryRequest() {
       object.ReferenceEquals(global::bnet.protocol.game_master.GameMasterTypes.Descriptor, null);
     }
   }

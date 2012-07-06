@@ -1,5 +1,5 @@
 ﻿﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System.Collections.Generic;
 using System.Windows;
 using Mooege.Common.MPQ;
-using Mooege.Common.MPQ.FileFormats.Types;
 using Mooege.Core.GS.Common.Types.SNO;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Players;
@@ -32,7 +30,6 @@ using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Actors.Implementations
 {
-    [HandledSNO(6442 /* Waypoint.acr */, 192164 /* Waypoint_OldTristram.acr */)]
     public sealed class Waypoint : Gizmo
     {
         public int WaypointId { get; private set; }
@@ -95,10 +92,10 @@ namespace Mooege.Core.GS.Actors.Implementations
                     {
                         new PlayAnimationMessageSpec()
                         {
-                            Field0 = 4,
-                            Field1 = 0x2f761,
-                            Field2 = 0,
-                            Field3 = 1f,
+                            Duration = 4,
+                            AnimationSNO = 0x2f761,
+                            PermutationIndex = 0,
+                            Speed = 1f,
                         }
                     }
             }, this);
@@ -126,14 +123,14 @@ namespace Mooege.Core.GS.Actors.Implementations
                 Field2 = 0x1FA21,
                 m_snoStringList = 0xF063,
 
-                Field4 = unchecked((int)0x9799F57B),
+                Field3 = unchecked((int)0x9799F57B),
+                Field9 = 0,
+                Field10 = 0,
+                Field11 = 0,
                 Field5 = 0,
-                Field6 = 0,
-                Field7 = 0,
-                Field8 = 0,
-                Field9 = true,
-                Field10 = false,
-                Field11 = false,
+                Field6 = true,
+                Field7 = false,
+                Field8 = false,
                 Field12 = 0
             });
 

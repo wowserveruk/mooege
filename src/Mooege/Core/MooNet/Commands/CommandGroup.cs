@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Mooege.Common;
 using Mooege.Common.Logging;
 using Mooege.Net.MooNet;
 
@@ -59,7 +58,7 @@ namespace Mooege.Core.MooNet.Commands
         }
 
         private void RegisterDefaultCommand()
-        {           
+        {
             foreach (var method in this.GetType().GetMethods())
             {
                 object[] attributes = method.GetCustomAttributes(typeof(DefaultCommand), true);
@@ -74,23 +73,23 @@ namespace Mooege.Core.MooNet.Commands
             this._commands.Add(new DefaultCommand(this.Attributes.MinUserLevel), this.GetType().GetMethod("Fallback"));
         }
 
-        public virtual string Handle(string parameters, MooNetClient invokerClient=null)
+        public virtual string Handle(string parameters, MooNetClient invokerClient = null)
         {
             // check if the user has enough privileges to access command group.
             // check if the user has enough privileges to invoke the command.
             if (invokerClient != null && this.Attributes.MinUserLevel > invokerClient.Account.UserLevel)
                 return "You don't have enough privileges to invoke that command.";
 
-            string[] @params=null;
+            string[] @params = null;
             CommandAttribute target = null;
 
-            if(parameters==string.Empty)
+            if (parameters == string.Empty)
                 target = this.GetDefaultSubcommand();
             else
             {
                 @params = parameters.Split(' ');
                 target = this.GetSubcommand(@params[0]) ?? this.GetDefaultSubcommand();
-                
+
                 if (target != this.GetDefaultSubcommand())
                     @params = @params.Skip(1).ToArray();
             }
@@ -98,7 +97,7 @@ namespace Mooege.Core.MooNet.Commands
             // check if the user has enough privileges to invoke the command.
             if (invokerClient != null && target.MinUserLevel > invokerClient.Account.UserLevel)
                 return "You don't have enough privileges to invoke that command.";
-            
+
             return (string)this._commands[target].Invoke(this, new object[] { @params, invokerClient });
         }
 
@@ -117,7 +116,7 @@ namespace Mooege.Core.MooNet.Commands
         public virtual string Fallback(string[] @params = null, MooNetClient invokerClient = null)
         {
             var output = "Available subcommands: ";
-            foreach(var pair in this._commands)
+            foreach (var pair in this._commands)
             {
                 if (pair.Key.Name.Trim() == string.Empty) continue; // skip fallback command.
                 if (invokerClient != null && pair.Key.MinUserLevel > invokerClient.Account.UserLevel) continue;

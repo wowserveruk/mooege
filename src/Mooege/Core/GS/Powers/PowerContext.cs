@@ -29,6 +29,12 @@ using Mooege.Core.GS.Common.Types.Misc;
 using Mooege.Core.GS.Ticker;
 using Mooege.Core.GS.Common.Types.TagMap;
 using Mooege.Common.Logging;
+using Mooege.Net.GS.Message.Definitions.Animation;
+using Mooege.Net.GS.Message.Fields;
+using Mooege.Core.GS.Powers.Payloads;
+using Mooege.Net.GS.Message.Definitions.Actor;
+using Mooege.Core.GS.Actors.Movement;
+using Mooege.Net.GS.Message.Definitions.ACD;
 
 namespace Mooege.Core.GS.Powers
 {
@@ -69,12 +75,19 @@ namespace Mooege.Core.GS.Powers
 
         public void StartCooldown(TickTimer timeout)
         {
-            if (User is Player)
-            {
-                User.Attributes[GameAttribute.Power_Cooldown_Start, PowerSNO] = World.Game.TickCounter;
-                User.Attributes[GameAttribute.Power_Cooldown, PowerSNO] = timeout.TimeoutTick;
-                User.Attributes.BroadcastChangedIfRevealed();
-            }
+            AddBuff(User, new Implementations.CooldownBuff(PowerSNO, timeout));
+        }
+
+        public void StartCooldown(float seconds)
+        {
+            StartCooldown(WaitSeconds(seconds));
+        }
+
+        public void StartDefaultCooldown()
+        {
+            float seconds = EvalTag(PowerKeys.CooldownTime);
+            if (seconds > 0f)
+                StartCooldown(seconds);
         }
 
         public void GeneratePrimaryResource(float amount)
@@ -108,43 +121,37 @@ namespace Mooege.Core.GS.Powers
                 (User as Player).UseSecondaryResource(amount);
             }
         }
-        
-        public void WeaponDamage(Actor target, float percentage, DamageType damageType, bool hitEffectOverridden = false)
+
+        public void WeaponDamage(Actor target, float damageMultiplier, DamageType damageType)
         {
-            if (target == null || target.World == null) return;
-
-            // TODO: this all needs to really be forwarded to a real combat system
-            // just use hardcoded weapon damage range for now
-            float damageAmount = Rand.Next(20, 35) * percentage;
-
-            if (User is Player)
-            {
-                (User as Player).InGameClient.SendMessage(new FloatingNumberMessage
-                {
-                    ActorID = target.DynamicID,
-                    Number = damageAmount,
-                    Type = FloatingNumberMessage.FloatType.White
-                });
-            }
-
-            if (!hitEffectOverridden)
-                target.PlayHitEffect((int)damageType.HitEffect, User);
-
-            // Update hp, kill if Monster and 0hp
-            float new_hp = Math.Max(target.Attributes[GameAttribute.Hitpoints_Cur] - damageAmount, 0f);
-            target.Attributes[GameAttribute.Hitpoints_Cur] = new_hp;
-            target.Attributes.BroadcastChangedIfRevealed();
-
-            if (new_hp == 0f && target is Monster && User is Player)
-                (target as Monster).Die(User as Player);
+            AttackPayload payload = new AttackPayload(this);
+            payload.SetSingleTarget(target);
+            payload.AddWeaponDamage(damageMultiplier, damageType);
+            payload.Apply();
         }
 
-        public void WeaponDamage(IList<Actor> target_list, float percentage, DamageType damageType, bool hitEffectOverridden = false)
+        public void WeaponDamage(TargetList targets, float damageMultiplier, DamageType damageType)
         {
-            foreach (Actor target in target_list)
-            {
-                WeaponDamage(target, percentage, damageType);
-            }
+            AttackPayload payload = new AttackPayload(this);
+            payload.Targets = targets;
+            payload.AddWeaponDamage(damageMultiplier, damageType);
+            payload.Apply();
+        }
+
+        public void Damage(Actor target, float minDamage, float damageDelta, DamageType damageType)
+        {
+            AttackPayload payload = new AttackPayload(this);
+            payload.SetSingleTarget(target);
+            payload.AddDamage(minDamage, damageDelta, damageType);
+            payload.Apply();
+        }
+
+        public void Damage(TargetList targets, float minDamage, float damageDelta, DamageType damageType)
+        {
+            AttackPayload payload = new AttackPayload(this);
+            payload.Targets = targets;
+            payload.AddDamage(minDamage, damageDelta, damageType);
+            payload.Apply();
         }
 
         public EffectActor SpawnEffect(int actorSNO, Vector3D position, float angle = 0, TickTimer timeout = null)
@@ -167,13 +174,13 @@ namespace Mooege.Core.GS.Powers
 
         public EffectActor SpawnEffect(int actorSNO, Vector3D position, Actor facingTarget, TickTimer timeout = null)
         {
-            float angle = (facingTarget != null) ? PowerMath.AngleLookAt(User.Position, facingTarget.Position) : -1f;
+            float angle = (facingTarget != null) ? MovementHelpers.GetFacingAngle(User.Position, facingTarget.Position) : -1f;
             return SpawnEffect(actorSNO, position, angle, timeout);
         }
 
         public EffectActor SpawnEffect(int actorSNO, Vector3D position, Vector3D facingTarget, TickTimer timeout = null)
         {
-            float angle = PowerMath.AngleLookAt(User.Position, facingTarget);
+            float angle = MovementHelpers.GetFacingAngle(User.Position, facingTarget);
             return SpawnEffect(actorSNO, position, angle, timeout);
         }
 
@@ -182,47 +189,128 @@ namespace Mooege.Core.GS.Powers
             return SpawnEffect(187359, position, 0, timeout);
         }
 
-        public IList<Actor> GetEnemiesInRange(Vector3D center, float range, int maxCount = -1)
+        public TargetList GetEnemiesInRadius(Vector3D center, float radius, int maxCount = -1)
         {
-            List<Actor> hits = new List<Actor>();
-            foreach (Actor actor in World.QuadTree.Query<Actor>(new Circle(center.X, center.Y, range)))
-            {
-                if (hits.Count == maxCount)
-                    break;
+            return _GetTargetsInRadiusHelper(center, radius, maxCount, (actor) => true, _EnemyActorFilter);
+        }
 
-                if (actor is Monster)
-                    hits.Add(actor);
+        public TargetList GetAlliesInRadius(Vector3D center, float radius, int maxCount = -1)
+        {
+            return _GetTargetsInRadiusHelper(center, radius, maxCount, (actor) => true, _AllyActorFilter);
+        }
+
+        public TargetList GetEnemiesInBeamDirection(Vector3D startPoint, Vector3D direction,
+                                                    float length, float thickness = 0f)
+        {
+            Vector3D beamEnd = PowerMath.TranslateDirection2D(startPoint, direction, startPoint, length);
+
+            float fixedActorRadius = 1.5f;  // TODO: calculate based on actor.ActorData.Cylinder.Ax2 ?
+            return _GetTargetsInRadiusHelper(startPoint, length + thickness, -1,
+                actor => PowerMath.CircleInBeam(new Circle(actor.Position.X, actor.Position.Y, fixedActorRadius),
+                                                startPoint, beamEnd, thickness),
+                _EnemyActorFilter);
+        }
+
+        public TargetList GetEnemiesInArcDirection(Vector3D center, Vector3D direction, float radius, float lengthDegrees)
+        {
+            Vector2F arcCenter2D = PowerMath.VectorWithoutZ(center);
+            Vector2F arcDirection2D = PowerMath.VectorWithoutZ(direction);
+            float arcLength = lengthDegrees * PowerMath.DegreesToRadians;
+
+            float fixedActorRadius = 1.5f;  // TODO: calculate based on actor.ActorData.Cylinder.Ax2 ?
+            return _GetTargetsInRadiusHelper(center, radius, -1,
+                actor => PowerMath.ArcCircleCollides(arcCenter2D, arcDirection2D, radius, arcLength,
+                                                     new Circle(actor.Position.X, actor.Position.Y, fixedActorRadius)),
+                _EnemyActorFilter);
+        }
+
+        private TargetList _GetTargetsInRadiusHelper(Vector3D center, float radius, int maxCount,
+            Func<Actor, bool> filter, Func<Actor, bool> targetFilter)
+        {
+            // Query() needs to gather using circle-circle collision, until then just extend the search radius by the default
+            // actor radius currently used.
+            float actorRadiusCompensation = 1.5f;
+
+            TargetList targets = new TargetList();
+            int count = 0;
+            foreach (Actor actor in World.QuadTree.Query<Actor>(new Circle(center.X, center.Y, radius + actorRadiusCompensation)))
+            {
+                if (filter(actor) && !actor.Attributes[GameAttribute.Untargetable] && !World.PowerManager.IsDeletingActor(actor) &&
+                    actor != User)
+                {
+                    if (targetFilter(actor))
+                    {
+                        if (count != maxCount)
+                        {
+                            targets.Actors.Add(actor);
+                            count += 1;
+                        }
+                    }
+                    else
+                    {
+                        targets.ExtraActors.Add(actor);
+                    }
+                }
             }
 
-            return hits;
+            return targets;
         }
 
-        public bool CanHitMeleeTarget(Actor target, float range = 13f)
+        private Func<Actor, bool> _EnemyActorFilter
         {
-            if (target == null) return false;
-
-            return (Math.Sqrt(
-                        Math.Pow(User.Position.X - target.Position.X, 2) +
-                        Math.Pow(User.Position.Y - target.Position.Y, 2) +
-                        Math.Pow(User.Position.Z - target.Position.Z, 2)) <= range);
+            get
+            {
+                if (User is Player || User is Minion)
+                    return (actor) => actor is Monster;
+                else
+                    return (actor) => actor is Player || actor is Minion;
+            }
         }
 
-        public void Knockback(Actor target, Vector3D from, float amount)
+        private Func<Actor, bool> _AllyActorFilter
         {
-            if (target == null) return;
-
-            var move = PowerMath.ProjectAndTranslate2D(from, target.Position, target.Position, amount);
-            target.TranslateNormal(move, 1f);
+            get
+            {
+                if (User is Player || User is Minion)
+                    return (actor) => actor is Player || actor is Minion;
+                else
+                    return (actor) => actor is Monster;
+            }
         }
 
-        public void Knockback(Actor target, float amount)
+        public void TranslateEffect(Actor actor, Vector3D destination, float speed)
         {
-            Knockback(target, User.Position, amount);
+            actor.Position = destination;
+
+            if (actor.World == null) return;
+
+            actor.World.BroadcastIfRevealed(new ACDTranslateNormalMessage
+            {
+                ActorId = (int)actor.DynamicID,
+                Position = destination,
+                Angle = (float)Math.Acos(actor.RotationW) * 2f,  // convert z-axis quat to radians
+                TurnImmediately = true,
+                Speed = speed,
+            }, actor);
         }
 
-        public bool ValidTarget(Actor target)
+        public TickTimer Knockback(Actor target, float magnitude, float arcHeight = 3.0f, float arcGravity = -0.03f)
         {
-            return Target != null && Target.World != null; // TODO: check if world is same as powers?
+            var buff = new Implementations.KnockbackBuff(magnitude, arcHeight, arcGravity);
+            AddBuff(target, buff);
+            return buff.ArrivalTime;
+        }
+
+        public TickTimer Knockback(Vector3D from, Actor target, float magnitude, float arcHeight = 3.0f, float arcGravity = -0.03f)
+        {
+            var buff = new Implementations.KnockbackBuff(magnitude, arcHeight, arcGravity);
+            AddBuff(SpawnProxy(from), target, buff);
+            return buff.ArrivalTime;
+        }
+
+        public static bool ValidTarget(Actor target)
+        {
+            return target != null && target.World != null;
         }
 
         public bool ValidTarget()
@@ -233,7 +321,7 @@ namespace Mooege.Core.GS.Powers
         public float ScriptFormula(int index)
         {
             float result;
-            if (!PowerFormulaScript.Evaluate(this.PowerSNO, PowerFormulaScript.GenerateTagForScriptFormula(index),
+            if (!ScriptFormulaEvaluator.Evaluate(this.PowerSNO, PowerTagHelper.GenerateTagForScriptFormula(index),
                                              User.Attributes, Rand, out result))
                 return 0;
 
@@ -246,7 +334,7 @@ namespace Mooege.Core.GS.Powers
             if (tagmap != null)
                 return tagmap[key];
             else
-                return 0;
+                return -1;
         }
 
         public int EvalTag(TagKeySNO key)
@@ -270,7 +358,7 @@ namespace Mooege.Core.GS.Powers
         public float EvalTag(TagKeyScript key)
         {
             float result;
-            if (!PowerFormulaScript.Evaluate(this.PowerSNO, key,
+            if (!ScriptFormulaEvaluator.Evaluate(this.PowerSNO, key,
                                              User.Attributes, Rand, out result))
                 return 0;
 
@@ -279,12 +367,12 @@ namespace Mooege.Core.GS.Powers
 
         private TagMap _FindTagMapWithKey(TagKey key)
         {
-            TagMap tagmap = PowerTag.FindTagMapWithKey(PowerSNO, key);
+            TagMap tagmap = PowerTagHelper.FindTagMapWithKey(PowerSNO, key);
             if (tagmap != null)
                 return tagmap;
             else
             {
-                Logger.Error("could not find tag key {0} in power {1}", key.ID, PowerSNO);
+                //Logger.Error("could not find tag key {0} in power {1}", key.ID, PowerSNO);
                 return null;
             }
         }
@@ -297,23 +385,41 @@ namespace Mooege.Core.GS.Powers
 
         public T RuneSelect<T>(T none, T runeA, T runeB, T runeC, T runeD, T runeE)
         {
-            if (Rune_A > 0)
-                return runeA;
-            else if (Rune_B > 0)
-                return runeB;
-            else if (Rune_C > 0)
-                return runeC;
-            else if (Rune_D > 0)
-                return runeD;
-            else if (Rune_E > 0)
-                return runeE;
-            else
-                return none;
+            if (Rune_A > 0) return runeA;
+            else if (Rune_B > 0) return runeB;
+            else if (Rune_C > 0) return runeC;
+            else if (Rune_D > 0) return runeD;
+            else if (Rune_E > 0) return runeE;
+            else return none;
         }
 
         public bool AddBuff(Actor target, Buff buff)
         {
-            return target.World.BuffManager.AddBuff(User, target, buff);
+            return AddBuff(User, target, buff);
+        }
+
+        public bool AddBuff(Actor user, Actor target, Buff buff)
+        {
+            return target.World.BuffManager.AddBuff(user, target, buff);
+        }
+
+        public bool HasBuff<BuffType>(Actor target) where BuffType : Buff
+        {
+            return target.World.BuffManager.HasBuff<BuffType>(target);
+        }
+
+        public Vector3D RandomDirection(Vector3D position, float radius)
+        {
+            return RandomDirection(position, radius, radius);
+        }
+
+        public Vector3D RandomDirection(Vector3D position, float minRadius, float maxRadius)
+        {
+            float angle = (float)(Rand.NextDouble() * Math.PI * 2);
+            float radius = minRadius + (float)Rand.NextDouble() * (maxRadius - minRadius);
+            return new Vector3D(position.X + (float)Math.Cos(angle) * radius,
+                                position.Y + (float)Math.Sin(angle) * radius,
+                                position.Z);
         }
     }
 }

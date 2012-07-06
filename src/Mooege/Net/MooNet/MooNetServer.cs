@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,21 +41,23 @@ namespace Mooege.Net.MooNet
 
         private void MooNetServer_OnDisconnect(object sender, ConnectionEventArgs e)
         {
-            var client = ((MooNetClient) e.Connection.Client);
+            var client = ((MooNetClient)e.Connection.Client);
 
             Logger.Trace("Client disconnected: {0}", e.Connection.ToString());
-            if (client.Account != null) client.Account.LoggedInClient = null;
+            if (client.Account != null && client.Account.CurrentGameAccount != null) client.Account.CurrentGameAccount.LoggedInClient = null;
             PlayerManager.PlayerDisconnected((MooNetClient)e.Connection.Client);
         }
-        
+
         public override void Run()
         {
             // we can't listen for port 1119 because D3 and the launcher (agent) communicates on that port through loopback.
             // so we change our default port and start D3 with a shortcut like so:
             //   "F:\Diablo III Beta\Diablo III.exe" -launch -auroraaddress 127.0.0.1:1345
 
-            if (!this.Listen(Config.Instance.BindIP, Config.Instance.Port)) return;
-            Logger.Info("MooNet-Server is listening on {0}:{1}...", Config.Instance.BindIP, Config.Instance.Port);
+            var bindIP = NetworkingConfig.Instance.EnableIPv6 ? Config.Instance.BindIPv6 : Config.Instance.BindIP;
+
+            if (!this.Listen(bindIP, Config.Instance.Port)) return;
+            Logger.Info("MooNet-Server is listening on {0}:{1}...", bindIP, Config.Instance.Port);
         }
     }
 }

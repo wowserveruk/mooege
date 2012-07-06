@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,10 +51,10 @@ namespace Mooege.Core.GS.Common.Types.Misc
         /// <param name="buffer">The GameBitBuffer to parse from.</param>
         public void Parse(GameBitBuffer buffer)
         {
-            Red = (byte) buffer.ReadInt(8);
-            Green = (byte) buffer.ReadInt(8);
-            Blue = (byte) buffer.ReadInt(8);
-            Alpha = (byte) buffer.ReadInt(8);
+            Red = (byte)buffer.ReadInt(8);
+            Green = (byte)buffer.ReadInt(8);
+            Blue = (byte)buffer.ReadInt(8);
+            Alpha = (byte)buffer.ReadInt(8);
         }
 
         /// <summary>

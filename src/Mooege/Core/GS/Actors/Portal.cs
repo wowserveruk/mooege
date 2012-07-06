@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@ using Mooege.Common.Helpers.Hash;
 using Mooege.Common.Logging;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Players;
-using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.Misc;
 using Mooege.Net.GS.Message.Definitions.World;
 using Mooege.Net.GS.Message.Fields;
 using Mooege.Net.GS.Message.Definitions.Map;
 using Mooege.Core.GS.Common.Types.TagMap;
+using System.Collections.Generic;
 
 namespace Mooege.Core.GS.Actors
 {
@@ -35,38 +35,50 @@ namespace Mooege.Core.GS.Actors
 
         public override ActorType ActorType { get { return ActorType.Gizmo; } }
 
-        public ResolvedPortalDestination Destination { get; private set; }
+        private ResolvedPortalDestination Destination { get; set; }
+        private int MinimapIcon;
 
         public Portal(World world, int snoId, TagMap tags)
             : base(world, snoId, tags)
         {
-            this.Destination = new ResolvedPortalDestination
+            try
             {
-                WorldSNO = tags[MarkerKeys.DestinationWorld].Id,
-            };
+                this.Destination = new ResolvedPortalDestination
+                {
+                    WorldSNO = tags[MarkerKeys.DestinationWorld].Id,
+                    DestLevelAreaSNO = tags[MarkerKeys.DestinationLevelArea].Id,
+                    StartingPointActorTag = tags[MarkerKeys.DestinationActorTag]
+                };
 
-            if (tags.ContainsKey(MarkerKeys.DestinationLevelArea))
-                this.Destination.DestLevelAreaSNO = tags[MarkerKeys.DestinationLevelArea].Id;
+                // Override minimap icon in merkerset tags
+                if (tags.ContainsKey(MarkerKeys.MinimapTexture))
+                {
+                    MinimapIcon = tags[MarkerKeys.MinimapTexture].Id;
+                }
+                else
+                {
+                    MinimapIcon = ActorData.TagMap[ActorKeys.MinimapMarker].Id;
+                }
 
-            if (tags.ContainsKey(MarkerKeys.DestinationActorTag))
-                this.Destination.StartingPointActorTag = tags[MarkerKeys.DestinationActorTag];
-            else
-                Logger.Warn("Found portal {0}without target location actor", this.ActorSNO.Id);
-
+            }
+            catch (KeyNotFoundException)
+            {
+                Logger.Warn("Portal {0} has incomplete definition", this.ActorSNO.Id);
+            }
             this.Field2 = 16;
 
             // FIXME: Hardcoded crap; probably don't need to set most of these. /komiga
-            this.Attributes[GameAttribute.MinimapActive] = true;
-            this.Attributes[GameAttribute.Hitpoints_Max_Total] = 1f;
-            this.Attributes[GameAttribute.Hitpoints_Max] = 0.0009994507f;
-            this.Attributes[GameAttribute.Hitpoints_Total_From_Level] = 3.051758E-05f;
-            this.Attributes[GameAttribute.Hitpoints_Cur] = 0.0009994507f;
-            this.Attributes[GameAttribute.Level] = 1;
+            //this.Attributes[GameAttribute.MinimapActive] = true;
+            //this.Attributes[GameAttribute.Hitpoints_Max_Total] = 1f;
+            //this.Attributes[GameAttribute.Hitpoints_Max] = 0.0009994507f;
+            //this.Attributes[GameAttribute.Hitpoints_Total_From_Level] = 3.051758E-05f;
+            //this.Attributes[GameAttribute.Hitpoints_Cur] = 0.0009994507f;
+            //this.Attributes[GameAttribute.Level] = 1;
         }
 
         public override bool Reveal(Player player)
         {
-            if (!base.Reveal(player))
+            if (!base.Reveal(player) || this.Destination == null)
                 return false;
 
             player.InGameClient.SendMessage(new PortalSpecifierMessage()
@@ -74,7 +86,6 @@ namespace Mooege.Core.GS.Actors
                 ActorID = this.DynamicID,
                 Destination = this.Destination
             });
-
 
             // Show a minimap icon
             Mooege.Common.MPQ.Asset asset;
@@ -91,20 +102,19 @@ namespace Mooege.Core.GS.Actors
                     Position = this.Position,
                     WorldID = this.World.DynamicID
                 },
-                Field2 = 0x00018FB0,  /* Marker_DungeonEntrance.tex */          // TODO Dont mark all portals as dungeon entrances... some may be exits too (although d3 does not necesarrily use the correct markers). Also i have found no hacky way to determine whether a portal is entrance or exit - farmy
+                Field2 = MinimapIcon, //   0x00018FB0,  /* Marker_DungeonEntrance.tex */          // TODO Dont mark all portals as dungeon entrances... some may be exits too (although d3 does not necesarrily use the correct markers). Also i have found no hacky way to determine whether a portal is entrance or exit - farmy
                 m_snoStringList = 0x0000CB2E, /* LevelAreaNames.stl */          // TODO Dont use hardcoded numbers
 
-                Field4 = StringHashHelper.HashNormal(markerName),
+                Field3 = StringHashHelper.HashNormal(markerName),
+                Field9 = 0,
+                Field10 = 0,
+                Field11 = 0,
                 Field5 = 0,
-                Field6 = 0,
-                Field7 = 0,
-                Field8 = 0,
-                Field9 = true,
-                Field10 = false,
-                Field11 = true,
+                Field6 = true,
+                Field7 = false,
+                Field8 = true,
                 Field12 = 0
             });
-
             return true;
         }
 

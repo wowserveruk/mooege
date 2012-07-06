@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System.Collections.Generic;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Common.Types.TagMap;
 using Mooege.Net.GS.Message;
@@ -28,7 +27,7 @@ namespace Mooege.Core.GS.Actors.Implementations.Artisans
 {
     [HandledSNO(0x0002FA63 /* PT_Blacksmith_ForgeWeaponShortcut.acr */,
         0x0002FA64 /*PT_Blacksmith_ForgeArmorShortcut.acr */,
-        0x0002FA62 /*PT_Blacksmith_RepairShortcut.acr */, 
+        0x0002FA62 /*PT_Blacksmith_RepairShortcut.acr */,
         212519 /* Actor PT_Jeweler_AddSocketShortcut */,
         212517 /* Actor PT_Jeweler_CombineShortcut */,
         212521 /* Actor PT_Jeweler_RemoveGemShortcut */,

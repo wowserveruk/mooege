@@ -41,41 +41,42 @@ namespace bnet.protocol.achievements {
     
     static AchievementsStaticData() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "Cj5zZXJ2aWNlL2FjaGlldmVtZW50cy9kZWZpbml0aW9uL2FjaGlldmVtZW50" + 
-          "c19zdGF0aWNfZGF0YS5wcm90bxIaYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVu" + 
-          "dHMiJwoJQXR0cmlidXRlEgsKA2tleRgBIAIoCRINCgV2YWx1ZRgCIAIoCSJj" + 
-          "ChBDcml0ZXJpYU1vZGlmaWVyEhsKE25lY2Vzc2FyeV9jb25kaXRpb24YASAC" + 
-          "KAQSDgoGdGFyZ2V0GAIgAigHEg8KB29wZXJhbmQYAyACKA0SEQoJY29tcGFy" + 
-          "YW5kGAQgAigEIokBCg1Dcml0ZXJpYUV2ZW50EgoKAmlkGAEgAigEEhQKCWNv" + 
-          "bXBhcmFuZBgCIAEoBDoBMBI+Cghtb2RpZmllchgDIAMoCzIsLmJuZXQucHJv" + 
-          "dG9jb2wuYWNoaWV2ZW1lbnRzLkNyaXRlcmlhTW9kaWZpZXISFgoOdGltZXJf" + 
-          "ZHVyYXRpb24YBCABKA0isgEKGFN0YXRpY0NhdGVnb3J5RGVmaW5pdGlvbhIK" + 
-          "CgJpZBgBIAIoDRIRCglwYXJlbnRfaWQYAiABKAQSKAogT0JTT0xFVEVfZmVh" + 
-          "dHVyZWRfYWNoaWV2ZW1lbnRfaWQYAyABKAQSEgoKb3JkZXJfaGludBgEIAIo" + 
-          "DRI5CgphdHRyaWJ1dGVzGAUgAygLMiUuYm5ldC5wcm90b2NvbC5hY2hpZXZl" + 
-          "bWVudHMuQXR0cmlidXRlIp0CChtTdGF0aWNBY2hpZXZlbWVudERlZmluaXRp" + 
-          "b24SCgoCaWQYASACKAQSIgoac3VwZXJzZWRpbmdfYWNoaWV2ZW1lbnRfaWQY" + 
-          "AiABKAQSEwoLY2F0ZWdvcnlfaWQYAyACKA0SGAoQbWluaW11bV9jcml0ZXJp" + 
-          "YRgEIAEoDRIUCgxwb2ludHNfdmFsdWUYBSACKA0SDQoFZmxhZ3MYBiACKA0S" + 
-          "EgoKb3JkZXJfaGludBgHIAIoDRIrCiNjcml0ZXJpYV9zaGFyZWRfd2l0aF9h" + 
-          "Y2hpZXZlbWVudF9pZBgIIAEoBBI5CgphdHRyaWJ1dGVzGAkgAygLMiUuYm5l" + 
-          "dC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQXR0cmlidXRlIqQDChhTdGF0aWND" + 
-          "cml0ZXJpYURlZmluaXRpb24SEwoLY3JpdGVyaWFfaWQYASACKAQSHQoVcGFy" + 
-          "ZW50X2FjaGlldmVtZW50X2lkGAIgAigEEj4KC3N0YXJ0X2V2ZW50GAMgASgL" + 
-          "MikuYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQ3JpdGVyaWFFdmVudBJA" + 
-          "Cg1hZHZhbmNlX2V2ZW50GAQgASgLMikuYm5ldC5wcm90b2NvbC5hY2hpZXZl" + 
-          "bWVudHMuQ3JpdGVyaWFFdmVudBI9CgpmYWlsX2V2ZW50GAUgASgLMikuYm5l" + 
-          "dC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQ3JpdGVyaWFFdmVudBIaChJuZWNl" + 
-          "c3NhcnlfcXVhbnRpdHkYBiACKAQSEgoKb3JkZXJfaGludBgHIAEoDRIZChFl" + 
-          "dmFsdXRhdGlvbl9jbGFzcxgIIAIoBxINCgVmbGFncxgJIAIoDRI5CgphdHRy" + 
-          "aWJ1dGVzGAogAygLMiUuYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQXR0" + 
-          "cmlidXRlIu8BCg9BY2hpZXZlbWVudEZpbGUSRgoIY2F0ZWdvcnkYASADKAsy" + 
-          "NC5ibmV0LnByb3RvY29sLmFjaGlldmVtZW50cy5TdGF0aWNDYXRlZ29yeURl" + 
-          "ZmluaXRpb24STAoLYWNoaWV2ZW1lbnQYAiADKAsyNy5ibmV0LnByb3RvY29s" + 
-          "LmFjaGlldmVtZW50cy5TdGF0aWNBY2hpZXZlbWVudERlZmluaXRpb24SRgoI" + 
-          "Y3JpdGVyaWEYAyADKAsyNC5ibmV0LnByb3RvY29sLmFjaGlldmVtZW50cy5T" + 
-          "dGF0aWNDcml0ZXJpYURlZmluaXRpb24qMwoRTW9kaWZlclRhcmdldFR5cGUS" + 
-          "DwoHU1VCSkVDVBDqxNWbBRINCgZPQkpFQ1QQ6sS9Ag==");
+          "CiNibmV0L2FjaGlldmVtZW50c19zdGF0aWNfZGF0YS5wcm90bxIaYm5ldC5w" + 
+          "cm90b2NvbC5hY2hpZXZlbWVudHMiJwoJQXR0cmlidXRlEgsKA2tleRgBIAIo" + 
+          "CRINCgV2YWx1ZRgCIAIoCSJjChBDcml0ZXJpYU1vZGlmaWVyEhsKE25lY2Vz" + 
+          "c2FyeV9jb25kaXRpb24YASACKAQSDgoGdGFyZ2V0GAIgAigHEg8KB29wZXJh" + 
+          "bmQYAyACKA0SEQoJY29tcGFyYW5kGAQgAigEIokBCg1Dcml0ZXJpYUV2ZW50" + 
+          "EgoKAmlkGAEgAigEEhQKCWNvbXBhcmFuZBgCIAEoBDoBMBI+Cghtb2RpZmll" + 
+          "chgDIAMoCzIsLmJuZXQucHJvdG9jb2wuYWNoaWV2ZW1lbnRzLkNyaXRlcmlh" + 
+          "TW9kaWZpZXISFgoOdGltZXJfZHVyYXRpb24YBCABKA0isgEKGFN0YXRpY0Nh" + 
+          "dGVnb3J5RGVmaW5pdGlvbhIKCgJpZBgBIAIoDRIRCglwYXJlbnRfaWQYAiAB" + 
+          "KAQSKAogT0JTT0xFVEVfZmVhdHVyZWRfYWNoaWV2ZW1lbnRfaWQYAyABKAQS" + 
+          "EgoKb3JkZXJfaGludBgEIAIoDRI5CgphdHRyaWJ1dGVzGAUgAygLMiUuYm5l" + 
+          "dC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQXR0cmlidXRlIp0CChtTdGF0aWNB" + 
+          "Y2hpZXZlbWVudERlZmluaXRpb24SCgoCaWQYASACKAQSIgoac3VwZXJzZWRp" + 
+          "bmdfYWNoaWV2ZW1lbnRfaWQYAiABKAQSEwoLY2F0ZWdvcnlfaWQYAyACKA0S" + 
+          "GAoQbWluaW11bV9jcml0ZXJpYRgEIAEoDRIUCgxwb2ludHNfdmFsdWUYBSAC" + 
+          "KA0SDQoFZmxhZ3MYBiACKA0SEgoKb3JkZXJfaGludBgHIAIoDRIrCiNjcml0" + 
+          "ZXJpYV9zaGFyZWRfd2l0aF9hY2hpZXZlbWVudF9pZBgIIAEoBBI5CgphdHRy" + 
+          "aWJ1dGVzGAkgAygLMiUuYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQXR0" + 
+          "cmlidXRlIqQDChhTdGF0aWNDcml0ZXJpYURlZmluaXRpb24SEwoLY3JpdGVy" + 
+          "aWFfaWQYASACKAQSHQoVcGFyZW50X2FjaGlldmVtZW50X2lkGAIgAigEEj4K" + 
+          "C3N0YXJ0X2V2ZW50GAMgASgLMikuYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVu" + 
+          "dHMuQ3JpdGVyaWFFdmVudBJACg1hZHZhbmNlX2V2ZW50GAQgASgLMikuYm5l" + 
+          "dC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQ3JpdGVyaWFFdmVudBI9CgpmYWls" + 
+          "X2V2ZW50GAUgASgLMikuYm5ldC5wcm90b2NvbC5hY2hpZXZlbWVudHMuQ3Jp" + 
+          "dGVyaWFFdmVudBIaChJuZWNlc3NhcnlfcXVhbnRpdHkYBiACKAQSEgoKb3Jk" + 
+          "ZXJfaGludBgHIAEoDRIZChFldmFsdXRhdGlvbl9jbGFzcxgIIAIoBxINCgVm" + 
+          "bGFncxgJIAIoDRI5CgphdHRyaWJ1dGVzGAogAygLMiUuYm5ldC5wcm90b2Nv" + 
+          "bC5hY2hpZXZlbWVudHMuQXR0cmlidXRlIqoCCg9BY2hpZXZlbWVudEZpbGUS" + 
+          "RgoIY2F0ZWdvcnkYASADKAsyNC5ibmV0LnByb3RvY29sLmFjaGlldmVtZW50" + 
+          "cy5TdGF0aWNDYXRlZ29yeURlZmluaXRpb24STAoLYWNoaWV2ZW1lbnQYAiAD" + 
+          "KAsyNy5ibmV0LnByb3RvY29sLmFjaGlldmVtZW50cy5TdGF0aWNBY2hpZXZl" + 
+          "bWVudERlZmluaXRpb24SRgoIY3JpdGVyaWEYAyADKAsyNC5ibmV0LnByb3Rv" + 
+          "Y29sLmFjaGlldmVtZW50cy5TdGF0aWNDcml0ZXJpYURlZmluaXRpb24SOQoK" + 
+          "YXR0cmlidXRlcxgEIAMoCzIlLmJuZXQucHJvdG9jb2wuYWNoaWV2ZW1lbnRz" + 
+          "LkF0dHJpYnV0ZSozChFNb2RpZmVyVGFyZ2V0VHlwZRIPCgdTVUJKRUNUEOrE" + 
+          "1ZsFEg0KBk9CSkVDVBDqxL0C");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_bnet_protocol_achievements_Attribute__Descriptor = Descriptor.MessageTypes[0];
@@ -105,7 +106,7 @@ namespace bnet.protocol.achievements {
         internal__static_bnet_protocol_achievements_AchievementFile__Descriptor = Descriptor.MessageTypes[6];
         internal__static_bnet_protocol_achievements_AchievementFile__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.achievements.AchievementFile, global::bnet.protocol.achievements.AchievementFile.Builder>(internal__static_bnet_protocol_achievements_AchievementFile__Descriptor,
-                new string[] { "Category", "Achievement", "Criteria", });
+                new string[] { "Category", "Achievement", "Criteria", "Attributes", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
@@ -3205,8 +3206,8 @@ namespace bnet.protocol.achievements {
   public sealed partial class AchievementFile : pb::GeneratedMessage<AchievementFile, AchievementFile.Builder> {
     private AchievementFile() { }
     private static readonly AchievementFile defaultInstance = new AchievementFile().MakeReadOnly();
-    private static readonly string[] _achievementFileFieldNames = new string[] { "achievement", "category", "criteria" };
-    private static readonly uint[] _achievementFileFieldTags = new uint[] { 18, 10, 26 };
+    private static readonly string[] _achievementFileFieldNames = new string[] { "achievement", "attributes", "category", "criteria" };
+    private static readonly uint[] _achievementFileFieldTags = new uint[] { 18, 34, 10, 26 };
     public static AchievementFile DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3263,6 +3264,18 @@ namespace bnet.protocol.achievements {
       return criteria_[index];
     }
     
+    public const int AttributesFieldNumber = 4;
+    private pbc::PopsicleList<global::bnet.protocol.achievements.Attribute> attributes_ = new pbc::PopsicleList<global::bnet.protocol.achievements.Attribute>();
+    public scg::IList<global::bnet.protocol.achievements.Attribute> AttributesList {
+      get { return attributes_; }
+    }
+    public int AttributesCount {
+      get { return attributes_.Count; }
+    }
+    public global::bnet.protocol.achievements.Attribute GetAttributes(int index) {
+      return attributes_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         foreach (global::bnet.protocol.achievements.StaticCategoryDefinition element in CategoryList) {
@@ -3274,6 +3287,9 @@ namespace bnet.protocol.achievements {
         foreach (global::bnet.protocol.achievements.StaticCriteriaDefinition element in CriteriaList) {
           if (!element.IsInitialized) return false;
         }
+        foreach (global::bnet.protocol.achievements.Attribute element in AttributesList) {
+          if (!element.IsInitialized) return false;
+        }
         return true;
       }
     }
@@ -3282,13 +3298,16 @@ namespace bnet.protocol.achievements {
       int size = SerializedSize;
       string[] field_names = _achievementFileFieldNames;
       if (category_.Count > 0) {
-        output.WriteMessageArray(1, field_names[1], category_);
+        output.WriteMessageArray(1, field_names[2], category_);
       }
       if (achievement_.Count > 0) {
         output.WriteMessageArray(2, field_names[0], achievement_);
       }
       if (criteria_.Count > 0) {
-        output.WriteMessageArray(3, field_names[2], criteria_);
+        output.WriteMessageArray(3, field_names[3], criteria_);
+      }
+      if (attributes_.Count > 0) {
+        output.WriteMessageArray(4, field_names[1], attributes_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -3308,6 +3327,9 @@ namespace bnet.protocol.achievements {
         }
         foreach (global::bnet.protocol.achievements.StaticCriteriaDefinition element in CriteriaList) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+        }
+        foreach (global::bnet.protocol.achievements.Attribute element in AttributesList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(4, element);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -3349,6 +3371,7 @@ namespace bnet.protocol.achievements {
       category_.MakeReadOnly();
       achievement_.MakeReadOnly();
       criteria_.MakeReadOnly();
+      attributes_.MakeReadOnly();
       return this;
     }
     
@@ -3447,6 +3470,9 @@ namespace bnet.protocol.achievements {
         if (other.criteria_.Count != 0) {
           result.criteria_.Add(other.criteria_);
         }
+        if (other.attributes_.Count != 0) {
+          result.attributes_.Add(other.attributes_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -3500,6 +3526,10 @@ namespace bnet.protocol.achievements {
             }
             case 26: {
               input.ReadMessageArray(tag, field_name, result.criteria_, global::bnet.protocol.achievements.StaticCriteriaDefinition.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 34: {
+              input.ReadMessageArray(tag, field_name, result.attributes_, global::bnet.protocol.achievements.Attribute.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -3641,6 +3671,50 @@ namespace bnet.protocol.achievements {
       public Builder ClearCriteria() {
         PrepareBuilder();
         result.criteria_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::bnet.protocol.achievements.Attribute> AttributesList {
+        get { return PrepareBuilder().attributes_; }
+      }
+      public int AttributesCount {
+        get { return result.AttributesCount; }
+      }
+      public global::bnet.protocol.achievements.Attribute GetAttributes(int index) {
+        return result.GetAttributes(index);
+      }
+      public Builder SetAttributes(int index, global::bnet.protocol.achievements.Attribute value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.attributes_[index] = value;
+        return this;
+      }
+      public Builder SetAttributes(int index, global::bnet.protocol.achievements.Attribute.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.attributes_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddAttributes(global::bnet.protocol.achievements.Attribute value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.attributes_.Add(value);
+        return this;
+      }
+      public Builder AddAttributes(global::bnet.protocol.achievements.Attribute.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.attributes_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeAttributes(scg::IEnumerable<global::bnet.protocol.achievements.Attribute> values) {
+        PrepareBuilder();
+        result.attributes_.Add(values);
+        return this;
+      }
+      public Builder ClearAttributes() {
+        PrepareBuilder();
+        result.attributes_.Clear();
         return this;
       }
     }

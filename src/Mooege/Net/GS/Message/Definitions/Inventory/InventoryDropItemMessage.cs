@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,10 @@
  */
 
 using System.Text;
-using Mooege.Net.GS.Message.Fields;
 
 namespace Mooege.Net.GS.Message.Definitions.Inventory
 {
-    [Message(Opcodes.ANNDataMessage9, Consumers.Inventory)]
+    [Message(Opcodes.DropItemMessage, Consumers.Inventory)]
     public class InventoryDropItemMessage : GameMessage
     {
         public uint ItemID; // Item's DynamicID

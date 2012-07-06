@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,11 @@
  */
 
 using System;
-using System.Collections.Generic;
-using Mooege.Common.Helpers;
 using Mooege.Common.Helpers.Math;
-using Mooege.Common.MPQ.FileFormats.Types;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Players;
+using Mooege.Core.GS.Powers;
+using Mooege.Core.GS.Powers.Payloads;
 using Mooege.Net.GS.Message;
 using Mooege.Net.GS.Message.Definitions.Animation;
 using Mooege.Core.GS.Common.Types.TagMap;
@@ -47,15 +46,14 @@ namespace Mooege.Core.GS.Actors
             this.Monster = new SNOHandle(SNOGroup.Monster, (ActorData.MonsterSNO));
 
             // FIXME: This is hardcoded crap
-            this.FacingAngle = (float)(RandomHelper.NextDouble() * 2.0f * Math.PI);
-            this.RotationAxis.X = 0f; this.RotationAxis.Y = 0f; this.RotationAxis.Z = 1f;
+            this.SetFacingRotation((float)(RandomHelper.NextDouble() * 2.0f * Math.PI));
             this.GBHandle.Type = -1; this.GBHandle.GBID = -1;
             this.Field7 = 0x00000001;
             this.Field10 = 0x0;
 
-            this.Attributes[GameAttribute.Hitpoints_Max_Total] = 4.546875f;
+            //scripted //this.Attributes[GameAttribute.Hitpoints_Max_Total] = 4.546875f;
             this.Attributes[GameAttribute.Hitpoints_Max] = 4.546875f;
-            this.Attributes[GameAttribute.Hitpoints_Total_From_Level] = 0f;
+            //scripted //this.Attributes[GameAttribute.Hitpoints_Total_From_Level] = 0f;
             this.Attributes[GameAttribute.Hitpoints_Cur] = 4.546875f;
 
             this.Attributes[GameAttribute.Level] = 1;
@@ -75,9 +73,15 @@ namespace Mooege.Core.GS.Actors
                         AnimationSNO = this.AnimationSet.GetAnimationTag(Mooege.Common.MPQ.FileFormats.AnimationTags.Idle)
                     });
                 }
-               
+
             }
             return true;
+        }
+
+        public void Kill(PowerContext context = null, bool lootAndExp = false)
+        {
+            var deathload = new DeathPayload(context, Powers.DamageType.Physical, this, lootAndExp);
+            deathload.Apply();
         }
     }
 }

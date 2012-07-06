@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System.Collections.Generic;
 using Mooege.Core.GS.Map;
 using Mooege.Core.GS.Players;
 using Mooege.Net.GS.Message;
@@ -25,25 +24,19 @@ using Mooege.Core.GS.Common.Types.TagMap;
 
 namespace Mooege.Core.GS.Actors.Implementations
 {
-    [HandledSNO(3533 /* Ho-ho-horadrim */)]
+    [HandledSNO(3533)] //Cain
     public class Cain : InteractiveNPC
     {
         public Cain(World world, int snoId, TagMap tags)
             : base(world, snoId, tags)
-        {
-            this.Attributes[GameAttribute.MinimapActive] = true;
-            Conversations.Add(new ConversationInteraction(72416));
-            Conversations.Add(new ConversationInteraction(198588));
-            Conversations.Add(new ConversationInteraction(73171));
-            Interactions.Add(new IdentifyAllInteraction());
-        }
+        { }
 
-        public override bool Reveal(Player player)
+        protected override void ReadTags()
         {
-            if (!base.Reveal(player))
-                return false;
+            if (!Tags.ContainsKey(MarkerKeys.ConversationList))
+                Tags.Add(MarkerKeys.ConversationList, new TagMapEntry(MarkerKeys.ConversationList.ID, 108832, 2));
 
-            return true;
+            base.ReadTags();
         }
     }
 }

@@ -31,17 +31,18 @@ namespace D3.Quests {
     
     static Quest() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "CgtRdWVzdC5wcm90bxIJRDMuUXVlc3RzGgtJdGVtcy5wcm90byJgCgtRdWVz" + 
+          "CgtRdWVzdC5wcm90bxIJRDMuUXVlc3RzGgtJdGVtcy5wcm90byJ/CgtRdWVz" + 
           "dFJld2FyZBIVCgp4cF9ncmFudGVkGAEgASgFOgEwEhcKDGdvbGRfZ3JhbnRl" + 
-          "ZBgCIAEoBToBMBIhCgRpdGVtGAMgASgLMhMuRDMuSXRlbXMuR2VuZXJhdG9y" + 
-          "IlYKEVF1ZXN0U3RlcENvbXBsZXRlEhkKEWlzX3F1ZXN0X2NvbXBsZXRlGAEg" + 
-          "AigIEiYKBnJld2FyZBgCIAEoCzIWLkQzLlF1ZXN0cy5RdWVzdFJld2FyZA==");
+          "ZBgCIAEoBToBMBIpCgxpdGVtX2dyYW50ZWQYAyABKAsyEy5EMy5JdGVtcy5H" + 
+          "ZW5lcmF0b3ISFQoJc25vX3F1ZXN0GAQgASgPOgItMSJWChFRdWVzdFN0ZXBD" + 
+          "b21wbGV0ZRIZChFpc19xdWVzdF9jb21wbGV0ZRgBIAIoCBImCgZyZXdhcmQY" + 
+          "AiABKAsyFi5EMy5RdWVzdHMuUXVlc3RSZXdhcmQ=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_D3_Quests_QuestReward__Descriptor = Descriptor.MessageTypes[0];
         internal__static_D3_Quests_QuestReward__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.Quests.QuestReward, global::D3.Quests.QuestReward.Builder>(internal__static_D3_Quests_QuestReward__Descriptor,
-                new string[] { "XpGranted", "GoldGranted", "Item", });
+                new string[] { "XpGranted", "GoldGranted", "ItemGranted", "SnoQuest", });
         internal__static_D3_Quests_QuestStepComplete__Descriptor = Descriptor.MessageTypes[1];
         internal__static_D3_Quests_QuestStepComplete__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::D3.Quests.QuestStepComplete, global::D3.Quests.QuestStepComplete.Builder>(internal__static_D3_Quests_QuestStepComplete__Descriptor,
@@ -63,8 +64,8 @@ namespace D3.Quests {
   public sealed partial class QuestReward : pb::GeneratedMessage<QuestReward, QuestReward.Builder> {
     private QuestReward() { }
     private static readonly QuestReward defaultInstance = new QuestReward().MakeReadOnly();
-    private static readonly string[] _questRewardFieldNames = new string[] { "gold_granted", "item", "xp_granted" };
-    private static readonly uint[] _questRewardFieldTags = new uint[] { 16, 26, 8 };
+    private static readonly string[] _questRewardFieldNames = new string[] { "gold_granted", "item_granted", "sno_quest", "xp_granted" };
+    private static readonly uint[] _questRewardFieldTags = new uint[] { 16, 26, 37, 8 };
     public static QuestReward DefaultInstance {
       get { return defaultInstance; }
     }
@@ -105,20 +106,30 @@ namespace D3.Quests {
       get { return goldGranted_; }
     }
     
-    public const int ItemFieldNumber = 3;
-    private bool hasItem;
-    private global::D3.Items.Generator item_;
-    public bool HasItem {
-      get { return hasItem; }
+    public const int ItemGrantedFieldNumber = 3;
+    private bool hasItemGranted;
+    private global::D3.Items.Generator itemGranted_;
+    public bool HasItemGranted {
+      get { return hasItemGranted; }
     }
-    public global::D3.Items.Generator Item {
-      get { return item_ ?? global::D3.Items.Generator.DefaultInstance; }
+    public global::D3.Items.Generator ItemGranted {
+      get { return itemGranted_ ?? global::D3.Items.Generator.DefaultInstance; }
+    }
+    
+    public const int SnoQuestFieldNumber = 4;
+    private bool hasSnoQuest;
+    private int snoQuest_ = -1;
+    public bool HasSnoQuest {
+      get { return hasSnoQuest; }
+    }
+    public int SnoQuest {
+      get { return snoQuest_; }
     }
     
     public override bool IsInitialized {
       get {
-        if (HasItem) {
-          if (!Item.IsInitialized) return false;
+        if (HasItemGranted) {
+          if (!ItemGranted.IsInitialized) return false;
         }
         return true;
       }
@@ -128,13 +139,16 @@ namespace D3.Quests {
       int size = SerializedSize;
       string[] field_names = _questRewardFieldNames;
       if (hasXpGranted) {
-        output.WriteInt32(1, field_names[2], XpGranted);
+        output.WriteInt32(1, field_names[3], XpGranted);
       }
       if (hasGoldGranted) {
         output.WriteInt32(2, field_names[0], GoldGranted);
       }
-      if (hasItem) {
-        output.WriteMessage(3, field_names[1], Item);
+      if (hasItemGranted) {
+        output.WriteMessage(3, field_names[1], ItemGranted);
+      }
+      if (hasSnoQuest) {
+        output.WriteSFixed32(4, field_names[2], SnoQuest);
       }
       UnknownFields.WriteTo(output);
     }
@@ -152,8 +166,11 @@ namespace D3.Quests {
         if (hasGoldGranted) {
           size += pb::CodedOutputStream.ComputeInt32Size(2, GoldGranted);
         }
-        if (hasItem) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, Item);
+        if (hasItemGranted) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, ItemGranted);
+        }
+        if (hasSnoQuest) {
+          size += pb::CodedOutputStream.ComputeSFixed32Size(4, SnoQuest);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -287,8 +304,11 @@ namespace D3.Quests {
         if (other.HasGoldGranted) {
           GoldGranted = other.GoldGranted;
         }
-        if (other.HasItem) {
-          MergeItem(other.Item);
+        if (other.HasItemGranted) {
+          MergeItemGranted(other.ItemGranted);
+        }
+        if (other.HasSnoQuest) {
+          SnoQuest = other.SnoQuest;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -343,11 +363,15 @@ namespace D3.Quests {
             }
             case 26: {
               global::D3.Items.Generator.Builder subBuilder = global::D3.Items.Generator.CreateBuilder();
-              if (result.hasItem) {
-                subBuilder.MergeFrom(Item);
+              if (result.hasItemGranted) {
+                subBuilder.MergeFrom(ItemGranted);
               }
               input.ReadMessage(subBuilder, extensionRegistry);
-              Item = subBuilder.BuildPartial();
+              ItemGranted = subBuilder.BuildPartial();
+              break;
+            }
+            case 37: {
+              result.hasSnoQuest = input.ReadSFixed32(ref result.snoQuest_);
               break;
             }
           }
@@ -400,43 +424,63 @@ namespace D3.Quests {
         return this;
       }
       
-      public bool HasItem {
-       get { return result.hasItem; }
+      public bool HasItemGranted {
+       get { return result.hasItemGranted; }
       }
-      public global::D3.Items.Generator Item {
-        get { return result.Item; }
-        set { SetItem(value); }
+      public global::D3.Items.Generator ItemGranted {
+        get { return result.ItemGranted; }
+        set { SetItemGranted(value); }
       }
-      public Builder SetItem(global::D3.Items.Generator value) {
+      public Builder SetItemGranted(global::D3.Items.Generator value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasItem = true;
-        result.item_ = value;
+        result.hasItemGranted = true;
+        result.itemGranted_ = value;
         return this;
       }
-      public Builder SetItem(global::D3.Items.Generator.Builder builderForValue) {
+      public Builder SetItemGranted(global::D3.Items.Generator.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         PrepareBuilder();
-        result.hasItem = true;
-        result.item_ = builderForValue.Build();
+        result.hasItemGranted = true;
+        result.itemGranted_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeItem(global::D3.Items.Generator value) {
+      public Builder MergeItemGranted(global::D3.Items.Generator value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        if (result.hasItem &&
-            result.item_ != global::D3.Items.Generator.DefaultInstance) {
-            result.item_ = global::D3.Items.Generator.CreateBuilder(result.item_).MergeFrom(value).BuildPartial();
+        if (result.hasItemGranted &&
+            result.itemGranted_ != global::D3.Items.Generator.DefaultInstance) {
+            result.itemGranted_ = global::D3.Items.Generator.CreateBuilder(result.itemGranted_).MergeFrom(value).BuildPartial();
         } else {
-          result.item_ = value;
+          result.itemGranted_ = value;
         }
-        result.hasItem = true;
+        result.hasItemGranted = true;
         return this;
       }
-      public Builder ClearItem() {
+      public Builder ClearItemGranted() {
         PrepareBuilder();
-        result.hasItem = false;
-        result.item_ = null;
+        result.hasItemGranted = false;
+        result.itemGranted_ = null;
+        return this;
+      }
+      
+      public bool HasSnoQuest {
+        get { return result.hasSnoQuest; }
+      }
+      public int SnoQuest {
+        get { return result.SnoQuest; }
+        set { SetSnoQuest(value); }
+      }
+      public Builder SetSnoQuest(int value) {
+        PrepareBuilder();
+        result.hasSnoQuest = true;
+        result.snoQuest_ = value;
+        return this;
+      }
+      public Builder ClearSnoQuest() {
+        PrepareBuilder();
+        result.hasSnoQuest = false;
+        result.snoQuest_ = -1;
         return this;
       }
     }

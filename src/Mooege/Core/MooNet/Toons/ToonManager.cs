@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,126 +22,163 @@ using System.Data.SQLite;
 using System.Linq;
 using Mooege.Common.Logging;
 using Mooege.Common.Storage;
+using Mooege.Common.Storage.AccountDataBase.Entities;
 using Mooege.Core.MooNet.Accounts;
+using NHibernate.Linq;
 
 namespace Mooege.Core.MooNet.Toons
 {
     // Just a quick hack - not to be meant final
     public static class ToonManager
     {
-        private static readonly Dictionary<ulong, Toon> Toons =
-            new Dictionary<ulong, Toon>();
-
+        private static readonly HashSet<Toon> LoadedToons = new HashSet<Toon>();
         private static readonly Logger Logger = LogManager.CreateLogger();
 
-        static ToonManager()
+
+        public static Toon GetToonByDBToon(DBToon dbToon)
         {
-            LoadToons();
+            if (!LoadedToons.Any(dbt => dbt.DBToon.Id == dbToon.Id))
+                LoadedToons.Add(new Toon(dbToon));
+            return LoadedToons.Single(dbt => dbt.DBToon.Id == dbToon.Id);
         }
+
 
         public static Account GetOwnerAccountByToonLowId(ulong id)
         {
-            var toon = (from pair in Toons where pair.Value.PersistentID == id select pair.Value).FirstOrDefault();
-            return (toon != null) ? toon.Owner : null;
+            return GetToonByLowID(id).GameAccount.Owner;
         }
+
+        public static GameAccount GetOwnerGameAccountByToonLowId(ulong id)
+        {
+            return GetToonByLowID(id).GameAccount;
+        }
+
+
 
         public static Toon GetToonByLowID(ulong id)
         {
-            return (from pair in Toons where pair.Value.PersistentID == id select pair.Value).FirstOrDefault();
+            var dbToon = DBSessions.AccountSession.Get<DBToon>(id);
+            return GetToonByDBToon(dbToon);
         }
 
-        public static Dictionary<ulong, Toon> GetToonsForAccount(Account account)
+        public static Toon GetDeletedToon(GameAccount account)
         {
-            return Toons.Where(pair => pair.Value.Owner != null).Where(pair => pair.Value.Owner.PersistentID == account.PersistentID).ToDictionary(pair => pair.Key, pair => pair.Value);
+            var query = DBSessions.AccountSession.Query<DBToon>().Where(dbt => dbt.DBGameAccount.Id == account.PersistentID && dbt.Deleted);
+            return query.Any() ? GetToonByLowID(query.First().Id) : null;
         }
+
+        public static List<Toon> GetToonsForGameAccount(GameAccount account)
+        {
+            var toons = account.DBGameAccount.DBToons.Select(dbt => GetToonByLowID(dbt.Id));
+            return toons.ToList();
+        }
+
 
         public static int TotalToons
         {
-            get { return Toons.Count; }
+            get { return DBSessions.AccountSession.Query<DBToon>().Count(); }
         }
 
-        //Method only used when creating a Toon for the first time, ambiguous method name - Tharuler
-        public static bool SaveToon(Toon toon)
+
+        public static Toon CreateNewToon(string name, int classId, ToonFlags flags, byte level, GameAccount gameAccount)
         {
+            var dbGameAccount = DBSessions.AccountSession.Get<DBGameAccount>(gameAccount.PersistentID);
+            var newDBToon = new DBToon
+                                {
+                                    Class = @Toon.GetClassByID(classId),
+                                    Name = name,
+                                    /*HashCode = GetUnusedHashCodeForToonName(name),*/
+                                    Flags = flags,
+                                    Level = level,
+                                    DBGameAccount = DBSessions.AccountSession.Get<DBGameAccount>(gameAccount.PersistentID)
+                                };
 
-            if (Toons.ContainsKey(toon.PersistentID)) //this should never happen again thanks to hashcode, but lets leave it in for now - Tharuler
-            {
-                Logger.Error("Duplicate persistent toon id: {0}", toon.PersistentID);
-                return false;
-            }
+            dbGameAccount.DBToons.Add(newDBToon);
+            DBSessions.AccountSession.SaveOrUpdate(dbGameAccount);
+            DBSessions.AccountSession.Flush();
 
-            Toons.Add(toon.PersistentID, toon);
-            toon.SaveToDB(); //possible concurrency problem? 2 toon created with same name at same time could introduce a race condition for the same hashcode(chance of 1 in (1000-amount of toons with that name))
 
-            Logger.Trace("Character {0} with HashCode #{1} added to database", toon.Name, toon.HashCodeString);
-
-            return true;
+            return GetToonByLowID(newDBToon.Id);
         }
 
         public static void DeleteToon(Toon toon)
         {
-            if (!Toons.ContainsKey(toon.PersistentID))
-            {
-                Logger.Error("Attempting to delete toon that does not exist: {0}", toon.PersistentID);
+            if (toon == null)
                 return;
-            }
 
-            if (toon.DeleteFromDB()) Toons.Remove(toon.PersistentID);
-        }
-
-        private static void LoadToons()
-        {
-            var query = "SELECT * from toons";
-            var cmd = new SQLiteCommand(query, DBManager.Connection);
-            var reader = cmd.ExecuteReader();
-
-            if (!reader.HasRows) return;
-
-            while (reader.Read())
+            //remove toonActiveSkills
+            if (toon.DBToon.DBActiveSkills != null)
             {
-                var databaseId = (ulong)reader.GetInt64(0);
-                var toon = new Toon(databaseId, reader.GetString(1), reader.GetInt32(6), reader.GetByte(2), reader.GetByte(3), reader.GetByte(4), reader.GetInt64(5),(uint)reader.GetInt32(7));
-                Toons.Add(databaseId, toon);
+                DBSessions.AccountSession.Delete(toon.DBToon.DBActiveSkills);
+                toon.DBToon.DBActiveSkills = null;
             }
-        }
 
-        public static int GetUnusedHashCodeForToonName(string name)
-        {
-            var query = string.Format("SELECT hashCode from toons WHERE name='{0}'", name);
-            Logger.Trace(query);
-            var cmd = new SQLiteCommand(query, DBManager.Connection);
-            var reader = cmd.ExecuteReader();
-            if (!reader.HasRows) return GenerateHashCodeNotInList(null);
-
-            var codes = new HashSet<int>();
-            while (reader.Read())
+            //remove toon inventory
+            var inventoryToDelete = DBSessions.AccountSession.Query<DBInventory>().Where(inv => inv.DBToon.Id == toon.DBToon.Id);
+            foreach (var inv in inventoryToDelete)
             {
-                var hashCode = reader.GetInt32(0);
-                codes.Add(hashCode);
+                //toon.DBToon.DBGameAccount.DBInventories.Remove(inv);
+                DBSessions.AccountSession.Delete(inv);
             }
-            return GenerateHashCodeNotInList(codes);
+
+
+
+
+            //remove lastplayed hero if it was toon
+            if (toon.DBToon.DBGameAccount.LastPlayedHero != null && toon.DBToon.DBGameAccount.LastPlayedHero.Id == toon.DBToon.Id)
+                toon.DBToon.DBGameAccount.LastPlayedHero = null;
+
+
+            //remove toon from dbgameaccount
+            while (toon.DBToon.DBGameAccount.DBToons.Contains(toon.DBToon))
+                toon.DBToon.DBGameAccount.DBToons.Remove(toon.DBToon);
+
+            //save all this thinks
+            DBSessions.AccountSession.SaveOrUpdate(toon.DBToon.DBGameAccount);
+            DBSessions.AccountSession.Delete(toon.DBToon);
+            DBSessions.AccountSession.Flush();
+
+
+            //remove toon from loadedToon list
+            if (LoadedToons.Contains(toon))
+                LoadedToons.Remove(toon);
+
+            Logger.Debug("Deleting toon {0}", toon.PersistentID);
         }
+
 
         public static void Sync()
         {
-            foreach (var pair in Toons)
+            foreach (var toon in LoadedToons)
             {
-                pair.Value.SaveToDB();
+                SaveToDB(toon);
             }
         }
 
-        private static int GenerateHashCodeNotInList(HashSet<int> codes)
+        public static void SaveToDB(Toon toon)
         {
-            Random rnd = new Random();
-            if (codes == null) return rnd.Next(1, 1000);
-
-            int hashCode;
-            do
+            try
             {
-                hashCode = rnd.Next(1, 1000);
-            } while (codes.Contains(hashCode)) ;
-            return hashCode;
+                // save character base data
+                var dbToon = DBSessions.AccountSession.Get<DBToon>(toon.PersistentID);
+                dbToon.Name = toon.Name;
+                /*dbToon.HashCode = toon.HashCode;*/
+                dbToon.Class = toon.Class;
+                dbToon.Flags = toon.Flags;
+                dbToon.Level = toon.Level;
+                dbToon.Experience = toon.ExperienceNext;
+                dbToon.DBGameAccount = DBSessions.AccountSession.Get<DBGameAccount>(toon.GameAccount.PersistentID);
+                dbToon.TimePlayed = toon.TimePlayed;
+                dbToon.Deleted = toon.Deleted;
 
+                DBSessions.AccountSession.SaveOrUpdate(dbToon);
+                DBSessions.AccountSession.Flush();
+            }
+            catch (Exception e)
+            {
+                Logger.ErrorException(e, "Toon.SaveToDB()");
+            }
         }
+
     }
 }

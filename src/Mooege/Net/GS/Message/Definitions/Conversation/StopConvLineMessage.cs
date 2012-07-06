@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,24 +21,33 @@ using System.Text;
 namespace Mooege.Net.GS.Message.Definitions.Conversation
 {
     /// <summary>
-    /// Sent to the client. No idea what it does.. everything works without it so far.
+    /// Server -> Client
+    /// 
+    /// Stops playback of a conversation line
     /// </summary>
     [Message(Opcodes.StopConvLineMessage)]
     public class StopConvLineMessage : GameMessage
     {
-        public int Field0;  // seems to be a running number across conversationlines. StopConvLine.Field0 == EndConvLine.Field0 == PlayConvLine.PlayLineParams.Field14 for a conversation
+        /// <summary>
+        /// Identifier of the PlayLineParams as used in PlayConvLineMessage to start the conversation
+        /// </summary>
+        public int PlayLineParamsId;
+
+        /// <summary>
+        /// Sets whether playback of current line is stopped or not
+        /// </summary>
         public bool Interrupt;
 
         public StopConvLineMessage() : base(Opcodes.StopConvLineMessage)  {}
         public override void Parse(GameBitBuffer buffer)
         {
-            Field0 = buffer.ReadInt(32);
+            PlayLineParamsId = buffer.ReadInt(32);
             Interrupt = buffer.ReadBool();
         }
 
         public override void Encode(GameBitBuffer buffer)
         {
-            buffer.WriteInt(32, Field0);
+            buffer.WriteInt(32, PlayLineParamsId);
             buffer.WriteBool(Interrupt);
         }
 
@@ -48,7 +57,7 @@ namespace Mooege.Net.GS.Message.Definitions.Conversation
             b.AppendLine("StopConvLineMessage:");
             b.Append(' ', pad++);
             b.AppendLine("{");
-            b.Append(' ', pad); b.AppendLine("Field0: 0x" + Field0.ToString("X8") + " (" + Field0 + ")");
+            b.Append(' ', pad); b.AppendLine("PlayLineParamsId: 0x" + PlayLineParamsId.ToString("X8") + " (" + PlayLineParamsId + ")");
             b.Append(' ', pad); b.AppendLine("Interrupt: " + (Interrupt ? "true" : "false"));
             b.Append(' ', --pad);
             b.AppendLine("}");

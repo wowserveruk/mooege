@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Mooege.Common.MPQ;
 using Mooege.Net.GS.Message.Definitions.Quest;
 using Mooege.Core.GS.Common.Types.SNO;
-using Mooege.Core.GS.Games;
-using Mooege.Common;
 
 namespace Mooege.Core.GS.Games
 {
@@ -54,7 +50,7 @@ namespace Mooege.Core.GS.Games
                 public int ObjectiveValue { get { return objective.SNOName1.Id; } }
 
                 private Mooege.Common.MPQ.FileFormats.QuestStepObjective objective;
-                private QuestStep questStep;
+                public QuestStep questStep;
 
                 public QuestObjective(Mooege.Common.MPQ.FileFormats.QuestStepObjective objective, QuestStep questStep, int id)
                 {
@@ -186,7 +182,7 @@ namespace Mooege.Core.GS.Games
         {
             this.game = game;
             SNOHandle = new SNOHandle(SNOGroup.Quest, SNOQuest);
-            asset = SNOHandle.Target as  Mooege.Common.MPQ.FileFormats.Quest;
+            asset = SNOHandle.Target as Mooege.Common.MPQ.FileFormats.Quest;
             CurrentStep = new QuestStep(asset.QuestUnassignedStep, this);
         }
 

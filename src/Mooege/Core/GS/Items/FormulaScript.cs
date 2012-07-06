@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ using Mooege.Net.GS.Message;
 
 namespace Mooege.Core.GS.Items
 {
-    static class FormulaScript
+    public static class FormulaScript
     {
         private static readonly Logger Logger = LogManager.CreateLogger();
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,13 @@ using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Players;
 
 namespace Mooege.Core.GS.AI.Brains
-{    
-    public class HirelingBrain:Brain
+{
+    public class HirelingBrain : Brain
     {
         public Player Owner { get; private set; }
 
-        protected HirelingBrain(Actor body) : base(body)
+        protected HirelingBrain(Actor body)
+            : base(body)
         { }
 
         public override void Think(int tickCounter)

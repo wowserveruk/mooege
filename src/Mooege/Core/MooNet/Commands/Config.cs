@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 namespace Mooege.Core.MooNet.Commands
 {
-    public sealed class Config: Mooege.Common.Config.Config
+    public sealed class Config : Mooege.Common.Config.Config
     {
         public char CommandPrefix { get { return this.GetString("CommandPrefix", "!")[0]; } set { this.Set("CommandPrefix", value); } }
 

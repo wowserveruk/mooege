@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ namespace Mooege.Core.GS.Common.Types.QuadTrees
         /// <summary>
         /// List of contained objects.
         /// </summary>
-        public ConcurrentDictionary<uint, WorldObject> ContainedObjects = new ConcurrentDictionary<uint,WorldObject>();
+        public ConcurrentDictionary<uint, WorldObject> ContainedObjects = new ConcurrentDictionary<uint, WorldObject>();
 
         /// <summary>
         /// The bounds for node.

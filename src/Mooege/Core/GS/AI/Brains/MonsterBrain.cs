@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,42 +19,129 @@
 using System.Collections.Generic;
 using Mooege.Common.Helpers.Math;
 using Mooege.Core.GS.Actors;
+using Mooege.Core.GS.Actors.Implementations.Monsters;
 using Mooege.Core.GS.Actors.Movement;
 using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Players;
+using Mooege.Core.GS.Actors.Actions;
+using Mooege.Net.GS.Message;
+using Mooege.Common.MPQ;
+using Mooege.Core.GS.Common.Types.SNO;
+using Mooege.Core.GS.Ticker;
+using System.Linq;
 
 namespace Mooege.Core.GS.AI.Brains
 {
-    public class MonsterBrain:Brain
+    public class MonsterBrain : Brain
     {
-        /// <summary>
-        /// Hostile actors in range.
-        /// </summary>
-        public List<Player> EnemiesInRange { get; protected set; }
+        // list of power SNOs that are defined for the monster
+        public List<int> PresetPowers { get; private set; }
+
+        private TickTimer _powerDelay;
+
+        private bool _warnedNoPowers;
+        private int _mpqPowerCount;
 
         public MonsterBrain(Actor body)
             : base(body)
         {
+            this.PresetPowers = new List<int>();
+
+            // build list of powers defined in monster mpq data
+            if (body.ActorData.MonsterSNO > 0)
+            {
+                var monsterData = (Mooege.Common.MPQ.FileFormats.Monster)MPQStorage.Data.Assets[SNOGroup.Monster][body.ActorData.MonsterSNO].Data;
+                _mpqPowerCount = monsterData.SkillDeclarations.Count(e => e.SNOPower != -1);
+                foreach (var monsterSkill in monsterData.SkillDeclarations)
+                {
+                    if (Powers.PowerLoader.HasImplementationForPowerSNO(monsterSkill.SNOPower))
+                    {
+                        this.PresetPowers.Add(monsterSkill.SNOPower);
+                    }
+                }
+            }
         }
 
         public override void Think(int tickCounter)
         {
+            // this needed? /mdz
             if (this.Body is NPC) return;
 
-            // Reading enemies in range from quad map is quite expensive, so read it once at the very start. /raist.
-            this.EnemiesInRange = this.Body.GetPlayersInRange();
+            // check if in disabled state, if so cancel any action then do nothing
+            if (this.Body.Attributes[GameAttribute.Frozen] ||
+                this.Body.Attributes[GameAttribute.Stunned] ||
+                this.Body.Attributes[GameAttribute.Blind] ||
+                this.Body.World.BuffManager.GetFirstBuff<Powers.Implementations.KnockbackBuff>(this.Body) != null ||
+                this.Body.World.BuffManager.GetFirstBuff<Powers.Implementations.SummonedBuff>(this.Body) != null)
+            {
+                if (this.CurrentAction != null)
+                {
+                    this.CurrentAction.Cancel(tickCounter);
+                    this.CurrentAction = null;
+                }
+                _powerDelay = null;
 
-            if (this.EnemiesInRange.Count > 0) // if there are enemies around
-                this.State = BrainState.Combat; // attack them.
-            else
-                this.State = BrainState.Wander; // else just wander around.
+                return;
+            }
 
+
+            // select and start executing a power if no active action
             if (this.CurrentAction == null)
             {
-                var heading = new Vector3D(this.Body.Position.X + FastRandom.Instance.Next(-10,10), this.Body.Position.Y + FastRandom.Instance.Next(-10,10), this.Body.Position.Z);
-                
-                if (this.Body.Position.DistanceSquared(ref heading) > this.Body.WalkSpeed * this.Body.World.Game.TickRate) // just skip the movements that can be accomplished in a single game.update(). /raist.
-                    this.CurrentAction = new MoveToPointAction(this.Body, heading);
+                // do a little delay so groups of monsters don't all execute at once
+                if (_powerDelay == null)
+                    _powerDelay = new SecondsTickTimer(this.Body.World.Game, (float)RandomHelper.NextDouble());
+
+
+                if (_powerDelay.TimedOut)
+                {
+                    int powerToUse = PickPowerToUse();
+                    if (powerToUse > 0)
+                    {
+                        this.CurrentAction = new PowerAction(this.Body, powerToUse);
+                    }
+                }
+            }
+        }
+
+        protected virtual int PickPowerToUse()
+        {
+            if (!_warnedNoPowers && this.PresetPowers.Count == 0)
+            {
+                Logger.Info("Monster \"{0}\" has no usable powers. {1} are defined in mpq data.",
+                    this.Body.ActorSNO.Name, _mpqPowerCount);
+                _warnedNoPowers = true;
+            }
+
+            // randomly used an implemented power
+            if (this.PresetPowers.Count > 0)
+            {
+                int power = this.PresetPowers[RandomHelper.Next(this.PresetPowers.Count)];
+                if (Powers.PowerLoader.HasImplementationForPowerSNO(power))
+                    return power;
+            }
+
+            // no usable power
+            return -1;
+        }
+
+        public void AddPresetPower(int powerSNO)
+        {
+            if (this.PresetPowers.Contains(powerSNO))
+            {
+                Logger.Error("AddPresetPower(): power sno {0} already defined for monster \"{1}\"",
+                    powerSNO, this.Body.ActorSNO.Name);
+                return;
+            }
+
+            this.PresetPowers.Add(powerSNO);
+        }
+
+        public void RemovePresetPower(int powerSNO)
+        {
+            if (this.PresetPowers.Contains(powerSNO))
+            {
+                this.PresetPowers.Remove(powerSNO);
             }
         }
     }

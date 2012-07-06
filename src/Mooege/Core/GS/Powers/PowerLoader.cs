@@ -33,13 +33,20 @@ namespace Mooege.Core.GS.Powers
         {
             if (_implementations.ContainsKey(powerSNO))
             {
-                return (PowerScript)Activator.CreateInstance(_implementations[powerSNO]);
+                PowerScript script = (PowerScript)Activator.CreateInstance(_implementations[powerSNO]);
+                script.PowerSNO = powerSNO;
+                return script;
             }
             else
             {
                 Logger.Debug("Unimplemented power: {0}", powerSNO);
                 return null;
             }
+        }
+
+        public static bool HasImplementationForPowerSNO(int powerSNO)
+        {
+            return _implementations.ContainsKey(powerSNO);
         }
 
         static PowerLoader()

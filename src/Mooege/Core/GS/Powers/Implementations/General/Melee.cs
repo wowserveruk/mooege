@@ -22,19 +22,26 @@ using System.Linq;
 using System.Text;
 using Mooege.Core.GS.Skills;
 using Mooege.Core.GS.Ticker;
+using Mooege.Core.GS.Actors;
+using Mooege.Net.GS.Message;
+
 
 namespace Mooege.Core.GS.Powers.Implementations
 {
-    [ImplementsPowerSNO(0x00007780)]  // Weapon_Melee_Instant.pow
-    public class WeaponMeleeInstant : PowerScript
+    [ImplementsPowerSNO(30592)]  // Weapon_Melee_Instant.pow
+    public class WeaponMeleeInstant : ActionTimedSkill
     {
-        public override IEnumerable<TickTimer> Run()
+        public override IEnumerable<TickTimer> Main()
         {
-            if (CanHitMeleeTarget(Target))
-            {
-                WeaponDamage(Target, 1.00f, DamageType.Physical);
-            }
+            WeaponDamage(GetBestMeleeEnemy(), 1.00f, DamageType.Physical);
             yield break;
+        }
+
+        public override float GetActionSpeed()
+        {
+            // for some reason the formula for _Instant.pow does not multiply by 1.1 even though it should
+            // manually scale melee speed
+            return base.GetActionSpeed() * 1.1f;
         }
     }
 }

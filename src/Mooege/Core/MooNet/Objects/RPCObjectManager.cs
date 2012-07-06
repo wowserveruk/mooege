@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ namespace Mooege.Core.MooNet.Objects
     {
         private static readonly Logger Logger = LogManager.CreateLogger();
 
-        private static ulong _nextId=0;
+        private static ulong _nextId = 0;
         public static readonly Dictionary<ulong, RPCObject> Objects = new Dictionary<ulong, RPCObject>();
 
         static RPCObjectManager()
@@ -40,16 +40,16 @@ namespace Mooege.Core.MooNet.Objects
             obj.DynamicId = id;
             Objects.Add(id, obj);
         }
-        
+
         public static void Release(RPCObject obj)
         {
             Logger.Trace("Releasing object {0}", obj.DynamicId);
             Objects.Remove(obj.DynamicId);
         }
-        
+
         public static ulong Next()
         {
-            while (Objects.ContainsKey(++_nextId));
+            while (Objects.ContainsKey(++_nextId)) ;
             return _nextId;
         }
     }

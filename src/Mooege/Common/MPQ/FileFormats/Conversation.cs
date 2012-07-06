@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ namespace Mooege.Common.MPQ.FileFormats
         public List<ConversationTreeNode> RootTreeNodes { get; private set; }
         public string Unknown2 { get; private set; }
         public int I6 { get; private set; }
-        public byte[] CompiledScript { get; private set; }
+        public string CompiledScript { get; private set; }
         public int SNOBossEncounter { get; private set; }
 
         public Conversation(MpqFile file)
@@ -79,18 +79,11 @@ namespace Mooege.Common.MPQ.FileFormats
             this.Unknown2 = stream.ReadString(256, true);
             this.I6 = stream.ReadValueS32();
 
-            stream.Position += (2 * 4);
-            SerializableDataPointer compiledScriptPointer = stream.GetSerializedDataPointer();
-
-            stream.Position += 44; // these bytes are unaccounted for in the xml
+            stream.Position += 12;
+            CompiledScript = Encoding.ASCII.GetString(stream.ReadSerializedByteArray());
+            stream.Position += 40;
             this.SNOBossEncounter = stream.ReadValueS32();
-
-            // reading compiled script, placed it here so i dont have to move the offset around
-            CompiledScript = new byte[compiledScriptPointer.Size];
-            stream.Position = compiledScriptPointer.Offset + 16;
-            stream.Read(CompiledScript, 0, compiledScriptPointer.Size);
-
-            stream.Close();        
+            stream.Close();
         }
 
         public string AsText(string filename)
@@ -107,7 +100,7 @@ namespace Mooege.Common.MPQ.FileFormats
             s.Append("I5:" + I5 + "   ");
             s.AppendLine("I6:" + I6);
 
-            s.AppendLine("SNOQuest:" + SNOQuest);    
+            s.AppendLine("SNOQuest:" + SNOQuest);
             s.AppendLine("SNOConvPiggyBack:" + SNOConvPiggyback);
             s.AppendLine("SNOConvUnlock:" + SNOConvUnlock);
             s.AppendLine("CompiledScript:" + (CompiledScript.Length != 0).ToString());
@@ -168,7 +161,7 @@ namespace Mooege.Common.MPQ.FileFormats
 
         public void AsText(StringBuilder s, int pad)
         {
-            s.Append(' ', pad); 
+            s.Append(' ', pad);
             s.Append("I0:" + I0 + "   ");
             s.Append("I1:" + I1 + "   ");
             s.Append("LineID:" + LineID + "   ");

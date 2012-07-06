@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ namespace Mooege.Common.Config
             finally
             {
                 // adds aliases so we can use On and Off directives in ini files.
-                Parser.Alias.AddAlias("On", true); 
+                Parser.Alias.AddAlias("On", true);
                 Parser.Alias.AddAlias("Off", false);
 
                 // logger level aliases.

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,12 @@
  */
 
 using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Mooege.Common.Helpers.Concurrency;
 using Mooege.Core.GS.Actors;
 using Mooege.Core.GS.Players;
+using System.Collections.Generic;
 
 namespace Mooege.Core.GS.Map.Debug
 {
@@ -39,6 +39,7 @@ namespace Mooege.Core.GS.Map.Debug
         public ConcurrentList<Player> Players { get; private set; }
         public ConcurrentList<Monster> Monsters { get; private set; }
         public ConcurrentList<NPC> NPCs { get; private set; }
+        public ConcurrentList<Portal> Portals { get; private set; }
 
         public bool DrawMasterScenes;
         public bool DrawSubScenes;
@@ -47,6 +48,7 @@ namespace Mooege.Core.GS.Map.Debug
         public bool DrawMonsters;
         public bool DrawNPCs;
         public bool DrawPlayers;
+        public bool DrawPortals = true;
         public bool PrintSceneLabels;
         public bool FillCells;
         public bool DrawPlayerProximityCircle;
@@ -59,7 +61,7 @@ namespace Mooege.Core.GS.Map.Debug
         private readonly Brush _walkableBrush = Brushes.Blue;
         private readonly Pen _walkablePen = new Pen(Color.Blue, 1.0f);
         private readonly Pen _playerProximityPen = new Pen(Brushes.DarkViolet, 2.0f);
-        private readonly Font _sceneFont = new Font("Verdana", 7);        
+        private readonly Font _sceneFont = new Font("Verdana", 7);
 
         public DebugNavMesh(World world, Player player = null)
         {
@@ -74,7 +76,8 @@ namespace Mooege.Core.GS.Map.Debug
             this.WalkableCells = new ConcurrentList<Rect>();
             this.Players = new ConcurrentList<Player>();
             this.Monsters = new ConcurrentList<Monster>();
-            this.NPCs = new ConcurrentList<NPC>();           
+            this.NPCs = new ConcurrentList<NPC>();
+            this.Portals = new ConcurrentList<Portal>();
         }
 
         #region update
@@ -115,6 +118,8 @@ namespace Mooege.Core.GS.Map.Debug
                     this.NPCs.Add(actor as NPC);
                 else if (actor is Monster)
                     this.Monsters.Add(actor as Monster);
+                else if (actor is Portal)
+                    this.Portals.Add(actor as Portal);
             });
         }
 
@@ -141,7 +146,7 @@ namespace Mooege.Core.GS.Map.Debug
 
         #endregion
 
-        #region drawing 
+        #region drawing
 
         public Bitmap Draw()
         {
@@ -168,10 +173,10 @@ namespace Mooege.Core.GS.Map.Debug
                     bottomMostScene = scene;
             }
 
-            if (rightMostScene == null || bottomMostScene == null) 
+            if (rightMostScene == null || bottomMostScene == null)
                 return null;
 
-            var maxX = (int) (rightMostScene.Bounds.X + rightMostScene.Bounds.Width) + 1;
+            var maxX = (int)(rightMostScene.Bounds.X + rightMostScene.Bounds.Width) + 1;
             var maxY = (int)(bottomMostScene.Bounds.Y + bottomMostScene.Bounds.Height) + 1;
 
             var bitmap = new Bitmap(maxX, maxY, System.Drawing.Imaging.PixelFormat.Format16bppRgb555);
@@ -244,10 +249,18 @@ namespace Mooege.Core.GS.Map.Debug
                 }
             }
 
-            if(this.DrawPlayerProximityCircle)
+            if (this.DrawPortals)
+            {
+                foreach (var portal in this.Portals)
+                {
+                    this.DrawActor(portal, graphics, Brushes.Azure, 10);
+                }
+            }
+
+            if (this.DrawPlayerProximityCircle)
                 this.DrawProximityCircle(graphics);
 
-            if(this.DrawPlayerProximityRectangle)
+            if (this.DrawPlayerProximityRectangle)
                 this.DrawProximityRectangle(graphics);
         }
 
@@ -262,7 +275,7 @@ namespace Mooege.Core.GS.Map.Debug
             foreach (var cell in this.WalkableCells)
             {
                 var rect = new Rectangle(new System.Drawing.Point((int)cell.Left, (int)cell.Top), new System.Drawing.Size((int)cell.Width, (int)cell.Height));
-                
+
                 if (this.FillCells)
                     graphics.FillRectangle(_walkableBrush, rect);
                 else
@@ -275,7 +288,7 @@ namespace Mooege.Core.GS.Map.Debug
             foreach (var cell in this.UnWalkableCells)
             {
                 var rect = new Rectangle(new System.Drawing.Point((int)cell.Left, (int)cell.Top), new System.Drawing.Size((int)cell.Width, (int)cell.Height));
-                
+
                 if (this.FillCells)
                     graphics.FillRectangle(_unwalkableBrush, rect);
                 else
@@ -291,7 +304,7 @@ namespace Mooege.Core.GS.Map.Debug
 
         private void DrawProximityCircle(Graphics graphics)
         {
-            if (this.Player == null) 
+            if (this.Player == null)
                 return;
 
             var rect = new RectangleF(this.Player.Position.X - Actor.DefaultQueryProximityRadius,
@@ -308,8 +321,8 @@ namespace Mooege.Core.GS.Map.Debug
                 return;
 
             graphics.DrawRectangle(this._playerProximityPen,
-                                   this.Player.Position.X - Actor.DefaultQueryProximityLenght/2,
-                                   this.Player.Position.Y - Actor.DefaultQueryProximityLenght/2,
+                                   this.Player.Position.X - Actor.DefaultQueryProximityLenght / 2,
+                                   this.Player.Position.Y - Actor.DefaultQueryProximityLenght / 2,
                                    Actor.DefaultQueryProximityLenght,
                                    Actor.DefaultQueryProximityLenght);
         }
@@ -342,6 +355,45 @@ namespace Mooege.Core.GS.Map.Debug
                 graphics.DrawString(scene.SceneSNO.Name, _sceneFont, scene.Parent == null ? Brushes.Black : Brushes.Gray, stringRectangle, drawFormat);
         }
 
+        #endregion
+
+        #region DumpMeshtoObj
+        public void DumpNavMeshToObj()
+        {
+            //Renders all the walkable cells into a 2d model. Output in http://en.wikipedia.org/wiki/Wavefront_.obj_file
+            List<System.Windows.Point> Vertices = new List<System.Windows.Point>();
+            List<face3> faces = new List<face3>();
+            System.IO.StreamWriter fs = new System.IO.StreamWriter("world.obj");
+            foreach (var rect in this.WalkableCells)
+            {
+
+                Vertices.Add(rect.BottomRight);
+                Vertices.Add(rect.BottomLeft);
+                Vertices.Add(rect.TopLeft);
+                Vertices.Add(rect.TopRight);
+                faces.Add(new face3(Vertices.Count - 3, Vertices.Count - 2, Vertices.Count - 1, Vertices.Count - 0));
+            }
+            foreach (var x in Vertices)
+            {
+                fs.WriteLine("v " + x.X + " " + 0 + " " + x.Y);
+            }
+            foreach (var x in faces)
+            {
+                fs.WriteLine("f " + (x.i0) + " " + (x.i3) + " " + (x.i2) + " " + (x.i1));
+            }
+            fs.Close();
+        }
+        public class face3
+        {
+            public int i0, i1, i2, i3;
+            public face3(int i1, int i2, int i3, int i4)
+            {
+                this.i0 = i1;
+                this.i1 = i2;
+                this.i2 = i3;
+                this.i3 = i4;
+            }
+        }
         #endregion
     }
 }

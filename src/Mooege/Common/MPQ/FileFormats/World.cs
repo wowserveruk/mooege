@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ using Mooege.Core.GS.Common.Types.Math;
 using Mooege.Core.GS.Common.Types.SNO;
 using Mooege.Core.GS.Common.Types.Scene;
 using Mooege.Core.GS.Common.Types.TagMap;
+using Mooege.Common.Storage;
 
 namespace Mooege.Common.MPQ.FileFormats
 {
@@ -31,15 +32,21 @@ namespace Mooege.Common.MPQ.FileFormats
     public class World : FileFormat
     {
         public Header Header { get; private set; }
-        public bool Bool0 { get; private set; }
+        public bool IsGenerated { get; private set; }
         public int Int1 { get; private set; }
         public int Int2 { get; private set; }
-        public DRLGParams DRLGParams = new DRLGParams();
-        public SceneParams SceneParams = new SceneParams();
+
+        [PersistentProperty("DRLGParams")]
+        public List<DRLGParams> DRLGParams { get; private set; }
+        [PersistentProperty("SceneParams")]
+        public SceneParams SceneParams { get; private set; }
         public List<int> MarkerSets = new List<int>();
         public Environment Environment { get; private set; }
+        [PersistentProperty("LabelRuleSet")]
         public LabelRuleSet LabelRuleSet { get; private set; }
+        [PersistentProperty("SceneClusterSet")]
         public SceneClusterSet SceneClusterSet { get; private set; }
+        [PersistentProperty("SNONavMeshFunctions", 4)]
         public int[] SNONavMeshFunctions = new int[4];
         public int Int4 { get; private set; }
         public float Float0 { get; private set; }
@@ -47,44 +54,51 @@ namespace Mooege.Common.MPQ.FileFormats
         public int SNOScript { get; private set; }
         public int Int6 { get; private set; }
 
+        public List<ServerData> ServerData { get; private set; }
+
+        public World() { }
+
         public World(MpqFile file)
         {
             var stream = file.Open();
 
             this.Header = new Header(stream);
 
-            this.Bool0 = (stream.ReadValueS32() != 0);
-            this.Int1 = stream.ReadValueS32();
-            this.Int2 = stream.ReadValueS32();
+            this.IsGenerated = (stream.ReadValueS32() != 0);
+            stream.Position += 8;
+            this.ServerData = stream.ReadSerializedData<ServerData>();
 
-            this.DRLGParams = stream.ReadSerializedItem<DRLGParams>(); // I'm not sure if we can have a list of drlgparams. (then should be calling it with pointer.Size/120) /raist
+            //this.Int1 = stream.ReadValueS32();
+            //this.Int2 = stream.ReadValueS32();
 
-            stream.Position += (2 * 4);
-            this.SceneParams = stream.ReadSerializedItem<SceneParams>(); // I'm not sure if we can have a list of drlgparams. (then should be calling it with pointer.Size/24) /raist
+            ////this.DRLGParams = stream.ReadSerializedData<DRLGParams>(); // I'm not sure if we can have a list of drlgparams. (then should be calling it with pointer.Size/120) /raist
+            //stream.Position += 8; // skips reading of DRLG Pointer
+            //stream.Position += (2 * 4);
+            //this.SceneParams = stream.ReadSerializedItem<SceneParams>(); // I'm not sure if we can have a list of drlgparams. (then should be calling it with pointer.Size/24) /raist
 
-            stream.Position += (2 * 4);
+            //stream.Position += (2 * 4);
             this.MarkerSets = stream.ReadSerializedInts();
 
             stream.Position += (14 * 4);
             this.Environment = new Environment(stream);
 
-            stream.Position += 4;
-            LabelRuleSet = new LabelRuleSet(stream);
-            this.Int4 = stream.ReadValueS32();
+            //stream.Position += 4;
+            //LabelRuleSet = new LabelRuleSet(stream);
+            //this.Int4 = stream.ReadValueS32();
 
-            stream.Position += 4;
-            this.SceneClusterSet = new SceneClusterSet(stream);
+            //stream.Position += 4;
+            //this.SceneClusterSet = new SceneClusterSet(stream);
 
-            for (int i = 0; i < SNONavMeshFunctions.Length; i++)
-            {
-                SNONavMeshFunctions[i] = stream.ReadValueS32();
-            }
+            //for (int i = 0; i < SNONavMeshFunctions.Length; i++)
+            //{
+            //    SNONavMeshFunctions[i] = stream.ReadValueS32();
+            //}
 
-            stream.Position += 4;
+            //stream.Position += 4;
             Float0 = stream.ReadValueF32();
             Int5 = stream.ReadValueS32();
-            SNOScript = stream.ReadValueS32();
-            Int6 = stream.ReadValueS32();
+            //SNOScript = stream.ReadValueS32();
+            //Int6 = stream.ReadValueS32();
 
             stream.Close();
         }
@@ -94,23 +108,31 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class SceneParams : ISerializableData
     {
-        public List<SceneChunk> SceneChunks = new List<SceneChunk>();
-        public int ChunkCount { get; private set; }
+        [PersistentProperty("SceneChunks")]
+        public List<SceneChunk> SceneChunks { get; private set; }
+        [PersistentProperty("ChunkCount")]
+        public int ChunkCount { get; set; }
+
+        public SceneParams() { }
 
         public void Read(MpqFileStream stream)
         {
-            var pointer = stream.GetSerializedDataPointer();
+            this.SceneChunks = stream.ReadSerializedData<SceneChunk>();
             this.ChunkCount = stream.ReadValueS32();
             stream.Position += (3 * 4);
-            this.SceneChunks = stream.ReadSerializedData<SceneChunk>(pointer, this.ChunkCount);
         }
     }
 
     public class SceneChunk : ISerializableData
     {
-        public SNOHandle SNOHandle { get; private set; }
-        public PRTransform PRTransform { get; private set; }
-        public SceneSpecification SceneSpecification { get; private set; }
+        [PersistentProperty("SNOHandle")]
+        public SNOHandle SNOHandle { get; set; }
+        [PersistentProperty("PRTransform")]
+        public PRTransform PRTransform { get; set; }
+        [PersistentProperty("SceneSpecification")]
+        public SceneSpecification SceneSpecification { get; set; }
+
+        public SceneChunk() { }
 
         public void Read(MpqFileStream stream)
         {
@@ -126,72 +148,138 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class DRLGParams : ISerializableData
     {
-        public List<TileInfo> DRLGTiles = new List<TileInfo>();
+        [PersistentProperty("Tiles")]
+        public List<TileInfo> Tiles { get; private set; }
+
+        [PersistentProperty("CommandCount")]
         public int CommandCount { get; private set; }
-        public List<DRLGCommand> DRLGCommands = new List<DRLGCommand>();
-        public List<int> ParentIndices = new List<int>();
-        public TagMap DRLGTagMap { get; private set; }
+
+        [PersistentProperty("Commands")]
+        public List<DRLGCommand> Commands { get; private set; }
+
+        [PersistentProperty("ParentIndices")]
+        public List<int> ParentIndices { get; private set; }
+
+        [PersistentProperty("TagMap")]
+        public TagMap TagMap { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
-            var pointer = stream.GetSerializedDataPointer();
-            this.DRLGTiles = stream.ReadSerializedData<TileInfo>(pointer, pointer.Size / 72);
+            Tiles = stream.ReadSerializedData<TileInfo>();
 
             stream.Position += (14 * 4);
             this.CommandCount = stream.ReadValueS32();
-            this.DRLGCommands = stream.ReadSerializedData<DRLGCommand>(this.CommandCount);
+            this.Commands = stream.ReadSerializedData<DRLGCommand>();
 
             stream.Position += (3 * 4);
             this.ParentIndices = stream.ReadSerializedInts();
 
             stream.Position += (2 * 4);
-            this.DRLGTagMap = stream.ReadSerializedItem<TagMap>();
+            this.TagMap = stream.ReadSerializedItem<TagMap>();
+            stream.Position += (2 * 4);
         }
+    }
+
+    public enum TileExits
+    {
+        West = 1,
+        East = 2,
+        North = 4,
+        South = 8,
+    }
+
+    public enum TileTypes
+    {
+        Normal = 100,
+        EventTile1 = 101, // Jar of souls? more? Deadend?
+        EventTile2 = 102, // 1000 dead
+        Entrance = 200,
+        UEntrance1 = 201, // Defiled crypt what there?
+        Exit = 300,
+        Filler = 401
     }
 
     public class TileInfo : ISerializableData
     {
-        public int Int0 { get; private set; }
-        public int Int1 { get; private set; }
+        [PersistentProperty("Int0")]
+        public int ExitDirectionBits { get; private set; }
+
+        [PersistentProperty("Int1")]
+        public int TileType { get; private set; }
+
+        [PersistentProperty("SNOScene")]
         public int SNOScene { get; private set; }
-        public int Int2 { get; private set; }
-        public TagMap TileTagMap { get; private set; }
+
+        [PersistentProperty("Int2")]
+        public int Probability { get; private set; }
+
+        [PersistentProperty("TagMap")]
+        public TagMap TagMap { get; private set; }
+
+        [PersistentProperty("CustomTileInfo")]
         public CustomTileInfo CustomTileInfo { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
-            Int0 = stream.ReadValueS32();
-            Int1 = stream.ReadValueS32();
+            ExitDirectionBits = stream.ReadValueS32();
+            TileType = stream.ReadValueS32();
             SNOScene = stream.ReadValueS32();
-            Int2 = stream.ReadValueS32();
-            this.TileTagMap = stream.ReadSerializedItem<TagMap>();
+            Probability = stream.ReadValueS32();
+            this.TagMap = stream.ReadSerializedItem<TagMap>();
 
             stream.Position += (2 * 4);
             CustomTileInfo = new CustomTileInfo(stream);
         }
     }
 
+    public enum CommandType
+    {
+        Waypoint = 0,
+        BridleEntrance = 1,
+        AddExit = 2,
+        AddHub = 3,
+        AddSpoke = 4,
+        Group = 9, //used in DRLG to group tiles together
+    }
+
     public class DRLGCommand : ISerializableData
     {
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
-        public int Int0 { get; private set; }
-        public TagMap CommandTagMap { get; private set; }
+
+        [PersistentProperty("I0")]
+        public int CommandType { get; private set; }
+
+        [PersistentProperty("TagMap")]
+        public TagMap TagMap { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
             this.Name = stream.ReadString(128, true);
-            Int0 = stream.ReadValueS32();
-            this.CommandTagMap = stream.ReadSerializedItem<TagMap>();
+            CommandType = stream.ReadValueS32();
+            this.TagMap = stream.ReadSerializedItem<TagMap>();
             stream.Position += (3 * 4);
         }
     }
 
     public class CustomTileInfo
     {
+        [PersistentProperty("I0")]
         public int Int0 { get; private set; }
+
+        [PersistentProperty("I1")]
         public int Int1 { get; private set; }
+
+        [PersistentProperty("I2")]
         public int Int2 { get; private set; }
+
+        [PersistentProperty("V0")]
         public Vector2D V0 { get; private set; }
+
+        [PersistentProperty("CustomTileCells")]
+        public List<CustomTileCell> CustomTileCells { get; private set; }
+
+        public CustomTileInfo() { }
 
         public CustomTileInfo(MpqFileStream stream)
         {
@@ -199,33 +287,47 @@ namespace Mooege.Common.MPQ.FileFormats
             Int1 = stream.ReadValueS32();
             Int2 = stream.ReadValueS32();
             V0 = new Vector2D(stream);
-            stream.Position += (5 * 4);
+            CustomTileCells = stream.ReadSerializedData<CustomTileCell>();
+            stream.Position += (3 * 4);
         }
     }
 
-    //public class CustomTileCell // we're not using this yet. /raist.
-    //{
-    //    public int Int0;
-    //    public int Int1;
-    //    public int Int2;
-    //    public int SNOScene;
-    //    public int Int3;
-    //    public int[] Int4;
+    public class CustomTileCell : ISerializableData // we're not using this yet. /raist.
+    {
+        [PersistentProperty("I0")]
+        public int Int0 { get; private set; }
 
-    //    public CustomTileCell(MpqFileStream stream)
-    //    {
-    //        Int0 = stream.ReadInt32();
-    //        Int1 = stream.ReadInt32();
-    //        Int2 = stream.ReadInt32();
-    //        SNOScene = stream.ReadInt32();
-    //        Int3 = stream.ReadInt32();
-    //        Int4 = new int[4];
-    //        for (int i = 0; i < Int4.Length; i++)
-    //        {
-    //            Int4[i] = stream.ReadInt32();
-    //        }
-    //    }
-    //}
+        [PersistentProperty("I1")]
+        public int Int1 { get; private set; }
+
+        [PersistentProperty("I2")]
+        public int Int2 { get; private set; }
+
+        [PersistentProperty("SNOScene")]
+        public int SNOScene { get; private set; }
+
+        [PersistentProperty("I3")]
+        public int Int3 { get; private set; }
+
+        [PersistentProperty("I4", 4)]
+        public int[] Int4 { get; private set; }
+
+        public CustomTileCell() { }
+
+        public void Read(MpqFileStream stream)
+        {
+            Int0 = stream.ReadValueS32();
+            Int1 = stream.ReadValueS32();
+            Int2 = stream.ReadValueS32();
+            SNOScene = stream.ReadValueS32();
+            Int3 = stream.ReadValueS32();
+            Int4 = new int[4];
+            for (int i = 0; i < Int4.Length; i++)
+            {
+                Int4[i] = stream.ReadValueS32();
+            }
+        }
+    }
 
     #endregion
 
@@ -233,24 +335,34 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class SceneClusterSet
     {
+        [PersistentProperty("ClusterCount")]
         public int ClusterCount { get; private set; }
-        public List<SceneCluster> SceneClusters = new List<SceneCluster>();
+        [PersistentProperty("SceneClusters")]
+        public List<SceneCluster> SceneClusters { get; private set; }
+
+        public SceneClusterSet() { }
 
         public SceneClusterSet(MpqFileStream stream)
         {
             this.ClusterCount = stream.ReadValueS32();
             stream.Position += (4 * 3);
-            this.SceneClusters = stream.ReadSerializedData<SceneCluster>(this.ClusterCount);
+            this.SceneClusters = stream.ReadSerializedData<SceneCluster>();
         }
     }
 
     public class SceneCluster : ISerializableData
     {
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
+        [PersistentProperty("ClusterId")]
         public int ClusterId { get; private set; }
+        [PersistentProperty("GroupCount")]
         public int GroupCount { get; private set; }
-        public List<SubSceneGroup> SubSceneGroups = new List<SubSceneGroup>();
+        [PersistentProperty("SubSceneGroups")]
+        public List<SubSceneGroup> SubSceneGroups { get; private set; }
         public SubSceneGroup Default { get; private set; }
+
+        public SceneCluster() { }
 
         public void Read(MpqFileStream stream)
         {
@@ -258,7 +370,7 @@ namespace Mooege.Common.MPQ.FileFormats
             this.ClusterId = stream.ReadValueS32();
             this.GroupCount = stream.ReadValueS32();
             stream.Position += (2 * 4);
-            this.SubSceneGroups = stream.ReadSerializedData<SubSceneGroup>(this.GroupCount);
+            this.SubSceneGroups = stream.ReadSerializedData<SubSceneGroup>();
 
             this.Default = new SubSceneGroup(stream);
         }
@@ -266,9 +378,12 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class SubSceneGroup : ISerializableData
     {
+        [PersistentProperty("I0")]
         public int I0 { get; private set; }
+        [PersistentProperty("SubSceneCount")]
         public int SubSceneCount { get; private set; }
-        public List<SubSceneEntry> Entries = new List<SubSceneEntry>();
+        [PersistentProperty("Entries")]
+        public List<SubSceneEntry> Entries { get; private set; }
 
         public SubSceneGroup() { }
 
@@ -282,16 +397,22 @@ namespace Mooege.Common.MPQ.FileFormats
             this.I0 = stream.ReadValueS32();
             this.SubSceneCount = stream.ReadValueS32();
             stream.Position += (2 * 4);
-            this.Entries = stream.ReadSerializedData<SubSceneEntry>(this.SubSceneCount);
+            this.Entries = stream.ReadSerializedData<SubSceneEntry>();
         }
     }
 
     public class SubSceneEntry : ISerializableData
     {
+        [PersistentProperty("SNOScene")]
         public int SNOScene { get; private set; }
+        [PersistentProperty("Probability")]
         public int Probability { get; private set; }
+        [PersistentProperty("LabelCount")]
         public int LabelCount { get; private set; }
-        public List<SubSceneLabel> Labels = new List<SubSceneLabel>();
+        [PersistentProperty("Labels")]
+        public List<SubSceneLabel> Labels { get; private set; }
+
+        public SubSceneEntry() { }
 
         public void Read(MpqFileStream stream)
         {
@@ -299,13 +420,15 @@ namespace Mooege.Common.MPQ.FileFormats
             this.Probability = stream.ReadValueS32();
             stream.Position += (3 * 4);
             this.LabelCount = stream.ReadValueS32();
-            this.Labels = stream.ReadSerializedData<SubSceneLabel>(this.LabelCount);
+            this.Labels = stream.ReadSerializedData<SubSceneLabel>();
         }
     }
 
     public class SubSceneLabel : ISerializableData
     {
+        [PersistentProperty("GBId")]
         public int GBId { get; private set; }
+        [PersistentProperty("I0")]
         public int I0 { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -321,44 +444,61 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class LabelRuleSet
     {
+        [PersistentProperty("Rulecount")]
         public int Rulecount { get; private set; }
-        public List<LabelRule> LabelRules = new List<LabelRule>();
+        [PersistentProperty("LabelRules")]
+        public List<LabelRule> LabelRules { get; private set; }
+
+        public LabelRuleSet() { }
 
         public LabelRuleSet(MpqFileStream stream)
         {
             Rulecount = stream.ReadValueS32();
             stream.Position += (3 * 4);
-            this.LabelRules = stream.ReadSerializedData<LabelRule>(this.Rulecount);
+            this.LabelRules = stream.ReadSerializedData<LabelRule>();
         }
     }
 
     public class LabelRule : ISerializableData
     {
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
+        [PersistentProperty("LabelCondition")]
         public LabelCondition LabelCondition { get; private set; }
+        [PersistentProperty("Int0")]
         public int Int0 { get; private set; }
+        [PersistentProperty("LabelCount")]
         public int LabelCount { get; private set; }
-        public List<LabelEntry> Entries = new List<LabelEntry>();
+        [PersistentProperty("Entries")]
+        public List<LabelEntry> Entries { get; private set; }
+
+        public LabelRule() { }
 
         public void Read(MpqFileStream stream)
         {
             this.Name = stream.ReadString(128, true);
             LabelCondition = new LabelCondition(stream);
-            stream.Position += 4;
             Int0 = stream.ReadValueS32();
             LabelCount = stream.ReadValueS32();
             stream.Position += (2 * 4);
-            this.Entries = stream.ReadSerializedData<LabelEntry>(this.LabelCount);
+            this.Entries = stream.ReadSerializedData<LabelEntry>();
         }
     }
 
     public class LabelEntry : ISerializableData
     {
+        [PersistentProperty("GBIdLabel")]
         public int GBIdLabel { get; private set; }
+        [PersistentProperty("Int0")]
         public int Int0 { get; private set; }
+        [PersistentProperty("Float0")]
         public float Float0 { get; private set; }
+        [PersistentProperty("Int1")]
         public int Int1 { get; private set; }
+        [PersistentProperty("Int2")]
         public int Int2 { get; private set; }
+
+        public LabelEntry() { }
 
         public void Read(MpqFileStream stream)
         {
@@ -372,12 +512,18 @@ namespace Mooege.Common.MPQ.FileFormats
 
     public class LabelCondition
     {
-        public int DT_ENUM0 { get; private set; }
+        [PersistentProperty("Enum0")]
+        public DT_ENUM0 Enum0 { get; private set; }
+        [PersistentProperty("Int0")]
         public int Int0 { get; private set; }
+        [PersistentProperty("Int1",4)]
         public int[] Int1 { get; private set; }
+
+        public LabelCondition() { }
 
         public LabelCondition(MpqFileStream stream)
         {
+            Enum0 = (DT_ENUM0)stream.ReadValueS32();
             Int0 = stream.ReadValueS32();
             Int1 = new int[4];
 
@@ -386,6 +532,13 @@ namespace Mooege.Common.MPQ.FileFormats
                 Int1[i] = stream.ReadValueS32();
             }
         }
+    }
+
+    public enum DT_ENUM0
+    {
+        Always = 0,
+        GameDifficulty = 1,
+        LabelAlreadySet = 2,
     }
 
     public class Environment
@@ -430,4 +583,34 @@ namespace Mooege.Common.MPQ.FileFormats
     }
 
     #endregion
+
+    public class ServerData : ISerializableData
+    {
+        public List<DRLGParams> DRLGParams { get; private set; }
+        public SceneParams SceneParams { get; private set; }
+        public LabelRuleSet LabelRuleSet { get; private set; }
+        public int Int1 { get; private set; }
+        public SceneClusterSet SceneClusterSet { get; private set; }
+        public int[] SNONavMeshFunctions = new int[4];
+        public int SNOScript { get; private set; }
+        public int Int2 { get; private set; }
+
+        public void Read(MpqFileStream stream)
+        {
+            this.DRLGParams = stream.ReadSerializedData<DRLGParams>();
+            stream.Position += 8;
+            this.SceneParams = stream.ReadSerializedItem<SceneParams>();
+            stream.Position += 8;
+            LabelRuleSet = new LabelRuleSet(stream);
+            this.Int1 = stream.ReadValueS32();
+            this.SceneClusterSet = new SceneClusterSet(stream);
+            for (int i = 0; i < SNONavMeshFunctions.Length; i++)
+            {
+                SNONavMeshFunctions[i] = stream.ReadValueS32();
+            }
+            SNOScript = stream.ReadValueS32();
+            Int2 = stream.ReadValueS32();
+        }
+    }
+
 }

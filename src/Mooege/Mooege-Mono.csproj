@@ -54,20 +54,35 @@
     <Externalconsole>true</Externalconsole>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\..\Assets\mooege.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AStar">
+      <HintPath>..\..\dep\astar\AStar.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalMpq">
       <HintPath>..\..\dep\crystalmpq\CrystalMpq.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalMpq.Utility">
-      <HintPath>..\..\dep\crystalmpq\CrystalMpq.Utility.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.3.0.717, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\nhibernate\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\dep\sharpziplib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\nhibernate\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="ManagedOpenSsl">
       <HintPath>..\..\dep\openssl\ManagedOpenSsl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\nhibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System">
     </Reference>
@@ -91,28 +106,104 @@
     <Reference Include="System.Data.SQLite, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dep\sqlite\sqlite-managed\System.Data.SQLite.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="PowerCollections, Version=1.0.2141.24679, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\dep\powercollections\PowerCollections.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Logging\ConsoleTarget.cs" />
+    <Compile Include="Common\Logging\FileTarget.cs" />
+    <Compile Include="Common\Logging\LogManager.cs" />
+    <Compile Include="Common\Logging\LogRouter.cs" />
+    <Compile Include="Common\Logging\LogTarget.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBAccount.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBActiveSkills.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBGameAccount.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBInventory.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBItemInstance.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Entities\DBToon.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBAccountMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBActiveSkillsMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBGameAccountMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBInventoryMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBItemInstanceMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\Mapper\DBToonMapper.cs" />
+    <Compile Include="Common\Storage\AccountDataBase\SessionProvider.cs" />
+    <Compile Include="Common\Storage\DBSessions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Core\GS\Actors\Actions\PowerAction.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Door.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\AncientKorlic.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\AncientMawdawc.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\AncientTalic.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\CompanionMinion.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\CorpseSpider.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\FetishArmyMelee.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\GargantuanMinion.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\HexMinion.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\MirrorImageMinion.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\MysticAllyMinion.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Minions\ZombieDog.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Monsters\Monsters.cs" />
+    <Compile Include="Core\GS\Actors\Minion.cs" />
+    <Compile Include="Core\GS\AI\Brains\AggressiveNPCBrain.cs" />
+    <Compile Include="Core\GS\AI\Brains\MinionBrain.cs" />
+    <Compile Include="Core\GS\Powers\ActionTimedSkill.cs" />
+    <Compile Include="Core\GS\Powers\ActorMover.cs" />
+    <Compile Include="Core\GS\Powers\ComboSkill.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\ActorGhostedBuff.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\CooldownBuff.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\KnockbackBuff.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\LevelUp.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\StatusDebuffs.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\SummonedBuff.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\MonsterSkills\SummoningSkills.cs" />
+    <Compile Include="Core\GS\Powers\Payloads\AttackPayload.cs" />
+    <Compile Include="Core\GS\Powers\BaseBuffs.cs" />
+    <Compile Include="Core\GS\Powers\BuffManager.cs" />
+    <Compile Include="Core\GS\Powers\ImplementsPowerBuff.cs" />
+    <Compile Include="Core\GS\Powers\EffectActor.cs" />
+    <Compile Include="Core\GS\Powers\ChanneledSkill.cs" />
+    <Compile Include="Core\GS\Powers\DamageType.cs" />
+    <Compile Include="Core\GS\Powers\Payloads\DeathPayload.cs" />
+    <Compile Include="Core\GS\Powers\Payloads\HitPayload.cs" />
+    <Compile Include="Core\GS\Powers\Payloads\Payload.cs" />
+    <Compile Include="Core\GS\Powers\ScriptFormulaEvaluator.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\HeroSkills\Barbarian.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\HeroSkills\DemonHunter.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\General\Melee.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\HeroSkills\Monk.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\HeroSkills\WitchDoctor.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\HeroSkills\Wizard.cs" />
+    <Compile Include="Core\GS\Powers\Implementations\MonsterSkills\SingleProjectileSkills.cs" />
+    <Compile Include="Core\GS\Powers\ImplementsPowerSNO.cs" />
+    <Compile Include="Core\GS\Powers\PowerContext.cs" />
+    <Compile Include="Core\GS\Powers\PowerScript.cs" />
+    <Compile Include="Core\GS\Powers\PowerLoader.cs" />
+    <Compile Include="Core\GS\Powers\PowerManager.cs" />
+    <Compile Include="Core\GS\Powers\PowerTagHelper.cs" />
+    <Compile Include="Core\GS\Powers\Projectile.cs" />
     <Compile Include="Common\Extensions\BigIntegerExtensions.cs" />
     <Compile Include="Common\Extensions\CodedOutputStream.cs" />
     <Compile Include="Common\Extensions\ListExtensions.cs" />
     <Compile Include="Common\Helpers\Concurrency\ConcurrentList.cs" />
     <Compile Include="Common\Helpers\Math\FastRandom.cs" />
     <Compile Include="Common\Helpers\IO\FileHelpers.cs" />
-    <Compile Include="Common\MPQ\Asset.cs" />
+    <Compile Include="Common\MPQ\MPQAsset.cs" />
     <Compile Include="Common\MPQ\Data.cs" />
     <Compile Include="Common\MPQ\FileFormats\Act.cs" />
     <Compile Include="Common\MPQ\FileFormats\Actor.cs" />
     <Compile Include="Common\MPQ\FileFormats\Adventure.cs" />
+    <Compile Include="Common\MPQ\FileFormats\Anim.cs" />
     <Compile Include="Common\MPQ\FileFormats\AnimSet.cs" />
     <Compile Include="Common\MPQ\FileExtensions.cs" />
     <Compile Include="Common\MPQ\FileFormat.cs" />
@@ -140,11 +231,21 @@
     <Compile Include="Common\MPQ\FileFormats\SkillKit.cs" />
     <Compile Include="Common\MPQ\FileFormats\TreasureClass.cs" />
     <Compile Include="Common\MPQ\FileFormats\Tutorial.cs" />
-    <Compile Include="Common\MPQ\LazyAsset.cs" />
+    <Compile Include="Common\MPQ\Asset.cs" />
+    <Compile Include="Common\MPQ\DBAsset.cs" />
+    <Compile Include="Common\Storage\PersistenceManager.cs" />
     <Compile Include="Common\Versions\VersionInfo.cs" />
     <Compile Include="Core\GS\Actors\Implementations\Artisans\ArtisanShortcut.cs" />
-    <Compile Include="Core\GS\Actors\Implementations\NephalemAltar.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Checkpoint.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\LootContainer.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Healthwell.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\ProximityTriggeredGizmo.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\DesctructibleLootContainer.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Savepoint.cs" />
+    <Compile Include="Core\GS\Actors\Implementations\Shrine.cs" />
+    <Compile Include="Core\GS\Actors\Movement\MoveToPointWithPathfindAction.cs" />
     <Compile Include="Core\GS\Actors\ServerProp.cs" />
+    <Compile Include="Core\GS\AI\Pathfinder.cs" />
     <Compile Include="Core\GS\Common\Types\TagMap\ActorKeys.cs" />
     <Compile Include="Core\GS\Common\Types\TagMap\AnimationSetKeys.cs" />
     <Compile Include="Core\GS\Common\Types\TagMap\MarkerKeys.cs" />
@@ -169,6 +270,7 @@
     <Compile Include="Core\GS\Items\Implementations\HealthPotion.cs" />
     <Compile Include="Core\GS\Items\Implementations\Potion.cs" />
     <Compile Include="Core\GS\Items\Implementations\SpellRune.cs" />
+    <Compile Include="Core\GS\Items\Implementations\StoneOfRecall.cs" />
     <Compile Include="Core\GS\Items\ItemCreation\AttributeCreatorFactory.cs" />
     <Compile Include="Core\GS\Items\ItemCreation\DefaultAttributeCreator.cs" />
     <Compile Include="Core\GS\Items\ItemCreation\IItemAttributeCreator.cs" />
@@ -198,7 +300,6 @@
     <Compile Include="Core\GS\Actors\Implementations\Waypoint.cs" />
     <Compile Include="Core\GS\Actors\Implementations\Cain.cs" />
     <Compile Include="Core\GS\Actors\Implementations\Vendor.cs" />
-    <Compile Include="Core\GS\Actors\Implementations\Zombie.cs" />
     <Compile Include="Core\GS\Actors\Interactions\Interactions.cs" />
     <Compile Include="Core\GS\Actors\Living.cs" />
     <Compile Include="Core\GS\Actors\NPC.cs" />
@@ -215,6 +316,7 @@
     <Compile Include="Core\GS\Generators\WorldGenerator.cs" />
     <Compile Include="Core\GS\Actors\InteractiveNPC.cs" />
     <Compile Include="Core\GS\Items\RuneHelper.cs" />
+    <Compile Include="Core\GS\Items\TreasureClassManager.cs" />
     <Compile Include="Core\GS\Map\Debug\ControlExtensions.cs" />
     <Compile Include="Core\GS\Map\Debug\DebugNavMesh.cs" />
     <Compile Include="Core\GS\Map\Debug\WorldVisualizer.cs">
@@ -223,26 +325,32 @@
     <Compile Include="Core\GS\Map\Debug\WorldVisualizer.Designer.cs">
       <DependentUpon>WorldVisualizer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\GS\Markers\Marker.cs" />
+    <Compile Include="Core\GS\Powers\PowerMath.cs" />
     <Compile Include="Core\GS\Games\Quest.cs" />
     <Compile Include="Core\GS\Players\ConversationManager.cs" />
     <Compile Include="Core\GS\Common\InventoryGrid.cs" />
     <Compile Include="Core\GS\Objects\IUpdateable.cs" />
     <Compile Include="Core\GS\Players\ExpBonusData.cs" />
     <Compile Include="Core\GS\Players\Equipment.cs" />
+    <Compile Include="Core\GS\Powers\Skill.cs" />
+    <Compile Include="Core\GS\Powers\TargetList.cs" />
     <Compile Include="Core\GS\Ticker\SteppedTickTimer.cs" />
     <Compile Include="Core\GS\Ticker\TickTimer.cs" />
+    <Compile Include="Core\GS\Web\GSWebService.cs" />
     <Compile Include="Core\MooNet\Accounts\Account.cs" />
     <Compile Include="Core\MooNet\Accounts\AccountCommands.cs" />
     <Compile Include="Core\MooNet\Accounts\AccountManager.cs" />
     <Compile Include="Core\GS\Actors\Actor.cs" />
     <Compile Include="Core\Cryptography\ARC4.cs" />
+    <Compile Include="Core\MooNet\Accounts\GameAccount.cs" />
+    <Compile Include="Core\MooNet\Accounts\GameAccountManager.cs" />
     <Compile Include="Core\MooNet\Achievement\AchievementManager.cs" />
     <Compile Include="Core\MooNet\Authentication\AuthManager.cs" />
     <Compile Include="Core\Cryptography\SRP6a.cs" />
     <Compile Include="Core\MooNet\Authentication\Config.cs" />
     <Compile Include="Core\MooNet\Authentication\VersionChecker.cs" />
     <Compile Include="Core\MooNet\Channels\Channel.cs" />
+    <Compile Include="Core\MooNet\Channels\ChannelCommands.cs" />
     <Compile Include="Core\MooNet\Channels\ChannelManager.cs" />
     <Compile Include="Core\MooNet\Channels\Member.cs" />
     <Compile Include="Common\Config\Config.cs" />
@@ -267,6 +375,7 @@
     <Compile Include="Core\MooNet\Channels\ChannelInvitationManager.cs" />
     <Compile Include="Core\MooNet\Friends\FriendManager.cs" />
     <Compile Include="Core\MooNet\Objects\PersistentRPCObject.cs" />
+    <Compile Include="Core\MooNet\Objects\PresenceField.cs" />
     <Compile Include="Core\MooNet\Online\PlayerManager.cs" />
     <Compile Include="Core\MooNet\Services\AchievementService.cs" />
     <Compile Include="Core\MooNet\Services\AuthenticationService.cs" />
@@ -275,17 +384,17 @@
     <Compile Include="Core\MooNet\Services\ChannelOwnerService.cs" />
     <Compile Include="Core\MooNet\Services\ChannelService.cs" />
     <Compile Include="Core\MooNet\Services\ExchangeService.cs" />
-    <Compile Include="Core\MooNet\Services\FollowersService.cs" />
     <Compile Include="Core\MooNet\Services\FriendsService.cs" />
     <Compile Include="Core\MooNet\Services\GameMasterService.cs" />
     <Compile Include="Core\MooNet\Services\GameUtilitiesService.cs" />
     <Compile Include="Core\MooNet\Services\IServerService.cs" />
     <Compile Include="Core\MooNet\Services\NotificationService.cs" />
     <Compile Include="Core\MooNet\Services\PresenceService.cs" />
+    <Compile Include="Core\MooNet\Services\ReportService.cs" />
+    <Compile Include="Core\MooNet\Services\ResourceService.cs" />
     <Compile Include="Core\MooNet\Services\SearchService.cs" />
+    <Compile Include="Core\MooNet\Services\ServerPoolService.cs" />
     <Compile Include="Core\MooNet\Services\Service.cs" />
-    <Compile Include="Core\MooNet\Services\StorageService.cs" />
-    <Compile Include="Core\MooNet\Services\ToonExternalService.cs" />
     <Compile Include="Core\MooNet\Services\UserManagerService.cs" />
     <Compile Include="Core\GS\Skills\SkillSet.cs" />
     <Compile Include="Core\GS\Skills\Skills.cs" />
@@ -293,18 +402,44 @@
     <Compile Include="Core\MooNet\Toons\Toon.cs" />
     <Compile Include="Core\MooNet\Toons\ToonHandleHelper.cs" />
     <Compile Include="Core\MooNet\Toons\ToonManager.cs" />
+    <Compile Include="Net\GS\Message\Definitions\ACD\ACDTranslateAckMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Hireling\HirelingRetrainMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Inventory\InventoryIdentifyItem.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Player\PlayerKickTimerMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Player\UnlockDifficultyMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Skill\AssignTraitsMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Skill\CancelChanneledSkillMessage.cs" />
     <Compile Include="Common\Logging\LogConfig.cs" />
+    <Compile Include="Core\MooNet\Web\AccountWebService.cs" />
+    <Compile Include="Core\Web\CoreWebService.cs" />
+    <Compile Include="Net\GS\Message\Definitions\ACD\ACDClientTranslateMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\ACD\ACDCreateActorMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\ACD\ACDDestroyActorMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Actor\NotifyActorMovementMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\ACD\ACDTranslateNormalMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Animation\LoopingAnimationPowerMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\ArtisanWindowClosedMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\MysticDataInitialMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\BlacksmithDataInitialMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\BlacksmithDataProgressMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Artisan\CraftInteractionMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\JewelerDataInitialMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\JewelerDataProgressMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\MysticDataProgressMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Artisan\OpenArtisanWindowMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Artisan\RequestAddSocketMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Artisan\TrainArtisanMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Conversation\AdvanceConvMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Conversation\FinishConversationMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Conversation\RequestCloseConversationWindowMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Conversation\UpdateConvAutoAdvanceMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Inventory\InventoryRequestQuickMoveMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Misc\HeartbeatMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Misc\ShrineActivatedMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Misc\PlayerBannerMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Player\LoadCompleteMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Player\PlayerTranslateFacingMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Skill\UnassignSkillMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Tutorial\TutorialMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Hireling\HirelingDismissMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Hireling\HirelingHireMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Hireling\HirelingInventoryMessage.cs" />
@@ -313,11 +448,10 @@
     <Compile Include="Net\GS\Message\Definitions\Misc\VoteKickMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\NPC\NPCSelectConversationMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Pet\PetDetachMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Player\PlayerMovementMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Misc\RequestUseCauldronOfJordanMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Misc\RequestUseNephalemCubeMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Inventory\RequestUseNephalemCubeMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Inventory\InventoryDropItemMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Player\RequestUsePowerMessage.cs" />
+    <Compile Include="Net\GS\Message\Definitions\Quest\QuestStepCompleteMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Skill\AssignSkillMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Stash\OpenSharedStashMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Misc\PlayerBusyMessage.cs" />
@@ -328,14 +462,16 @@
     <Compile Include="Net\GS\Message\Definitions\Trade\OpenTradeWindow.cs" />
     <Compile Include="Net\GS\Message\Definitions\Tutorial\TutorialShownMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Waypoint\OpenWaypointSelectionWindowMessage.cs" />
+    <Compile Include="Net\GS\Message\Fields\ActiveSkillSavedData.cs" />
     <Compile Include="Net\GS\Message\GameAttribute.List.cs" />
     <Compile Include="Core\GS\Objects\GameAttributeMap.cs" />
+    <Compile Include="Net\GS\Message\ScriptedAttributeInitializer.cs" />
+    <Compile Include="Net\MooNet\MooNetBuffer.cs" />
     <Compile Include="Net\MooNet\MooNetClient.cs" />
     <Compile Include="Net\MooNet\MooNetServer.cs" />
     <Compile Include="Net\MooNet\Config.cs" />
     <Compile Include="Net\GS\ClientManager.cs" />
     <Compile Include="Net\GS\Config.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Skill\AssignPassiveSkillMessage.cs" />
     <Compile Include="Core\GS\Common\Types\Collision\AABB.cs" />
     <Compile Include="Net\GS\Message\Fields\ActiveEvent.cs" />
     <Compile Include="Net\GS\Message\Fields\AnimPreplayData.cs" />
@@ -485,7 +621,6 @@
     <Compile Include="Net\GS\Message\Definitions\Misc\PlayCutsceneMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Effect\PlayEffectMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Player\PlayerActorSetInitialMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Player\PlayerChangeHotbarButtonMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Player\PlayerDeSyncSnapMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Player\PlayerEnterKnownMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Player\PlayerIndexMessage.cs" />
@@ -521,7 +656,6 @@
     <Compile Include="Net\GS\Message\Definitions\Misc\SimpleMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Misc\SNODataMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Misc\SNONameDataMessage.cs" />
-    <Compile Include="Net\GS\Message\Definitions\Misc\SocketSpellMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Conversation\StopConvLineMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\Scene\SwapSceneMessage.cs" />
     <Compile Include="Net\GS\Message\Definitions\World\TargetMessage.cs" />
@@ -545,7 +679,12 @@
     <Compile Include="Net\MooNet\Packets\PacketOut.cs" />
     <Compile Include="Net\MooNet\RPC\RPCCallback.cs" />
     <Compile Include="Net\NATConfig.cs" />
+    <Compile Include="Net\NetworkingConfig.cs" />
     <Compile Include="Net\Utils.cs" />
+    <Compile Include="Net\WebServices\Config.cs" />
+    <Compile Include="Net\WebServices\IWebService.cs" />
+    <Compile Include="Core\MooNet\Web\MooNetWebService.cs" />
+    <Compile Include="Net\WebServices\ServiceManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -559,7 +698,7 @@
     <Compile Include="Net\MooNet\MooNetRouter.cs" />
     <Compile Include="Common\Helpers\Hash\StringHashHelper.cs" />
     <Compile Include="Common\Extensions\IMessageExtensions.cs" />
-    <Compile Include="Common\Logging\TinyLogger.cs" />
+    <Compile Include="Common\Logging\Logger.cs" />
     <Compile Include="Core\MooNet\Objects\RPCObjectManager.cs" />
     <Compile Include="Core\MooNet\Objects\RPCObject.cs" />
     <Compile Include="Common\Storage\Config.cs" />
@@ -574,13 +713,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="..\..\assets\account.db">
-      <Link>Assets\account.db</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\..\assets\database.Account.config">
+      <Link>database.Account.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\..\assets\config.ini">
       <Link>config.ini</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\assets\mpqdata.db">
+      <Link>Assets\mpqdata.db</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\..\assets\MPQ\IMPORTANT">
       <Link>Assets\MPQ\IMPORTANT</Link>
@@ -628,7 +771,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Core\GS\Map\Debug\WorldVisualizer.resx">
       <DependentUpon>WorldVisualizer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\..\Assets\mooege.ico" />
+  </ItemGroup>
 </Project>

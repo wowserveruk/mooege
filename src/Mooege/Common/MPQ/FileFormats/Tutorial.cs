@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,9 @@ namespace Mooege.Common.MPQ.FileFormats
         public int I0 { get; private set; }
         public int I1 { get; private set; }
         public int Time { get; private set; }
+        public int Time2 { get; private set; }
         public int I2 { get; private set; }
+        public int I3 { get; private set; }
         public Vector2D V0 { get; private set; }
 
         public Tutorial(MpqFile file)
@@ -41,7 +43,9 @@ namespace Mooege.Common.MPQ.FileFormats
             this.I0 = stream.ReadValueS32();
             this.I1 = stream.ReadValueS32();
             this.Time = stream.ReadValueS32();
+            this.Time2 = stream.ReadValueS32();
             this.I2 = stream.ReadValueS32();
+            this.I3 = stream.ReadValueS32();
             this.V0 = new Vector2D(stream);
             stream.Close();
         }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@ using System.Text;
 namespace Mooege.Net.GS.Message.Definitions.Conversation
 {
     /// <summary>
+    /// Server -> Client
+    /// 
     /// Sent by the server to the client after EndConversationMessage. FinishConversationMessage
     /// is, what will get rid of the three dots "..." above the actor that suggest there is more
     /// coming. (Not sent if only the player char has a role in conversation)
@@ -28,7 +30,11 @@ namespace Mooege.Net.GS.Message.Definitions.Conversation
     [Message(Opcodes.FinishConversationMessage)]
     public class FinishConversationMessage : GameMessage
     {
+        /// <summary>
+        /// SNO of the conversation to finish
+        /// </summary>
         public int SNOConversation;
+
         public FinishConversationMessage()
             : base(Opcodes.FinishConversationMessage)
         { }

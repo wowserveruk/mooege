@@ -22,6 +22,8 @@ namespace bnet.protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.EntityId, global::bnet.protocol.EntityId.Builder> internal__static_bnet_protocol_EntityId__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_bnet_protocol_Identity__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.Identity, global::bnet.protocol.Identity.Builder> internal__static_bnet_protocol_Identity__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_AccountInfo__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.AccountInfo, global::bnet.protocol.AccountInfo.Builder> internal__static_bnet_protocol_AccountInfo__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -31,12 +33,14 @@ namespace bnet.protocol {
     
     static Entity() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "ChlsaWIvcHJvdG9jb2wvZW50aXR5LnByb3RvEg1ibmV0LnByb3RvY29sIiUK" + 
-          "CEVudGl0eUlkEgwKBGhpZ2gYASACKAYSCwoDbG93GAIgAigGIpMBCghJZGVu" + 
-          "dGl0eRIrCgphY2NvdW50X2lkGAEgASgLMhcuYm5ldC5wcm90b2NvbC5FbnRp" + 
-          "dHlJZBIwCg9nYW1lX2FjY291bnRfaWQYAiABKAsyFy5ibmV0LnByb3RvY29s" + 
-          "LkVudGl0eUlkEigKB3Rvb25faWQYAyABKAsyFy5ibmV0LnByb3RvY29sLkVu" + 
-          "dGl0eUlk");
+          "ChFibmV0L2VudGl0eS5wcm90bxINYm5ldC5wcm90b2NvbBoYYm5ldC9maWVs" + 
+          "ZF9vcHRpb25zLnByb3RvIiUKCEVudGl0eUlkEgwKBGhpZ2gYASACKAYSCwoD" + 
+          "bG93GAIgAigGImkKCElkZW50aXR5EisKCmFjY291bnRfaWQYASABKAsyFy5i" + 
+          "bmV0LnByb3RvY29sLkVudGl0eUlkEjAKD2dhbWVfYWNjb3VudF9pZBgCIAEo" + 
+          "CzIXLmJuZXQucHJvdG9jb2wuRW50aXR5SWQicwoLQWNjb3VudEluZm8SGwoM" + 
+          "YWNjb3VudF9wYWlkGAEgASgIOgVmYWxzZRIVCgpjb3VudHJ5X2lkGAIgASgH" + 
+          "OgEwEhIKCmJhdHRsZV90YWcYAyABKAkSHAoNbWFudWFsX3JldmlldxgEIAEo" + 
+          "CDoFZmFsc2U=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_bnet_protocol_EntityId__Descriptor = Descriptor.MessageTypes[0];
@@ -46,11 +50,16 @@ namespace bnet.protocol {
         internal__static_bnet_protocol_Identity__Descriptor = Descriptor.MessageTypes[1];
         internal__static_bnet_protocol_Identity__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.Identity, global::bnet.protocol.Identity.Builder>(internal__static_bnet_protocol_Identity__Descriptor,
-                new string[] { "AccountId", "GameAccountId", "ToonId", });
+                new string[] { "AccountId", "GameAccountId", });
+        internal__static_bnet_protocol_AccountInfo__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_bnet_protocol_AccountInfo__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.AccountInfo, global::bnet.protocol.AccountInfo.Builder>(internal__static_bnet_protocol_AccountInfo__Descriptor,
+                new string[] { "AccountPaid", "CountryId", "BattleTag", "ManualReview", });
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
+          global::bnet.protocol.FieldOptions.Descriptor, 
           }, assigner);
     }
     #endregion
@@ -382,8 +391,8 @@ namespace bnet.protocol {
   public sealed partial class Identity : pb::GeneratedMessage<Identity, Identity.Builder> {
     private Identity() { }
     private static readonly Identity defaultInstance = new Identity().MakeReadOnly();
-    private static readonly string[] _identityFieldNames = new string[] { "account_id", "game_account_id", "toon_id" };
-    private static readonly uint[] _identityFieldTags = new uint[] { 10, 18, 26 };
+    private static readonly string[] _identityFieldNames = new string[] { "account_id", "game_account_id" };
+    private static readonly uint[] _identityFieldTags = new uint[] { 10, 18 };
     public static Identity DefaultInstance {
       get { return defaultInstance; }
     }
@@ -424,16 +433,6 @@ namespace bnet.protocol {
       get { return gameAccountId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
     }
     
-    public const int ToonIdFieldNumber = 3;
-    private bool hasToonId;
-    private global::bnet.protocol.EntityId toonId_;
-    public bool HasToonId {
-      get { return hasToonId; }
-    }
-    public global::bnet.protocol.EntityId ToonId {
-      get { return toonId_ ?? global::bnet.protocol.EntityId.DefaultInstance; }
-    }
-    
     public override bool IsInitialized {
       get {
         if (HasAccountId) {
@@ -441,9 +440,6 @@ namespace bnet.protocol {
         }
         if (HasGameAccountId) {
           if (!GameAccountId.IsInitialized) return false;
-        }
-        if (HasToonId) {
-          if (!ToonId.IsInitialized) return false;
         }
         return true;
       }
@@ -457,9 +453,6 @@ namespace bnet.protocol {
       }
       if (hasGameAccountId) {
         output.WriteMessage(2, field_names[1], GameAccountId);
-      }
-      if (hasToonId) {
-        output.WriteMessage(3, field_names[2], ToonId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -476,9 +469,6 @@ namespace bnet.protocol {
         }
         if (hasGameAccountId) {
           size += pb::CodedOutputStream.ComputeMessageSize(2, GameAccountId);
-        }
-        if (hasToonId) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, ToonId);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -612,9 +602,6 @@ namespace bnet.protocol {
         if (other.HasGameAccountId) {
           MergeGameAccountId(other.GameAccountId);
         }
-        if (other.HasToonId) {
-          MergeToonId(other.ToonId);
-        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -674,15 +661,6 @@ namespace bnet.protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               GameAccountId = subBuilder.BuildPartial();
-              break;
-            }
-            case 26: {
-              global::bnet.protocol.EntityId.Builder subBuilder = global::bnet.protocol.EntityId.CreateBuilder();
-              if (result.hasToonId) {
-                subBuilder.MergeFrom(ToonId);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              ToonId = subBuilder.BuildPartial();
               break;
             }
           }
@@ -774,48 +752,412 @@ namespace bnet.protocol {
         result.gameAccountId_ = null;
         return this;
       }
-      
-      public bool HasToonId {
-       get { return result.hasToonId; }
+    }
+    static Identity() {
+      object.ReferenceEquals(global::bnet.protocol.Entity.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class AccountInfo : pb::GeneratedMessage<AccountInfo, AccountInfo.Builder> {
+    private AccountInfo() { }
+    private static readonly AccountInfo defaultInstance = new AccountInfo().MakeReadOnly();
+    private static readonly string[] _accountInfoFieldNames = new string[] { "account_paid", "battle_tag", "country_id", "manual_review" };
+    private static readonly uint[] _accountInfoFieldTags = new uint[] { 8, 26, 21, 32 };
+    public static AccountInfo DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override AccountInfo DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override AccountInfo ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.Entity.internal__static_bnet_protocol_AccountInfo__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<AccountInfo, AccountInfo.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.Entity.internal__static_bnet_protocol_AccountInfo__FieldAccessorTable; }
+    }
+    
+    public const int AccountPaidFieldNumber = 1;
+    private bool hasAccountPaid;
+    private bool accountPaid_;
+    public bool HasAccountPaid {
+      get { return hasAccountPaid; }
+    }
+    public bool AccountPaid {
+      get { return accountPaid_; }
+    }
+    
+    public const int CountryIdFieldNumber = 2;
+    private bool hasCountryId;
+    private uint countryId_;
+    public bool HasCountryId {
+      get { return hasCountryId; }
+    }
+    public uint CountryId {
+      get { return countryId_; }
+    }
+    
+    public const int BattleTagFieldNumber = 3;
+    private bool hasBattleTag;
+    private string battleTag_ = "";
+    public bool HasBattleTag {
+      get { return hasBattleTag; }
+    }
+    public string BattleTag {
+      get { return battleTag_; }
+    }
+    
+    public const int ManualReviewFieldNumber = 4;
+    private bool hasManualReview;
+    private bool manualReview_;
+    public bool HasManualReview {
+      get { return hasManualReview; }
+    }
+    public bool ManualReview {
+      get { return manualReview_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
       }
-      public global::bnet.protocol.EntityId ToonId {
-        get { return result.ToonId; }
-        set { SetToonId(value); }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _accountInfoFieldNames;
+      if (hasAccountPaid) {
+        output.WriteBool(1, field_names[0], AccountPaid);
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = value;
-        return this;
+      if (hasCountryId) {
+        output.WriteFixed32(2, field_names[2], CountryId);
       }
-      public Builder SetToonId(global::bnet.protocol.EntityId.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        PrepareBuilder();
-        result.hasToonId = true;
-        result.toonId_ = builderForValue.Build();
-        return this;
+      if (hasBattleTag) {
+        output.WriteString(3, field_names[1], BattleTag);
       }
-      public Builder MergeToonId(global::bnet.protocol.EntityId value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        if (result.hasToonId &&
-            result.toonId_ != global::bnet.protocol.EntityId.DefaultInstance) {
-            result.toonId_ = global::bnet.protocol.EntityId.CreateBuilder(result.toonId_).MergeFrom(value).BuildPartial();
-        } else {
-          result.toonId_ = value;
+      if (hasManualReview) {
+        output.WriteBool(4, field_names[3], ManualReview);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasAccountPaid) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, AccountPaid);
         }
-        result.hasToonId = true;
+        if (hasCountryId) {
+          size += pb::CodedOutputStream.ComputeFixed32Size(2, CountryId);
+        }
+        if (hasBattleTag) {
+          size += pb::CodedOutputStream.ComputeStringSize(3, BattleTag);
+        }
+        if (hasManualReview) {
+          size += pb::CodedOutputStream.ComputeBoolSize(4, ManualReview);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static AccountInfo ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static AccountInfo ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static AccountInfo ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AccountInfo ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private AccountInfo MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(AccountInfo prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<AccountInfo, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(AccountInfo cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private AccountInfo result;
+      
+      private AccountInfo PrepareBuilder() {
+        if (resultIsReadOnly) {
+          AccountInfo original = result;
+          result = new AccountInfo();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override AccountInfo MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
         return this;
       }
-      public Builder ClearToonId() {
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.AccountInfo.Descriptor; }
+      }
+      
+      public override AccountInfo DefaultInstanceForType {
+        get { return global::bnet.protocol.AccountInfo.DefaultInstance; }
+      }
+      
+      public override AccountInfo BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is AccountInfo) {
+          return MergeFrom((AccountInfo) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(AccountInfo other) {
+        if (other == global::bnet.protocol.AccountInfo.DefaultInstance) return this;
         PrepareBuilder();
-        result.hasToonId = false;
-        result.toonId_ = null;
+        if (other.HasAccountPaid) {
+          AccountPaid = other.AccountPaid;
+        }
+        if (other.HasCountryId) {
+          CountryId = other.CountryId;
+        }
+        if (other.HasBattleTag) {
+          BattleTag = other.BattleTag;
+        }
+        if (other.HasManualReview) {
+          ManualReview = other.ManualReview;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_accountInfoFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _accountInfoFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 8: {
+              result.hasAccountPaid = input.ReadBool(ref result.accountPaid_);
+              break;
+            }
+            case 21: {
+              result.hasCountryId = input.ReadFixed32(ref result.countryId_);
+              break;
+            }
+            case 26: {
+              result.hasBattleTag = input.ReadString(ref result.battleTag_);
+              break;
+            }
+            case 32: {
+              result.hasManualReview = input.ReadBool(ref result.manualReview_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasAccountPaid {
+        get { return result.hasAccountPaid; }
+      }
+      public bool AccountPaid {
+        get { return result.AccountPaid; }
+        set { SetAccountPaid(value); }
+      }
+      public Builder SetAccountPaid(bool value) {
+        PrepareBuilder();
+        result.hasAccountPaid = true;
+        result.accountPaid_ = value;
+        return this;
+      }
+      public Builder ClearAccountPaid() {
+        PrepareBuilder();
+        result.hasAccountPaid = false;
+        result.accountPaid_ = false;
+        return this;
+      }
+      
+      public bool HasCountryId {
+        get { return result.hasCountryId; }
+      }
+      public uint CountryId {
+        get { return result.CountryId; }
+        set { SetCountryId(value); }
+      }
+      public Builder SetCountryId(uint value) {
+        PrepareBuilder();
+        result.hasCountryId = true;
+        result.countryId_ = value;
+        return this;
+      }
+      public Builder ClearCountryId() {
+        PrepareBuilder();
+        result.hasCountryId = false;
+        result.countryId_ = 0;
+        return this;
+      }
+      
+      public bool HasBattleTag {
+        get { return result.hasBattleTag; }
+      }
+      public string BattleTag {
+        get { return result.BattleTag; }
+        set { SetBattleTag(value); }
+      }
+      public Builder SetBattleTag(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasBattleTag = true;
+        result.battleTag_ = value;
+        return this;
+      }
+      public Builder ClearBattleTag() {
+        PrepareBuilder();
+        result.hasBattleTag = false;
+        result.battleTag_ = "";
+        return this;
+      }
+      
+      public bool HasManualReview {
+        get { return result.hasManualReview; }
+      }
+      public bool ManualReview {
+        get { return result.ManualReview; }
+        set { SetManualReview(value); }
+      }
+      public Builder SetManualReview(bool value) {
+        PrepareBuilder();
+        result.hasManualReview = true;
+        result.manualReview_ = value;
+        return this;
+      }
+      public Builder ClearManualReview() {
+        PrepareBuilder();
+        result.hasManualReview = false;
+        result.manualReview_ = false;
         return this;
       }
     }
-    static Identity() {
+    static AccountInfo() {
       object.ReferenceEquals(global::bnet.protocol.Entity.Descriptor, null);
     }
   }

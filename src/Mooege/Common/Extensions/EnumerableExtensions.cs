@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,8 +33,8 @@ namespace Mooege.Common.Extensions
                 sb.Append(value.ToString("X2"));
                 sb.Append(' ');
             }
-            if (sb.Length>0)
-                sb.Remove(sb.Length-1, 1);
+            if (sb.Length > 0)
+                sb.Remove(sb.Length - 1, 1);
             return sb.ToString();
         }
 
@@ -45,12 +45,14 @@ namespace Mooege.Common.Extensions
 
         public static string Dump(this IEnumerable<byte> collection)
         {
-            var output=new StringBuilder();
-            var hex=new StringBuilder();
-            var text=new StringBuilder();
-            int i=0;
-            foreach (byte value in collection) {
-                if (i>0 && ((i%16)==0)) {
+            var output = new StringBuilder();
+            var hex = new StringBuilder();
+            var text = new StringBuilder();
+            int i = 0;
+            foreach (byte value in collection)
+            {
+                if (i > 0 && ((i % 16) == 0))
+                {
                     output.Append(hex);
                     output.Append(' ');
                     output.Append(text);
@@ -62,9 +64,10 @@ namespace Mooege.Common.Extensions
                 text.Append(string.Format("{0}", (char.IsWhiteSpace((char)value) && (char)value != ' ') ? '.' : (char)value)); // prettify text
                 ++i;
             }
-            var hexstring=hex.ToString();
-            if (text.Length<16) {
-                hexstring=hexstring.PadRight(48); // pad the hex representation in-case it's smaller than a regular 16 value line.
+            var hexstring = hex.ToString();
+            if (text.Length < 16)
+            {
+                hexstring = hexstring.PadRight(48); // pad the hex representation in-case it's smaller than a regular 16 value line.
             }
             output.Append(hexstring);
             output.Append(' ');
@@ -73,4 +76,3 @@ namespace Mooege.Common.Extensions
         }
     }
 }
-

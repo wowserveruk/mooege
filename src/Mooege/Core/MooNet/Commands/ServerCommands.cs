@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -147,11 +147,11 @@ namespace Mooege.Core.MooNet.Commands
                     output += "MooNet server is already running. ";
             }
 
-            if(startGS)
+            if (startGS)
             {
                 if (!Program.StartGS())
                     output += "GS is already running. ";
-                         
+
             }
 
             return output;
@@ -164,7 +164,7 @@ namespace Mooege.Core.MooNet.Commands
             var stopGS = false;
             var output = string.Empty;
 
-            if(@params.Count() > 0)
+            if (@params.Count() > 0)
             {
                 switch (@params[0])
                 {

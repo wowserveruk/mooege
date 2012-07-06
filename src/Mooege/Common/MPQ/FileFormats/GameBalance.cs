@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,21 +17,25 @@
  */
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using CrystalMpq;
 using Gibbed.IO;
 using Mooege.Common.Extensions;
-using Mooege.Common.Helpers.Hash;
 using Mooege.Common.MPQ.FileFormats.Types;
 using Mooege.Core.GS.Common.Types.SNO;
 using Mooege.Common.Helpers;
+using Mooege.Common.Helpers.Hash;
+using Mooege.Common.Storage;
+using Mooege.Net.GS.Message.Fields;
+
 
 namespace Mooege.Common.MPQ.FileFormats
 {
     // this file should be fixed with our naming-conventions. /raist
 
     [FileFormat(SNOGroup.GameBalance)]
-    class GameBalance : FileFormat
+    public class GameBalance : FileFormat
     {
         public Header Header { get; private set; }
         public BalanceType Type { get; private set; }
@@ -46,24 +50,42 @@ namespace Mooege.Common.MPQ.FileFormats
         public List<MonsterLevelTable> MonsterLevel { get; private set; }
         public List<AffixTable> Affixes { get; private set; }
         public List<HeroTable> Heros { get; private set; }
-        public List<MovementStyleTable> MovementStyles { get; private set; }
+
+        [PersistentProperty("MovementStyles")]
+        public List<MovementStyle> MovementStyles { get; private set; }
         public List<LabelGBIDTable> Labels { get; private set; }
-        public List<LootDistTable> LootDistribution { get; private set; }
+
+        [PersistentProperty("LootDistribution")]
+        public List<LootDistributionTableEntry> LootDistribution { get; private set; }
         public List<RareItemNamesTable> RareItemNames { get; private set; }
         public List<MonsterAffixesTable> MonsterAffixes { get; private set; }
         public List<MonsterNamesTable> RareMonsterNames { get; private set; }
         public List<SocketedEffectTable> SocketedEffects { get; private set; }
         public List<ItemEnhancementTable> ItemEnhancement { get; private set; }
-        public List<ItemDropTable> ItemDrop { get; private set; }
-        public List<ItemLevelModTable> ItemLevelMod { get; private set; }
-        public List<QualityClassTable> QualityClass { get; private set; }
+
+        [PersistentProperty("ItemDropTable")]
+        public List<ItemDropTableEntry> ItemDropTable { get; private set; }
+
+        [PersistentProperty("ItemLevelModifiers")]
+        public List<ItemLevelModifier> ItemLevelModifiers { get; private set; }
+
+        [PersistentProperty("QualityClasses")]
+        public List<QualityClass> QualityClasses { get; private set; }
         public List<HirelingTable> Hirelings { get; private set; }
         public List<SetItemBonusTable> SetItemBonus { get; private set; }
-        public List<EliteModTable> EliteModifiers { get; private set; }
-        public List<ItemTierTable> ItemTiers { get; private set; }
+
+        [PersistentProperty("EliteModifiers")]
+        public List<EliteModifier> EliteModifiers { get; private set; }
+
+        [PersistentProperty("ItemTiers")]
+        public List<ItemTier> ItemTiers { get; private set; }
         public List<PowerFormulaTable> PowerFormula { get; private set; }
         public List<RecipeTable> Recipes { get; private set; }
+
+        [PersistentProperty("ScriptedAchievementEvents")]
         public List<ScriptedAchievementEventsTable> ScriptedAchievementEvents { get; private set; }
+
+        public GameBalance() { }
 
         public GameBalance(MpqFile file)
         {
@@ -88,11 +110,11 @@ namespace Mooege.Common.MPQ.FileFormats
             stream.Position += 8;
             this.Heros = stream.ReadSerializedData<HeroTable>(); //632
             stream.Position += 8;
-            this.MovementStyles = stream.ReadSerializedData<MovementStyleTable>(); //648
+            this.MovementStyles = stream.ReadSerializedData<MovementStyle>(); //648
             stream.Position += 8;
             this.Labels = stream.ReadSerializedData<LabelGBIDTable>(); //664
             stream.Position += 8;
-            this.LootDistribution = stream.ReadSerializedData<LootDistTable>(); //680
+            this.LootDistribution = stream.ReadSerializedData<LootDistributionTableEntry>(); //680
             stream.Position += 8;
             this.RareItemNames = stream.ReadSerializedData<RareItemNamesTable>(); //696
             stream.Position += 8;
@@ -104,19 +126,19 @@ namespace Mooege.Common.MPQ.FileFormats
             stream.Position += 8;
             this.ItemEnhancement = stream.ReadSerializedData<ItemEnhancementTable>(); //760
             stream.Position += 8;
-            this.ItemDrop = stream.ReadSerializedData<ItemDropTable>(); //776
+            this.ItemDropTable = stream.ReadSerializedData<ItemDropTableEntry>(); //776
             stream.Position += 8;
-            this.ItemLevelMod = stream.ReadSerializedData<ItemLevelModTable>(); //792
+            this.ItemLevelModifiers = stream.ReadSerializedData<ItemLevelModifier>(); //792
             stream.Position += 8;
-            this.QualityClass = stream.ReadSerializedData<QualityClassTable>(); //808
+            this.QualityClasses = stream.ReadSerializedData<QualityClass>(); //808
             stream.Position += 8;
             this.Hirelings = stream.ReadSerializedData<HirelingTable>(); //824
             stream.Position += 8;
             this.SetItemBonus = stream.ReadSerializedData<SetItemBonusTable>(); //840
             stream.Position += 8;
-            this.EliteModifiers = stream.ReadSerializedData<EliteModTable>(); //856
+            this.EliteModifiers = stream.ReadSerializedData<EliteModifier>(); //856
             stream.Position += 8;
-            this.ItemTiers = stream.ReadSerializedData<ItemTierTable>(); //872
+            this.ItemTiers = stream.ReadSerializedData<ItemTier>(); //872
             stream.Position += 8;
             this.PowerFormula = stream.ReadSerializedData<PowerFormulaTable>(); //888
             stream.Position += 8;
@@ -230,14 +252,13 @@ namespace Mooege.Common.MPQ.FileFormats
         PlayerLeftFinger = 11,
         PlayerRightFinger = 12,
         PlayerNeck = 13,
-        PlayerTalisman = 14,
-        Merchant = 20,
-        PetRightHand = 23,
-        PetLeftHand = 24,
-        PetSpecial = 25,
-        PetLeftFinger = 28,
-        PetRightFinger = 27,
-        PetNeck = 26,
+        Merchant = 18,
+        PetRightHand = 21,
+        PetLeftHand = 22,
+        PetSpecial = 23,
+        PetNeck = 24,
+        PetRightFinger = 25,
+        PetLeftFinger = 26,
     }
 
     public class ItemTable : ISerializableData
@@ -253,12 +274,13 @@ namespace Mooege.Common.MPQ.FileFormats
         public int I2 { get; private set; }
         public int RandomPropertiesCount { get; private set; }
         public int MaxSockets { get; private set; }
-        public int I5 { get; private set; }
+        public int MaxStackAmount { get; private set; }
         public int BaseGoldValue { get; private set; }
         public int I7 { get; private set; }
         public int RequiredLevel { get; private set; }
         public int DurabilityMin { get; private set; }
         public int DurabilityDelta { get; private set; }
+        public int I8 { get; private set; }
         public int SNOBaseItem { get; private set; }
         public int SNOSet { get; private set; }
         public int SNOComponentTreasureClass { get; private set; }
@@ -289,6 +311,7 @@ namespace Mooege.Common.MPQ.FileFormats
         public int EnhancementToGrant { get; private set; }
         public int[] LegendaryAffixFamily { get; private set; }
         public int[] MaxAffixLevel { get; private set; }
+        public int[] I18 { get; private set; }
         public GemType Gem { get; private set; }
         public int I16 { get; private set; }
         public Alpha I17 { get; private set; }
@@ -307,60 +330,64 @@ namespace Mooege.Common.MPQ.FileFormats
             this.I2 = stream.ReadValueS32(); //284
             this.RandomPropertiesCount = stream.ReadValueS32(); //288
             this.MaxSockets = stream.ReadValueS32(); //292
-            this.I5 = stream.ReadValueS32(); //296
+            this.MaxStackAmount = stream.ReadValueS32(); //296
             this.BaseGoldValue = stream.ReadValueS32(); //300
             this.I7 = stream.ReadValueS32(); //304
             this.RequiredLevel = stream.ReadValueS32(); //308
             this.DurabilityMin = stream.ReadValueS32(); //312
             this.DurabilityDelta = stream.ReadValueS32(); //316
-            this.SNOBaseItem = stream.ReadValueS32(); //320
-            this.SNOSet = stream.ReadValueS32(); //324
-            this.SNOComponentTreasureClass = stream.ReadValueS32(); //328
-            this.SNOComponentTreasureClassMagic = stream.ReadValueS32(); //332
-            this.SNOComponentTreasureClassRare = stream.ReadValueS32(); //336
-            this.SNORareNamePrefixStringList = stream.ReadValueS32(); //340
-            this.SNORareNameSuffixStringList = stream.ReadValueS32(); //344
-            this.I15 = new int[4]; //348
+            this.I8 = stream.ReadValueS32(); //320
+            this.SNOBaseItem = stream.ReadValueS32(); //324
+            this.SNOSet = stream.ReadValueS32(); //328
+            this.SNOComponentTreasureClass = stream.ReadValueS32(); //332
+            this.SNOComponentTreasureClassMagic = stream.ReadValueS32(); //336
+            this.SNOComponentTreasureClassRare = stream.ReadValueS32(); //340
+            this.SNORareNamePrefixStringList = stream.ReadValueS32(); //344
+            this.SNORareNameSuffixStringList = stream.ReadValueS32(); //348
+            this.I15 = new int[4]; //352
             for (int i = 0; i < 4; i++)
                 this.I15[i] = stream.ReadValueS32();
             stream.Position += 88;
-            this.WeaponDamageMin = stream.ReadValueF32(); //452
-            this.WeaponDamageDelta = stream.ReadValueF32(); //456
+            this.WeaponDamageMin = stream.ReadValueF32(); //456
+            this.WeaponDamageDelta = stream.ReadValueF32(); //460
             stream.Position += 84;
-            this.ArmorValue = stream.ReadValueF32(); //544
-            this.F3 = stream.ReadValueF32(); //548
+            this.ArmorValue = stream.ReadValueF32(); //548
+            this.F3 = stream.ReadValueF32(); //552
             stream.Position += 168;
-            this.AttacksPerSecond = stream.ReadValueF32(); //720
+            this.AttacksPerSecond = stream.ReadValueF32(); //724
             stream.Position += 84;
-            this.F4 = stream.ReadValueF32(); //808
-            this.F5 = stream.ReadValueF32(); //812
-            stream.Position += 100;
-            this.SNOSkill0 = stream.ReadValueS32(); //916
-            this.I11 = stream.ReadValueS32(); //920
-            this.SNOSkill1 = stream.ReadValueS32(); //924
-            this.I12 = stream.ReadValueS32(); //928
-            this.SNOSkill2 = stream.ReadValueS32(); //932
-            this.I13 = stream.ReadValueS32(); //936
-            this.SNOSkill3 = stream.ReadValueS32(); //940
-            this.I14 = stream.ReadValueS32(); //944
+            this.F4 = stream.ReadValueF32(); //812
+            this.F5 = stream.ReadValueF32(); //816
+            stream.Position += 104;
+            this.SNOSkill0 = stream.ReadValueS32(); //924
+            this.I11 = stream.ReadValueS32(); //928
+            this.SNOSkill1 = stream.ReadValueS32(); //932
+            this.I12 = stream.ReadValueS32(); //936
+            this.SNOSkill2 = stream.ReadValueS32(); //940
+            this.I13 = stream.ReadValueS32(); //944
+            this.SNOSkill3 = stream.ReadValueS32(); //948
+            this.I14 = stream.ReadValueS32(); //952
             stream.Position += 44;
             this.Attribute = new AttributeSpecifier[16];
             for (int i = 0; i < 16; i++)
                 this.Attribute[i] = new AttributeSpecifier(stream);
-            this.Quality = (ItemQuality)stream.ReadValueS32(); //1376
-            this.RecipeToGrant = new int[10]; //1380
+            this.Quality = (ItemQuality)stream.ReadValueS32(); //1384
+            this.RecipeToGrant = new int[10]; //1388
             for (int i = 0; i < 10; i++)
                 this.RecipeToGrant[i] = stream.ReadValueS32();
-            this.EnhancementToGrant = stream.ReadValueS32(); //1420
+            this.EnhancementToGrant = stream.ReadValueS32(); //1428
             this.LegendaryAffixFamily = new int[6];
             for (int i = 0; i < 6; i++)
-                this.LegendaryAffixFamily[i] = stream.ReadValueS32(); //1424
+                this.LegendaryAffixFamily[i] = stream.ReadValueS32(); //1432
             this.MaxAffixLevel = new int[6];
             for (int i = 0; i < 6; i++)
-                this.MaxAffixLevel[i] = stream.ReadValueS32(); //1446
-            this.Gem = (GemType)stream.ReadValueS32(); //1472
-            this.I16 = stream.ReadValueS32(); //1476
-            this.I17 = (Alpha)stream.ReadValueS32(); //1780
+                this.MaxAffixLevel[i] = stream.ReadValueS32(); //1456
+            this.I18 = new int[6];
+            for (int i = 0; i < 6; i++)
+                this.I18[i] = stream.ReadValueS32(); //1446
+            this.Gem = (GemType)stream.ReadValueS32(); //1504
+            this.I16 = stream.ReadValueS32(); //1508
+            this.I17 = (Alpha)stream.ReadValueS32(); //1512
             stream.Position += 4;
         }
 
@@ -668,7 +695,7 @@ namespace Mooege.Common.MPQ.FileFormats
             this.F50 = stream.ReadValueF32(); //504
             stream.Position += 12;
             this.F51 = stream.ReadValueF32(); //520
-            stream.Position += 32;
+            stream.Position += 36;
         }
     }
 
@@ -688,17 +715,18 @@ namespace Mooege.Common.MPQ.FileFormats
         public int SNOSKillKit3 { get; private set; }
         public Resource PrimaryResource { get; private set; }
         public Resource SecondaryResource { get; private set; }
+        public PrimaryAttribute CoreAttribute { get; private set; }
         public float F0 { get; private set; }
         public int I1 { get; private set; }
         public float HitpointsMax { get; private set; }
         public float HitpointsFactorLevel { get; private set; }
         public float F3 { get; private set; }
-        public float ResourceMax { get; private set; }
-        public float ResourceFactorLevel { get; private set; }
-        public float ResourceRegenPerSecond { get; private set; }
-        public float F7 { get; private set; }
-        public float F8 { get; private set; }
-        public float F9 { get; private set; }
+        public float PrimaryResourceMax { get; private set; }
+        public float PrimaryResourceFactorLevel { get; private set; }
+        public float PrimaryResourceRegenPerSecond { get; private set; }
+        public float SecondaryResourceMax { get; private set; }
+        public float SecondaryResourceFactorLevel { get; private set; }
+        public float SecondaryResourceRegenPerSecond { get; private set; }
         public float F10 { get; private set; }
         public float F11 { get; private set; }
         public float CritPercentCap { get; private set; }
@@ -724,14 +752,15 @@ namespace Mooege.Common.MPQ.FileFormats
         public float F32 { get; private set; }
         public float F33 { get; private set; }
         public float F34 { get; private set; }
-        public float Attack { get; private set; }
-        public float Precision { get; private set; }
+        public float Strength { get; private set; }
+        public float Dexterity { get; private set; }
         public float Vitality { get; private set; }
-        public float Defense { get; private set; }
+        public float Intelligence { get; private set; }
         public float GetHitMaxBase { get; private set; }
         public float GetHitMaxPerLevel { get; private set; }
         public float GetHitRecoveryBase { get; private set; }
         public float GetHitRecoveryPerLevel { get; private set; }
+        public float F35 { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
@@ -749,70 +778,73 @@ namespace Mooege.Common.MPQ.FileFormats
             this.SNOSKillKit3 = stream.ReadValueS32();
             this.PrimaryResource = (Resource)stream.ReadValueS32();
             this.SecondaryResource = (Resource)stream.ReadValueS32();
-            this.F0 = stream.ReadValueF32(); //308
-            this.I1 = stream.ReadValueS32(); //312
+            this.CoreAttribute = (PrimaryAttribute)stream.ReadValueS32();
+            this.F0 = stream.ReadValueF32(); //312
+            this.I1 = stream.ReadValueS32(); //316
             stream.Position += 16;
-            this.HitpointsMax = stream.ReadValueF32(); //332
-            this.HitpointsFactorLevel = stream.ReadValueF32(); //336
+            this.HitpointsMax = stream.ReadValueF32(); //336
+            this.HitpointsFactorLevel = stream.ReadValueF32(); //340
             stream.Position += 8;
-            this.F3 = stream.ReadValueF32(); //348
-            this.ResourceMax = stream.ReadValueF32(); //352
-            this.ResourceFactorLevel = stream.ReadValueF32(); //356
-            this.ResourceRegenPerSecond = stream.ReadValueF32(); //360
+            this.F3 = stream.ReadValueF32(); //352
+            this.PrimaryResourceMax = stream.ReadValueF32(); //356
+            this.PrimaryResourceFactorLevel = stream.ReadValueF32(); //360
+            this.PrimaryResourceRegenPerSecond = stream.ReadValueF32(); //364
             stream.Position += 4;
-            this.F7 = stream.ReadValueF32(); //368
-            this.F8 = stream.ReadValueF32(); //372
-            this.F9 = stream.ReadValueF32(); //376
+            this.SecondaryResourceMax = stream.ReadValueF32(); //372
+            this.SecondaryResourceFactorLevel = stream.ReadValueF32(); //376
+            this.SecondaryResourceRegenPerSecond = stream.ReadValueF32(); //380
             stream.Position += 24;
-            this.F10 = stream.ReadValueF32(); //404
+            this.F10 = stream.ReadValueF32(); //408
             stream.Position += 72;
-            this.F11 = stream.ReadValueF32(); //480
-            this.CritPercentCap = stream.ReadValueF32(); //484
-            this.F13 = stream.ReadValueF32(); //488
+            this.F11 = stream.ReadValueF32(); //484
+            this.CritPercentCap = stream.ReadValueF32(); //488
+            this.F13 = stream.ReadValueF32(); //492
             stream.Position += 4;
-            this.F14 = stream.ReadValueF32(); //496
+            this.F14 = stream.ReadValueF32(); //500
             stream.Position += 32;
-            this.WalkingRate = stream.ReadValueF32(); //532
-            this.RunningRate = stream.ReadValueF32(); //536
+            this.WalkingRate = stream.ReadValueF32(); //536
+            this.RunningRate = stream.ReadValueF32(); //540
             stream.Position += 4;
-            this.F17 = stream.ReadValueF32(); //544
+            this.F17 = stream.ReadValueF32(); //548
             stream.Position += 32;
-            this.F18 = stream.ReadValueF32(); //580
-            this.F19 = stream.ReadValueF32(); //584
-            this.F20 = stream.ReadValueF32(); //588
-            this.F21 = stream.ReadValueF32(); //592
-            this.F22 = stream.ReadValueF32(); //596
-            this.F23 = stream.ReadValueF32(); //600
+            this.F18 = stream.ReadValueF32(); //584
+            this.F19 = stream.ReadValueF32(); //588
+            this.F20 = stream.ReadValueF32(); //592
+            this.F21 = stream.ReadValueF32(); //596
+            this.F22 = stream.ReadValueF32(); //600
+            this.F23 = stream.ReadValueF32(); //604
             stream.Position += 4;
-            this.F24 = stream.ReadValueF32(); //608
-            this.F25 = stream.ReadValueF32(); //612
+            this.F24 = stream.ReadValueF32(); //612
+            this.F25 = stream.ReadValueF32(); //616
             stream.Position += 60;
-            this.F26 = stream.ReadValueF32(); //676
+            this.F26 = stream.ReadValueF32(); //680
             stream.Position += 8;
-            this.F27 = stream.ReadValueF32(); //688
-            this.F28 = stream.ReadValueF32(); //692
-            this.F29 = stream.ReadValueF32(); //696
-            this.F30 = stream.ReadValueF32(); //700
+            this.F27 = stream.ReadValueF32(); //692
+            this.F28 = stream.ReadValueF32(); //696
+            this.F29 = stream.ReadValueF32(); //700
+            this.F30 = stream.ReadValueF32(); //704
             stream.Position += 12;
-            this.F31 = stream.ReadValueF32(); //716
-            this.F32 = stream.ReadValueF32(); //720
-            this.F33 = stream.ReadValueF32(); //724
+            this.F31 = stream.ReadValueF32(); //720
+            this.F32 = stream.ReadValueF32(); //724
+            this.F33 = stream.ReadValueF32(); //728
             stream.Position += 40;
-            this.F34 = stream.ReadValueF32(); //768
+            this.F34 = stream.ReadValueF32(); //772
             stream.Position += 24;
-            this.Attack = stream.ReadValueF32(); //796
-            this.Precision = stream.ReadValueF32(); //800
-            this.Vitality = stream.ReadValueF32(); //804
-            this.Defense = stream.ReadValueF32(); //808
+            this.Strength = stream.ReadValueF32(); //800
+            this.Dexterity = stream.ReadValueF32(); //804
+            this.Vitality = stream.ReadValueF32(); //808
+            this.Intelligence = stream.ReadValueF32(); //812
             stream.Position += 40;
-            this.GetHitMaxBase = stream.ReadValueF32(); //852
-            this.GetHitMaxPerLevel = stream.ReadValueF32(); //856
-            this.GetHitRecoveryBase = stream.ReadValueF32(); //860
-            this.GetHitRecoveryPerLevel = stream.ReadValueF32(); //864
+            this.GetHitMaxBase = stream.ReadValueF32(); //856
+            this.GetHitMaxPerLevel = stream.ReadValueF32(); //860
+            this.GetHitRecoveryBase = stream.ReadValueF32(); //864
+            this.GetHitRecoveryPerLevel = stream.ReadValueF32(); //866
+            this.F35 = stream.ReadValueF32();
         }
 
         public enum Resource : int
         {
+            None = -1,
             Mana = 0,
             Arcanum,
             Fury,
@@ -821,42 +853,106 @@ namespace Mooege.Common.MPQ.FileFormats
             Hatred,
             Discipline,
         }
+
     }
 
-    public class MovementStyleTable : ISerializableData //0 byte file
+    public class MovementStyle : ISerializableData //0 byte file
     {
         //Total Length: 384
+        [PersistentPropertyAttribute("Name")]
         public string Name { get; private set; }
+
+        [PersistentPropertyAttribute("I0")]
         public int I0 { get; private set; }
+
+        [PersistentPropertyAttribute("I1")]
         public int I1 { get; private set; }
+
+        [PersistentPropertyAttribute("I2")]
         public int I2 { get; private set; }
+
+        [PersistentPropertyAttribute("I3")]
         public int I3 { get; private set; }
+
+        [PersistentPropertyAttribute("I4")]
         public int I4 { get; private set; }
+
+        [PersistentPropertyAttribute("I5")]
         public int I5 { get; private set; }
+
+        [PersistentPropertyAttribute("I6")]
         public int I6 { get; private set; }
+
+        [PersistentPropertyAttribute("I7")]
         public int I7 { get; private set; }
+
+        [PersistentPropertyAttribute("F0")]
         public float F0 { get; private set; }
+
+        [PersistentPropertyAttribute("F1")]
         public float F1 { get; private set; }
+
+        [PersistentPropertyAttribute("F2")]
         public float F2 { get; private set; }
+
+        [PersistentPropertyAttribute("F3")]
         public float F3 { get; private set; }
+
+        [PersistentPropertyAttribute("F4")]
         public float F4 { get; private set; }
+
+        [PersistentPropertyAttribute("F5")]
         public float F5 { get; private set; }
+
+        [PersistentPropertyAttribute("F6")]
         public float F6 { get; private set; }
+
+        [PersistentPropertyAttribute("F7")]
         public float F7 { get; private set; }
+
+        [PersistentPropertyAttribute("F8")]
         public float F8 { get; private set; }
+
+        [PersistentPropertyAttribute("F9")]
         public float F9 { get; private set; }
+
+        [PersistentPropertyAttribute("F10")]
         public float F10 { get; private set; }
+
+        [PersistentPropertyAttribute("F11")]
         public float F11 { get; private set; }
+
+        [PersistentPropertyAttribute("F12")]
         public float F12 { get; private set; }
+
+        [PersistentPropertyAttribute("F13")]
         public float F13 { get; private set; }
+
+        [PersistentPropertyAttribute("F14")]
         public float F14 { get; private set; }
+
+        [PersistentPropertyAttribute("F15")]
         public float F15 { get; private set; }
+
+        [PersistentPropertyAttribute("F16")]
         public float F16 { get; private set; }
+
+        [PersistentPropertyAttribute("F17")]
         public float F17 { get; private set; }
+
+        [PersistentPropertyAttribute("F18")]
         public float F18 { get; private set; }
+
+        [PersistentPropertyAttribute("F19")]
         public float F19 { get; private set; }
+
+        [PersistentPropertyAttribute("F20")]
         public float F20 { get; private set; }
+
+        [PersistentPropertyAttribute("F21")]
         public float F21 { get; private set; }
+
+        [PersistentPropertyAttribute("SNOPowerToBreakObjects")]
         public int SNOPowerToBreakObjects { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -923,15 +1019,18 @@ namespace Mooege.Common.MPQ.FileFormats
         public int I4 { get; private set; }
         public int I5 { get; private set; }
         public int I8 { get; private set; }
+        public int I9 { get; private set; }
         public AffixType1 AffixType1 { get; private set; }
         public int I6 { get; private set; }
         public int SNORareNamePrefixStringList { get; private set; }
         public int SNORareNameSuffixStringList { get; private set; }
         public int AffixFamily0 { get; private set; }
         public int AffixFamily1 { get; private set; }
+        public Class Class { get; private set; }
         public int ExclusionCategory { get; private set; }
         public int[] I7 { get; private set; }
         public int[] ItemGroup { get; private set; }
+        public int[] I10 { get; private set; }
         public QualityMask QualityMask { get; private set; }
         public AffixType2 AffixType2 { get; private set; }
         public int AssociatedAffix { get; private set; }
@@ -949,23 +1048,28 @@ namespace Mooege.Common.MPQ.FileFormats
             this.I4 = stream.ReadValueS32(); //276
             this.I5 = stream.ReadValueS32(); //280
             this.I8 = stream.ReadValueS32(); //284
-            this.AffixType1 = (AffixType1)stream.ReadValueS32(); //288
-            this.I6 = stream.ReadValueS32(); //292
-            this.SNORareNamePrefixStringList = stream.ReadValueS32(); //296
-            this.SNORareNameSuffixStringList = stream.ReadValueS32(); //300
-            this.AffixFamily0 = stream.ReadValueS32(); //304
-            this.AffixFamily1 = stream.ReadValueS32(); //308
-            this.ExclusionCategory = stream.ReadValueS32(); //312
-            this.I7 = new int[6]; //316
+            this.I9 = stream.ReadValueS32(); //288
+            this.AffixType1 = (AffixType1)stream.ReadValueS32(); //292
+            this.I6 = stream.ReadValueS32(); //296
+            this.SNORareNamePrefixStringList = stream.ReadValueS32(); //300
+            this.SNORareNameSuffixStringList = stream.ReadValueS32(); //304
+            this.AffixFamily0 = stream.ReadValueS32(); //308
+            this.AffixFamily1 = stream.ReadValueS32(); //312
+            this.Class = (Class)stream.ReadValueS32(); //316
+            this.ExclusionCategory = stream.ReadValueS32(); //320
+            this.I7 = new int[6]; //324
             for (int i = 0; i < 6; i++)
                 this.I7[i] = stream.ReadValueS32();
-            this.ItemGroup = new int[6]; //340
-            for (int i = 0; i < 6; i++)
+            this.ItemGroup = new int[16]; //348
+            for (int i = 0; i < 16; i++)
                 this.ItemGroup[i] = stream.ReadValueS32();
-            this.QualityMask = (QualityMask)stream.ReadValueS32(); //364
-            this.AffixType2 = (AffixType2)stream.ReadValueS32(); //368
-            this.AssociatedAffix = stream.ReadValueS32(); //372
-            this.AttributeSpecifier = new AttributeSpecifier[4]; //376
+            this.I10 = new int[16]; //412
+            for (int i = 0; i < 16; i++)
+                this.I10[i] = stream.ReadValueS32();
+            this.QualityMask = (QualityMask)stream.ReadValueS32(); //476
+            this.AffixType2 = (AffixType2)stream.ReadValueS32(); //480
+            this.AssociatedAffix = stream.ReadValueS32(); //484
+            this.AttributeSpecifier = new AttributeSpecifier[4]; //488
             for (int i = 0; i < 4; i++)
                 this.AttributeSpecifier[i] = new AttributeSpecifier(stream);
             stream.Position += 72;
@@ -1034,31 +1138,76 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
-    public class LootDistTable : ISerializableData //0 byte file
+    public class LootDistributionTableEntry : ISerializableData //0 byte file
     {
         //Total Length: 92
+        [PersistentPropertyAttribute("I0")]
         public int I0 { get; private set; }
+
+        [PersistentPropertyAttribute("I1")]
         public int I1 { get; private set; }
+
+        [PersistentPropertyAttribute("I2")]
         public int I2 { get; private set; }
+
+        [PersistentPropertyAttribute("I3")]
         public int I3 { get; private set; }
+
+        [PersistentPropertyAttribute("I4")]
         public int I4 { get; private set; }
+
+        [PersistentPropertyAttribute("I5")]
         public int I5 { get; private set; }
+
+        [PersistentPropertyAttribute("I6")]
         public int I6 { get; private set; }
+
+        [PersistentPropertyAttribute("I7")]
         public int I7 { get; private set; }
+
+        [PersistentPropertyAttribute("I8")]
         public int I8 { get; private set; }
+
+        [PersistentPropertyAttribute("I9")]
         public int I9 { get; private set; }
+
+        [PersistentPropertyAttribute("F0")]
         public float F0 { get; private set; }
+
+        [PersistentPropertyAttribute("F1")]
         public float F1 { get; private set; }
+
+        [PersistentPropertyAttribute("F2")]
         public float F2 { get; private set; }
+
+        [PersistentPropertyAttribute("F3")]
         public float F3 { get; private set; }
+
+        [PersistentPropertyAttribute("F4")]
         public float F4 { get; private set; }
+
+        [PersistentPropertyAttribute("F5")]
         public float F5 { get; private set; }
+
+        [PersistentPropertyAttribute("F6")]
         public float F6 { get; private set; }
+
+        [PersistentPropertyAttribute("F7")]
         public float F7 { get; private set; }
+
+        [PersistentPropertyAttribute("F8")]
         public float F8 { get; private set; }
+
+        [PersistentPropertyAttribute("F9")]
         public float F9 { get; private set; }
+
+        [PersistentPropertyAttribute("F10")]
         public float F10 { get; private set; }
+
+        [PersistentPropertyAttribute("I10")]
         public int I10 { get; private set; }
+
+        [PersistentPropertyAttribute("I11")]
         public int I11 { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1259,10 +1408,13 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
-    public class ItemDropTable : ISerializableData //0 byte file
+    public class ItemDropTableEntry : ISerializableData //0 byte file
     {
         //Total Length: 1140
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
+
+        [PersistentProperty("I0", 220)]
         public int[] I0 { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1275,31 +1427,76 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
-    public class ItemLevelModTable : ISerializableData //0 byte file
+    public class ItemLevelModifier : ISerializableData //0 byte file
     {
         //Total Length: 92
+        [PersistentPropertyAttribute("I0")]
         public int I0 { get; private set; }
+
+        [PersistentPropertyAttribute("F0")]
         public float F0 { get; private set; }
+
+        [PersistentPropertyAttribute("F1")]
         public float F1 { get; private set; }
+
+        [PersistentPropertyAttribute("F2")]
         public float F2 { get; private set; }
+
+        [PersistentPropertyAttribute("F3")]
         public float F3 { get; private set; }
+
+        [PersistentPropertyAttribute("F4")]
         public float F4 { get; private set; }
+
+        [PersistentPropertyAttribute("F5")]
         public float F5 { get; private set; }
+
+        [PersistentPropertyAttribute("F6")]
         public float F6 { get; private set; }
+
+        [PersistentPropertyAttribute("F7")]
         public float F7 { get; private set; }
+
+        [PersistentPropertyAttribute("F8")]
         public float F8 { get; private set; }
+
+        [PersistentPropertyAttribute("F9")]
         public float F9 { get; private set; }
+
+        [PersistentPropertyAttribute("F10")]
         public float F10 { get; private set; }
+
+        [PersistentPropertyAttribute("I1")]
         public int I1 { get; private set; }
+
+        [PersistentPropertyAttribute("I2")]
         public int I2 { get; private set; }
+
+        [PersistentPropertyAttribute("I3")]
         public int I3 { get; private set; }
+
+        [PersistentPropertyAttribute("I4")]
         public int I4 { get; private set; }
+
+        [PersistentPropertyAttribute("I5")]
         public int I5 { get; private set; }
+
+        [PersistentPropertyAttribute("I6")]
         public int I6 { get; private set; }
+
+        [PersistentPropertyAttribute("I7")]
         public int I7 { get; private set; }
+
+        [PersistentPropertyAttribute("I8")]
         public int I8 { get; private set; }
+
+        [PersistentPropertyAttribute("I9")]
         public int I9 { get; private set; }
+
+        [PersistentPropertyAttribute("I10")]
         public int I10 { get; private set; }
+
+        [PersistentPropertyAttribute("I11")]
         public int I11 { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1330,18 +1527,22 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
-    public class QualityClassTable : ISerializableData //0 byte file
+    public class QualityClass : ISerializableData //0 byte file
     {
         //Total Length: 352
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
+
+        [PersistentProperty("F0", 22)]
         public float[] F0 { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
             stream.Position += 4;
             this.Name = stream.ReadString(256, true);
-            this.F0 = new float[23];
-            for (int i = 0; i < 23; i++)
+            stream.Position += 4;
+            this.F0 = new float[22];
+            for (int i = 0; i < 22; i++)
                 this.F0[i] = stream.ReadValueF32();
         }
     }
@@ -1353,6 +1554,7 @@ namespace Mooege.Common.MPQ.FileFormats
         public int SNOActor { get; private set; }
         public int SNOProxy { get; private set; }
         public int SNOInventory { get; private set; }
+        public PrimaryAttribute Attribute { get; private set; }
         public float F0 { get; private set; }
         public float F1 { get; private set; }
         public float F2 { get; private set; }
@@ -1360,6 +1562,9 @@ namespace Mooege.Common.MPQ.FileFormats
         public float F4 { get; private set; }
         public float F5 { get; private set; }
         public float F6 { get; private set; }
+        public float F7 { get; private set; }
+        public float F8 { get; private set; }
+        public float F9 { get; private set; }
 
         public void Read(MpqFileStream stream)
         {
@@ -1368,16 +1573,22 @@ namespace Mooege.Common.MPQ.FileFormats
             this.SNOActor = stream.ReadValueS32();
             this.SNOProxy = stream.ReadValueS32();
             this.SNOInventory = stream.ReadValueS32();
-            stream.Position += 480;
-            this.F0 = stream.ReadValueF32(); //752
-            this.F1 = stream.ReadValueF32(); //756
-            this.F2 = stream.ReadValueF32(); //760
-            this.F3 = stream.ReadValueF32(); //764
+            this.Attribute = (PrimaryAttribute)stream.ReadValueS32();
+            stream.Position += 164;
+            this.F0 = stream.ReadValueF32(); //440
+            this.F1 = stream.ReadValueF32(); //444
+            stream.Position += 280;
+            this.F2 = stream.ReadValueF32(); //728
+            stream.Position += 24;
+            this.F3 = stream.ReadValueF32(); //756
+            this.F4 = stream.ReadValueF32(); //760
+            this.F5 = stream.ReadValueF32(); //764
+            this.F6 = stream.ReadValueF32(); //768
             stream.Position += 8;
-            this.F4 = stream.ReadValueF32(); //776
-            this.F5 = stream.ReadValueF32(); //780
-            this.F6 = stream.ReadValueF32(); //784
-            stream.Position += 36;
+            this.F7 = stream.ReadValueF32(); //780
+            this.F8 = stream.ReadValueF32(); //784
+            this.F9 = stream.ReadValueF32(); //788
+            stream.Position += 40;
         }
 
     }
@@ -1404,30 +1615,74 @@ namespace Mooege.Common.MPQ.FileFormats
 
     }
 
-    public class EliteModTable : ISerializableData //0 byte file
+    public class EliteModifier : ISerializableData //0 byte file
     {
         //Total Length: 344
+
+        [PersistentProperty("Name")]
         public string Name { get; private set; }
+
+        [PersistentProperty("F0")]
         public float F0 { get; private set; }
+
+        [PersistentProperty("Time0")]
         public int Time0 { get; private set; }
+
+        [PersistentProperty("F1")]
         public float F1 { get; private set; }
+
+        [PersistentProperty("Time1")]
         public int Time1 { get; private set; }
+
+        [PersistentProperty("F2")]
         public float F2 { get; private set; }
+
+        [PersistentProperty("Time2")]
         public int Time2 { get; private set; }
+
+        [PersistentProperty("F3")]
         public float F3 { get; private set; }
+
+        [PersistentProperty("Time3")]
         public int Time3 { get; private set; }
+
+        [PersistentProperty("F4")]
         public float F4 { get; private set; }
+
+        [PersistentProperty("Time4")]
         public int Time4 { get; private set; }
+
+        [PersistentProperty("F5")]
         public float F5 { get; private set; }
+
+        [PersistentProperty("Time5")]
         public int Time5 { get; private set; }
+
+        [PersistentProperty("F6")]
         public float F6 { get; private set; }
+
+        [PersistentProperty("Time6")]
         public int Time6 { get; private set; }
+
+        [PersistentProperty("F7")]
         public float F7 { get; private set; }
+
+        [PersistentProperty("F8")]
         public float F8 { get; private set; }
+
+        [PersistentProperty("Time7")]
         public int Time7 { get; private set; }
+
+        [PersistentProperty("F9")]
         public float F9 { get; private set; }
+
+        [PersistentProperty("F10")]
         public float F10 { get; private set; }
+
+        [PersistentProperty("F11")]
         public float F11 { get; private set; }
+
+        [PersistentProperty("F12")]
         public float F12 { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1458,15 +1713,29 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
-    public class ItemTierTable : ISerializableData //0 byte file
+    public class ItemTier : ISerializableData //0 byte file
     {
         //Total Length: 32
+
+        [PersistentPropertyAttribute("Head")]
         public int Head { get; private set; }
+
+        [PersistentPropertyAttribute("Torso")]
         public int Torso { get; private set; }
+
+        [PersistentPropertyAttribute("Feet")]
         public int Feet { get; private set; }
+
+        [PersistentPropertyAttribute("Hands")]
         public int Hands { get; private set; }
+
+        [PersistentPropertyAttribute("Shoulders")]
         public int Shoulders { get; private set; }
+
+        [PersistentPropertyAttribute("Bracers")]
         public int Bracers { get; private set; }
+
+        [PersistentPropertyAttribute("Belt")]
         public int Belt { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1535,6 +1804,7 @@ namespace Mooege.Common.MPQ.FileFormats
     public class ScriptedAchievementEventsTable : ISerializableData //0 byte file
     {
         //Total Length: 260
+        [PersistentPropertyAttribute("Name")]
         public string Name { get; private set; }
 
         public void Read(MpqFileStream stream)
@@ -1544,4 +1814,11 @@ namespace Mooege.Common.MPQ.FileFormats
         }
     }
 
+    public enum PrimaryAttribute : int
+    {
+        None = -1,
+        Strength,
+        Dexterity,
+        Intelligence,
+    }
 }

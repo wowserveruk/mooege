@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,12 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-using System;
 using System.Linq;
 using Mooege.Common.Helpers.Hash;
 using Mooege.Core.MooNet.Accounts;
 using Mooege.Core.MooNet.Objects;
 using Mooege.Core.MooNet.Services;
 using Mooege.Net.MooNet;
-using Mooege.Common.Helpers;
 
 namespace Mooege.Core.MooNet.Commands
 {
@@ -42,9 +40,9 @@ namespace Mooege.Core.MooNet.Commands
         {
             var client = invokerClient;
 
-            if(client==null && @params.Count() < 1)
+            if (client == null && @params.Count() < 1)
                 return "Invalid arguments. Type 'help services client' to get help.";
-
+            var output = "";
             if (client == null)
             {
                 var email = @params[0];
@@ -53,15 +51,21 @@ namespace Mooege.Core.MooNet.Commands
                 if (account == null)
                     return string.Format("No account with email '{0}' exists.", email);
 
-                client = account.LoggedInClient;
-                if (client == null)
+                if (!account.IsOnline)
                     return string.Format("Account '{0}' is not logged in.", email);
+
+                var gameAccounts = GameAccountManager.GetGameAccountsForAccount(account);
+                foreach (var gameAccount in gameAccounts)
+                {
+                    output += this.ClientServices(null, gameAccount.LoggedInClient);
+                }
             }
-
-            var output = string.Format("Imported service list for client: {0}\n", client.Account.Email);
-            output = client.Services.Aggregate(output, (current, pair) => 
-                current + string.Format("Id: 0x{0} Hash: 0x{1}\n", pair.Value.ToString("X2"), pair.Key.ToString("X8")));
-
+            else
+            {
+                output = string.Format("Imported service list for account: {0}\n", client.Account.Email);
+                output = client.Services.Aggregate(output, (current, pair) =>
+                    current + string.Format("Id: 0x{0} Hash: 0x{1}\n", pair.Value.ToString("X2"), pair.Key.ToString("X8")));
+            }
             return output;
         }
     }
@@ -109,7 +113,7 @@ namespace Mooege.Core.MooNet.Commands
             if (!ulong.TryParse(id, out localId))
                 return string.Format("Can not parse '{0}' as valid id.", id);
 
-            if(!RPCObjectManager.Objects.ContainsKey(localId))
+            if (!RPCObjectManager.Objects.ContainsKey(localId))
                 return string.Format("There exists no RPCObject with dynamidId: {0}", localId);
 
             var rpcObject = RPCObjectManager.Objects[localId];
@@ -117,7 +121,7 @@ namespace Mooege.Core.MooNet.Commands
                                        rpcObject.GetType().Name, rpcObject);
 
             output += "[Subscribers]\n";
-            foreach(var client in rpcObject.Subscribers)
+            foreach (var client in rpcObject.Subscribers)
             {
                 var remoteId = client.GetRemoteObjectId(rpcObject.DynamicId);
                 output += string.Format("RemoteId: 0x{0} - {1}\n", remoteId.ToString("X8"), client.Account.Email);

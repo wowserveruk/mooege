@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ using System;
 using Mooege.Common.Logging;
 using Mooege.Core.MooNet.Commands;
 using Mooege.Core.MooNet.Helpers;
-using Mooege.Core.MooNet.Toons;
+using Mooege.Core.MooNet.Accounts;
 using Mooege.Net.MooNet;
 
 namespace Mooege.Core.MooNet.Services
@@ -31,6 +31,7 @@ namespace Mooege.Core.MooNet.Services
         private static readonly Logger Logger = LogManager.CreateLogger();
         public MooNetClient Client { get; set; }
         public bnet.protocol.Header LastCallHeader { get; set; }
+        public uint Status { get; set; }
 
         public override void SendNotification(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.notification.Notification request, Action<bnet.protocol.NoData> done)
         {
@@ -41,20 +42,21 @@ namespace Mooege.Core.MooNet.Services
                     // NOTE: Real implementation doesn't even handle the situation where neither client knows about the other.
                     // Client requires prior knowledge of sender and target (and even then it cannot whisper by using the /whisper command).
 
-                    Logger.Trace(string.Format("NotificationRequest.Whisper by {0} to {1}", this.Client.CurrentToon, ToonManager.GetToonByLowID(request.TargetId.Low)));
+                    var targetAccount = GameAccountManager.GetAccountByPersistentID(request.TargetId.Low);
+                    Logger.Trace(string.Format("NotificationRequest.Whisper by {0} to {1}", this.Client.Account.CurrentGameAccount, targetAccount));
 
-                    var targetAccount = ToonManager.GetOwnerAccountByToonLowId(request.TargetId.Low);
                     if (targetAccount.LoggedInClient == null) return;
 
-                    if (targetAccount == this.Client.Account) // check if whisper targets the account itself.
+                    if (targetAccount == this.Client.Account.CurrentGameAccount) // check if whisper targets the account itself.
                         CommandManager.TryParse(request.AttributeList[0].Value.StringValue, this.Client); // try parsing it as a command and respond it if so.
                     else
                     {
                         var notification = bnet.protocol.notification.Notification.CreateBuilder(request)
-                            .SetSenderId(this.Client.CurrentToon.BnetEntityID)
+                            .SetSenderId(this.Client.Account.CurrentGameAccount.BnetEntityId)
+                            .SetSenderAccountId(this.Client.Account.BnetEntityId)
                             .Build();
 
-                        targetAccount.LoggedInClient.MakeRPC(() => 
+                        targetAccount.LoggedInClient.MakeRPC(() =>
                             bnet.protocol.notification.NotificationListener.CreateStub(targetAccount.LoggedInClient).OnNotificationReceived(controller, notification, callback => { }));
                     }
                     break;

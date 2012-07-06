@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,15 +19,20 @@
 using System.Text;
 using CrystalMpq;
 using Gibbed.IO;
+using Mooege.Common.MPQ;
 using Mooege.Net.GS.Message;
+using Mooege.Common.Storage;
 
 namespace Mooege.Core.GS.Common.Types.Math
 {
-    public class Vector3D
+    public class Vector3D : ISerializableData
     {
-        public float X;
-        public float Y;
-        public float Z;
+        [PersistentProperty("X")]
+        public float X { get; set; }
+        [PersistentProperty("Y")]
+        public float Y { get; set; }
+        [PersistentProperty("Z")]
+        public float Z { get; set; }
 
         public Vector3D()
         {
@@ -55,6 +60,13 @@ namespace Mooege.Core.GS.Common.Types.Math
         public Vector3D(MpqFileStream stream)
             : this(stream.ReadValueF32(), stream.ReadValueF32(), stream.ReadValueF32())
         {
+        }
+
+        public void Read(MpqFileStream stream)
+        {
+            X = stream.ReadValueF32();
+            Y = stream.ReadValueF32();
+            Z = stream.ReadValueF32();
         }
 
         /// <summary>
@@ -188,10 +200,10 @@ namespace Mooege.Core.GS.Common.Types.Math
         {
             return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
         }
-        
+
         public override string ToString()
         {
-            return string.Format("x:{0} y:{1} z:{2}",X, Y,Z);
+            return string.Format("x:{0} y:{1} z:{2}", X, Y, Z);
         }
     }
 }

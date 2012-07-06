@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2011 mooege project
+ * Copyright (C) 2011 - 2012 mooege project - http://www.mooege.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
 
 namespace Mooege.Common.Extensions
 {
@@ -38,6 +35,30 @@ namespace Mooege.Common.Extensions
             var result = b.ToByteArray();
             if (result[result.Length - 1] == 0 && (result.Length % 0x10) != 0)
                 Array.Resize(ref result, result.Length - 1);
+            return result;
+        }
+
+        public static byte[] ToArray(this BigInteger b, int size)
+        {
+            byte[] result = b.ToArray();
+            if (result.Length > size)
+                throw new ArgumentOutOfRangeException("size", size, "must be large enough to convert the BigInteger");
+
+            // If the size is already correct, return the result.
+            if (result.Length == size)
+                return result;
+
+            // Resize the array.
+            int n = size - result.Length;
+            Array.Resize(ref result, size);
+
+            // Fill the extra bytes with 0x00.
+            while (n > 0)
+            {
+                result[size - n] = 0x00;
+                n--;
+            }
+
             return result;
         }
     }
